@@ -45,8 +45,8 @@
   <meta property="og:type" content="website">
 
   <meta itemprop="name" content="Paper">
-  <meta itemprop="datePublished" content="2025-05-14T11:00:59-04:00">
-  <meta itemprop="dateModified" content="2025-05-14T11:00:59-04:00">
+  <meta itemprop="datePublished" content="2025-06-25T11:00:59-04:00">
+  <meta itemprop="dateModified" content="2025-06-25T11:00:59-04:00">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Paper">
 
@@ -139,6 +139,47 @@
   </article>
   <div class="mw8 center">
     <section class="flex-ns flex-wrap justify-around mt5">
+      
+        <div class="relative w-100  mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        June 25, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBkimi-researcher/" class="link black dim">
+        「论文阅读」Kimi-Researcher
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p><a href="https://moonshotai.github.io/Kimi-Researcher/">这篇技术报告</a>提出了完全通过端到端 agentic reinforcement learning 进行训练的自主智能体 Kimi-Researcher，旨在通过多步骤规划、推理和工具使用来解决复杂问题。</p>
+<p>—— <strong>End-to-end agentic RL is promising but challenging</strong></p>
+<h3 id="传统-agent">传统 agent</h3>
+<ol>
+<li><strong><a href="https://www.anthropic.com/engineering/built-multi-agent-research-system">基于工作流</a></strong>：需要随着模型或环境的变化而频繁手动更新，缺乏可扩展性和灵活性。</li>
+<li><strong>使用监督微调 (SFT)进行模仿学习</strong>：在数据标记方面存在困难；特定的工具版本紧密耦合。</li>
+</ol>
+<p><strong>Kimi-Researcher</strong>：给定一个查询，agent 探索大量可能的策略，获得正确解决方案的奖励 —— 所有技能（规划、感知和工具使用）都是一起学习的，无需手工制作的rule/workflow。</p>
+<h3 id="建模">建模</h3>
+<p>给定状态观察(如系统提示符、工具声明和用户查询)，Kimi-Researcher 会生成 think和action (action 可以是工具调用，也可以是终止轨迹的指示)。</p>
+<p><img src="/Users/aijunyang/DearAJ.github.io/static/images/paper-KimiResearcher/1.png" alt="1"></p>
+<h3 id="approach">Approach</h3>
+<p>主要利用三个工具：a)并行、实时、内部的 <strong>search tool;</strong> b) 用于交互式 Web 任务的基于文本的 <strong>browser tool</strong>; c)用于自动执行代码的 <strong>coding tool</strong>.</p>
+<ol>
+<li>
+<h4 id="training-data"><strong>Training data</strong></h4>
+<p>设计了具有两个互补目标的训练语料库</p>
+<ol>
+<li><strong>构建 tool-centric 的任务</strong>： the agent learns when to invoke a tool, and how to orchestrate tool use effectively.</li>
+<li><strong>构建 reasoning-intensive 的任务</strong>：数学和代码推理 + Hard Search</li>
+</ol>
+<p>开发了完全自动化的管道，以最少的人工干预生成和验证许多问答对。</p>
+    </div>
+  <a href="/post/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBkimi-researcher/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
       
         <div class="relative w-100  mb4 bg-white">
             <div class="mb3 pa4 mid-gray overflow-hidden">

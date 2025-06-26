@@ -47,7 +47,7 @@
 
   <meta itemprop="name" content="Articles">
   <meta itemprop="description" content="The soul selects her own society, then shuts the door. To her divine majority, present no more.">
-  <meta itemprop="datePublished" content="2025-06-20T10:00:59-04:00">
+  <meta itemprop="datePublished" content="2025-06-25T11:00:59-04:00">
   <meta itemprop="dateModified" content="2026-05-11T11:00:59-04:00">
   <meta itemprop="wordCount" content="2">
   <meta name="twitter:card" content="summary">
@@ -153,6 +153,65 @@
             <div class="mb3 pa4 mid-gray overflow-hidden">
     
       <div class="f6">
+        April 29, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/efficientnet/" class="link black dim">
+        EfficientNet
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <ul>
+<li>
+<p><strong>传统的模型缩放</strong>：</p>
+<p>任意增加 CNN 的深度或宽度，或使用更大的输入图像分辨率进行训练和评估。</p>
+<p><strong>缺点</strong>：通常需要长时间的手动调优，并且仍然会经常产生次优的性能。</p>
+</li>
+<li>
+<p><strong><a href="https://arxiv.org/abs/1905.11946">EfficientNet</a></strong>：</p>
+<ol>
+<li>提出了一种新的模型缩放方法和 AutoML 技术，使用使用简单但高效的<strong>复合系数</strong>，均匀缩放深度/宽度/分辨率的所有维度。</li>
+<li>使用神经架构搜索来设计一个新的基线网络，并将其扩展以获得一系列模型，称为 EfficientNets。</li>
+</ol>
+<p><strong>优点</strong>：更小、更快。</p>
+</li>
+</ul>
+<p> </p>
+<h3 id="复合模型放缩">复合模型放缩</h3>
+<h4 id="1-概述">1. 概述</h4>
+<p><strong>目的</strong>：找到在固定资源约束下，基线网络的不同缩放维度之间的关系。</p>
+<p><img src="/images/efficientNet/1.png" alt="1"></p>
+    </div>
+  <a href="/post/efficientnet/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        April 27, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/llm2/" class="link black dim">
+        LLM - 2.预训练阶段
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p><img src="/images/LLM2/0.png" alt="0"></p>
+    </div>
+  <a href="/post/llm2/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
         April 24, 2025
       </div>
     
@@ -175,71 +234,6 @@
 <p><img src="/images/resnet18/1.jpg" alt="1"></p>
     </div>
   <a href="/post/resnet18/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        April 20, 2025
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/llm1/" class="link black dim">
-        LLM - 1.基础理论
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p><img src="/images/LLM1/0.png" alt="0"></p>
-    </div>
-  <a href="/post/llm1/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        April 17, 2025
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/%E5%B7%A5%E5%85%B7%E9%93%BE-pytorch/" class="link black dim">
-        工具链-PyTorch
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <h2 id="1-处理数据">1. 处理数据</h2>
-<p>PyTorch 有两个用于处理数据的基元： <code>torch.utils.data.DataLoader</code> 和 <code>torch.utils.data.Dataset</code>。
-<code>Dataset</code> 存储样本及其相应的标签，<code>DataLoader</code> 将 <code>Dataset</code> 包装成一个迭代器。</p>
-<ul>
-<li>
-<p>下面以 TorchVision 库模块里的 FashionMNIST 数据集为例：</p>
-<p>每个 TorchVision <code>Dataset</code> 都包含两个参数： <code>transform</code> 和 <code>target_transform</code> 分别修改样本和标签</p>
-</li>
-</ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Download training data from open datasets.</span>
-</span></span><span style="display:flex;"><span>training_data <span style="color:#f92672">=</span> datasets<span style="color:#f92672">.</span>FashionMNIST(
-</span></span><span style="display:flex;"><span>    root<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;data&#34;</span>,
-</span></span><span style="display:flex;"><span>    train<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
-</span></span><span style="display:flex;"><span>    download<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
-</span></span><span style="display:flex;"><span>    transform<span style="color:#f92672">=</span>ToTensor(),
-</span></span><span style="display:flex;"><span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Download test data from open datasets.</span>
-</span></span><span style="display:flex;"><span>test_data <span style="color:#f92672">=</span> datasets<span style="color:#f92672">.</span>FashionMNIST(
-</span></span><span style="display:flex;"><span>    root<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;data&#34;</span>,
-</span></span><span style="display:flex;"><span>    train<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>,
-</span></span><span style="display:flex;"><span>    download<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
-</span></span><span style="display:flex;"><span>    transform<span style="color:#f92672">=</span>ToTensor(),
-</span></span><span style="display:flex;"><span>)
-</span></span></code></pre></div><p>将 <code>Dataset</code> 作为参数传递给 <code>DataLoader</code> ，将一个可迭代对象包装在数据集上，支持自动批处理、采样、洗牌和多进程数据加载。</p>
-<p>定义了一个 batch size 为 64，即 dataloader 迭代器中的每个元素将返回<strong>一个 64 features and labels 的 batch</strong>。</p>
-    </div>
-  <a href="/post/%E5%B7%A5%E5%85%B7%E9%93%BE-pytorch/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
   </div>
 
         </div>
@@ -272,7 +266,7 @@
         <a href="/post/page/8/" aria-label="Next" class="page-link" role="button"><span aria-hidden="true">&raquo;</span></a>
       </li>
       <li class="page-item">
-        <a href="/post/page/21/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/post/page/22/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
       </li>
     </ul>
   </article>

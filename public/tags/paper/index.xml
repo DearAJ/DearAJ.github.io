@@ -6,8 +6,15 @@
     <description>Recent content in Paper on HomePage</description>
     <generator>Hugo</generator>
     <language>en-US</language>
-    <lastBuildDate>Wed, 14 May 2025 11:00:59 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 25 Jun 2025 11:00:59 -0400</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/paper/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>「论文阅读」Kimi-Researcher</title>
+      <link>http://localhost:1313/post/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBkimi-researcher/</link>
+      <pubDate>Wed, 25 Jun 2025 11:00:59 -0400</pubDate>
+      <guid>http://localhost:1313/post/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBkimi-researcher/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://moonshotai.github.io/Kimi-Researcher/&#34;&gt;这篇技术报告&lt;/a&gt;提出了完全通过端到端 agentic reinforcement learning 进行训练的自主智能体 Kimi-Researcher，旨在通过多步骤规划、推理和工具使用来解决复杂问题。&lt;/p&gt;&#xA;&lt;p&gt;—— &lt;strong&gt;End-to-end agentic RL is promising but challenging&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;h3 id=&#34;传统-agent&#34;&gt;传统 agent&lt;/h3&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;https://www.anthropic.com/engineering/built-multi-agent-research-system&#34;&gt;基于工作流&lt;/a&gt;&lt;/strong&gt;：需要随着模型或环境的变化而频繁手动更新，缺乏可扩展性和灵活性。&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;使用监督微调 (SFT)进行模仿学习&lt;/strong&gt;：在数据标记方面存在困难；特定的工具版本紧密耦合。&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;&lt;strong&gt;Kimi-Researcher&lt;/strong&gt;：给定一个查询，agent 探索大量可能的策略，获得正确解决方案的奖励 —— 所有技能（规划、感知和工具使用）都是一起学习的，无需手工制作的rule/workflow。&lt;/p&gt;&#xA;&lt;h3 id=&#34;建模&#34;&gt;建模&lt;/h3&gt;&#xA;&lt;p&gt;给定状态观察(如系统提示符、工具声明和用户查询)，Kimi-Researcher 会生成 think和action (action 可以是工具调用，也可以是终止轨迹的指示)。&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/Users/aijunyang/DearAJ.github.io/static/images/paper-KimiResearcher/1.png&#34; alt=&#34;1&#34;&gt;&lt;/p&gt;&#xA;&lt;h3 id=&#34;approach&#34;&gt;Approach&lt;/h3&gt;&#xA;&lt;p&gt;主要利用三个工具：a)并行、实时、内部的 &lt;strong&gt;search tool;&lt;/strong&gt; b) 用于交互式 Web 任务的基于文本的 &lt;strong&gt;browser tool&lt;/strong&gt;; c)用于自动执行代码的 &lt;strong&gt;coding tool&lt;/strong&gt;.&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&#xA;&lt;h4 id=&#34;training-data&#34;&gt;&lt;strong&gt;Training data&lt;/strong&gt;&lt;/h4&gt;&#xA;&lt;p&gt;设计了具有两个互补目标的训练语料库&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&lt;strong&gt;构建 tool-centric 的任务&lt;/strong&gt;： the agent learns when to invoke a tool, and how to orchestrate tool use effectively.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;构建 reasoning-intensive 的任务&lt;/strong&gt;：数学和代码推理 + Hard Search&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;开发了完全自动化的管道，以最少的人工干预生成和验证许多问答对。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>「论文阅读」Augmented Knowledge Graph Querying leveraging LLMs</title>
       <link>http://localhost:1313/post/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBaugmented-knowledge-graph-querying-leveraging-llms/</link>

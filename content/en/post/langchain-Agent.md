@@ -2,9 +2,8 @@
 date: 2025-06-20T10:00:59-04:00
 description: ""
 featured_image: "/images/langchain-Agent/jaz.png"
-tags: ["langchain", LLM"]
+tags: ["langchain", "LLM"]
 title: "langchain - Agent"
-
 ---
 
 ![1](/images/langchain-Agent/1.png)
@@ -18,6 +17,37 @@ title: "langchain - Agent"
 ![2](/images/langchain-Agent/2.png)
 
 <!--more-->
+
+关键代码
+
+```python
+# Set Up ReAct Agent with Document Store Retriever
+# Load the ReAct Docstore Prompt
+react_docstore_prompt = hub.pull("hwchase17/react")
+
+tools = [
+    Tool(
+        name="Answer Question",
+        func=lambda input, **kwargs: rag_chain.invoke(
+            {"input": input, "chat_history": kwargs.get("chat_history", [])}
+        ),
+        description="useful for when you need to answer questions about the context",
+    )
+]
+
+# Create the ReAct Agent with document store retriever
+agent = create_react_agent(
+    llm=llm,
+    tools=tools,
+    prompt=react_docstore_prompt,
+)
+
+agent_executor = AgentExecutor.from_agent_and_tools(
+    agent=agent, tools=tools, handle_parsing_errors=True, verbose=True,
+)
+```
+
+完整代码
 
 ```python
 import os
@@ -166,3 +196,18 @@ while True:
     chat_history.append(AIMessage(content=response["output"]))
 ```
 
+&nbsp;
+
+&nbsp;
+
+### agent 框架
+
++ **CoT**：引导模型在给出最终答案前先生成一系列结构化的**中间推理步骤**。
+
+  **缺陷**：生成冗长的思考链条会增加计算成本和处理延迟。
+
++ **ReAct**：将 Reasoning 与 Action 相结合，允许模型在推理过程中**与外部工具或环境进行互动**，从而获取最新信息、执行具体操作，并根据反馈调整后续步骤。
+
++ **Plan-and-Execute**：ReAct 的扩展，将 agent 工作流程明确划分为规划和执行两个阶段。
+
+  ![3](/images/langchain-Agent/3.png)

@@ -45,8 +45,8 @@
   <meta property="og:type" content="website">
 
   <meta itemprop="name" content="Tags">
-  <meta itemprop="datePublished" content="2025-06-20T10:00:59-04:00">
-  <meta itemprop="dateModified" content="2025-06-20T10:00:59-04:00">
+  <meta itemprop="datePublished" content="2025-06-25T11:00:59-04:00">
+  <meta itemprop="dateModified" content="2025-06-25T11:00:59-04:00">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Tags">
 
@@ -142,10 +142,157 @@
     <section class="ph4">
       
         <h2 class="f1">
+          <a href="/tags/paper/" class="link blue hover-black">
+            Tag: Paper
+          </a>
+        </h2>
+        
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        June 25, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBkimi-researcher/" class="link black dim">
+        「论文阅读」Kimi-Researcher
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p><a href="https://moonshotai.github.io/Kimi-Researcher/">这篇技术报告</a>提出了完全通过端到端 agentic reinforcement learning 进行训练的自主智能体 Kimi-Researcher，旨在通过多步骤规划、推理和工具使用来解决复杂问题。</p>
+<p>—— <strong>End-to-end agentic RL is promising but challenging</strong></p>
+<h3 id="传统-agent">传统 agent</h3>
+<ol>
+<li><strong><a href="https://www.anthropic.com/engineering/built-multi-agent-research-system">基于工作流</a></strong>：需要随着模型或环境的变化而频繁手动更新，缺乏可扩展性和灵活性。</li>
+<li><strong>使用监督微调 (SFT)进行模仿学习</strong>：在数据标记方面存在困难；特定的工具版本紧密耦合。</li>
+</ol>
+<p><strong>Kimi-Researcher</strong>：给定一个查询，agent 探索大量可能的策略，获得正确解决方案的奖励 —— 所有技能（规划、感知和工具使用）都是一起学习的，无需手工制作的rule/workflow。</p>
+<h3 id="建模">建模</h3>
+<p>给定状态观察(如系统提示符、工具声明和用户查询)，Kimi-Researcher 会生成 think和action (action 可以是工具调用，也可以是终止轨迹的指示)。</p>
+<p><img src="/Users/aijunyang/DearAJ.github.io/static/images/paper-KimiResearcher/1.png" alt="1"></p>
+<h3 id="approach">Approach</h3>
+<p>主要利用三个工具：a)并行、实时、内部的 <strong>search tool;</strong> b) 用于交互式 Web 任务的基于文本的 <strong>browser tool</strong>; c)用于自动执行代码的 <strong>coding tool</strong>.</p>
+<ol>
+<li>
+<h4 id="training-data"><strong>Training data</strong></h4>
+<p>设计了具有两个互补目标的训练语料库</p>
+<ol>
+<li><strong>构建 tool-centric 的任务</strong>： the agent learns when to invoke a tool, and how to orchestrate tool use effectively.</li>
+<li><strong>构建 reasoning-intensive 的任务</strong>：数学和代码推理 + Hard Search</li>
+</ol>
+<p>开发了完全自动化的管道，以最少的人工干预生成和验证许多问答对。</p>
+    </div>
+  <a href="/post/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBkimi-researcher/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        May 14, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBaugmented-knowledge-graph-querying-leveraging-llms/" class="link black dim">
+        「论文阅读」Augmented Knowledge Graph Querying leveraging LLMs
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p><a href="https://arxiv.org/abs/2502.01298">这篇论文</a>引入了一个名为 SparqLLM 的框架，通过结合 RAG 与 LLM，实现了从自然语言到 SPARQL 查询的自动生成，以简化知识图谱的查询过程。</p>
+<h3 id="1-introduction">1 Introduction</h3>
+<p><strong>背景</strong>：非技术员工不懂 SPARQL；KG + LLMs 无法生成精确高效的 SPARQL 查询，且存在幻觉问题。</p>
+<p><strong>SparqLLM</strong>：被设计为 RAG 框架，可自动从自然语言问题生成 SPARQL 查询，同时生成最适当的数据可视化以返回获得的结果。</p>
+<p><img src="/images/paper-SparqLLM/1.png" alt="1"></p>
+<p><strong>目标</strong>：提高 KG 的准确性、可用性和可靠性，实现与语义数据的更直观和有效的交互。</p>
+<p> </p>
+<h3 id="2-related-work">2 Related Work</h3>
+<ul>
+<li>
+<p><strong>自然语言接口 (NLI)</strong>：将非结构化输入转换为 SPARQL 等正式查询语言，使非技术用户更容易访问基于 RDF 的知识图谱。</p>
+</li>
+<li>
+<p><strong>LLMs</strong>：利用它们处理和生成复杂文本的能力，为自动生成查询提供了一个强大的框架，减少了人工干预的需要，使非专家用户也能访问知识图谱。</p>
+</li>
+<li>
+<p><strong>基于模板的方法</strong>：通过为查询生成提供确定性框架来补充上述方法。</p>
+</li>
+</ul>
+    </div>
+  <a href="/post/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBaugmented-knowledge-graph-querying-leveraging-llms/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        May 14, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBgenerate-on-graph-treat-llm-as-both-agent-and-kg-for-incomplete-knowledge-graph-question-answering/" class="link black dim">
+        「论文阅读」Generate-on-Graph: Treat LLM as both Agent and KG for Incomplete Knowledge Graph Question Answering
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p><a href="https://arxiv.org/abs/2404.14741">这篇论文</a>提出了一种称为 Generate-on-Graph(GoG) 的免训练方法，它可以在探索 KG 时，生成新的事实三元组。</p>
+<p>具体来说，在不完全知识图谱(IKGQA) 中，GoG 通过 Thinking-Searching-Generating 框架进行推理，它将 LLM 同时视为 Agent 和 KG。</p>
+<h3 id="1-introduction">1 Introduction</h3>
+<p><img src="/images/paper-GoG/1.png" alt="1"></p>
+    </div>
+  <a href="/post/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBgenerate-on-graph-treat-llm-as-both-agent-and-kg-for-incomplete-knowledge-graph-question-answering/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        
+      
+        <h2 class="f1">
           <a href="/tags/langchain/" class="link blue hover-black">
             Tag: Langchain
           </a>
         </h2>
+        
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        June 23, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/langchain-textsplitter/" class="link black dim">
+        langchain - text_splitter
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> os
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain.text_splitter <span style="color:#f92672">import</span> (
+</span></span><span style="display:flex;"><span>    CharacterTextSplitter,
+</span></span><span style="display:flex;"><span>    RecursiveCharacterTextSplitter,
+</span></span><span style="display:flex;"><span>    SentenceTransformersTokenTextSplitter,
+</span></span><span style="display:flex;"><span>    TextSplitter,
+</span></span><span style="display:flex;"><span>    TokenTextSplitter,
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_community.document_loaders <span style="color:#f92672">import</span> TextLoader
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_community.vectorstores <span style="color:#f92672">import</span> Chroma
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_openai <span style="color:#f92672">import</span> OpenAIEmbeddings
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Define the directory containing the text file</span>
+</span></span><span style="display:flex;"><span>current_dir <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>dirname(os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>abspath(__file__))
+</span></span><span style="display:flex;"><span>file_path <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(current_dir, <span style="color:#e6db74">&#34;books&#34;</span>, <span style="color:#e6db74">&#34;romeo_and_juliet.txt&#34;</span>)
+</span></span><span style="display:flex;"><span>db_dir <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(current_dir, <span style="color:#e6db74">&#34;db&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Check if the text file exists</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>exists(file_path):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">FileNotFoundError</span>(
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;The file </span><span style="color:#e6db74">{</span>file_path<span style="color:#e6db74">}</span><span style="color:#e6db74"> does not exist. Please check the path.&#34;</span>
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Read the text content from the file</span>
+</span></span><span style="display:flex;"><span>loader <span style="color:#f92672">=</span> TextLoader(file_path)
+</span></span><span style="display:flex;"><span>documents <span style="color:#f92672">=</span> loader<span style="color:#f92672">.</span>load()
+</span></span></code></pre></div>
+    </div>
+  <a href="/post/langchain-textsplitter/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
         
             <div class="mb3 pa4 mid-gray overflow-hidden">
     
@@ -181,7 +328,8 @@
       </a>
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> os
+      <p><img src="/images/langchain-RAG/1.png" alt="1"></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> os
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> dotenv <span style="color:#f92672">import</span> load_dotenv
 </span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain.chains <span style="color:#f92672">import</span> create_history_aware_retriever, create_retrieval_chain
@@ -197,12 +345,6 @@
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># Define the persistent directory</span>
 </span></span><span style="display:flex;"><span>current_dir <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>dirname(os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>abspath(__file__))
 </span></span><span style="display:flex;"><span>persistent_directory <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(current_dir, <span style="color:#e6db74">&#34;db&#34;</span>, <span style="color:#e6db74">&#34;chroma_db_with_metadata&#34;</span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Define the embedding model</span>
-</span></span><span style="display:flex;"><span>embeddings <span style="color:#f92672">=</span> OpenAIEmbeddings(model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text-embedding-3-small&#34;</span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Load the existing vector store with the embedding function</span>
-</span></span><span style="display:flex;"><span>db <span style="color:#f92672">=</span> Chroma(persist_directory<span style="color:#f92672">=</span>persistent_directory, embedding_function<span style="color:#f92672">=</span>embeddings)
 </span></span></code></pre></div>
     </div>
   <a href="/post/langchain-rag/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
@@ -219,6 +361,92 @@
             <div class="mb3 pa4 mid-gray overflow-hidden">
     
       <div class="f6">
+        June 23, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/langchain-textsplitter/" class="link black dim">
+        langchain - text_splitter
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> os
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain.text_splitter <span style="color:#f92672">import</span> (
+</span></span><span style="display:flex;"><span>    CharacterTextSplitter,
+</span></span><span style="display:flex;"><span>    RecursiveCharacterTextSplitter,
+</span></span><span style="display:flex;"><span>    SentenceTransformersTokenTextSplitter,
+</span></span><span style="display:flex;"><span>    TextSplitter,
+</span></span><span style="display:flex;"><span>    TokenTextSplitter,
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_community.document_loaders <span style="color:#f92672">import</span> TextLoader
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_community.vectorstores <span style="color:#f92672">import</span> Chroma
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_openai <span style="color:#f92672">import</span> OpenAIEmbeddings
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Define the directory containing the text file</span>
+</span></span><span style="display:flex;"><span>current_dir <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>dirname(os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>abspath(__file__))
+</span></span><span style="display:flex;"><span>file_path <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(current_dir, <span style="color:#e6db74">&#34;books&#34;</span>, <span style="color:#e6db74">&#34;romeo_and_juliet.txt&#34;</span>)
+</span></span><span style="display:flex;"><span>db_dir <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(current_dir, <span style="color:#e6db74">&#34;db&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Check if the text file exists</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>exists(file_path):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">FileNotFoundError</span>(
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;The file </span><span style="color:#e6db74">{</span>file_path<span style="color:#e6db74">}</span><span style="color:#e6db74"> does not exist. Please check the path.&#34;</span>
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Read the text content from the file</span>
+</span></span><span style="display:flex;"><span>loader <span style="color:#f92672">=</span> TextLoader(file_path)
+</span></span><span style="display:flex;"><span>documents <span style="color:#f92672">=</span> loader<span style="color:#f92672">.</span>load()
+</span></span></code></pre></div>
+    </div>
+  <a href="/post/langchain-textsplitter/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        June 19, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/langchain-rag/" class="link black dim">
+        langchain - RAG
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p><img src="/images/langchain-RAG/1.png" alt="1"></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> os
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> dotenv <span style="color:#f92672">import</span> load_dotenv
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain.chains <span style="color:#f92672">import</span> create_history_aware_retriever, create_retrieval_chain
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain.chains.combine_documents <span style="color:#f92672">import</span> create_stuff_documents_chain
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_community.vectorstores <span style="color:#f92672">import</span> Chroma
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_core.messages <span style="color:#f92672">import</span> HumanMessage, SystemMessage
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_core.prompts <span style="color:#f92672">import</span> ChatPromptTemplate, MessagesPlaceholder
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_openai <span style="color:#f92672">import</span> ChatOpenAI, OpenAIEmbeddings
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Load environment variables from .env</span>
+</span></span><span style="display:flex;"><span>load_dotenv()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Define the persistent directory</span>
+</span></span><span style="display:flex;"><span>current_dir <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>dirname(os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>abspath(__file__))
+</span></span><span style="display:flex;"><span>persistent_directory <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(current_dir, <span style="color:#e6db74">&#34;db&#34;</span>, <span style="color:#e6db74">&#34;chroma_db_with_metadata&#34;</span>)
+</span></span></code></pre></div>
+    </div>
+  <a href="/post/langchain-rag/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        
+      
+        <h2 class="f1">
+          <a href="/tags/llm/" class="link blue hover-black">
+            Tag: LLM
+          </a>
+        </h2>
+        
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
         June 20, 2025
       </div>
     
@@ -241,40 +469,296 @@
             <div class="mb3 pa4 mid-gray overflow-hidden">
     
       <div class="f6">
-        June 19, 2025
+        June 12, 2025
       </div>
     
     <h1 class="f3 near-black">
-      <a href="/post/langchain-rag/" class="link black dim">
-        langchain - RAG
+      <a href="/post/prompt/" class="link black dim">
+        Prompting Guide
       </a>
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> os
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> dotenv <span style="color:#f92672">import</span> load_dotenv
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain.chains <span style="color:#f92672">import</span> create_history_aware_retriever, create_retrieval_chain
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain.chains.combine_documents <span style="color:#f92672">import</span> create_stuff_documents_chain
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_community.vectorstores <span style="color:#f92672">import</span> Chroma
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_core.messages <span style="color:#f92672">import</span> HumanMessage, SystemMessage
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_core.prompts <span style="color:#f92672">import</span> ChatPromptTemplate, MessagesPlaceholder
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_openai <span style="color:#f92672">import</span> ChatOpenAI, OpenAIEmbeddings
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Load environment variables from .env</span>
-</span></span><span style="display:flex;"><span>load_dotenv()
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Define the persistent directory</span>
-</span></span><span style="display:flex;"><span>current_dir <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>dirname(os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>abspath(__file__))
-</span></span><span style="display:flex;"><span>persistent_directory <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(current_dir, <span style="color:#e6db74">&#34;db&#34;</span>, <span style="color:#e6db74">&#34;chroma_db_with_metadata&#34;</span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Define the embedding model</span>
-</span></span><span style="display:flex;"><span>embeddings <span style="color:#f92672">=</span> OpenAIEmbeddings(model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text-embedding-3-small&#34;</span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Load the existing vector store with the embedding function</span>
-</span></span><span style="display:flex;"><span>db <span style="color:#f92672">=</span> Chroma(persist_directory<span style="color:#f92672">=</span>persistent_directory, embedding_function<span style="color:#f92672">=</span>embeddings)
-</span></span></code></pre></div>
+      <p>可以在<a href="https://smith.langchain.com/hub/">langchainhub</a>上找prompt</p>
+<h2 id="1-agentic-workflowshttpscookbookopenaicomexamplesgpt4-1_prompting_guidefeatured_ontalkpython1-agentic-workflows"><a href="https://cookbook.openai.com/examples/gpt4-1_prompting_guide?featured_on=talkpython#1-agentic-workflows">1. Agentic Workflows</a></h2>
+<h3 id="system-prompt-reminders">System Prompt Reminders</h3>
+<p>在提示中包含三种关键类型的提醒：</p>
+<ol>
+<li>
+<h4 id="持久性">持久性</h4>
+<p>确保模型理解它正在进入多消息轮次，并防止它过早地将控制权交还给用户。示例如下：</p>
+<pre tabindex="0"><code>You are an agent - please keep going until the user’s query is completely resolved, before ending your turn and yielding back to the user. Only terminate your turn when you are sure that the problem is solved.
+</code></pre></li>
+<li>
+<h4 id="工具调用">工具调用</h4>
+<p>鼓励模型充分利用其工具，并降低其产生幻觉或猜测答案的可能性。示例如下：</p>
+<pre tabindex="0"><code>If you are not sure about file content or codebase structure pertaining to the user’s request, use your tools to read files and gather the relevant information: do NOT guess or make up an answer.
+</code></pre></li>
+<li>
+<h4 id="规划-可选">规划 [可选]</h4>
+<p>可确保模型在文本中明确规划和反映每个工具调用，而不是通过将一系列单独的工具调用链接在一起来完成任务。示例如下：</p>
     </div>
-  <a href="/post/langchain-rag/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  <a href="/post/prompt/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        May 11, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/llm4/" class="link black dim">
+        LLM - 4.大模型增强 - RAG
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p><img src="/images/RAG/0-1.png" alt="0-1"></p>
+    </div>
+  <a href="/post/llm4/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        May 2, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/llm3.5/" class="link black dim">
+        LLM - 3.指令理解阶段(核心) - 强化学习
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p><img src="/images/LLM3.5/0.png" alt="0"></p>
+    </div>
+  <a href="/post/llm3.5/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        May 1, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/llm3/" class="link black dim">
+        LLM - 3.指令理解阶段(核心) - 指令微调
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p><img src="/images/LLM3/0.png" alt="0"></p>
+<p>指令微调又称有监督微调，旨在使模型具备指令遵循 （Instruction Following）能力。</p>
+<p>核心问题：<em>如何构造指令数据？如何高效低成本地进行指令微调训练？如何在语言模型基础上进一步扩大上下文？</em></p>
+    </div>
+  <a href="/post/llm3/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        April 27, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/llm2/" class="link black dim">
+        LLM - 2.预训练阶段
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p><img src="/images/LLM2/0.png" alt="0"></p>
+    </div>
+  <a href="/post/llm2/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        April 20, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/llm1/" class="link black dim">
+        LLM - 1.基础理论
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p><img src="/images/LLM1/0.png" alt="0"></p>
+    </div>
+  <a href="/post/llm1/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        April 16, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/bert/" class="link black dim">
+        BERT
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>名字来源：美国的一个动画片芝麻街里的主人公</p>
+<p>论文：https://arxiv.org/abs/1810.04805</p>
+<h3 id="nlp-里的迁移学习">NLP 里的迁移学习</h3>
+<ol>
+<li>
+<p><strong>在 bert 之前：使用预训练好的模型来抽取词、句子的特征</strong></p>
+<ul>
+<li>如用 word2vec 或 语言模型（当作embedding层）</li>
+<li>﻿不更新预训练好的模型</li>
+<li>﻿缺点
+<ul>
+<li>需要构建新的网络来抓取新任务需要的信息</li>
+<li>﻿Word2vec 忽略了时序信息，语言模型只看了一个方向</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>bert 的动机</strong></p>
+<ul>
+<li>
+<p>基于微调的 NLP 模型</p>
+<p>前面的层不用动，改最后一层的 output layer 即可</p>
+</li>
+<li>
+<p>预训练的模型抽取了足够多的信息，新的任务只需要增加一个简单的输出层</p>
+</li>
+</ul>
+</li>
+</ol>
+<p> </p>
+<h2 id="bert-架构">BERT 架构</h2>
+<p><strong>本质</strong>：一个砍掉解码器、只有编码器的 transformer</p>
+<p>bert 的工作：证明了效果非常好</p>
+<ul>
+<li>
+<p>两个版本：</p>
+<p><strong>Base</strong>: #blocks=12, hidden size=768, #heads=12,  #parameters=110M</p>
+<p>﻿﻿<strong>Large</strong>: #blocks=24, hidden size=1024, #heads=1, #parameter=340M</p>
+</li>
+<li>
+<p>﻿在大规模数据上训练&gt;3B词</p>
+</li>
+</ul>
+    </div>
+  <a href="/post/bert/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        March 19, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/%E5%BE%AE%E8%B0%83/" class="link black dim">
+        微调
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <h2 id="大模型预训练">大模型预训练</h2>
+<h4 id="1-从零开始的预训练">1 从零开始的预训练</h4>
+<h4 id="2-在已有开源模型基础上针对特定任务进行训练">2 在已有开源模型基础上针对特定任务进行训练</h4>
+<p> </p>
+<h3 id="lora">LoRa</h3>
+<p>通过化简权重矩阵，实现高效微调</p>
+<p><img src="/images/preTrain/1.png" alt="1"></p>
+<p>将loraA与loraB相乘得到一个lora权重矩阵，将lora权重矩阵加在原始权重矩阵上，就得到了对原始网络的更新。</p>
+<p>训练参数量减少，但微调效果基本不变。</p>
+<ul>
+<li>
+<p>两个重要参数：</p>
+<p><img src="/images/preTrain/2.png" alt="2"></p>
+</li>
+</ul>
+    </div>
+  <a href="/post/%E5%BE%AE%E8%B0%83/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        February 9, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/mllm/" class="link black dim">
+        MLLM
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <h1 id="1基础">1基础</h1>
+<h2 id="1-特征提取">1. 特征提取</h2>
+<h3 id="一cv中的特征提取"><strong>一、CV中的特征提取</strong></h3>
+<h4 id="1-传统方法手工设计特征"><strong>1. 传统方法（手工设计特征）</strong></h4>
+<p><strong>(1) 低级视觉特征</strong>：颜色、纹理、 边缘与形状&hellip;</p>
+<p><strong>(2) 中级语义特征</strong>：SIFT（尺度不变特征变换）、SURF（加速鲁棒特征）、LBP（局部二值模式）&hellip;</p>
+<p> </p>
+<h4 id="2-深度学习方法自动学习特征"><strong>2. 深度学习方法（自动学习特征）</strong></h4>
+<h5 id="1-卷积神经网络cnn"><strong>(1) 卷积神经网络（CNN）</strong></h5>
+<ul>
+<li>
+<p><strong>核心思想</strong>：通过卷积层提取局部特征，池化层降低维度，全连接层进行分类。</p>
+</li>
+<li>
+<p><strong>经典模型</strong>：LeNet-5、AlexNet、VGGNet、ResNet(使用残差可以训练更深的网络)&hellip;</p>
+<p><img src="/images/MLLM/1.png" alt="1"></p>
+</li>
+</ul>
+<h5 id="2-视觉transformervit"><strong>(2) 视觉Transformer（ViT）</strong></h5>
+<ul>
+<li><strong>核心思想</strong>：将图像分割为小块（patches），通过自注意力机制建模全局关系。</li>
+<li><strong>优势</strong>：无需局部卷积先验，直接建模长距离依赖; 在ImageNet等任务上超越传统CNN。</li>
+</ul>
+    </div>
+  <a href="/post/mllm/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        February 8, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/transformer/" class="link black dim">
+        transformer
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <h2 id="一transformer架构">一、Transformer架构</h2>
+<ul>
+<li>
+<p>﻿基于编码器-解码器架构来处理序列对</p>
+</li>
+<li>
+<p>﻿跟使用注意力的seq2seq不同，Transformer是纯基于注意力</p>
+<ul>
+<li>
+<p>seq2seq</p>
+<p><img src="/images/trans/1.png" alt="1"></p>
+</li>
+<li>
+<p>transformer</p>
+<p><img src="/images/trans/2.jpg" alt="1"></p>
+</li>
+</ul>
+</li>
+</ul>
+    </div>
+  <a href="/post/transformer/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
   </div>
 
         
@@ -614,372 +1098,6 @@
 </ul>
     </div>
   <a href="/post/%E5%B7%A5%E5%85%B7%E9%93%BE-%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        
-      
-        <h2 class="f1">
-          <a href="/tags/llm/" class="link blue hover-black">
-            Tag: LLM
-          </a>
-        </h2>
-        
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        June 12, 2025
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/prompt/" class="link black dim">
-        Prompting Guide
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <h2 id="1-agentic-workflowshttpscookbookopenaicomexamplesgpt4-1_prompting_guidefeatured_ontalkpython1-agentic-workflows"><a href="https://cookbook.openai.com/examples/gpt4-1_prompting_guide?featured_on=talkpython#1-agentic-workflows">1. Agentic Workflows</a></h2>
-<h3 id="system-prompt-reminders">System Prompt Reminders</h3>
-<p>在提示中包含三种关键类型的提醒：</p>
-<ol>
-<li>
-<h4 id="持久性">持久性</h4>
-<p>确保模型理解它正在进入多消息轮次，并防止它过早地将控制权交还给用户。示例如下：</p>
-<pre tabindex="0"><code>You are an agent - please keep going until the user’s query is completely resolved, before ending your turn and yielding back to the user. Only terminate your turn when you are sure that the problem is solved.
-</code></pre></li>
-<li>
-<h4 id="工具调用">工具调用</h4>
-<p>鼓励模型充分利用其工具，并降低其产生幻觉或猜测答案的可能性。示例如下：</p>
-<pre tabindex="0"><code>If you are not sure about file content or codebase structure pertaining to the user’s request, use your tools to read files and gather the relevant information: do NOT guess or make up an answer.
-</code></pre></li>
-<li>
-<h4 id="规划-可选">规划 [可选]</h4>
-<p>可确保模型在文本中明确规划和反映每个工具调用，而不是通过将一系列单独的工具调用链接在一起来完成任务。示例如下：</p>
-    </div>
-  <a href="/post/prompt/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        May 11, 2025
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/llm4/" class="link black dim">
-        LLM - 4.大模型增强 - RAG
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p><img src="/images/RAG/0-1.png" alt="0-1"></p>
-    </div>
-  <a href="/post/llm4/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        May 2, 2025
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/llm3.5/" class="link black dim">
-        LLM - 3.指令理解阶段(核心) - 强化学习
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p><img src="/images/LLM3.5/0.png" alt="0"></p>
-    </div>
-  <a href="/post/llm3.5/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        May 1, 2025
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/llm3/" class="link black dim">
-        LLM - 3.指令理解阶段(核心) - 指令微调
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p><img src="/images/LLM3/0.png" alt="0"></p>
-<p>指令微调又称有监督微调，旨在使模型具备指令遵循 （Instruction Following）能力。</p>
-<p>核心问题：<em>如何构造指令数据？如何高效低成本地进行指令微调训练？如何在语言模型基础上进一步扩大上下文？</em></p>
-    </div>
-  <a href="/post/llm3/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        April 27, 2025
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/llm2/" class="link black dim">
-        LLM - 2.预训练阶段
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p><img src="/images/LLM2/0.png" alt="0"></p>
-    </div>
-  <a href="/post/llm2/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        April 20, 2025
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/llm1/" class="link black dim">
-        LLM - 1.基础理论
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p><img src="/images/LLM1/0.png" alt="0"></p>
-    </div>
-  <a href="/post/llm1/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        April 16, 2025
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/bert/" class="link black dim">
-        BERT
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p>名字来源：美国的一个动画片芝麻街里的主人公</p>
-<p>论文：https://arxiv.org/abs/1810.04805</p>
-<h3 id="nlp-里的迁移学习">NLP 里的迁移学习</h3>
-<ol>
-<li>
-<p><strong>在 bert 之前：使用预训练好的模型来抽取词、句子的特征</strong></p>
-<ul>
-<li>如用 word2vec 或 语言模型（当作embedding层）</li>
-<li>﻿不更新预训练好的模型</li>
-<li>﻿缺点
-<ul>
-<li>需要构建新的网络来抓取新任务需要的信息</li>
-<li>﻿Word2vec 忽略了时序信息，语言模型只看了一个方向</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p><strong>bert 的动机</strong></p>
-<ul>
-<li>
-<p>基于微调的 NLP 模型</p>
-<p>前面的层不用动，改最后一层的 output layer 即可</p>
-</li>
-<li>
-<p>预训练的模型抽取了足够多的信息，新的任务只需要增加一个简单的输出层</p>
-</li>
-</ul>
-</li>
-</ol>
-<p> </p>
-<h2 id="bert-架构">BERT 架构</h2>
-<p><strong>本质</strong>：一个砍掉解码器、只有编码器的 transformer</p>
-<p>bert 的工作：证明了效果非常好</p>
-<ul>
-<li>
-<p>两个版本：</p>
-<p><strong>Base</strong>: #blocks=12, hidden size=768, #heads=12,  #parameters=110M</p>
-<p>﻿﻿<strong>Large</strong>: #blocks=24, hidden size=1024, #heads=1, #parameter=340M</p>
-</li>
-<li>
-<p>﻿在大规模数据上训练&gt;3B词</p>
-</li>
-</ul>
-    </div>
-  <a href="/post/bert/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        March 19, 2025
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/%E5%BE%AE%E8%B0%83/" class="link black dim">
-        微调
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <h2 id="大模型预训练">大模型预训练</h2>
-<h4 id="1-从零开始的预训练">1 从零开始的预训练</h4>
-<h4 id="2-在已有开源模型基础上针对特定任务进行训练">2 在已有开源模型基础上针对特定任务进行训练</h4>
-<p> </p>
-<h3 id="lora">LoRa</h3>
-<p>通过化简权重矩阵，实现高效微调</p>
-<p><img src="/images/preTrain/1.png" alt="1"></p>
-<p>将loraA与loraB相乘得到一个lora权重矩阵，将lora权重矩阵加在原始权重矩阵上，就得到了对原始网络的更新。</p>
-<p>训练参数量减少，但微调效果基本不变。</p>
-<ul>
-<li>
-<p>两个重要参数：</p>
-<p><img src="/images/preTrain/2.png" alt="2"></p>
-</li>
-</ul>
-    </div>
-  <a href="/post/%E5%BE%AE%E8%B0%83/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        February 9, 2025
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/mllm/" class="link black dim">
-        MLLM
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <h1 id="1基础">1基础</h1>
-<h2 id="1-特征提取">1. 特征提取</h2>
-<h3 id="一cv中的特征提取"><strong>一、CV中的特征提取</strong></h3>
-<h4 id="1-传统方法手工设计特征"><strong>1. 传统方法（手工设计特征）</strong></h4>
-<p><strong>(1) 低级视觉特征</strong>：颜色、纹理、 边缘与形状&hellip;</p>
-<p><strong>(2) 中级语义特征</strong>：SIFT（尺度不变特征变换）、SURF（加速鲁棒特征）、LBP（局部二值模式）&hellip;</p>
-<p> </p>
-<h4 id="2-深度学习方法自动学习特征"><strong>2. 深度学习方法（自动学习特征）</strong></h4>
-<h5 id="1-卷积神经网络cnn"><strong>(1) 卷积神经网络（CNN）</strong></h5>
-<ul>
-<li>
-<p><strong>核心思想</strong>：通过卷积层提取局部特征，池化层降低维度，全连接层进行分类。</p>
-</li>
-<li>
-<p><strong>经典模型</strong>：LeNet-5、AlexNet、VGGNet、ResNet(使用残差可以训练更深的网络)&hellip;</p>
-<p><img src="/images/MLLM/1.png" alt="1"></p>
-</li>
-</ul>
-<h5 id="2-视觉transformervit"><strong>(2) 视觉Transformer（ViT）</strong></h5>
-<ul>
-<li><strong>核心思想</strong>：将图像分割为小块（patches），通过自注意力机制建模全局关系。</li>
-<li><strong>优势</strong>：无需局部卷积先验，直接建模长距离依赖; 在ImageNet等任务上超越传统CNN。</li>
-</ul>
-    </div>
-  <a href="/post/mllm/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        February 8, 2025
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/transformer/" class="link black dim">
-        transformer
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <h2 id="一transformer架构">一、Transformer架构</h2>
-<ul>
-<li>
-<p>﻿基于编码器-解码器架构来处理序列对</p>
-</li>
-<li>
-<p>﻿跟使用注意力的seq2seq不同，Transformer是纯基于注意力</p>
-<ul>
-<li>
-<p>seq2seq</p>
-<p><img src="/images/trans/1.png" alt="1"></p>
-</li>
-<li>
-<p>transformer</p>
-<p><img src="/images/trans/2.jpg" alt="1"></p>
-</li>
-</ul>
-</li>
-</ul>
-    </div>
-  <a href="/post/transformer/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        
-      
-        <h2 class="f1">
-          <a href="/tags/paper/" class="link blue hover-black">
-            Tag: Paper
-          </a>
-        </h2>
-        
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        May 14, 2025
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBaugmented-knowledge-graph-querying-leveraging-llms/" class="link black dim">
-        「论文阅读」Augmented Knowledge Graph Querying leveraging LLMs
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p><a href="https://arxiv.org/abs/2502.01298">这篇论文</a>引入了一个名为 SparqLLM 的框架，通过结合 RAG 与 LLM，实现了从自然语言到 SPARQL 查询的自动生成，以简化知识图谱的查询过程。</p>
-<h3 id="1-introduction">1 Introduction</h3>
-<p><strong>背景</strong>：非技术员工不懂 SPARQL；KG + LLMs 无法生成精确高效的 SPARQL 查询，且存在幻觉问题。</p>
-<p><strong>SparqLLM</strong>：被设计为 RAG 框架，可自动从自然语言问题生成 SPARQL 查询，同时生成最适当的数据可视化以返回获得的结果。</p>
-<p><img src="/images/paper-SparqLLM/1.png" alt="1"></p>
-<p><strong>目标</strong>：提高 KG 的准确性、可用性和可靠性，实现与语义数据的更直观和有效的交互。</p>
-<p> </p>
-<h3 id="2-related-work">2 Related Work</h3>
-<ul>
-<li>
-<p><strong>自然语言接口 (NLI)</strong>：将非结构化输入转换为 SPARQL 等正式查询语言，使非技术用户更容易访问基于 RDF 的知识图谱。</p>
-</li>
-<li>
-<p><strong>LLMs</strong>：利用它们处理和生成复杂文本的能力，为自动生成查询提供了一个强大的框架，减少了人工干预的需要，使非专家用户也能访问知识图谱。</p>
-</li>
-<li>
-<p><strong>基于模板的方法</strong>：通过为查询生成提供确定性框架来补充上述方法。</p>
-</li>
-</ul>
-    </div>
-  <a href="/post/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBaugmented-knowledge-graph-querying-leveraging-llms/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        May 14, 2025
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBgenerate-on-graph-treat-llm-as-both-agent-and-kg-for-incomplete-knowledge-graph-question-answering/" class="link black dim">
-        「论文阅读」Generate-on-Graph: Treat LLM as both Agent and KG for Incomplete Knowledge Graph Question Answering
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p><a href="https://arxiv.org/abs/2404.14741">这篇论文</a>提出了一种称为 Generate-on-Graph(GoG) 的免训练方法，它可以在探索 KG 时，生成新的事实三元组。</p>
-<p>具体来说，在不完全知识图谱(IKGQA) 中，GoG 通过 Thinking-Searching-Generating 框架进行推理，它将 LLM 同时视为 Agent 和 KG。</p>
-<h3 id="1-introduction">1 Introduction</h3>
-<p><img src="/images/paper-GoG/1.png" alt="1"></p>
-    </div>
-  <a href="/post/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBgenerate-on-graph-treat-llm-as-both-agent-and-kg-for-incomplete-knowledge-graph-question-answering/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
   </div>
 
         

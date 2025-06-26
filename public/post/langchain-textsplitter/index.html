@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>langchain - text_splitter | HomePage</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="import os
+from langchain.text_splitter import (
+    CharacterTextSplitter,
+    RecursiveCharacterTextSplitter,
+    SentenceTransformersTokenTextSplitter,
+    TextSplitter,
+    TokenTextSplitter,
+)
+from langchain_community.document_loaders import TextLoader
+from langchain_community.vectorstores import Chroma
+from langchain_openai import OpenAIEmbeddings
+
+# Define the directory containing the text file
+current_dir = os.path.dirname(os.path.abspath(__file__))
+file_path = os.path.join(current_dir, &#34;books&#34;, &#34;romeo_and_juliet.txt&#34;)
+db_dir = os.path.join(current_dir, &#34;db&#34;)
+
+# Check if the text file exists
+if not os.path.exists(file_path):
+    raise FileNotFoundError(
+        f&#34;The file {file_path} does not exist. Please check the path.&#34;
+    )
+
+# Read the text content from the file
+loader = TextLoader(file_path)
+documents = loader.load()
+">
+    <meta name="generator" content="Hugo 0.140.2">
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+    
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="http://localhost:1313/post/langchain-textsplitter/">
+    
+
+    <meta property="og:url" content="http://localhost:1313/post/langchain-textsplitter/">
+  <meta property="og:site_name" content="HomePage">
+  <meta property="og:title" content="langchain - text_splitter">
+  <meta property="og:description" content="import os from langchain.text_splitter import ( CharacterTextSplitter, RecursiveCharacterTextSplitter, SentenceTransformersTokenTextSplitter, TextSplitter, TokenTextSplitter, ) from langchain_community.document_loaders import TextLoader from langchain_community.vectorstores import Chroma from langchain_openai import OpenAIEmbeddings # Define the directory containing the text file current_dir = os.path.dirname(os.path.abspath(__file__)) file_path = os.path.join(current_dir, &#34;books&#34;, &#34;romeo_and_juliet.txt&#34;) db_dir = os.path.join(current_dir, &#34;db&#34;) # Check if the text file exists if not os.path.exists(file_path): raise FileNotFoundError( f&#34;The file {file_path} does not exist. Please check the path.&#34; ) # Read the text content from the file loader = TextLoader(file_path) documents = loader.load()">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2025-06-23T10:00:59-04:00">
+    <meta property="article:modified_time" content="2025-06-23T10:00:59-04:00">
+    <meta property="article:tag" content="Langchain">
+    <meta property="article:tag" content="LLM&#34;">
+
+  <meta itemprop="name" content="langchain - text_splitter">
+  <meta itemprop="description" content="import os from langchain.text_splitter import ( CharacterTextSplitter, RecursiveCharacterTextSplitter, SentenceTransformersTokenTextSplitter, TextSplitter, TokenTextSplitter, ) from langchain_community.document_loaders import TextLoader from langchain_community.vectorstores import Chroma from langchain_openai import OpenAIEmbeddings # Define the directory containing the text file current_dir = os.path.dirname(os.path.abspath(__file__)) file_path = os.path.join(current_dir, &#34;books&#34;, &#34;romeo_and_juliet.txt&#34;) db_dir = os.path.join(current_dir, &#34;db&#34;) # Check if the text file exists if not os.path.exists(file_path): raise FileNotFoundError( f&#34;The file {file_path} does not exist. Please check the path.&#34; ) # Read the text content from the file loader = TextLoader(file_path) documents = loader.load()">
+  <meta itemprop="datePublished" content="2025-06-23T10:00:59-04:00">
+  <meta itemprop="dateModified" content="2025-06-23T10:00:59-04:00">
+  <meta itemprop="wordCount" content="488">
+  <meta itemprop="keywords" content="Langchain,LLM&#34;">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="langchain - text_splitter">
+  <meta name="twitter:description" content="import os from langchain.text_splitter import ( CharacterTextSplitter, RecursiveCharacterTextSplitter, SentenceTransformersTokenTextSplitter, TextSplitter, TokenTextSplitter, ) from langchain_community.document_loaders import TextLoader from langchain_community.vectorstores import Chroma from langchain_openai import OpenAIEmbeddings # Define the directory containing the text file current_dir = os.path.dirname(os.path.abspath(__file__)) file_path = os.path.join(current_dir, &#34;books&#34;, &#34;romeo_and_juliet.txt&#34;) db_dir = os.path.join(current_dir, &#34;db&#34;) # Check if the text file exists if not os.path.exists(file_path): raise FileNotFoundError( f&#34;The file {file_path} does not exist. Please check the path.&#34; ) # Read the text content from the file loader = TextLoader(file_path) documents = loader.load()">
+
+	
+  </head><body class="ma0 avenir bg-near-white development">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('http://localhost:1313/images/langchain-textSplitter/jaz.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        HomePage
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/about/" title="About ME page">
+              About ME
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/post/" title="Articles page">
+              Articles
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/contact/" title="Contact page">
+              Contact
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"><a href="https://www.facebook.com/patrick.kollitsch" target="_blank" rel="noopener"
+        class="ananke-social-link link-transition facebook link dib z-999 pt3 pt0-l mr1"
+        title="follow on Facebook - Opens in a new window"
+        aria-label="follow on Facebook - Opens in a new window">
+      <span class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M512 256C512 114.6 397.4 0 256 0S0 114.6 0 256C0 376 82.7 476.8 194.2 504.5V334.2H141.4V256h52.8V222.3c0-87.1 39.4-127.5 125-127.5c16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1c-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H287V510.1C413.8 494.8 512 386.9 512 256h0z"/></svg>
+            
+          </span></a><a href="https://bsky.app/profile/kollitsch.dev" target="_blank" rel="noopener"
+        class="ananke-social-link link-transition bluesky link dib z-999 pt3 pt0-l mr1"
+        title="follow on Bluesky - Opens in a new window"
+        aria-label="follow on Bluesky - Opens in a new window">
+      <span class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M407.8 294.7c-3.3-.4-6.7-.8-10-1.3c3.4 .4 6.7 .9 10 1.3zM288 227.1C261.9 176.4 190.9 81.9 124.9 35.3C61.6-9.4 37.5-1.7 21.6 5.5C3.3 13.8 0 41.9 0 58.4S9.1 194 15 213.9c19.5 65.7 89.1 87.9 153.2 80.7c3.3-.5 6.6-.9 10-1.4c-3.3 .5-6.6 1-10 1.4C74.3 308.6-9.1 342.8 100.3 464.5C220.6 589.1 265.1 437.8 288 361.1c22.9 76.7 49.2 222.5 185.6 103.4c102.4-103.4 28.1-156-65.8-169.9c-3.3-.4-6.7-.8-10-1.3c3.4 .4 6.7 .9 10 1.3c64.1 7.1 133.6-15.1 153.2-80.7C566.9 194 576 75 576 58.4s-3.3-44.7-21.6-52.9c-15.8-7.1-40-14.9-103.2 29.8C385.1 81.9 314.1 176.4 288 227.1z"/></svg>
+            
+          </span></a><a href="http://linkedin.com/in/patrickkollitsch" target="_blank" rel="noopener"
+        class="ananke-social-link link-transition linkedin link dib z-999 pt3 pt0-l mr1"
+        title="follow on LinkedIn - Opens in a new window"
+        aria-label="follow on LinkedIn - Opens in a new window">
+      <span class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+            
+          </span></a></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">langchain - text_splitter</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked ttu">
+          
+        Articles
+      </aside><div id="sharing" class="mt3 ananke-socials"><a href="mailto:?&amp;body=http%3A%2F%2Flocalhost%3A1313%2Fpost%2Flangchain-textsplitter%2F&amp;subject=langchain&#43;-&#43;text_splitter"
+        class="ananke-social-link email no-underline"
+        title="Share on Email" aria-label="Share on Email"
+        target="_blank" rel="nofollow noopener noreferrer">
+        <span class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M64 112c-8.8 0-16 7.2-16 16l0 22.1L220.5 291.7c20.7 17 50.4 17 71.1 0L464 150.1l0-22.1c0-8.8-7.2-16-16-16L64 112zM48 212.2L48 384c0 8.8 7.2 16 16 16l384 0c8.8 0 16-7.2 16-16l0-171.8L322 328.8c-38.4 31.5-93.7 31.5-132 0L48 212.2zM0 128C0 92.7 28.7 64 64 64l384 0c35.3 0 64 28.7 64 64l0 256c0 35.3-28.7 64-64 64L64 448c-35.3 0-64-28.7-64-64L0 128z"/></svg>
+                
+              </span></a><a href="https://facebook.com/sharer/sharer.php?&amp;u=http%3A%2F%2Flocalhost%3A1313%2Fpost%2Flangchain-textsplitter%2F"
+        class="ananke-social-link facebook no-underline"
+        title="Share on Facebook" aria-label="Share on Facebook"
+        target="_blank" rel="nofollow noopener noreferrer">
+        <span class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M512 256C512 114.6 397.4 0 256 0S0 114.6 0 256C0 376 82.7 476.8 194.2 504.5V334.2H141.4V256h52.8V222.3c0-87.1 39.4-127.5 125-127.5c16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1c-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H287V510.1C413.8 494.8 512 386.9 512 256h0z"/></svg>
+                
+              </span></a><a href="https://bsky.app/intent/compose?&amp;text=http%3A%2F%2Flocalhost%3A1313%2Fpost%2Flangchain-textsplitter%2F"
+        class="ananke-social-link bluesky no-underline"
+        title="Share on Bluesky" aria-label="Share on Bluesky"
+        target="_blank" rel="nofollow noopener noreferrer">
+        <span class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M407.8 294.7c-3.3-.4-6.7-.8-10-1.3c3.4 .4 6.7 .9 10 1.3zM288 227.1C261.9 176.4 190.9 81.9 124.9 35.3C61.6-9.4 37.5-1.7 21.6 5.5C3.3 13.8 0 41.9 0 58.4S9.1 194 15 213.9c19.5 65.7 89.1 87.9 153.2 80.7c3.3-.5 6.6-.9 10-1.4c-3.3 .5-6.6 1-10 1.4C74.3 308.6-9.1 342.8 100.3 464.5C220.6 589.1 265.1 437.8 288 361.1c22.9 76.7 49.2 222.5 185.6 103.4c102.4-103.4 28.1-156-65.8-169.9c-3.3-.4-6.7-.8-10-1.3c3.4 .4 6.7 .9 10 1.3c64.1 7.1 133.6-15.1 153.2-80.7C566.9 194 576 75 576 58.4s-3.3-44.7-21.6-52.9c-15.8-7.1-40-14.9-103.2 29.8C385.1 81.9 314.1 176.4 288 227.1z"/></svg>
+                
+              </span></a><a href="https://www.linkedin.com/shareArticle?&amp;mini=true&amp;source=http%3A%2F%2Flocalhost%3A1313%2Fpost%2Flangchain-textsplitter%2F&amp;summary=import&#43;os&#43;from&#43;langchain.text_splitter&#43;import&#43;%28&#43;CharacterTextSplitter%2C&#43;RecursiveCharacterTextSplitter%2C&#43;SentenceTransformersTokenTextSplitter%2C&#43;TextSplitter%2C&#43;TokenTextSplitter%2C&#43;%29&#43;from&#43;langchain_community.document_loaders&#43;import&#43;TextLoader&#43;from&#43;langchain_community.vectorstores&#43;import&#43;Chroma&#43;from&#43;langchain_openai&#43;import&#43;OpenAIEmbeddings&#43;%23&#43;Define&#43;the&#43;directory&#43;containing&#43;the&#43;text&#43;file&#43;current_dir&#43;%3D&#43;os.path.dirname%28os.path.abspath%28__file__%29%29&#43;file_path&#43;%3D&#43;os.path.join%28current_dir%2C&#43;%26amp%3B%2334%3Bbooks%26amp%3B%2334%3B%2C&#43;%26amp%3B%2334%3Bromeo_and_juliet.txt%26amp%3B%2334%3B%29&#43;db_dir&#43;%3D&#43;os.path.join%28current_dir%2C&#43;%26amp%3B%2334%3Bdb%26amp%3B%2334%3B%29&#43;%23&#43;Check&#43;if&#43;the&#43;text&#43;file&#43;exists&#43;if&#43;not&#43;os.path.exists%28file_path%29%3A&#43;raise&#43;FileNotFoundError%28&#43;f%26amp%3B%2334%3BThe&#43;file&#43;%7Bfile_path%7D&#43;does&#43;not&#43;exist.&#43;Please&#43;check&#43;the&#43;path.%26amp%3B%2334%3B&#43;%29&#43;%23&#43;Read&#43;the&#43;text&#43;content&#43;from&#43;the&#43;file&#43;loader&#43;%3D&#43;TextLoader%28file_path%29&#43;documents&#43;%3D&#43;loader.load%28%29&#43;&amp;title=langchain&#43;-&#43;text_splitter&amp;url=http%3A%2F%2Flocalhost%3A1313%2Fpost%2Flangchain-textsplitter%2F"
+        class="ananke-social-link linkedin no-underline"
+        title="Share on LinkedIn" aria-label="Share on LinkedIn"
+        target="_blank" rel="nofollow noopener noreferrer">
+        <span class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+                
+              </span></a></div>
+<h1 class="f1 athelas mt3 mb1">langchain - text_splitter</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2025-06-23T10:00:59-04:00">June 23, 2025</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> os
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain.text_splitter <span style="color:#f92672">import</span> (
+</span></span><span style="display:flex;"><span>    CharacterTextSplitter,
+</span></span><span style="display:flex;"><span>    RecursiveCharacterTextSplitter,
+</span></span><span style="display:flex;"><span>    SentenceTransformersTokenTextSplitter,
+</span></span><span style="display:flex;"><span>    TextSplitter,
+</span></span><span style="display:flex;"><span>    TokenTextSplitter,
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_community.document_loaders <span style="color:#f92672">import</span> TextLoader
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_community.vectorstores <span style="color:#f92672">import</span> Chroma
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_openai <span style="color:#f92672">import</span> OpenAIEmbeddings
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Define the directory containing the text file</span>
+</span></span><span style="display:flex;"><span>current_dir <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>dirname(os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>abspath(__file__))
+</span></span><span style="display:flex;"><span>file_path <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(current_dir, <span style="color:#e6db74">&#34;books&#34;</span>, <span style="color:#e6db74">&#34;romeo_and_juliet.txt&#34;</span>)
+</span></span><span style="display:flex;"><span>db_dir <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(current_dir, <span style="color:#e6db74">&#34;db&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Check if the text file exists</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>exists(file_path):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">FileNotFoundError</span>(
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;The file </span><span style="color:#e6db74">{</span>file_path<span style="color:#e6db74">}</span><span style="color:#e6db74"> does not exist. Please check the path.&#34;</span>
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Read the text content from the file</span>
+</span></span><span style="display:flex;"><span>loader <span style="color:#f92672">=</span> TextLoader(file_path)
+</span></span><span style="display:flex;"><span>documents <span style="color:#f92672">=</span> loader<span style="color:#f92672">.</span>load()
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Define the embedding model</span>
+</span></span><span style="display:flex;"><span>embeddings <span style="color:#f92672">=</span> OpenAIEmbeddings(
+</span></span><span style="display:flex;"><span>    model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text-embedding-3-small&#34;</span>
+</span></span><span style="display:flex;"><span>)  <span style="color:#75715e"># Update to a valid embedding model if needed</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Function to create and persist vector store</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">create_vector_store</span>(docs, store_name):
+</span></span><span style="display:flex;"><span>    persistent_directory <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(db_dir, store_name)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>exists(persistent_directory):
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">--- Creating vector store </span><span style="color:#e6db74">{</span>store_name<span style="color:#e6db74">}</span><span style="color:#e6db74"> ---&#34;</span>)
+</span></span><span style="display:flex;"><span>        db <span style="color:#f92672">=</span> Chroma<span style="color:#f92672">.</span>from_documents(
+</span></span><span style="display:flex;"><span>            docs, embeddings, persist_directory<span style="color:#f92672">=</span>persistent_directory
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;--- Finished creating vector store </span><span style="color:#e6db74">{</span>store_name<span style="color:#e6db74">}</span><span style="color:#e6db74"> ---&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>        print(
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Vector store </span><span style="color:#e6db74">{</span>store_name<span style="color:#e6db74">}</span><span style="color:#e6db74"> already exists. No need to initialize.&#34;</span>)
+</span></span></code></pre></div><p> </p>
+<h3 id="基于字符的分割">基于字符的分割</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 1. Character-based Splitting</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Splits text into chunks based on a specified number of characters.</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Useful for consistent chunk sizes regardless of content structure.</span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">--- Using Character-based Splitting ---&#34;</span>)
+</span></span><span style="display:flex;"><span>char_splitter <span style="color:#f92672">=</span> CharacterTextSplitter(chunk_size<span style="color:#f92672">=</span><span style="color:#ae81ff">1000</span>, chunk_overlap<span style="color:#f92672">=</span><span style="color:#ae81ff">100</span>)
+</span></span><span style="display:flex;"><span>char_docs <span style="color:#f92672">=</span> char_splitter<span style="color:#f92672">.</span>split_documents(documents)
+</span></span><span style="display:flex;"><span>create_vector_store(char_docs, <span style="color:#e6db74">&#34;chroma_db_char&#34;</span>)
+</span></span></code></pre></div><ul>
+<li>
+<p>特点：按固定字符数分割，不考虑文本结构。</p>
+</li>
+<li>
+<p>适用场景：当需要严格控制每个分块的大小（以字符数为单位）时，且文本结构不重要或没有明显结构（如代码、日志文件）。这种分割方式速度快，但可能破坏句子或单词的完整性。</p>
+</li>
+</ul>
+<h3 id="基于句子的分割">基于句子的分割</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 2. Sentence-based Splitting</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Splits text into chunks based on sentences, ensuring chunks end at sentence boundaries.</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Ideal for maintaining semantic coherence within chunks.</span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">--- Using Sentence-based Splitting ---&#34;</span>)
+</span></span><span style="display:flex;"><span>sent_splitter <span style="color:#f92672">=</span> SentenceTransformersTokenTextSplitter(chunk_size<span style="color:#f92672">=</span><span style="color:#ae81ff">1000</span>)
+</span></span><span style="display:flex;"><span>sent_docs <span style="color:#f92672">=</span> sent_splitter<span style="color:#f92672">.</span>split_documents(documents)
+</span></span><span style="display:flex;"><span>create_vector_store(sent_docs, <span style="color:#e6db74">&#34;chroma_db_sent&#34;</span>)
+</span></span></code></pre></div><ul>
+<li>特点：按句子边界分割，确保每个分块包含完整的句子。</li>
+<li>适用场景：对语义连贯性要求高的任务，如机器翻译、文本摘要。它保持了句子完整性，但分块大小可能不均匀（长句子可能导致分块过大）。</li>
+</ul>
+<h3 id="基于标记的分割">基于标记的分割</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 3. Token-based Splitting</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Splits text into chunks based on tokens (words or subwords), using tokenizers like GPT-2.</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Useful for transformer models with strict token limits.</span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">--- Using Token-based Splitting ---&#34;</span>)
+</span></span><span style="display:flex;"><span>token_splitter <span style="color:#f92672">=</span> TokenTextSplitter(chunk_overlap<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>, chunk_size<span style="color:#f92672">=</span><span style="color:#ae81ff">512</span>)
+</span></span><span style="display:flex;"><span>token_docs <span style="color:#f92672">=</span> token_splitter<span style="color:#f92672">.</span>split_documents(documents)
+</span></span><span style="display:flex;"><span>create_vector_store(token_docs, <span style="color:#e6db74">&#34;chroma_db_token&#34;</span>)
+</span></span></code></pre></div><ul>
+<li>特点：使用分词器（如GPT-2的tokenizer）按标记（token）分割。</li>
+<li>适用场景：需要与特定Transformer模型（如GPT系列、BERT）配合使用时，因为这些模型有严格的标记数量限制。可确保分块后标记数不超过模型输入限制。</li>
+</ul>
+<h3 id="递归的基于字符的分割">递归的基于字符的分割</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 4. Recursive Character-based Splitting: most people use</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Attempts to split text at natural boundaries (sentences, paragraphs) within character limit.</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Balances between maintaining coherence and adhering to character limits.</span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">--- Using Recursive Character-based Splitting ---&#34;</span>)
+</span></span><span style="display:flex;"><span>rec_char_splitter <span style="color:#f92672">=</span> RecursiveCharacterTextSplitter(
+</span></span><span style="display:flex;"><span>    chunk_size<span style="color:#f92672">=</span><span style="color:#ae81ff">1000</span>, chunk_overlap<span style="color:#f92672">=</span><span style="color:#ae81ff">100</span>)
+</span></span><span style="display:flex;"><span>rec_char_docs <span style="color:#f92672">=</span> rec_char_splitter<span style="color:#f92672">.</span>split_documents(documents)
+</span></span><span style="display:flex;"><span>create_vector_store(rec_char_docs, <span style="color:#e6db74">&#34;chroma_db_rec_char&#34;</span>)
+</span></span></code></pre></div><ul>
+<li>特点：在字符数限制内，优先按自然边界（如段落、句子）递归分割。</li>
+<li>适用场景：通用文本处理，平衡分块大小和语义完整性。它是大多数情况下的推荐选择，尤其当文本有层次结构（如文章包含段落和句子）时。</li>
+</ul>
+<h3 id="自定义分割">自定义分割</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 5. Custom Splitting</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Allows creating custom splitting logic based on specific requirements.</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Useful for documents with unique structure that standard splitters can&#39;t handle.</span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">--- Using Custom Splitting ---&#34;</span>)
+</span></span></code></pre></div><ul>
+<li>适用场景：处理非标准结构的文档（如特定格式的报告、表格、代码文件），或当现有分割方法无法满足需求时。</li>
+</ul>
+<p> </p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CustomTextSplitter</span>(TextSplitter):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">split_text</span>(self, text):
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Custom logic for splitting text</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> text<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n\n</span><span style="color:#e6db74">&#34;</span>)  <span style="color:#75715e"># Example: split by paragraphs</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>custom_splitter <span style="color:#f92672">=</span> CustomTextSplitter()
+</span></span><span style="display:flex;"><span>custom_docs <span style="color:#f92672">=</span> custom_splitter<span style="color:#f92672">.</span>split_documents(documents)
+</span></span><span style="display:flex;"><span>create_vector_store(custom_docs, <span style="color:#e6db74">&#34;chroma_db_custom&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Function to query a vector store</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">query_vector_store</span>(store_name, query):
+</span></span><span style="display:flex;"><span>    persistent_directory <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(db_dir, store_name)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>exists(persistent_directory):
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">--- Querying the Vector Store </span><span style="color:#e6db74">{</span>store_name<span style="color:#e6db74">}</span><span style="color:#e6db74"> ---&#34;</span>)
+</span></span><span style="display:flex;"><span>        db <span style="color:#f92672">=</span> Chroma(
+</span></span><span style="display:flex;"><span>            persist_directory<span style="color:#f92672">=</span>persistent_directory, embedding_function<span style="color:#f92672">=</span>embeddings
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>        retriever <span style="color:#f92672">=</span> db<span style="color:#f92672">.</span>as_retriever(
+</span></span><span style="display:flex;"><span>            search_type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;similarity_score_threshold&#34;</span>,
+</span></span><span style="display:flex;"><span>            search_kwargs<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;k&#34;</span>: <span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#34;score_threshold&#34;</span>: <span style="color:#ae81ff">0.1</span>},
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>        relevant_docs <span style="color:#f92672">=</span> retriever<span style="color:#f92672">.</span>invoke(query)
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Display the relevant results with metadata</span>
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">--- Relevant Documents for </span><span style="color:#e6db74">{</span>store_name<span style="color:#e6db74">}</span><span style="color:#e6db74"> ---&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> i, doc <span style="color:#f92672">in</span> enumerate(relevant_docs, <span style="color:#ae81ff">1</span>):
+</span></span><span style="display:flex;"><span>            print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Document </span><span style="color:#e6db74">{</span>i<span style="color:#e6db74">}</span><span style="color:#e6db74">:</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">{</span>doc<span style="color:#f92672">.</span>page_content<span style="color:#e6db74">}</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> doc<span style="color:#f92672">.</span>metadata:
+</span></span><span style="display:flex;"><span>                print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Source: </span><span style="color:#e6db74">{</span>doc<span style="color:#f92672">.</span>metadata<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;source&#39;</span>, <span style="color:#e6db74">&#39;Unknown&#39;</span>)<span style="color:#e6db74">}</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Vector store </span><span style="color:#e6db74">{</span>store_name<span style="color:#e6db74">}</span><span style="color:#e6db74"> does not exist.&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Define the user&#39;s question</span>
+</span></span><span style="display:flex;"><span>query <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;How did Juliet die?&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Query each vector store</span>
+</span></span><span style="display:flex;"><span>query_vector_store(<span style="color:#e6db74">&#34;chroma_db_char&#34;</span>, query)
+</span></span><span style="display:flex;"><span>query_vector_store(<span style="color:#e6db74">&#34;chroma_db_sent&#34;</span>, query)
+</span></span><span style="display:flex;"><span>query_vector_store(<span style="color:#e6db74">&#34;chroma_db_token&#34;</span>, query)
+</span></span><span style="display:flex;"><span>query_vector_store(<span style="color:#e6db74">&#34;chroma_db_rec_char&#34;</span>, query)
+</span></span><span style="display:flex;"><span>query_vector_store(<span style="color:#e6db74">&#34;chroma_db_custom&#34;</span>, query)
+</span></span></code></pre></div><ul class="pa0">
+  
+   <li class="list di">
+     <a href="/tags/langchain/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">Langchain</a>
+   </li>
+  
+   <li class="list di">
+     <a href="/tags/llm/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">LLM&#34;</a>
+   </li>
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+  <div class="bg-light-gray pa3 nested-list-reset nested-copy-line-height nested-links">
+    <p class="f5 b mb3">Related</p>
+    <ul class="pa0 list">
+	   
+	     <li  class="mb2">
+          <a href="/post/langchain-rag/">langchain - RAG</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/langchain-agent/">langchain - Agent</a>
+        </li>
+	    
+    </ul>
+</div>
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="http://localhost:1313/" >
+    &copy;  HomePage 2025 
+  </a>
+    <div><div class="ananke-socials"><a href="https://www.facebook.com/patrick.kollitsch" target="_blank" rel="noopener"
+        class="ananke-social-link link-transition facebook link dib z-999 pt3 pt0-l mr1"
+        title="follow on Facebook - Opens in a new window"
+        aria-label="follow on Facebook - Opens in a new window">
+      <span class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M512 256C512 114.6 397.4 0 256 0S0 114.6 0 256C0 376 82.7 476.8 194.2 504.5V334.2H141.4V256h52.8V222.3c0-87.1 39.4-127.5 125-127.5c16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1c-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H287V510.1C413.8 494.8 512 386.9 512 256h0z"/></svg>
+            
+          </span></a><a href="https://bsky.app/profile/kollitsch.dev" target="_blank" rel="noopener"
+        class="ananke-social-link link-transition bluesky link dib z-999 pt3 pt0-l mr1"
+        title="follow on Bluesky - Opens in a new window"
+        aria-label="follow on Bluesky - Opens in a new window">
+      <span class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M407.8 294.7c-3.3-.4-6.7-.8-10-1.3c3.4 .4 6.7 .9 10 1.3zM288 227.1C261.9 176.4 190.9 81.9 124.9 35.3C61.6-9.4 37.5-1.7 21.6 5.5C3.3 13.8 0 41.9 0 58.4S9.1 194 15 213.9c19.5 65.7 89.1 87.9 153.2 80.7c3.3-.5 6.6-.9 10-1.4c-3.3 .5-6.6 1-10 1.4C74.3 308.6-9.1 342.8 100.3 464.5C220.6 589.1 265.1 437.8 288 361.1c22.9 76.7 49.2 222.5 185.6 103.4c102.4-103.4 28.1-156-65.8-169.9c-3.3-.4-6.7-.8-10-1.3c3.4 .4 6.7 .9 10 1.3c64.1 7.1 133.6-15.1 153.2-80.7C566.9 194 576 75 576 58.4s-3.3-44.7-21.6-52.9c-15.8-7.1-40-14.9-103.2 29.8C385.1 81.9 314.1 176.4 288 227.1z"/></svg>
+            
+          </span></a><a href="http://linkedin.com/in/patrickkollitsch" target="_blank" rel="noopener"
+        class="ananke-social-link link-transition linkedin link dib z-999 pt3 pt0-l mr1"
+        title="follow on LinkedIn - Opens in a new window"
+        aria-label="follow on LinkedIn - Opens in a new window">
+      <span class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+            
+          </span></a></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

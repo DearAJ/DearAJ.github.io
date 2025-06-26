@@ -47,7 +47,7 @@
 
   <meta itemprop="name" content="Articles">
   <meta itemprop="description" content="The soul selects her own society, then shuts the door. To her divine majority, present no more.">
-  <meta itemprop="datePublished" content="2025-06-20T10:00:59-04:00">
+  <meta itemprop="datePublished" content="2025-06-25T11:00:59-04:00">
   <meta itemprop="dateModified" content="2026-05-11T11:00:59-04:00">
   <meta itemprop="wordCount" content="2">
   <meta name="twitter:card" content="summary">
@@ -153,6 +153,68 @@
             <div class="mb3 pa4 mid-gray overflow-hidden">
     
       <div class="f6">
+        March 27, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/lss/" class="link black dim">
+        Lift-splat-shoot
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p><a href="https://arxiv.org/abs/2008.05711">Lift, Splat, Shoot: Encoding Images From Arbitrary Camera Rigs by Implicitly Unprojecting to 3D</a></p>
+<p>简单来说，<strong>Lift</strong>就是预测了一个<strong>深度值分布D</strong>，以及<strong>提取的特征c</strong>，然后将两种进行外积操作，实现了<strong>增维</strong>操作。</p>
+<p>**Splat（拍扁）**操作则是使用了一种特殊的“求和池化”操作（z累加，压平），实现降维。</p>
+<p>最后的<strong>Shooting</strong>，则是将预测的一组轨迹投射出来，选取最优的轨迹作为预测结果。</p>
+<p> </p>
+<h3 id="1-关键lift">1. 关键：Lift</h3>
+<p><img src="/images/lss/1.png" alt="1"></p>
+<ol>
+<li>
+<p><strong>特征提取&amp;深度估计</strong></p>
+<p>多视角相机输入后，进行特征提取与深度估计</p>
+</li>
+<li>
+<p><strong>外积（Outer product）</strong>—— 最核心的操作</p>
+<p>无法确定每个 pixel 的特征投影 BEV 视角下的具体位置；对于每个 pixel 特征，使用的是“all possible depths”。</p>
+<p>使用外积操作，将 Image feature (H * W * C) 和 Depth feature (H * W * D)构造成一个(H * W * D * C) 的 Frustum feature。</p>
+</li>
+</ol>
+    </div>
+  <a href="/post/lss/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        March 22, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/%E5%A4%8D%E8%AF%95%E9%A1%B9%E7%9B%AE/" class="link black dim">
+        「复试」项目
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>尊敬的各位老师好！我叫yaj，本科就读于北京航空航天大学，计算机科学与技术专业。</p>
+<p>在校期间，我掌握了较扎实的数学基础和编程能力，通过查阅期刊论文了解最新科研动向。</p>
+<p>除此之外，我积极参与各类比赛并获得奖项，有效提升了我的工程实践能力。在毕业设计中，我独立完成从文献调研到模型实现的全流程工作，并且，该项目被获评为北航校级优秀毕设。</p>
+<p>在实践方面，我先后在中国软件与技术服公司、北京航空航天大学和清华大学进行实习。实习期间，我参与了世界模型、时间序列预测、强化学习和目标检测等人工智能相关项目。这些经历使我不仅掌握了深层技术，更形成了&quot;从理论到应用&quot;的完整研发视角。</p>
+<p>上海交通大学一直是我向往的学校，很希望能得到在贵校学习的机会。攻读研究生期间，我会专注于理论与实践的双向发展，深入学习技术背后的底层原理。我的目标是成为一名优秀的工程师，为这个行业做出实质性贡献。我深信计算机领域的技术发展，必将将推动社会的下一场变革。</p>
+<p>以上是我的自我介绍。非常感谢各位老师的聆听！</p>
+    </div>
+  <a href="/post/%E5%A4%8D%E8%AF%95%E9%A1%B9%E7%9B%AE/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
         March 19, 2025
       </div>
     
@@ -172,95 +234,6 @@
 <p>不要说，自己可能回答的不够好，要展现自己的自信。</p>
     </div>
   <a href="/post/%E5%A4%8D%E8%AF%95%E8%8B%B1%E8%AF%AD%E5%8F%A3%E8%AF%AD/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        March 19, 2025
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/%E5%BE%AE%E8%B0%83/" class="link black dim">
-        微调
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <h2 id="大模型预训练">大模型预训练</h2>
-<h4 id="1-从零开始的预训练">1 从零开始的预训练</h4>
-<h4 id="2-在已有开源模型基础上针对特定任务进行训练">2 在已有开源模型基础上针对特定任务进行训练</h4>
-<p> </p>
-<h3 id="lora">LoRa</h3>
-<p>通过化简权重矩阵，实现高效微调</p>
-<p><img src="/images/preTrain/1.png" alt="1"></p>
-<p>将loraA与loraB相乘得到一个lora权重矩阵，将lora权重矩阵加在原始权重矩阵上，就得到了对原始网络的更新。</p>
-<p>训练参数量减少，但微调效果基本不变。</p>
-<ul>
-<li>
-<p>两个重要参数：</p>
-<p><img src="/images/preTrain/2.png" alt="2"></p>
-</li>
-</ul>
-    </div>
-  <a href="/post/%E5%BE%AE%E8%B0%83/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        March 14, 2025
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/%E7%AE%97%E6%B3%95%E6%A8%A1%E7%89%88-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" class="link black dim">
-        「算法模版」动态规划
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p>「状态」-&gt; 「选择」 -&gt; 定义 <code>dp</code> 数组/函数的含义 ；自底向上进行递推求解。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 自顶向下递归的动态规划</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">dp</span>(状态1, 状态2, <span style="color:#f92672">...</span>):
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> 选择 <span style="color:#f92672">in</span> 所有可能的选择:
-</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 此时的状态已经因为做了选择而改变</span>
-</span></span><span style="display:flex;"><span>        result <span style="color:#f92672">=</span> 求最值(result, dp(状态1, 状态2, <span style="color:#f92672">...</span>))
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> result
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 自底向上迭代的动态规划</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 初始化 base case</span>
-</span></span><span style="display:flex;"><span>dp[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">0</span>][<span style="color:#f92672">...</span>] <span style="color:#f92672">=</span> base <span style="color:#66d9ef">case</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 进行状态转移</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> 状态1 <span style="color:#f92672">in</span> 状态1的所有取值<span style="color:#960050;background-color:#1e0010">：</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> 状态2 <span style="color:#f92672">in</span> 状态2的所有取值<span style="color:#960050;background-color:#1e0010">：</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> <span style="color:#f92672">...</span>
-</span></span><span style="display:flex;"><span>            dp[状态1][状态2][<span style="color:#f92672">...</span>] <span style="color:#f92672">=</span> 求最值(选择1<span style="color:#960050;background-color:#1e0010">，</span>选择2<span style="color:#f92672">...</span>)
-</span></span></code></pre></div><p> </p>
-<h3 id="核心框架">核心框架</h3>
-<ol>
-<li>
-<p><strong>备忘录</strong> - 斐波那契数</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">fib</span>(<span style="color:#66d9ef">int</span> n) {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (n <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> n <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>)		<span style="color:#66d9ef">return</span> n;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 分别代表 dp[i - 1] 和 dp[i - 2]
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> dp_i_1 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, dp_i_2 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>; i <span style="color:#f92672">&lt;=</span> n; i<span style="color:#f92672">++</span>) {
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> dp_i <span style="color:#f92672">=</span> dp_i_1 <span style="color:#f92672">+</span> dp_i_2;
-</span></span><span style="display:flex;"><span>        dp_i_2 <span style="color:#f92672">=</span> dp_i_1;
-</span></span><span style="display:flex;"><span>        dp_i_1 <span style="color:#f92672">=</span> dp_i;
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> dp_i;
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div></li>
-<li>
-<p><strong>最优子结构</strong> - 零点兑换</p>
-    </div>
-  <a href="/post/%E7%AE%97%E6%B3%95%E6%A8%A1%E7%89%88-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
   </div>
 
         </div>
@@ -293,7 +266,7 @@
         <a href="/post/page/15/" aria-label="Next" class="page-link" role="button"><span aria-hidden="true">&raquo;</span></a>
       </li>
       <li class="page-item">
-        <a href="/post/page/21/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/post/page/22/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
       </li>
     </ul>
   </article>

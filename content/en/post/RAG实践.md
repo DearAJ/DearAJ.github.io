@@ -115,7 +115,7 @@ Embedding 模型是用来对用户上传的附件进行解析的。
 
 + **模型分类**：Chat模型 和 Embedding模型
 
-![1](/Users/aijunyang/DearAJ.github.io/static/images/RAGprac/1.png)
+![1](/images/RAGprac/1.png)
 
 
 
@@ -137,12 +137,12 @@ Embedding 模型是用来对用户上传的附件进行解析的。
 
 部署 Dify：https://zhuanlan.zhihu.com/p/1899807556676854122
 
-1. 进入 dify-main 项目根目录找到 docker 文件夹
+1. 进入 dify 项目根目录找到 docker 文件夹
 
 2. 右键打开命令行，运行 docker 环境
 
    ```text
-   docker compose up -d
+   docker compose -p dify -f docker-compose.yaml up -d
    ```
 
 3. 启动 dify

@@ -6,6 +6,8 @@ tags: ["langchain", LLM"]
 title: "langchain - RAG"
 ---
 
+![1](/images/langchain-RAG/1.png)
+
 ```python
 import os
 
@@ -23,17 +25,17 @@ load_dotenv()
 # Define the persistent directory
 current_dir = os.path.dirname(os.path.abspath(__file__))
 persistent_directory = os.path.join(current_dir, "db", "chroma_db_with_metadata")
-
-# Define the embedding model
-embeddings = OpenAIEmbeddings(model="text-embedding-3-small")
-
-# Load the existing vector store with the embedding function
-db = Chroma(persist_directory=persistent_directory, embedding_function=embeddings)
 ```
 
 <!--more-->
 
 ```python
+# Define the embedding model
+embeddings = OpenAIEmbeddings(model="text-embedding-3-small")
+
+# Load the existing vector store with the embedding function
+db = Chroma(persist_directory=persistent_directory, embedding_function=embeddings)
+
 # Create a retriever for querying the vector store
 # `search_type` specifies the type of search (e.g., similarity)
 # `search_kwargs` contains additional arguments for the search (e.g., number of results to return)

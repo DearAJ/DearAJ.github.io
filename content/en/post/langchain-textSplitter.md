@@ -106,7 +106,7 @@ create_vector_store(token_docs, "chroma_db_token")
 +  特点：使用分词器（如GPT-2的tokenizer）按标记（token）分割。
 + 适用场景：需要与特定Transformer模型（如GPT系列、BERT）配合使用时，因为这些模型有严格的标记数量限制。可确保分块后标记数不超过模型输入限制。
 
-### 递归的基于字符的分割
+### # 递归的基于字符的分割
 
 ```python
 # 4. Recursive Character-based Splitting: most people use
@@ -118,6 +118,8 @@ rec_char_splitter = RecursiveCharacterTextSplitter(
 rec_char_docs = rec_char_splitter.split_documents(documents)
 create_vector_store(rec_char_docs, "chroma_db_rec_char")
 ```
+
+`RecursiveCharacterTextSplitter` 旨在**将文本分成较小的块，同时尽可能地保留语义连贯性。**它通过递归，尝试使用优先的分隔列表 `["\n\n", "\n"," ", ""]` 来划分文本，直到块足够小。
 
 + 特点：在字符数限制内，优先按自然边界（如段落、句子）递归分割。
 + 适用场景：通用文本处理，平衡分块大小和语义完整性。它是大多数情况下的推荐选择，尤其当文本有层次结构（如文章包含段落和句子）时。

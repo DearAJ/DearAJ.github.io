@@ -48,7 +48,7 @@
   <meta itemprop="name" content="Articles">
   <meta itemprop="description" content="The soul selects her own society, then shuts the door. To her divine majority, present no more.">
   <meta itemprop="datePublished" content="2025-06-25T11:00:59-04:00">
-  <meta itemprop="dateModified" content="2026-05-11T11:00:59-04:00">
+  <meta itemprop="dateModified" content="2026-06-25T10:00:59-04:00">
   <meta itemprop="wordCount" content="2">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Articles">
@@ -153,26 +153,23 @@
             <div class="mb3 pa4 mid-gray overflow-hidden">
     
       <div class="f6">
-        March 30, 2025
+        April 1, 2025
       </div>
     
     <h1 class="f3 near-black">
-      <a href="/post/%E9%87%8F%E5%8C%96/" class="link black dim">
-        Quantization
+      <a href="/post/dqn/" class="link black dim">
+        DQN (deep Q network)
       </a>
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <h1 id="线性量化">线性量化</h1>
-<h2 id="量化和去量化">量化和去量化</h2>
-<p>量化指将一个大集合映射到一个较小值集合的过程。</p>
-<p><img src="/images/Quanti/1.png" alt="1"></p>
-<h3 id="可以量化的内容">可以量化的内容</h3>
-<ul>
-<li><strong>The weights</strong>: Neural network parameters</li>
-<li>﻿﻿<strong>The activations</strong>: Values that propagate through the layers of the neural network</li>
-</ul>
+      <p>Q-learning 算法用表格存储动作价值的做法只在 环境的状态和动作都是离散的，并且空间都比较小 的情况下适用.</p>
+<p><strong>DQN</strong>：用来解决连续状态下离散动作的问题，是离线策略算法，可以使用ε-贪婪策略来平衡探索与利用。</p>
+<p><strong>Q 网络</strong>：用于拟合函数Q函数的神经网络</p>
+<p><img src="/images/DQN/1.png" alt="1"></p>
+<p><strong>Q 网络的损失函数</strong>（均方误差形式）</p>
+<p><img src="/images/DQN/2.png" alt="2"></p>
     </div>
-  <a href="/post/%E9%87%8F%E5%8C%96/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  <a href="/post/dqn/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
   </div>
 
         </div>
@@ -181,56 +178,38 @@
             <div class="mb3 pa4 mid-gray overflow-hidden">
     
       <div class="f6">
-        March 29, 2025
+        March 31, 2025
       </div>
     
     <h1 class="f3 near-black">
-      <a href="/post/ppo-%E5%8E%9F%E7%90%86/" class="link black dim">
-        PPO-直观理解
+      <a href="/post/qlearing/" class="link black dim">
+        Q-learing
       </a>
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <h2 id="1-基础概念">1. 基础概念</h2>
-<p><img src="/images/PPO/1.png" alt="1"></p>
+      <p><strong>无模型的强化学习</strong>：不需要事先知道环境的奖励函数和状态转移函数，而是直接使用和环境交互的过程中采样到的数据来学习。</p>
+<h2 id="1-时序差分方法">1. 时序差分方法</h2>
+<p>时序差分方法核心：对未来动作选择的价值估计来更新对当前动作选择的价值估计。</p>
+<h3 id="蒙特卡洛方法monte-carlo-methods">蒙特卡洛方法（Monte-Carlo methods）</h3>
+<p>使用重复随机抽样，然后运用概率统计方法来从抽样结果中归纳出我们想求的目标的数值估计。</p>
+<ul>
+<li>
+<p>用蒙特卡洛方法来估计一个策略在一个马尔可夫决策过程中的状态价值函数：<strong>用样本均值作为期望值的估计</strong></p>
 <ol>
-<li>
-<p><strong>enviroment</strong>：看到的画面+看不到的后台画面，不了解细节</p>
-</li>
-<li>
-<p><strong>agent(智能体)</strong>：根据策略得到尽可能多的奖励</p>
-</li>
-<li>
-<p><strong>state</strong>：当前状态</p>
-</li>
-<li>
-<p><strong>observation</strong>：state的一部分（有时候agent无法看全）</p>
-</li>
-<li>
-<p><strong>action</strong>：agent做出的动作</p>
-</li>
-<li>
-<p><strong>reward</strong>：agent做出一个动作后环境给予的奖励</p>
-</li>
-<li>
-<p><strong>action space</strong>：可以选择的动作，如上下左右</p>
-</li>
-<li>
-<p><strong>policy</strong>：策略函数，输入state，输出Action的<strong>概率分布</strong>。一般用π表示。</p>
-<ol>
-<li>训练时应尝试各种action</li>
-<li>输出应具有多样性</li>
+<li>在 MDP 上采样很多条序列，计算从这个状态出发的回报再求其期望</li>
+<li>一条序列只计算一次回报，也就是这条序列第一次出现该状态时计算后面的累积奖励，而后面再次出现该状态时，该状态就被忽略了。</li>
 </ol>
 </li>
 <li>
-<p><strong>Trajectory/Episode/Rollout</strong>：轨迹，用 t 表示一连串状态和动作的序列。有的状态转移是确定的，也有的是不确定的。</p>
+<p>蒙特卡洛方法对价值函数的增量更新方式</p>
+<p><img src="/images/QLearning/1.png" alt="1"></p>
 </li>
 <li>
-<p><strong>Return</strong>：回报，从当前时间点到游戏结束的 Reward 的累积和。</p>
+<p>时序差分方法只需要当前步结束即可进行计算</p>
 </li>
-</ol>
-<p>强化学习目标：训练一个Policy神经网络π，在所有状态S下，给出相应的Action，得到Return的期望最大。</p>
+</ul>
     </div>
-  <a href="/post/ppo-%E5%8E%9F%E7%90%86/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  <a href="/post/qlearing/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
   </div>
 
         </div>
@@ -239,37 +218,69 @@
             <div class="mb3 pa4 mid-gray overflow-hidden">
     
       <div class="f6">
-        March 29, 2025
+        March 31, 2025
       </div>
     
     <h1 class="f3 near-black">
-      <a href="/post/%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2/" class="link black dim">
-        语义分割
+      <a href="/post/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-%E6%98%93%E6%B7%B7%E6%B7%86%E7%82%B9/" class="link black dim">
+        强化学习-易混淆点
       </a>
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p>语义分割将图片中的<strong>每个像素</strong>分类到对应的类别。</p>
-<p><img src="/images/SemanticSegmentation/1.png" alt="1"></p>
-<ul>
+      <ol>
 <li>
-<p><strong>应用</strong>：</p>
-<p>背景虚化、路面分割、实例分割(会关注具体是哪个个体，如 Mask R-CNN)、全景分割（还要对背景进行分割，如 Panoptic FPN）</p>
+<h3 id="gae-和优势函数">GAE 和优势函数</h3>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">概念</th>
+          <th style="text-align: left">说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><strong>优势函数 A(s,a)</strong></td>
+          <td style="text-align: left">Q(s,a)−V(s)，衡量动作比平均情况好多少</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>广义优势估计 GAE</strong></td>
+          <td style="text-align: left">一种<strong>计算优势函数</strong>方法，用TD误差的加权和估计优势，超参数 λ 控制偏差-方差权衡</td>
+      </tr>
+  </tbody>
+</table>
+</li>
+</ol>
+<p> </p>
+<ol start="2">
+<li>
+<h3 id="状态价值函数-vs-动作价值函数">状态价值函数 vs 动作价值函数</h3>
+<ol>
+<li>
+<p><strong>状态价值函数</strong></p>
+<p><img src="/images/RLconfused/1.png" alt="1"></p>
 </li>
 <li>
-<p><strong>常见模型</strong></p>
-<p><img src="/images/SemanticSegmentation/5.png" alt="5"></p>
+<p><strong>动作价值函数</strong></p>
+<p><img src="/images/RLconfused/2.png" alt="2"></p>
 </li>
 <li>
-<p><strong>语义分割任务常见的数据集格式</strong></p>
+<p><strong>优势函数</strong></p>
+<p><strong>在状态 s 下选择动作 a 比平均情况（即遵循当前策略）好多少</strong></p>
+<p>A(s,a)=Q(s,a)−V(s)</p>
 <ul>
-<li><strong>PASCAL VOC</strong>：PNG图片 + 每个像素的类别信息（每个像素都对应一个颜色）</li>
-<li><strong>MS COCO</strong>：每个目标都记录了一个多边形坐标，将所有的点连一起，即可得到边缘信息(还可以用于实例分析)</li>
-<li><strong>语义分割得到的具体形式</strong>：单通道图片，加上调色板 mask 蒙版后可以上色（palette），方便可视化。每个像素数值对应类别索引。</li>
+<li>求解优势函数：<strong>广义优势估计</strong>(GAE)</li>
 </ul>
 </li>
-</ul>
+<li>
+<p><strong>广义优势估计</strong>(GAE)</p>
+<p>通过指数加权平均不同步长的优势估计（从1步到无穷步），结合γ和λ的幂次衰减，实现平滑的回报估计。</p>
+<p><img src="/images/RLconfused/5.png" alt="5"></p>
+</li>
+</ol>
+</li>
+</ol>
     </div>
-  <a href="/post/%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  <a href="/post/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-%E6%98%93%E6%B7%B7%E6%B7%86%E7%82%B9/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
   </div>
 
         </div>
@@ -302,7 +313,7 @@
         <a href="/post/page/14/" aria-label="Next" class="page-link" role="button"><span aria-hidden="true">&raquo;</span></a>
       </li>
       <li class="page-item">
-        <a href="/post/page/22/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/post/page/23/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
       </li>
     </ul>
   </article>

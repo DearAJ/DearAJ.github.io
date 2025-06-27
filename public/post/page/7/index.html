@@ -48,7 +48,7 @@
   <meta itemprop="name" content="Articles">
   <meta itemprop="description" content="The soul selects her own society, then shuts the door. To her divine majority, present no more.">
   <meta itemprop="datePublished" content="2025-06-25T11:00:59-04:00">
-  <meta itemprop="dateModified" content="2026-05-11T11:00:59-04:00">
+  <meta itemprop="dateModified" content="2026-06-25T10:00:59-04:00">
   <meta itemprop="wordCount" content="2">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Articles">
@@ -153,37 +153,18 @@
             <div class="mb3 pa4 mid-gray overflow-hidden">
     
       <div class="f6">
-        April 29, 2025
+        May 11, 2025
       </div>
     
     <h1 class="f3 near-black">
-      <a href="/post/efficientnet/" class="link black dim">
-        EfficientNet
+      <a href="/post/llm4/" class="link black dim">
+        LLM - 4.大模型增强 - RAG
       </a>
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <ul>
-<li>
-<p><strong>传统的模型缩放</strong>：</p>
-<p>任意增加 CNN 的深度或宽度，或使用更大的输入图像分辨率进行训练和评估。</p>
-<p><strong>缺点</strong>：通常需要长时间的手动调优，并且仍然会经常产生次优的性能。</p>
-</li>
-<li>
-<p><strong><a href="https://arxiv.org/abs/1905.11946">EfficientNet</a></strong>：</p>
-<ol>
-<li>提出了一种新的模型缩放方法和 AutoML 技术，使用使用简单但高效的<strong>复合系数</strong>，均匀缩放深度/宽度/分辨率的所有维度。</li>
-<li>使用神经架构搜索来设计一个新的基线网络，并将其扩展以获得一系列模型，称为 EfficientNets。</li>
-</ol>
-<p><strong>优点</strong>：更小、更快。</p>
-</li>
-</ul>
-<p> </p>
-<h3 id="复合模型放缩">复合模型放缩</h3>
-<h4 id="1-概述">1. 概述</h4>
-<p><strong>目的</strong>：找到在固定资源约束下，基线网络的不同缩放维度之间的关系。</p>
-<p><img src="/images/efficientNet/1.png" alt="1"></p>
+      <p><img src="/images/RAG/0-1.png" alt="0-1"></p>
     </div>
-  <a href="/post/efficientnet/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  <a href="/post/llm4/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
   </div>
 
         </div>
@@ -192,18 +173,18 @@
             <div class="mb3 pa4 mid-gray overflow-hidden">
     
       <div class="f6">
-        April 27, 2025
+        May 2, 2025
       </div>
     
     <h1 class="f3 near-black">
-      <a href="/post/llm2/" class="link black dim">
-        LLM - 2.预训练阶段
+      <a href="/post/llm3.5/" class="link black dim">
+        LLM - 3.指令理解阶段(核心) - 强化学习
       </a>
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p><img src="/images/LLM2/0.png" alt="0"></p>
+      <p><img src="/images/LLM3.5/0.png" alt="0"></p>
     </div>
-  <a href="/post/llm2/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  <a href="/post/llm3.5/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
   </div>
 
         </div>
@@ -212,28 +193,20 @@
             <div class="mb3 pa4 mid-gray overflow-hidden">
     
       <div class="f6">
-        April 24, 2025
+        May 1, 2025
       </div>
     
     <h1 class="f3 near-black">
-      <a href="/post/resnet18/" class="link black dim">
-        ResNet18
+      <a href="/post/llm3/" class="link black dim">
+        LLM - 3.指令理解阶段(核心) - 指令微调
       </a>
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <h3 id="1-退化现象">1. 退化现象</h3>
-<p>ResNet 随着网络层不断的加深，模型的准确率</p>
-<ol>
-<li>先是不断的提高，达到最大值（准确率饱和），</li>
-<li>然后随着网络深度的继续增加，模型准确率出现大幅度的降低。</li>
-</ol>
-<p><strong>原因</strong>：随着网络深度的不断增大，所引入的激活函数也越来越多，数据被映射到更加离散的空间，此时已经难以让数据回到原点。也就是说，神经网络将这些数据映射回原点所需要的计算量，已经远远超过我们所能承受的。</p>
-<p> </p>
-<h3 id="2-快捷连接">2. 快捷连接</h3>
-<p>核心思想：通过添加额外的连接来解决深度神经网络训练中的<strong>梯度消失和梯度爆炸</strong>等问题，从而允许构建非常深的神经网络。</p>
-<p><img src="/images/resnet18/1.jpg" alt="1"></p>
+      <p><img src="/images/LLM3/0.png" alt="0"></p>
+<p>指令微调又称有监督微调，旨在使模型具备指令遵循 （Instruction Following）能力。</p>
+<p>核心问题：<em>如何构造指令数据？如何高效低成本地进行指令微调训练？如何在语言模型基础上进一步扩大上下文？</em></p>
     </div>
-  <a href="/post/resnet18/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  <a href="/post/llm3/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
   </div>
 
         </div>
@@ -266,7 +239,7 @@
         <a href="/post/page/8/" aria-label="Next" class="page-link" role="button"><span aria-hidden="true">&raquo;</span></a>
       </li>
       <li class="page-item">
-        <a href="/post/page/22/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/post/page/23/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
       </li>
     </ul>
   </article>

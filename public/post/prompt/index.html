@@ -48,7 +48,7 @@
   <meta itemprop="description" content="Prompt 是用户输入给 AI 模型的指令或问题，用于引导 AI 生成相应的回答或内容。">
   <meta itemprop="datePublished" content="2025-06-12T10:00:59-04:00">
   <meta itemprop="dateModified" content="2025-06-12T10:00:59-04:00">
-  <meta itemprop="wordCount" content="1815">
+  <meta itemprop="wordCount" content="2421">
   <meta itemprop="keywords" content="LLM">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Prompting Guide">
@@ -407,8 +407,74 @@
 // For internal and external knowledge
 - By default, use the provided external context to answer the User Query, but if other basic knowledge is needed to answer, and you&#39;re confident in the answer, you can use some of your own knowledge to help answer the question.
 </code></pre><p> </p>
-<h3 id="prompt-organization">Prompt Organization</h3>
 <p> </p>
+<h1 id="2-分类">2 分类</h1>
+<h3 id="chain-of-thought-think-before-answering">Chain-of-Thought: Think Before Answering</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># # Answering without explicit reasoning</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># standard_prompt = [</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#     {&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;Roger has 5 tennis balls. He buys 2 more cans of tennis balls. Each can has 3 tennis balls. How many tennis balls does he have now?&#34;},</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#     {&#34;role&#34;: &#34;assistant&#34;, &#34;content&#34;: &#34;11&#34;},</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#     {&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;The cafeteria had 25 apples. If they used 20 to make lunch and bought 6 more, how many apples do they have?&#34;}</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># # Run generative model</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># outputs = pipe(standard_prompt)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># print(outputs[0][&#34;generated_text&#34;])</span>
+</span></span></code></pre></div><pre tabindex="0"><code>The cafeteria started with 25 apples. They used 20 apples to make lunch, so they had:
+25 - 20 = 5 apples left.
+
+Then they bought 6 more apples, so they now have:
+5 + 6 = 11 apples.
+</code></pre><p> </p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Answering with chain-of-thought</span>
+</span></span><span style="display:flex;"><span>cot_prompt <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>    {<span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;user&#34;</span>, <span style="color:#e6db74">&#34;content&#34;</span>: <span style="color:#e6db74">&#34;Roger has 5 tennis balls. He buys 2 more cans of tennis balls. Each can has 3 tennis balls. How many tennis balls does he have now?&#34;</span>},
+</span></span><span style="display:flex;"><span>    {<span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;assistant&#34;</span>, <span style="color:#e6db74">&#34;content&#34;</span>: <span style="color:#e6db74">&#34;Roger started with 5 balls. 2 cans of 3 tennis balls each is 6 tennis balls. 5 + 6 = 11. The answer is 11.&#34;</span>},
+</span></span><span style="display:flex;"><span>    {<span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;user&#34;</span>, <span style="color:#e6db74">&#34;content&#34;</span>: <span style="color:#e6db74">&#34;The cafeteria had 23 apples. If they used 20 to make lunch and bought 6 more, how many apples do they have?&#34;</span>}
+</span></span><span style="display:flex;"><span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Generate the output</span>
+</span></span><span style="display:flex;"><span>outputs <span style="color:#f92672">=</span> pipe(cot_prompt)
+</span></span><span style="display:flex;"><span>print(outputs[<span style="color:#ae81ff">0</span>][<span style="color:#e6db74">&#34;generated_text&#34;</span>])
+</span></span></code></pre></div><pre tabindex="0"><code>You seem to be using the pipelines sequentially on GPU. In order to maximize efficiency please use a dataset
+The cafeteria started with 23 apples. They used 20 apples, so they had 23 - 20 = 3 apples left. Then they bought 6 more apples, so they now have 3 + 6 = 9 apples. The answer is 9.
+</code></pre><p> </p>
+<h3 id="zero-shot-chain-of-thought">Zero-shot Chain-of-Thought</h3>
+<p>与传统CoT需要提供少量示例（Few-shot）不同，Zero-shot CoT仅需通过简单的提示（如“让我们一步步思考”），就能激发模型的逐步推理能力。</p>
+<p><strong>适用</strong>：数学题、逻辑推理、常识问题等需要多步推理的任务。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Zero-shot Chain-of-Thought</span>
+</span></span><span style="display:flex;"><span>zeroshot_cot_prompt <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>    {<span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;user&#34;</span>, <span style="color:#e6db74">&#34;content&#34;</span>: <span style="color:#e6db74">&#34;The cafeteria had 23 apples. If they used 20 to make lunch and bought 6 more, how many apples do they have? Let&#39;s think step-by-step.&#34;</span>}
+</span></span><span style="display:flex;"><span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Generate the output</span>
+</span></span><span style="display:flex;"><span>outputs <span style="color:#f92672">=</span> pipe(zeroshot_cot_prompt)
+</span></span><span style="display:flex;"><span>print(outputs[<span style="color:#ae81ff">0</span>][<span style="color:#e6db74">&#34;generated_text&#34;</span>])
+</span></span></code></pre></div><pre tabindex="0"><code>Step 1: Start with the initial number of apples, which is 23.
+Step 2: Subtract the number of apples used to make lunch, which is 20. So, 23 - 20 = 3 apples remaining.
+Step 3: Add the number of apples bought, which is 6. So, 3 + 6 = 9 apples.
+
+The cafeteria now has 9 apples.
+</code></pre><p> </p>
+<h2 id="tree-of-thought-tot-exploring-intermediate-steps">Tree-of-Thought (ToT): Exploring Intermediate Steps</h2>
+<p>模拟人类解决问题的思维过程：<strong>不局限于单一线性推理，而是并行尝试不同策略，评估最优路径</strong>。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Zero-shot Chain-of-Thought</span>
+</span></span><span style="display:flex;"><span>zeroshot_tot_prompt <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>    {<span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;user&#34;</span>, <span style="color:#e6db74">&#34;content&#34;</span>: <span style="color:#e6db74">&#34;Imagine three different experts are answering this question. All experts will write down 1 step of their thinking, then share it with the group. Then all experts will go on to the next step, etc. If any expert realises they&#39;re wrong at any point then they leave. The question is &#39;The cafeteria had 23 apples. If they used 20 to make lunch and bought 6 more, how many apples do they have?&#39; Make sure to discuss the results.&#34;</span>}
+</span></span><span style="display:flex;"><span>]
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Generate the output</span>
+</span></span><span style="display:flex;"><span>outputs <span style="color:#f92672">=</span> pipe(zeroshot_tot_prompt)
+</span></span><span style="display:flex;"><span>print(outputs[<span style="color:#ae81ff">0</span>][<span style="color:#e6db74">&#34;generated_text&#34;</span>])
+</span></span></code></pre></div><pre tabindex="0"><code>Expert 1: Step 1 - Start with the initial number of apples: 23 apples.
+Expert 2: Step 1 - Subtract the apples used for lunch: 23 - 20 = 3 apples remaining.
+Expert 3: Step 1 - Add the newly bought apples: 3 + 6 = 9 apples.
+
+Expert 1: Step 2 - Confirm the final count: The cafeteria has 9 apples.
+Expert 2: Step 2 - Review the calculations: 23 - 20 = 3, then 3 + 6 = 9. The calculations are correct.
+Expert 3: Step 2 - Agree with the result: The cafeteria indeed has 9 apples.
+
+All experts agree on the final count: The cafeteria has 9 apples.
+</code></pre><p> </p>
 <ul class="pa0">
   
    <li class="list di">
@@ -431,6 +497,10 @@
     <p class="f5 b mb3">Related</p>
     <ul class="pa0 list">
 	   
+	     <li  class="mb2">
+          <a href="/post/transformer-code/">transformer-code</a>
+        </li>
+	    
 	     <li  class="mb2">
           <a href="/post/llm4/">LLM - 4.大模型增强 - RAG</a>
         </li>

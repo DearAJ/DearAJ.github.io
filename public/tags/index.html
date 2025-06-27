@@ -161,26 +161,19 @@
     <div class="nested-links f5 lh-copy nested-copy-line-height">
       <p><a href="https://moonshotai.github.io/Kimi-Researcher/">这篇技术报告</a>提出了完全通过端到端 agentic reinforcement learning 进行训练的自主智能体 Kimi-Researcher，旨在通过多步骤规划、推理和工具使用来解决复杂问题。</p>
 <p>—— <strong>End-to-end agentic RL is promising but challenging</strong></p>
+<p> </p>
 <h3 id="传统-agent">传统 agent</h3>
 <ol>
 <li><strong><a href="https://www.anthropic.com/engineering/built-multi-agent-research-system">基于工作流</a></strong>：需要随着模型或环境的变化而频繁手动更新，缺乏可扩展性和灵活性。</li>
 <li><strong>使用监督微调 (SFT)进行模仿学习</strong>：在数据标记方面存在困难；特定的工具版本紧密耦合。</li>
 </ol>
 <p><strong>Kimi-Researcher</strong>：给定一个查询，agent 探索大量可能的策略，获得正确解决方案的奖励 —— 所有技能（规划、感知和工具使用）都是一起学习的，无需手工制作的rule/workflow。</p>
+<p> </p>
 <h3 id="建模">建模</h3>
 <p>给定状态观察(如系统提示符、工具声明和用户查询)，Kimi-Researcher 会生成 think和action (action 可以是工具调用，也可以是终止轨迹的指示)。</p>
-<p><img src="/Users/aijunyang/DearAJ.github.io/static/images/paper-KimiResearcher/1.png" alt="1"></p>
+<p><img src="/images/paper-KimiResearcher/1.png" alt="1"></p>
 <h3 id="approach">Approach</h3>
 <p>主要利用三个工具：a)并行、实时、内部的 <strong>search tool;</strong> b) 用于交互式 Web 任务的基于文本的 <strong>browser tool</strong>; c)用于自动执行代码的 <strong>coding tool</strong>.</p>
-<ol>
-<li>
-<h4 id="training-data"><strong>Training data</strong></h4>
-<p>设计了具有两个互补目标的训练语料库</p>
-<ol>
-<li><strong>构建 tool-centric 的任务</strong>： the agent learns when to invoke a tool, and how to orchestrate tool use effectively.</li>
-<li><strong>构建 reasoning-intensive 的任务</strong>：数学和代码推理 + Hard Search</li>
-</ol>
-<p>开发了完全自动化的管道，以最少的人工干预生成和验证许多问答对。</p>
     </div>
   <a href="/post/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBkimi-researcher/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
   </div>
@@ -245,195 +238,45 @@
         
       
         <h2 class="f1">
-          <a href="/tags/langchain/" class="link blue hover-black">
-            Tag: Langchain
+          <a href="/tags/agent/" class="link blue hover-black">
+            Tag: Agent
           </a>
         </h2>
         
             <div class="mb3 pa4 mid-gray overflow-hidden">
     
       <div class="f6">
-        June 23, 2025
+        June 25, 2025
       </div>
     
     <h1 class="f3 near-black">
-      <a href="/post/langchain-textsplitter/" class="link black dim">
-        langchain - text_splitter
+      <a href="/post/dify-agent/" class="link black dim">
+        dify - Agent
       </a>
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> os
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain.text_splitter <span style="color:#f92672">import</span> (
-</span></span><span style="display:flex;"><span>    CharacterTextSplitter,
-</span></span><span style="display:flex;"><span>    RecursiveCharacterTextSplitter,
-</span></span><span style="display:flex;"><span>    SentenceTransformersTokenTextSplitter,
-</span></span><span style="display:flex;"><span>    TextSplitter,
-</span></span><span style="display:flex;"><span>    TokenTextSplitter,
-</span></span><span style="display:flex;"><span>)
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_community.document_loaders <span style="color:#f92672">import</span> TextLoader
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_community.vectorstores <span style="color:#f92672">import</span> Chroma
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_openai <span style="color:#f92672">import</span> OpenAIEmbeddings
+      <h3 id="基础实现">基础实现</h3>
+<p><img src="/Users/aijunyang/DearAJ.github.io/static/images/difyAgent/1.png" alt="1"></p>
+<p>举例：<em>WikiAgent</em></p>
+<ul>
+<li>
+<p>prompt</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">***</span>xmi
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">‹</span>instruction<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">-</span> The Al Agent should be knowledgeable about the TV show <span style="color:#e6db74">&#34;The Office&#34;</span><span style="color:#f92672">.</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">-</span> If the question asked <span style="color:#f92672">is</span> <span style="color:#f92672">not</span> related to <span style="color:#e6db74">&#34;The Office&#34;</span> <span style="color:#f92672">or</span> <span style="color:#66d9ef">if</span> the Al does <span style="color:#f92672">not</span> know the answer, it should search <span style="color:#66d9ef">for</span> the answer using the Google search tool<span style="color:#f92672">.</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">-</span> The output should <span style="color:#f92672">not</span> contain any XML tags<span style="color:#f92672">.</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Define the directory containing the text file</span>
-</span></span><span style="display:flex;"><span>current_dir <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>dirname(os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>abspath(__file__))
-</span></span><span style="display:flex;"><span>file_path <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(current_dir, <span style="color:#e6db74">&#34;books&#34;</span>, <span style="color:#e6db74">&#34;romeo_and_juliet.txt&#34;</span>)
-</span></span><span style="display:flex;"><span>db_dir <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(current_dir, <span style="color:#e6db74">&#34;db&#34;</span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Check if the text file exists</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>exists(file_path):
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">FileNotFoundError</span>(
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;The file </span><span style="color:#e6db74">{</span>file_path<span style="color:#e6db74">}</span><span style="color:#e6db74"> does not exist. Please check the path.&#34;</span>
-</span></span><span style="display:flex;"><span>    )
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Read the text content from the file</span>
-</span></span><span style="display:flex;"><span>loader <span style="color:#f92672">=</span> TextLoader(file_path)
-</span></span><span style="display:flex;"><span>documents <span style="color:#f92672">=</span> loader<span style="color:#f92672">.</span>load()
-</span></span></code></pre></div>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;</span>example<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">-</span> If asked <span style="color:#e6db74">&#34;Who is the regional manager in &#39;The Office&#39;?&#34;</span>, the Al should provide the correct answer<span style="color:#f92672">.</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">-</span> If asked <span style="color:#e6db74">&#34;What year did &#39;The Office&#39; first premiere?&#34;</span>, the Al should provide the correct answer <span style="color:#f92672">or</span> search <span style="color:#66d9ef">for</span> it <span style="color:#66d9ef">if</span> unknown<span style="color:#f92672">.</span>
+</span></span></code></pre></div></li>
+</ul>
+<h3 id="agent-workflow">Agent Workflow</h3>
+<h4 id="prompt-chaining">Prompt Chaining</h4>
+<p>将任务分解为关键步骤，用gate来验证前面的输出是否符合后续处理的条件。</p>
     </div>
-  <a href="/post/langchain-textsplitter/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        June 20, 2025
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/langchain-agent/" class="link black dim">
-        langchain - Agent
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p><img src="/images/langchain-Agent/1.png" alt="1"></p>
-<p>可将 Agent 视为 state machine</p>
-<p> </p>
-<h3 id="agent_react_docstore">agent_react_docstore</h3>
-<p><img src="/images/langchain-Agent/2.png" alt="2"></p>
-    </div>
-  <a href="/post/langchain-agent/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        June 19, 2025
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/langchain-rag/" class="link black dim">
-        langchain - RAG
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p><img src="/images/langchain-RAG/1.png" alt="1"></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> os
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> dotenv <span style="color:#f92672">import</span> load_dotenv
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain.chains <span style="color:#f92672">import</span> create_history_aware_retriever, create_retrieval_chain
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain.chains.combine_documents <span style="color:#f92672">import</span> create_stuff_documents_chain
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_community.vectorstores <span style="color:#f92672">import</span> Chroma
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_core.messages <span style="color:#f92672">import</span> HumanMessage, SystemMessage
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_core.prompts <span style="color:#f92672">import</span> ChatPromptTemplate, MessagesPlaceholder
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_openai <span style="color:#f92672">import</span> ChatOpenAI, OpenAIEmbeddings
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Load environment variables from .env</span>
-</span></span><span style="display:flex;"><span>load_dotenv()
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Define the persistent directory</span>
-</span></span><span style="display:flex;"><span>current_dir <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>dirname(os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>abspath(__file__))
-</span></span><span style="display:flex;"><span>persistent_directory <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(current_dir, <span style="color:#e6db74">&#34;db&#34;</span>, <span style="color:#e6db74">&#34;chroma_db_with_metadata&#34;</span>)
-</span></span></code></pre></div>
-    </div>
-  <a href="/post/langchain-rag/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        
-      
-        <h2 class="f1">
-          <a href="/tags/llm/" class="link blue hover-black">
-            Tag: LLM&#34;
-          </a>
-        </h2>
-        
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        June 23, 2025
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/langchain-textsplitter/" class="link black dim">
-        langchain - text_splitter
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> os
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain.text_splitter <span style="color:#f92672">import</span> (
-</span></span><span style="display:flex;"><span>    CharacterTextSplitter,
-</span></span><span style="display:flex;"><span>    RecursiveCharacterTextSplitter,
-</span></span><span style="display:flex;"><span>    SentenceTransformersTokenTextSplitter,
-</span></span><span style="display:flex;"><span>    TextSplitter,
-</span></span><span style="display:flex;"><span>    TokenTextSplitter,
-</span></span><span style="display:flex;"><span>)
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_community.document_loaders <span style="color:#f92672">import</span> TextLoader
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_community.vectorstores <span style="color:#f92672">import</span> Chroma
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_openai <span style="color:#f92672">import</span> OpenAIEmbeddings
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Define the directory containing the text file</span>
-</span></span><span style="display:flex;"><span>current_dir <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>dirname(os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>abspath(__file__))
-</span></span><span style="display:flex;"><span>file_path <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(current_dir, <span style="color:#e6db74">&#34;books&#34;</span>, <span style="color:#e6db74">&#34;romeo_and_juliet.txt&#34;</span>)
-</span></span><span style="display:flex;"><span>db_dir <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(current_dir, <span style="color:#e6db74">&#34;db&#34;</span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Check if the text file exists</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>exists(file_path):
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">FileNotFoundError</span>(
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;The file </span><span style="color:#e6db74">{</span>file_path<span style="color:#e6db74">}</span><span style="color:#e6db74"> does not exist. Please check the path.&#34;</span>
-</span></span><span style="display:flex;"><span>    )
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Read the text content from the file</span>
-</span></span><span style="display:flex;"><span>loader <span style="color:#f92672">=</span> TextLoader(file_path)
-</span></span><span style="display:flex;"><span>documents <span style="color:#f92672">=</span> loader<span style="color:#f92672">.</span>load()
-</span></span></code></pre></div>
-    </div>
-  <a href="/post/langchain-textsplitter/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        June 19, 2025
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/langchain-rag/" class="link black dim">
-        langchain - RAG
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p><img src="/images/langchain-RAG/1.png" alt="1"></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> os
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> dotenv <span style="color:#f92672">import</span> load_dotenv
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain.chains <span style="color:#f92672">import</span> create_history_aware_retriever, create_retrieval_chain
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain.chains.combine_documents <span style="color:#f92672">import</span> create_stuff_documents_chain
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_community.vectorstores <span style="color:#f92672">import</span> Chroma
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_core.messages <span style="color:#f92672">import</span> HumanMessage, SystemMessage
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_core.prompts <span style="color:#f92672">import</span> ChatPromptTemplate, MessagesPlaceholder
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_openai <span style="color:#f92672">import</span> ChatOpenAI, OpenAIEmbeddings
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Load environment variables from .env</span>
-</span></span><span style="display:flex;"><span>load_dotenv()
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Define the persistent directory</span>
-</span></span><span style="display:flex;"><span>current_dir <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>dirname(os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>abspath(__file__))
-</span></span><span style="display:flex;"><span>persistent_directory <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(current_dir, <span style="color:#e6db74">&#34;db&#34;</span>, <span style="color:#e6db74">&#34;chroma_db_with_metadata&#34;</span>)
-</span></span></code></pre></div>
-    </div>
-  <a href="/post/langchain-rag/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  <a href="/post/dify-agent/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
   </div>
 
         
@@ -443,6 +286,86 @@
             Tag: LLM
           </a>
         </h2>
+        
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        June 25, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/dify-agent/" class="link black dim">
+        dify - Agent
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <h3 id="基础实现">基础实现</h3>
+<p><img src="/Users/aijunyang/DearAJ.github.io/static/images/difyAgent/1.png" alt="1"></p>
+<p>举例：<em>WikiAgent</em></p>
+<ul>
+<li>
+<p>prompt</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">***</span>xmi
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">‹</span>instruction<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">-</span> The Al Agent should be knowledgeable about the TV show <span style="color:#e6db74">&#34;The Office&#34;</span><span style="color:#f92672">.</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">-</span> If the question asked <span style="color:#f92672">is</span> <span style="color:#f92672">not</span> related to <span style="color:#e6db74">&#34;The Office&#34;</span> <span style="color:#f92672">or</span> <span style="color:#66d9ef">if</span> the Al does <span style="color:#f92672">not</span> know the answer, it should search <span style="color:#66d9ef">for</span> the answer using the Google search tool<span style="color:#f92672">.</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">-</span> The output should <span style="color:#f92672">not</span> contain any XML tags<span style="color:#f92672">.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;</span>example<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">-</span> If asked <span style="color:#e6db74">&#34;Who is the regional manager in &#39;The Office&#39;?&#34;</span>, the Al should provide the correct answer<span style="color:#f92672">.</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">-</span> If asked <span style="color:#e6db74">&#34;What year did &#39;The Office&#39; first premiere?&#34;</span>, the Al should provide the correct answer <span style="color:#f92672">or</span> search <span style="color:#66d9ef">for</span> it <span style="color:#66d9ef">if</span> unknown<span style="color:#f92672">.</span>
+</span></span></code></pre></div></li>
+</ul>
+<h3 id="agent-workflow">Agent Workflow</h3>
+<h4 id="prompt-chaining">Prompt Chaining</h4>
+<p>将任务分解为关键步骤，用gate来验证前面的输出是否符合后续处理的条件。</p>
+    </div>
+  <a href="/post/dify-agent/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        June 23, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/langchain-semanticsearch/" class="link black dim">
+        langchain - 混合搜索系统
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>先通过BM25快速筛选关键字，再用Reranker对候选文档进行精细排序。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">keyword_and_reranking_search</span>(query, top_k<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>, num_candidates<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>):
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;Input question:&#34;</span>, query)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">##### BM25 search (lexical search) #####</span>
+</span></span><span style="display:flex;"><span>    bm25_scores <span style="color:#f92672">=</span> bm25<span style="color:#f92672">.</span>get_scores(bm25_tokenizer(query))
+</span></span><span style="display:flex;"><span>    top_n <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>argpartition(bm25_scores, <span style="color:#f92672">-</span>num_candidates)[<span style="color:#f92672">-</span>num_candidates:]		<span style="color:#75715e"># 选取分数最高的 num_candidates 个文档</span>
+</span></span><span style="display:flex;"><span>    bm25_hits <span style="color:#f92672">=</span> [{<span style="color:#e6db74">&#39;corpus_id&#39;</span>: idx, <span style="color:#e6db74">&#39;score&#39;</span>: bm25_scores[idx]} <span style="color:#66d9ef">for</span> idx <span style="color:#f92672">in</span> top_n]
+</span></span><span style="display:flex;"><span>    bm25_hits <span style="color:#f92672">=</span> sorted(bm25_hits, key<span style="color:#f92672">=</span><span style="color:#66d9ef">lambda</span> x: x[<span style="color:#e6db74">&#39;score&#39;</span>], reverse<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Top-3 lexical search (BM25) hits&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> hit <span style="color:#f92672">in</span> bm25_hits[<span style="color:#ae81ff">0</span>:top_k]:
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">{:.3f}</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">{}</span><span style="color:#e6db74">&#34;</span><span style="color:#f92672">.</span>format(hit[<span style="color:#e6db74">&#39;score&#39;</span>], texts[hit[<span style="color:#e6db74">&#39;corpus_id&#39;</span>]]<span style="color:#f92672">.</span>replace(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, <span style="color:#e6db74">&#34; &#34;</span>)))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#Add re-ranking</span>
+</span></span><span style="display:flex;"><span>    docs <span style="color:#f92672">=</span> [texts[hit[<span style="color:#e6db74">&#39;corpus_id&#39;</span>]] <span style="color:#66d9ef">for</span> hit <span style="color:#f92672">in</span> bm25_hits]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">Top-3 hits by rank-API (</span><span style="color:#e6db74">{</span>len(bm25_hits)<span style="color:#e6db74">}</span><span style="color:#e6db74"> BM25 hits re-ranked)&#34;</span>)
+</span></span><span style="display:flex;"><span>    results <span style="color:#f92672">=</span> co<span style="color:#f92672">.</span>rerank(query<span style="color:#f92672">=</span>query, documents<span style="color:#f92672">=</span>docs, top_n<span style="color:#f92672">=</span>top_k, return_documents<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> hit <span style="color:#f92672">in</span> results<span style="color:#f92672">.</span>results:
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">{:.3f}</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">{}</span><span style="color:#e6db74">&#34;</span><span style="color:#f92672">.</span>format(hit<span style="color:#f92672">.</span>relevance_score, hit<span style="color:#f92672">.</span>document<span style="color:#f92672">.</span>text<span style="color:#f92672">.</span>replace(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, <span style="color:#e6db74">&#34; &#34;</span>)))
+</span></span></code></pre></div><ul>
+<li>
+<h4 id="bm25">bm25</h4>
+<p>基于词频(TF)和逆文档频率(IDF)，计算每个文档与查询的关键词匹配分数。</p>
+    </div>
+  <a href="/post/langchain-semanticsearch/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
         
             <div class="mb3 pa4 mid-gray overflow-hidden">
     
@@ -498,6 +421,24 @@
 <p>可确保模型在文本中明确规划和反映每个工具调用，而不是通过将一系列单独的工具调用链接在一起来完成任务。示例如下：</p>
     </div>
   <a href="/post/prompt/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        June 12, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/transformer-code/" class="link black dim">
+        transformer-code
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      
+    </div>
+  <a href="/post/transformer-code/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
   </div>
 
         
@@ -759,6 +700,272 @@
 </ul>
     </div>
   <a href="/post/transformer/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        
+      
+        <h2 class="f1">
+          <a href="/tags/langchain/" class="link blue hover-black">
+            Tag: Langchain
+          </a>
+        </h2>
+        
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        June 23, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/langchain-textsplitter/" class="link black dim">
+        langchain - text_splitter
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> os
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain.text_splitter <span style="color:#f92672">import</span> (
+</span></span><span style="display:flex;"><span>    CharacterTextSplitter,
+</span></span><span style="display:flex;"><span>    RecursiveCharacterTextSplitter,
+</span></span><span style="display:flex;"><span>    SentenceTransformersTokenTextSplitter,
+</span></span><span style="display:flex;"><span>    TextSplitter,
+</span></span><span style="display:flex;"><span>    TokenTextSplitter,
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_community.document_loaders <span style="color:#f92672">import</span> TextLoader
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_community.vectorstores <span style="color:#f92672">import</span> Chroma
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_openai <span style="color:#f92672">import</span> OpenAIEmbeddings
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Define the directory containing the text file</span>
+</span></span><span style="display:flex;"><span>current_dir <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>dirname(os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>abspath(__file__))
+</span></span><span style="display:flex;"><span>file_path <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(current_dir, <span style="color:#e6db74">&#34;books&#34;</span>, <span style="color:#e6db74">&#34;romeo_and_juliet.txt&#34;</span>)
+</span></span><span style="display:flex;"><span>db_dir <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(current_dir, <span style="color:#e6db74">&#34;db&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Check if the text file exists</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>exists(file_path):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">FileNotFoundError</span>(
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;The file </span><span style="color:#e6db74">{</span>file_path<span style="color:#e6db74">}</span><span style="color:#e6db74"> does not exist. Please check the path.&#34;</span>
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Read the text content from the file</span>
+</span></span><span style="display:flex;"><span>loader <span style="color:#f92672">=</span> TextLoader(file_path)
+</span></span><span style="display:flex;"><span>documents <span style="color:#f92672">=</span> loader<span style="color:#f92672">.</span>load()
+</span></span></code></pre></div>
+    </div>
+  <a href="/post/langchain-textsplitter/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        June 23, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/langchain-semanticsearch/" class="link black dim">
+        langchain - 混合搜索系统
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>先通过BM25快速筛选关键字，再用Reranker对候选文档进行精细排序。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">keyword_and_reranking_search</span>(query, top_k<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>, num_candidates<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>):
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;Input question:&#34;</span>, query)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">##### BM25 search (lexical search) #####</span>
+</span></span><span style="display:flex;"><span>    bm25_scores <span style="color:#f92672">=</span> bm25<span style="color:#f92672">.</span>get_scores(bm25_tokenizer(query))
+</span></span><span style="display:flex;"><span>    top_n <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>argpartition(bm25_scores, <span style="color:#f92672">-</span>num_candidates)[<span style="color:#f92672">-</span>num_candidates:]		<span style="color:#75715e"># 选取分数最高的 num_candidates 个文档</span>
+</span></span><span style="display:flex;"><span>    bm25_hits <span style="color:#f92672">=</span> [{<span style="color:#e6db74">&#39;corpus_id&#39;</span>: idx, <span style="color:#e6db74">&#39;score&#39;</span>: bm25_scores[idx]} <span style="color:#66d9ef">for</span> idx <span style="color:#f92672">in</span> top_n]
+</span></span><span style="display:flex;"><span>    bm25_hits <span style="color:#f92672">=</span> sorted(bm25_hits, key<span style="color:#f92672">=</span><span style="color:#66d9ef">lambda</span> x: x[<span style="color:#e6db74">&#39;score&#39;</span>], reverse<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Top-3 lexical search (BM25) hits&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> hit <span style="color:#f92672">in</span> bm25_hits[<span style="color:#ae81ff">0</span>:top_k]:
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">{:.3f}</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">{}</span><span style="color:#e6db74">&#34;</span><span style="color:#f92672">.</span>format(hit[<span style="color:#e6db74">&#39;score&#39;</span>], texts[hit[<span style="color:#e6db74">&#39;corpus_id&#39;</span>]]<span style="color:#f92672">.</span>replace(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, <span style="color:#e6db74">&#34; &#34;</span>)))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#Add re-ranking</span>
+</span></span><span style="display:flex;"><span>    docs <span style="color:#f92672">=</span> [texts[hit[<span style="color:#e6db74">&#39;corpus_id&#39;</span>]] <span style="color:#66d9ef">for</span> hit <span style="color:#f92672">in</span> bm25_hits]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">Top-3 hits by rank-API (</span><span style="color:#e6db74">{</span>len(bm25_hits)<span style="color:#e6db74">}</span><span style="color:#e6db74"> BM25 hits re-ranked)&#34;</span>)
+</span></span><span style="display:flex;"><span>    results <span style="color:#f92672">=</span> co<span style="color:#f92672">.</span>rerank(query<span style="color:#f92672">=</span>query, documents<span style="color:#f92672">=</span>docs, top_n<span style="color:#f92672">=</span>top_k, return_documents<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> hit <span style="color:#f92672">in</span> results<span style="color:#f92672">.</span>results:
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">{:.3f}</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">{}</span><span style="color:#e6db74">&#34;</span><span style="color:#f92672">.</span>format(hit<span style="color:#f92672">.</span>relevance_score, hit<span style="color:#f92672">.</span>document<span style="color:#f92672">.</span>text<span style="color:#f92672">.</span>replace(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, <span style="color:#e6db74">&#34; &#34;</span>)))
+</span></span></code></pre></div><ul>
+<li>
+<h4 id="bm25">bm25</h4>
+<p>基于词频(TF)和逆文档频率(IDF)，计算每个文档与查询的关键词匹配分数。</p>
+    </div>
+  <a href="/post/langchain-semanticsearch/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        June 20, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/langchain-agent/" class="link black dim">
+        langchain - Agent
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p><img src="/images/langchain-Agent/1.png" alt="1"></p>
+<p>可将 Agent 视为 state machine</p>
+<p> </p>
+<h3 id="agent_react_docstore">agent_react_docstore</h3>
+<p><img src="/images/langchain-Agent/2.png" alt="2"></p>
+    </div>
+  <a href="/post/langchain-agent/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        June 19, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/langchain-rag/" class="link black dim">
+        langchain - RAG
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p><img src="/images/langchain-RAG/1.png" alt="1"></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> os
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> dotenv <span style="color:#f92672">import</span> load_dotenv
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain.chains <span style="color:#f92672">import</span> create_history_aware_retriever, create_retrieval_chain
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain.chains.combine_documents <span style="color:#f92672">import</span> create_stuff_documents_chain
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_community.vectorstores <span style="color:#f92672">import</span> Chroma
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_core.messages <span style="color:#f92672">import</span> HumanMessage, SystemMessage
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_core.prompts <span style="color:#f92672">import</span> ChatPromptTemplate, MessagesPlaceholder
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_openai <span style="color:#f92672">import</span> ChatOpenAI, OpenAIEmbeddings
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Load environment variables from .env</span>
+</span></span><span style="display:flex;"><span>load_dotenv()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Define the persistent directory</span>
+</span></span><span style="display:flex;"><span>current_dir <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>dirname(os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>abspath(__file__))
+</span></span><span style="display:flex;"><span>persistent_directory <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(current_dir, <span style="color:#e6db74">&#34;db&#34;</span>, <span style="color:#e6db74">&#34;chroma_db_with_metadata&#34;</span>)
+</span></span></code></pre></div>
+    </div>
+  <a href="/post/langchain-rag/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        
+      
+        <h2 class="f1">
+          <a href="/tags/llm/" class="link blue hover-black">
+            Tag: LLM&#34;
+          </a>
+        </h2>
+        
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        June 23, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/langchain-textsplitter/" class="link black dim">
+        langchain - text_splitter
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> os
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain.text_splitter <span style="color:#f92672">import</span> (
+</span></span><span style="display:flex;"><span>    CharacterTextSplitter,
+</span></span><span style="display:flex;"><span>    RecursiveCharacterTextSplitter,
+</span></span><span style="display:flex;"><span>    SentenceTransformersTokenTextSplitter,
+</span></span><span style="display:flex;"><span>    TextSplitter,
+</span></span><span style="display:flex;"><span>    TokenTextSplitter,
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_community.document_loaders <span style="color:#f92672">import</span> TextLoader
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_community.vectorstores <span style="color:#f92672">import</span> Chroma
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_openai <span style="color:#f92672">import</span> OpenAIEmbeddings
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Define the directory containing the text file</span>
+</span></span><span style="display:flex;"><span>current_dir <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>dirname(os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>abspath(__file__))
+</span></span><span style="display:flex;"><span>file_path <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(current_dir, <span style="color:#e6db74">&#34;books&#34;</span>, <span style="color:#e6db74">&#34;romeo_and_juliet.txt&#34;</span>)
+</span></span><span style="display:flex;"><span>db_dir <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(current_dir, <span style="color:#e6db74">&#34;db&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Check if the text file exists</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>exists(file_path):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">FileNotFoundError</span>(
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;The file </span><span style="color:#e6db74">{</span>file_path<span style="color:#e6db74">}</span><span style="color:#e6db74"> does not exist. Please check the path.&#34;</span>
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Read the text content from the file</span>
+</span></span><span style="display:flex;"><span>loader <span style="color:#f92672">=</span> TextLoader(file_path)
+</span></span><span style="display:flex;"><span>documents <span style="color:#f92672">=</span> loader<span style="color:#f92672">.</span>load()
+</span></span></code></pre></div>
+    </div>
+  <a href="/post/langchain-textsplitter/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        June 19, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/langchain-rag/" class="link black dim">
+        langchain - RAG
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p><img src="/images/langchain-RAG/1.png" alt="1"></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> os
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> dotenv <span style="color:#f92672">import</span> load_dotenv
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain.chains <span style="color:#f92672">import</span> create_history_aware_retriever, create_retrieval_chain
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain.chains.combine_documents <span style="color:#f92672">import</span> create_stuff_documents_chain
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_community.vectorstores <span style="color:#f92672">import</span> Chroma
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_core.messages <span style="color:#f92672">import</span> HumanMessage, SystemMessage
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_core.prompts <span style="color:#f92672">import</span> ChatPromptTemplate, MessagesPlaceholder
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_openai <span style="color:#f92672">import</span> ChatOpenAI, OpenAIEmbeddings
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Load environment variables from .env</span>
+</span></span><span style="display:flex;"><span>load_dotenv()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Define the persistent directory</span>
+</span></span><span style="display:flex;"><span>current_dir <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>dirname(os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>abspath(__file__))
+</span></span><span style="display:flex;"><span>persistent_directory <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(current_dir, <span style="color:#e6db74">&#34;db&#34;</span>, <span style="color:#e6db74">&#34;chroma_db_with_metadata&#34;</span>)
+</span></span></code></pre></div>
+    </div>
+  <a href="/post/langchain-rag/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        
+      
+        <h2 class="f1">
+          <a href="/tags/agent/" class="link blue hover-black">
+            Tag: Agent&#34;
+          </a>
+        </h2>
+        
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        June 20, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/langchain-agent/" class="link black dim">
+        langchain - Agent
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p><img src="/images/langchain-Agent/1.png" alt="1"></p>
+<p>可将 Agent 视为 state machine</p>
+<p> </p>
+<h3 id="agent_react_docstore">agent_react_docstore</h3>
+<p><img src="/images/langchain-Agent/2.png" alt="2"></p>
+    </div>
+  <a href="/post/langchain-agent/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
   </div>
 
         

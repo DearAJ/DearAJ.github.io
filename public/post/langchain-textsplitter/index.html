@@ -75,7 +75,7 @@ documents = loader.load()
   <meta itemprop="description" content="import os from langchain.text_splitter import ( CharacterTextSplitter, RecursiveCharacterTextSplitter, SentenceTransformersTokenTextSplitter, TextSplitter, TokenTextSplitter, ) from langchain_community.document_loaders import TextLoader from langchain_community.vectorstores import Chroma from langchain_openai import OpenAIEmbeddings # Define the directory containing the text file current_dir = os.path.dirname(os.path.abspath(__file__)) file_path = os.path.join(current_dir, &#34;books&#34;, &#34;romeo_and_juliet.txt&#34;) db_dir = os.path.join(current_dir, &#34;db&#34;) # Check if the text file exists if not os.path.exists(file_path): raise FileNotFoundError( f&#34;The file {file_path} does not exist. Please check the path.&#34; ) # Read the text content from the file loader = TextLoader(file_path) documents = loader.load()">
   <meta itemprop="datePublished" content="2025-06-23T10:00:59-04:00">
   <meta itemprop="dateModified" content="2025-06-23T10:00:59-04:00">
-  <meta itemprop="wordCount" content="488">
+  <meta itemprop="wordCount" content="496">
   <meta itemprop="keywords" content="Langchain,LLM&#34;">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="langchain - text_splitter">
@@ -296,7 +296,7 @@ documents = loader.load()
 <li>特点：使用分词器（如GPT-2的tokenizer）按标记（token）分割。</li>
 <li>适用场景：需要与特定Transformer模型（如GPT系列、BERT）配合使用时，因为这些模型有严格的标记数量限制。可确保分块后标记数不超过模型输入限制。</li>
 </ul>
-<h3 id="递归的基于字符的分割">递归的基于字符的分割</h3>
+<h3 id="-递归的基于字符的分割"># 递归的基于字符的分割</h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 4. Recursive Character-based Splitting: most people use</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># Attempts to split text at natural boundaries (sentences, paragraphs) within character limit.</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># Balances between maintaining coherence and adhering to character limits.</span>
@@ -305,7 +305,8 @@ documents = loader.load()
 </span></span><span style="display:flex;"><span>    chunk_size<span style="color:#f92672">=</span><span style="color:#ae81ff">1000</span>, chunk_overlap<span style="color:#f92672">=</span><span style="color:#ae81ff">100</span>)
 </span></span><span style="display:flex;"><span>rec_char_docs <span style="color:#f92672">=</span> rec_char_splitter<span style="color:#f92672">.</span>split_documents(documents)
 </span></span><span style="display:flex;"><span>create_vector_store(rec_char_docs, <span style="color:#e6db74">&#34;chroma_db_rec_char&#34;</span>)
-</span></span></code></pre></div><ul>
+</span></span></code></pre></div><p><code>RecursiveCharacterTextSplitter</code> 旨在**将文本分成较小的块，同时尽可能地保留语义连贯性。**它通过递归，尝试使用优先的分隔列表 <code>[&quot;\n\n&quot;, &quot;\n&quot;,&quot; &quot;, &quot;&quot;]</code> 来划分文本，直到块足够小。</p>
+<ul>
 <li>特点：在字符数限制内，优先按自然边界（如段落、句子）递归分割。</li>
 <li>适用场景：通用文本处理，平衡分块大小和语义完整性。它是大多数情况下的推荐选择，尤其当文本有层次结构（如文章包含段落和句子）时。</li>
 </ul>

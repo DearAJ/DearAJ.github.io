@@ -16,6 +16,20 @@
       <description></description>
     </item>
     <item>
+      <title>Agent</title>
+      <link>http://localhost:1313/tags/agent/</link>
+      <pubDate>Wed, 25 Jun 2025 10:00:59 -0400</pubDate>
+      <guid>http://localhost:1313/tags/agent/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>LLM</title>
+      <link>http://localhost:1313/tags/llm/</link>
+      <pubDate>Wed, 25 Jun 2025 10:00:59 -0400</pubDate>
+      <guid>http://localhost:1313/tags/llm/</guid>
+      <description></description>
+    </item>
+    <item>
       <title>Langchain</title>
       <link>http://localhost:1313/tags/langchain/</link>
       <pubDate>Mon, 23 Jun 2025 10:00:59 -0400</pubDate>
@@ -30,10 +44,10 @@
       <description></description>
     </item>
     <item>
-      <title>LLM</title>
-      <link>http://localhost:1313/tags/llm/</link>
+      <title>Agent&#34;</title>
+      <link>http://localhost:1313/tags/agent/</link>
       <pubDate>Fri, 20 Jun 2025 10:00:59 -0400</pubDate>
-      <guid>http://localhost:1313/tags/llm/</guid>
+      <guid>http://localhost:1313/tags/agent/</guid>
       <description></description>
     </item>
     <item>

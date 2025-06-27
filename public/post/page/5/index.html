@@ -48,7 +48,7 @@
   <meta itemprop="name" content="Articles">
   <meta itemprop="description" content="The soul selects her own society, then shuts the door. To her divine majority, present no more.">
   <meta itemprop="datePublished" content="2025-06-25T11:00:59-04:00">
-  <meta itemprop="dateModified" content="2026-05-11T11:00:59-04:00">
+  <meta itemprop="dateModified" content="2026-06-25T10:00:59-04:00">
   <meta itemprop="wordCount" content="2">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Articles">
@@ -153,119 +153,85 @@
             <div class="mb3 pa4 mid-gray overflow-hidden">
     
       <div class="f6">
+        May 14, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBaugmented-knowledge-graph-querying-leveraging-llms/" class="link black dim">
+        「论文阅读」Augmented Knowledge Graph Querying leveraging LLMs
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p><a href="https://arxiv.org/abs/2502.01298">这篇论文</a>引入了一个名为 SparqLLM 的框架，通过结合 RAG 与 LLM，实现了从自然语言到 SPARQL 查询的自动生成，以简化知识图谱的查询过程。</p>
+<h3 id="1-introduction">1 Introduction</h3>
+<p><strong>背景</strong>：非技术员工不懂 SPARQL；KG + LLMs 无法生成精确高效的 SPARQL 查询，且存在幻觉问题。</p>
+<p><strong>SparqLLM</strong>：被设计为 RAG 框架，可自动从自然语言问题生成 SPARQL 查询，同时生成最适当的数据可视化以返回获得的结果。</p>
+<p><img src="/images/paper-SparqLLM/1.png" alt="1"></p>
+<p><strong>目标</strong>：提高 KG 的准确性、可用性和可靠性，实现与语义数据的更直观和有效的交互。</p>
+<p> </p>
+<h3 id="2-related-work">2 Related Work</h3>
+<ul>
+<li>
+<p><strong>自然语言接口 (NLI)</strong>：将非结构化输入转换为 SPARQL 等正式查询语言，使非技术用户更容易访问基于 RDF 的知识图谱。</p>
+</li>
+<li>
+<p><strong>LLMs</strong>：利用它们处理和生成复杂文本的能力，为自动生成查询提供了一个强大的框架，减少了人工干预的需要，使非专家用户也能访问知识图谱。</p>
+</li>
+<li>
+<p><strong>基于模板的方法</strong>：通过为查询生成提供确定性框架来补充上述方法。</p>
+</li>
+</ul>
+    </div>
+  <a href="/post/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBaugmented-knowledge-graph-querying-leveraging-llms/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        May 14, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBgenerate-on-graph-treat-llm-as-both-agent-and-kg-for-incomplete-knowledge-graph-question-answering/" class="link black dim">
+        「论文阅读」Generate-on-Graph: Treat LLM as both Agent and KG for Incomplete Knowledge Graph Question Answering
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p><a href="https://arxiv.org/abs/2404.14741">这篇论文</a>提出了一种称为 Generate-on-Graph(GoG) 的免训练方法，它可以在探索 KG 时，生成新的事实三元组。</p>
+<p>具体来说，在不完全知识图谱(IKGQA) 中，GoG 通过 Thinking-Searching-Generating 框架进行推理，它将 LLM 同时视为 Agent 和 KG。</p>
+<h3 id="1-introduction">1 Introduction</h3>
+<p><img src="/images/paper-GoG/1.png" alt="1"></p>
+    </div>
+  <a href="/post/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBgenerate-on-graph-treat-llm-as-both-agent-and-kg-for-incomplete-knowledge-graph-question-answering/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
         May 13, 2025
       </div>
     
     <h1 class="f3 near-black">
-      <a href="/post/%E5%B7%A5%E5%85%B7%E9%93%BE-carla/" class="link black dim">
-        工具链-Carla
+      <a href="/post/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/" class="link black dim">
+        深度学习基础 - 激活函数和epoch, batch, iteration
       </a>
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p>官方文档：<a href="https://carla.readthedocs.io/en/0.9.9/#getting-started">https://carla.readthedocs.io/en/0.9.9/#getting-started</a></p>
-<p>Carla是一款开源的 <em>自动驾驶</em> 仿真器，它基本可以用来帮助训练自动驾驶的所有模块，包括感知系统，Localization，规划系统等等。许多自动驾驶公司在进行实际路跑前都要在这Carla上先进行训练。</p>
-<h3 id="1-基本架构">1. 基本架构</h3>
-<h4 id="client-server-的交互形式">Client-Server 的交互形式</h4>
-<p>Carla主要分为Server与Client两个模块</p>
-    </div>
-  <a href="/post/%E5%B7%A5%E5%85%B7%E9%93%BE-carla/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        May 12, 2025
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/%E4%B8%8A%E6%B5%B7%E5%88%9B%E6%99%BA%E5%AD%A6%E9%99%A22025pe%E8%80%83%E8%AF%95/" class="link black dim">
-        上海创智学院2025PE考试
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <blockquote>
-<p>注意：提示词都是用中文编写，若将中文直接翻译成英文，效果可能下降。</p>
-</blockquote>
-<h3 id="任务理解">任务理解</h3>
-<hr>
-<p>给定数据结构如下所示的数据：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">val.jsonl中，每⼀条数据的字段说明：</span>
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;user_id&#34;</span>: <span style="color:#ae81ff">5737</span>, <span style="color:#75715e">// ⽤⼾编号
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#f92672">&#34;item_list&#34;</span>: [ <span style="color:#75715e">// ⽤⼾历史观看电影列表，按时间顺序排列，越靠后表⽰越近期观看
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    [<span style="color:#ae81ff">1836</span>, <span style="color:#e6db74">&#34;Last Days of Disco, The&#34;</span>], <span style="color:#75715e">// [电影ID, 电影名称]
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    [<span style="color:#ae81ff">3565</span>, <span style="color:#e6db74">&#34;Where the Heart Is&#34;</span>],
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// ... 更多历史观看记录，⻓度不定
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    ],
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;target_item&#34;</span>: [<span style="color:#ae81ff">1893</span>, <span style="color:#e6db74">&#34;Beyond Silence&#34;</span>], <span style="color:#75715e">// ⽤⼾实际观看的下⼀部电影 [电影ID, 电影名称]
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#f92672">&#34;candidates&#34;</span>: [ <span style="color:#75715e">// 推荐系统召回阶段得到的候选电影列表
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    [<span style="color:#ae81ff">2492</span>, <span style="color:#e6db74">&#34;20 Dates&#34;</span>],
-</span></span><span style="display:flex;"><span>    [<span style="color:#ae81ff">684</span>, <span style="color:#e6db74">&#34;Windows&#34;</span>],
-</span></span><span style="display:flex;"><span>    [<span style="color:#ae81ff">1893</span>, <span style="color:#e6db74">&#34;Beyond Silence&#34;</span>], <span style="color:#75715e">// 包含⽤⼾实际观看的下⼀部电影
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// ... 更多候选电影，⻓度不定，⼀般为20个左右
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    ]
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p>我们需要将candidates列表按照匹配度进行重排序，列表第一个元素是最有可能（最喜欢）观看的电影，列表最后一个是最不可能（最不喜欢）的电影。</p>
-    </div>
-  <a href="/post/%E4%B8%8A%E6%B5%B7%E5%88%9B%E6%99%BA%E5%AD%A6%E9%99%A22025pe%E8%80%83%E8%AF%95/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        May 12, 2025
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/" class="link black dim">
-        知识图谱
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p>知识图谱于14年出现，之后进入平稳期，23年由于大模型的出现再次火爆。</p>
-<ol>
-<li>
-<h4 id="大模型的幻觉问题的解决方式">大模型的“幻觉”问题的解决方式</h4>
-<ul>
-<li>提高LLM的能力</li>
-<li>框定边界（大量符合逻辑的<strong>facts</strong>），大模型在边界内通过自身的理解能力，提供回复
-<ul>
-<li>facts 来源于：一些网络/企业内部文档/企业内的数据库/结构化的知识图谱</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<h4 id="知识图谱一种存储facts的方式">知识图谱：一种存储facts的方式</h4>
-<p>采用了“实体&amp;关系”的方法来存储信息</p>
-<p>区别于简单的图：包含多种实体和多种关系</p>
-</li>
-<li>
-<h4 id="知识图谱的优势">知识图谱的优势</h4>
-<ol>
-<li>关系直观</li>
-<li>抓住重要信息</li>
-<li>弥补文本到向量直接的关系（GraphRAG：KG与向量数据库融合）</li>
-</ol>
-</li>
-</ol>
+      <p>写这篇文章有两个原因：一是因为我好久没看Activation Function又忘了，来复习一下；另一个是因为我想赶紧把这个风格的摄影作品用完，开启下一个系列 :)</p>
 <p> </p>
-<h2 id="rag-与知识图谱结合">RAG 与知识图谱结合</h2>
-<ol>
-<li>
-<h4 id="知识图谱的必要性">知识图谱的必要性</h4>
-<p>e.g：问题:“感冒常用药物的负作用”；数据库存储的是“冲剂” 的描述，对应段落刚好没有出现“感冒” 这个关键词；两者相似度不够高，无法匹配</p>
-<p>—— 使用知识图谱找到“感冒”和“冲剂”之间的<strong>关系</strong></p>
-</li>
-</ol>
+<p>引入激活函数的目的：加入非线性因素的，解决线性模型所不能解决的问题。<strong>通过最优化损失函数的做法，我们能够学习到不断学习靠近能够正确分类的曲线</strong>。</p>
+<h3 id="1-sigmoid-函数">1 sigmoid 函数</h3>
+<p>sigmoid 函数是一个 logistic 函数：输入的每个神经元、节点或激活都会被缩放为一个介于 0 到 1 之间的值。</p>
+<p><img src="/images/AcFunc/1.png" alt="1"></p>
+<p>从图像可以看出，函数两个边缘的梯度约为0，梯度的取值范围为(0,0.25)：</p>
     </div>
-  <a href="/post/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  <a href="/post/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
   </div>
 
         </div>
@@ -298,7 +264,7 @@
         <a href="/post/page/6/" aria-label="Next" class="page-link" role="button"><span aria-hidden="true">&raquo;</span></a>
       </li>
       <li class="page-item">
-        <a href="/post/page/22/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/post/page/23/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
       </li>
     </ul>
   </article>

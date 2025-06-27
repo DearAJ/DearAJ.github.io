@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Agent on HomePage</title>
+    <title>Agent&#34; on HomePage</title>
     <link>http://localhost:1313/tags/agent/</link>
-    <description>Recent content in Agent on HomePage</description>
+    <description>Recent content in Agent&#34; on HomePage</description>
     <generator>Hugo</generator>
     <language>en-US</language>
-    <lastBuildDate>Tue, 03 Jun 2025 10:00:59 -0400</lastBuildDate>
+    <lastBuildDate>Fri, 20 Jun 2025 10:00:59 -0400</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/agent/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Agent</title>
-      <link>http://localhost:1313/post/agent/</link>
-      <pubDate>Tue, 03 Jun 2025 10:00:59 -0400</pubDate>
-      <guid>http://localhost:1313/post/agent/</guid>
-      <description></description>
+      <title>langchain - Agent</title>
+      <link>http://localhost:1313/post/langchain-agent/</link>
+      <pubDate>Fri, 20 Jun 2025 10:00:59 -0400</pubDate>
+      <guid>http://localhost:1313/post/langchain-agent/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/langchain-Agent/1.png&#34; alt=&#34;1&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;可将 Agent 视为 state machine&lt;/p&gt;&#xA;&lt;p&gt; &lt;/p&gt;&#xA;&lt;h3 id=&#34;agent_react_docstore&#34;&gt;agent_react_docstore&lt;/h3&gt;&#xA;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/langchain-Agent/2.png&#34; alt=&#34;2&#34;&gt;&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
+size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;***&lt;/span&gt;xmi&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;‹&lt;/span&gt;instruction&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; The Al Agent should be knowledgeable about the TV show &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;The Office&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; If the question asked &lt;span style=&#34;color:#f92672&#34;&gt;is&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;not&lt;/span&gt; related to &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;The Office&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;or&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; the Al does &lt;span style=&#34;color:#f92672&#34;&gt;not&lt;/span&gt; know the answer, it should search &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; the answer using the Google search tool&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; The output should &lt;span style=&#34;color:#f92672&#34;&gt;not&lt;/span&gt; contain any XML tags&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;example&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; If asked &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Who is the regional manager in &amp;#39;The Office&amp;#39;?&amp;#34;&lt;/span&gt;, the Al should provide the correct answer&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; If asked &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;What year did &amp;#39;The Office&amp;#39; first premiere?&amp;#34;&lt;/span&gt;, the Al should provide the correct answer &lt;span style=&#34;color:#f92672&#34;&gt;or&lt;/span&gt; search &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; it &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; unknown&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;agent-workflow&#34;&gt;Agent Workflow&lt;/h3&gt;&#xA;&lt;h4 id=&#34;prompt-chaining&#34;&gt;Prompt Chaining&lt;/h4&gt;&#xA;&lt;p&gt;将任务分解为关键步骤，用gate来验证前面的输出是否符合后续处理的条件。&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

@@ -256,7 +256,110 @@ response.to_dict()["output"]
 
 &nbsp;
 
-### Prompt Organization
+&nbsp;
+
+# 2 分类
+
+### Chain-of-Thought: Think Before Answering
+
+```python
+# # Answering without explicit reasoning
+# standard_prompt = [
+#     {"role": "user", "content": "Roger has 5 tennis balls. He buys 2 more cans of tennis balls. Each can has 3 tennis balls. How many tennis balls does he have now?"},
+#     {"role": "assistant", "content": "11"},
+#     {"role": "user", "content": "The cafeteria had 25 apples. If they used 20 to make lunch and bought 6 more, how many apples do they have?"}
+# ]
+
+# # Run generative model
+# outputs = pipe(standard_prompt)
+# print(outputs[0]["generated_text"])
+```
+
+```
+The cafeteria started with 25 apples. They used 20 apples to make lunch, so they had:
+25 - 20 = 5 apples left.
+
+Then they bought 6 more apples, so they now have:
+5 + 6 = 11 apples.
+```
+
+&nbsp;
+
+```python
+# Answering with chain-of-thought
+cot_prompt = [
+    {"role": "user", "content": "Roger has 5 tennis balls. He buys 2 more cans of tennis balls. Each can has 3 tennis balls. How many tennis balls does he have now?"},
+    {"role": "assistant", "content": "Roger started with 5 balls. 2 cans of 3 tennis balls each is 6 tennis balls. 5 + 6 = 11. The answer is 11."},
+    {"role": "user", "content": "The cafeteria had 23 apples. If they used 20 to make lunch and bought 6 more, how many apples do they have?"}
+]
+
+# Generate the output
+outputs = pipe(cot_prompt)
+print(outputs[0]["generated_text"])
+```
+
+```
+You seem to be using the pipelines sequentially on GPU. In order to maximize efficiency please use a dataset
+The cafeteria started with 23 apples. They used 20 apples, so they had 23 - 20 = 3 apples left. Then they bought 6 more apples, so they now have 3 + 6 = 9 apples. The answer is 9.
+```
+
+&nbsp;
+
+### Zero-shot Chain-of-Thought
+
+与传统CoT需要提供少量示例（Few-shot）不同，Zero-shot CoT仅需通过简单的提示（如“让我们一步步思考”），就能激发模型的逐步推理能力。
+
+**适用**：数学题、逻辑推理、常识问题等需要多步推理的任务。
+
+```python
+# Zero-shot Chain-of-Thought
+zeroshot_cot_prompt = [
+    {"role": "user", "content": "The cafeteria had 23 apples. If they used 20 to make lunch and bought 6 more, how many apples do they have? Let's think step-by-step."}
+]
+
+# Generate the output
+outputs = pipe(zeroshot_cot_prompt)
+print(outputs[0]["generated_text"])
+```
+
+```
+Step 1: Start with the initial number of apples, which is 23.
+Step 2: Subtract the number of apples used to make lunch, which is 20. So, 23 - 20 = 3 apples remaining.
+Step 3: Add the number of apples bought, which is 6. So, 3 + 6 = 9 apples.
+
+The cafeteria now has 9 apples.
+```
+
+&nbsp;
+
+## Tree-of-Thought (ToT): Exploring Intermediate Steps
+
+模拟人类解决问题的思维过程：**不局限于单一线性推理，而是并行尝试不同策略，评估最优路径**。
+
+```python
+# Zero-shot Chain-of-Thought
+zeroshot_tot_prompt = [
+    {"role": "user", "content": "Imagine three different experts are answering this question. All experts will write down 1 step of their thinking, then share it with the group. Then all experts will go on to the next step, etc. If any expert realises they're wrong at any point then they leave. The question is 'The cafeteria had 23 apples. If they used 20 to make lunch and bought 6 more, how many apples do they have?' Make sure to discuss the results."}
+]
+```
+
+```python
+# Generate the output
+outputs = pipe(zeroshot_tot_prompt)
+print(outputs[0]["generated_text"])
+```
+
+```
+Expert 1: Step 1 - Start with the initial number of apples: 23 apples.
+Expert 2: Step 1 - Subtract the apples used for lunch: 23 - 20 = 3 apples remaining.
+Expert 3: Step 1 - Add the newly bought apples: 3 + 6 = 9 apples.
+
+Expert 1: Step 2 - Confirm the final count: The cafeteria has 9 apples.
+Expert 2: Step 2 - Review the calculations: 23 - 20 = 3, then 3 + 6 = 9. The calculations are correct.
+Expert 3: Step 2 - Agree with the result: The cafeteria indeed has 9 apples.
+
+All experts agree on the final count: The cafeteria has 9 apples.
+```
 
 
 

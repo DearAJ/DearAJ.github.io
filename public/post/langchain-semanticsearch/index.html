@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>langchain - 混合搜索 | HomePage</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="先通过BM25快速筛选关键字，再用Reranker对候选文档进行精细排序。
+def keyword_and_reranking_search(query, top_k=3, num_candidates=10):
+    print(&#34;Input question:&#34;, query)
+
+    ##### BM25 search (lexical search) #####
+    bm25_scores = bm25.get_scores(bm25_tokenizer(query))
+    top_n = np.argpartition(bm25_scores, -num_candidates)[-num_candidates:]		# 选取分数最高的 num_candidates 个文档
+    bm25_hits = [{&#39;corpus_id&#39;: idx, &#39;score&#39;: bm25_scores[idx]} for idx in top_n]
+    bm25_hits = sorted(bm25_hits, key=lambda x: x[&#39;score&#39;], reverse=True)
+
+    print(f&#34;Top-3 lexical search (BM25) hits&#34;)
+    for hit in bm25_hits[0:top_k]:
+        print(&#34;\t{:.3f}\t{}&#34;.format(hit[&#39;score&#39;], texts[hit[&#39;corpus_id&#39;]].replace(&#34;\n&#34;, &#34; &#34;)))
+
+    
+    #Add re-ranking
+    docs = [texts[hit[&#39;corpus_id&#39;]] for hit in bm25_hits]
+
+    print(f&#34;\nTop-3 hits by rank-API ({len(bm25_hits)} BM25 hits re-ranked)&#34;)
+    results = co.rerank(query=query, documents=docs, top_n=top_k, return_documents=True)
+    for hit in results.results:
+        print(&#34;\t{:.3f}\t{}&#34;.format(hit.relevance_score, hit.document.text.replace(&#34;\n&#34;, &#34; &#34;)))
+
+
+bm25
+基于词频和逆文档频率，计算每个文档与查询的关键词匹配分数。">
+    <meta name="generator" content="Hugo 0.140.2">
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+    
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="http://localhost:1313/post/langchain-semanticsearch/">
+    
+
+    <meta property="og:url" content="http://localhost:1313/post/langchain-semanticsearch/">
+  <meta property="og:site_name" content="HomePage">
+  <meta property="og:title" content="langchain - 混合搜索">
+  <meta property="og:description" content="先通过BM25快速筛选关键字，再用Reranker对候选文档进行精细排序。
+def keyword_and_reranking_search(query, top_k=3, num_candidates=10): print(&#34;Input question:&#34;, query) ##### BM25 search (lexical search) ##### bm25_scores = bm25.get_scores(bm25_tokenizer(query)) top_n = np.argpartition(bm25_scores, -num_candidates)[-num_candidates:]	# 选取分数最高的 num_candidates 个文档 bm25_hits = [{&#39;corpus_id&#39;: idx, &#39;score&#39;: bm25_scores[idx]} for idx in top_n] bm25_hits = sorted(bm25_hits, key=lambda x: x[&#39;score&#39;], reverse=True) print(f&#34;Top-3 lexical search (BM25) hits&#34;) for hit in bm25_hits[0:top_k]: print(&#34;\t{:.3f}\t{}&#34;.format(hit[&#39;score&#39;], texts[hit[&#39;corpus_id&#39;]].replace(&#34;\n&#34;, &#34; &#34;))) #Add re-ranking docs = [texts[hit[&#39;corpus_id&#39;]] for hit in bm25_hits] print(f&#34;\nTop-3 hits by rank-API ({len(bm25_hits)} BM25 hits re-ranked)&#34;) results = co.rerank(query=query, documents=docs, top_n=top_k, return_documents=True) for hit in results.results: print(&#34;\t{:.3f}\t{}&#34;.format(hit.relevance_score, hit.document.text.replace(&#34;\n&#34;, &#34; &#34;))) bm25 基于词频和逆文档频率，计算每个文档与查询的关键词匹配分数。">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2025-06-24T10:00:59-04:00">
+    <meta property="article:modified_time" content="2025-06-24T10:00:59-04:00">
+    <meta property="article:tag" content="Langchain">
+    <meta property="article:tag" content="LLM">
+
+  <meta itemprop="name" content="langchain - 混合搜索">
+  <meta itemprop="description" content="先通过BM25快速筛选关键字，再用Reranker对候选文档进行精细排序。
+def keyword_and_reranking_search(query, top_k=3, num_candidates=10): print(&#34;Input question:&#34;, query) ##### BM25 search (lexical search) ##### bm25_scores = bm25.get_scores(bm25_tokenizer(query)) top_n = np.argpartition(bm25_scores, -num_candidates)[-num_candidates:]	# 选取分数最高的 num_candidates 个文档 bm25_hits = [{&#39;corpus_id&#39;: idx, &#39;score&#39;: bm25_scores[idx]} for idx in top_n] bm25_hits = sorted(bm25_hits, key=lambda x: x[&#39;score&#39;], reverse=True) print(f&#34;Top-3 lexical search (BM25) hits&#34;) for hit in bm25_hits[0:top_k]: print(&#34;\t{:.3f}\t{}&#34;.format(hit[&#39;score&#39;], texts[hit[&#39;corpus_id&#39;]].replace(&#34;\n&#34;, &#34; &#34;))) #Add re-ranking docs = [texts[hit[&#39;corpus_id&#39;]] for hit in bm25_hits] print(f&#34;\nTop-3 hits by rank-API ({len(bm25_hits)} BM25 hits re-ranked)&#34;) results = co.rerank(query=query, documents=docs, top_n=top_k, return_documents=True) for hit in results.results: print(&#34;\t{:.3f}\t{}&#34;.format(hit.relevance_score, hit.document.text.replace(&#34;\n&#34;, &#34; &#34;))) bm25 基于词频和逆文档频率，计算每个文档与查询的关键词匹配分数。">
+  <meta itemprop="datePublished" content="2025-06-24T10:00:59-04:00">
+  <meta itemprop="dateModified" content="2025-06-24T10:00:59-04:00">
+  <meta itemprop="wordCount" content="101">
+  <meta itemprop="keywords" content="Langchain,LLM">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="langchain - 混合搜索">
+  <meta name="twitter:description" content="先通过BM25快速筛选关键字，再用Reranker对候选文档进行精细排序。
+def keyword_and_reranking_search(query, top_k=3, num_candidates=10): print(&#34;Input question:&#34;, query) ##### BM25 search (lexical search) ##### bm25_scores = bm25.get_scores(bm25_tokenizer(query)) top_n = np.argpartition(bm25_scores, -num_candidates)[-num_candidates:]	# 选取分数最高的 num_candidates 个文档 bm25_hits = [{&#39;corpus_id&#39;: idx, &#39;score&#39;: bm25_scores[idx]} for idx in top_n] bm25_hits = sorted(bm25_hits, key=lambda x: x[&#39;score&#39;], reverse=True) print(f&#34;Top-3 lexical search (BM25) hits&#34;) for hit in bm25_hits[0:top_k]: print(&#34;\t{:.3f}\t{}&#34;.format(hit[&#39;score&#39;], texts[hit[&#39;corpus_id&#39;]].replace(&#34;\n&#34;, &#34; &#34;))) #Add re-ranking docs = [texts[hit[&#39;corpus_id&#39;]] for hit in bm25_hits] print(f&#34;\nTop-3 hits by rank-API ({len(bm25_hits)} BM25 hits re-ranked)&#34;) results = co.rerank(query=query, documents=docs, top_n=top_k, return_documents=True) for hit in results.results: print(&#34;\t{:.3f}\t{}&#34;.format(hit.relevance_score, hit.document.text.replace(&#34;\n&#34;, &#34; &#34;))) bm25 基于词频和逆文档频率，计算每个文档与查询的关键词匹配分数。">
+
+	
+  </head><body class="ma0 avenir bg-near-white development">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('http://localhost:1313/images/langchain-SemanticSearch/jaz.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        HomePage
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/about/" title="About ME page">
+              About ME
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/post/" title="Articles page">
+              Articles
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/contact/" title="Contact page">
+              Contact
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"><a href="https://www.facebook.com/patrick.kollitsch" target="_blank" rel="noopener"
+        class="ananke-social-link link-transition facebook link dib z-999 pt3 pt0-l mr1"
+        title="follow on Facebook - Opens in a new window"
+        aria-label="follow on Facebook - Opens in a new window">
+      <span class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M512 256C512 114.6 397.4 0 256 0S0 114.6 0 256C0 376 82.7 476.8 194.2 504.5V334.2H141.4V256h52.8V222.3c0-87.1 39.4-127.5 125-127.5c16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1c-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H287V510.1C413.8 494.8 512 386.9 512 256h0z"/></svg>
+            
+          </span></a><a href="https://bsky.app/profile/kollitsch.dev" target="_blank" rel="noopener"
+        class="ananke-social-link link-transition bluesky link dib z-999 pt3 pt0-l mr1"
+        title="follow on Bluesky - Opens in a new window"
+        aria-label="follow on Bluesky - Opens in a new window">
+      <span class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M407.8 294.7c-3.3-.4-6.7-.8-10-1.3c3.4 .4 6.7 .9 10 1.3zM288 227.1C261.9 176.4 190.9 81.9 124.9 35.3C61.6-9.4 37.5-1.7 21.6 5.5C3.3 13.8 0 41.9 0 58.4S9.1 194 15 213.9c19.5 65.7 89.1 87.9 153.2 80.7c3.3-.5 6.6-.9 10-1.4c-3.3 .5-6.6 1-10 1.4C74.3 308.6-9.1 342.8 100.3 464.5C220.6 589.1 265.1 437.8 288 361.1c22.9 76.7 49.2 222.5 185.6 103.4c102.4-103.4 28.1-156-65.8-169.9c-3.3-.4-6.7-.8-10-1.3c3.4 .4 6.7 .9 10 1.3c64.1 7.1 133.6-15.1 153.2-80.7C566.9 194 576 75 576 58.4s-3.3-44.7-21.6-52.9c-15.8-7.1-40-14.9-103.2 29.8C385.1 81.9 314.1 176.4 288 227.1z"/></svg>
+            
+          </span></a><a href="http://linkedin.com/in/patrickkollitsch" target="_blank" rel="noopener"
+        class="ananke-social-link link-transition linkedin link dib z-999 pt3 pt0-l mr1"
+        title="follow on LinkedIn - Opens in a new window"
+        aria-label="follow on LinkedIn - Opens in a new window">
+      <span class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+            
+          </span></a></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">langchain - 混合搜索</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked ttu">
+          
+        Articles
+      </aside><div id="sharing" class="mt3 ananke-socials"><a href="mailto:?&amp;body=http%3A%2F%2Flocalhost%3A1313%2Fpost%2Flangchain-semanticsearch%2F&amp;subject=langchain&#43;-&#43;%E6%B7%B7%E5%90%88%E6%90%9C%E7%B4%A2"
+        class="ananke-social-link email no-underline"
+        title="Share on Email" aria-label="Share on Email"
+        target="_blank" rel="nofollow noopener noreferrer">
+        <span class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M64 112c-8.8 0-16 7.2-16 16l0 22.1L220.5 291.7c20.7 17 50.4 17 71.1 0L464 150.1l0-22.1c0-8.8-7.2-16-16-16L64 112zM48 212.2L48 384c0 8.8 7.2 16 16 16l384 0c8.8 0 16-7.2 16-16l0-171.8L322 328.8c-38.4 31.5-93.7 31.5-132 0L48 212.2zM0 128C0 92.7 28.7 64 64 64l384 0c35.3 0 64 28.7 64 64l0 256c0 35.3-28.7 64-64 64L64 448c-35.3 0-64-28.7-64-64L0 128z"/></svg>
+                
+              </span></a><a href="https://facebook.com/sharer/sharer.php?&amp;u=http%3A%2F%2Flocalhost%3A1313%2Fpost%2Flangchain-semanticsearch%2F"
+        class="ananke-social-link facebook no-underline"
+        title="Share on Facebook" aria-label="Share on Facebook"
+        target="_blank" rel="nofollow noopener noreferrer">
+        <span class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M512 256C512 114.6 397.4 0 256 0S0 114.6 0 256C0 376 82.7 476.8 194.2 504.5V334.2H141.4V256h52.8V222.3c0-87.1 39.4-127.5 125-127.5c16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1c-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H287V510.1C413.8 494.8 512 386.9 512 256h0z"/></svg>
+                
+              </span></a><a href="https://bsky.app/intent/compose?&amp;text=http%3A%2F%2Flocalhost%3A1313%2Fpost%2Flangchain-semanticsearch%2F"
+        class="ananke-social-link bluesky no-underline"
+        title="Share on Bluesky" aria-label="Share on Bluesky"
+        target="_blank" rel="nofollow noopener noreferrer">
+        <span class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M407.8 294.7c-3.3-.4-6.7-.8-10-1.3c3.4 .4 6.7 .9 10 1.3zM288 227.1C261.9 176.4 190.9 81.9 124.9 35.3C61.6-9.4 37.5-1.7 21.6 5.5C3.3 13.8 0 41.9 0 58.4S9.1 194 15 213.9c19.5 65.7 89.1 87.9 153.2 80.7c3.3-.5 6.6-.9 10-1.4c-3.3 .5-6.6 1-10 1.4C74.3 308.6-9.1 342.8 100.3 464.5C220.6 589.1 265.1 437.8 288 361.1c22.9 76.7 49.2 222.5 185.6 103.4c102.4-103.4 28.1-156-65.8-169.9c-3.3-.4-6.7-.8-10-1.3c3.4 .4 6.7 .9 10 1.3c64.1 7.1 133.6-15.1 153.2-80.7C566.9 194 576 75 576 58.4s-3.3-44.7-21.6-52.9c-15.8-7.1-40-14.9-103.2 29.8C385.1 81.9 314.1 176.4 288 227.1z"/></svg>
+                
+              </span></a><a href="https://www.linkedin.com/shareArticle?&amp;mini=true&amp;source=http%3A%2F%2Flocalhost%3A1313%2Fpost%2Flangchain-semanticsearch%2F&amp;summary=%E5%85%88%E9%80%9A%E8%BF%87BM25%E5%BF%AB%E9%80%9F%E7%AD%9B%E9%80%89%E5%85%B3%E9%94%AE%E5%AD%97%EF%BC%8C%E5%86%8D%E7%94%A8Reranker%E5%AF%B9%E5%80%99%E9%80%89%E6%96%87%E6%A1%A3%E8%BF%9B%E8%A1%8C%E7%B2%BE%E7%BB%86%E6%8E%92%E5%BA%8F%E3%80%82%0Adef&#43;keyword_and_reranking_search%28query%2C&#43;top_k%3D3%2C&#43;num_candidates%3D10%29%3A&#43;print%28%26amp%3B%2334%3BInput&#43;question%3A%26amp%3B%2334%3B%2C&#43;query%29&#43;%23%23%23%23%23&#43;BM25&#43;search&#43;%28lexical&#43;search%29&#43;%23%23%23%23%23&#43;bm25_scores&#43;%3D&#43;bm25.get_scores%28bm25_tokenizer%28query%29%29&#43;top_n&#43;%3D&#43;np.argpartition%28bm25_scores%2C&#43;-num_candidates%29%5B-num_candidates%3A%5D%09%23&#43;%E9%80%89%E5%8F%96%E5%88%86%E6%95%B0%E6%9C%80%E9%AB%98%E7%9A%84&#43;num_candidates&#43;%E4%B8%AA%E6%96%87%E6%A1%A3&#43;bm25_hits&#43;%3D&#43;%5B%7B%26amp%3B%2339%3Bcorpus_id%26amp%3B%2339%3B%3A&#43;idx%2C&#43;%26amp%3B%2339%3Bscore%26amp%3B%2339%3B%3A&#43;bm25_scores%5Bidx%5D%7D&#43;for&#43;idx&#43;in&#43;top_n%5D&#43;bm25_hits&#43;%3D&#43;sorted%28bm25_hits%2C&#43;key%3Dlambda&#43;x%3A&#43;x%5B%26amp%3B%2339%3Bscore%26amp%3B%2339%3B%5D%2C&#43;reverse%3DTrue%29&#43;print%28f%26amp%3B%2334%3BTop-3&#43;lexical&#43;search&#43;%28BM25%29&#43;hits%26amp%3B%2334%3B%29&#43;for&#43;hit&#43;in&#43;bm25_hits%5B0%3Atop_k%5D%3A&#43;print%28%26amp%3B%2334%3B%5Ct%7B%3A.3f%7D%5Ct%7B%7D%26amp%3B%2334%3B.format%28hit%5B%26amp%3B%2339%3Bscore%26amp%3B%2339%3B%5D%2C&#43;texts%5Bhit%5B%26amp%3B%2339%3Bcorpus_id%26amp%3B%2339%3B%5D%5D.replace%28%26amp%3B%2334%3B%5Cn%26amp%3B%2334%3B%2C&#43;%26amp%3B%2334%3B&#43;%26amp%3B%2334%3B%29%29%29&#43;%23Add&#43;re-ranking&#43;docs&#43;%3D&#43;%5Btexts%5Bhit%5B%26amp%3B%2339%3Bcorpus_id%26amp%3B%2339%3B%5D%5D&#43;for&#43;hit&#43;in&#43;bm25_hits%5D&#43;print%28f%26amp%3B%2334%3B%5CnTop-3&#43;hits&#43;by&#43;rank-API&#43;%28%7Blen%28bm25_hits%29%7D&#43;BM25&#43;hits&#43;re-ranked%29%26amp%3B%2334%3B%29&#43;results&#43;%3D&#43;co.rerank%28query%3Dquery%2C&#43;documents%3Ddocs%2C&#43;top_n%3Dtop_k%2C&#43;return_documents%3DTrue%29&#43;for&#43;hit&#43;in&#43;results.results%3A&#43;print%28%26amp%3B%2334%3B%5Ct%7B%3A.3f%7D%5Ct%7B%7D%26amp%3B%2334%3B.format%28hit.relevance_score%2C&#43;hit.document.text.replace%28%26amp%3B%2334%3B%5Cn%26amp%3B%2334%3B%2C&#43;%26amp%3B%2334%3B&#43;%26amp%3B%2334%3B%29%29%29&#43;bm25&#43;%E5%9F%BA%E4%BA%8E%E8%AF%8D%E9%A2%91%E5%92%8C%E9%80%86%E6%96%87%E6%A1%A3%E9%A2%91%E7%8E%87%EF%BC%8C%E8%AE%A1%E7%AE%97%E6%AF%8F%E4%B8%AA%E6%96%87%E6%A1%A3%E4%B8%8E%E6%9F%A5%E8%AF%A2%E7%9A%84%E5%85%B3%E9%94%AE%E8%AF%8D%E5%8C%B9%E9%85%8D%E5%88%86%E6%95%B0%E3%80%82%0A&amp;title=langchain&#43;-&#43;%E6%B7%B7%E5%90%88%E6%90%9C%E7%B4%A2&amp;url=http%3A%2F%2Flocalhost%3A1313%2Fpost%2Flangchain-semanticsearch%2F"
+        class="ananke-social-link linkedin no-underline"
+        title="Share on LinkedIn" aria-label="Share on LinkedIn"
+        target="_blank" rel="nofollow noopener noreferrer">
+        <span class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+                
+              </span></a></div>
+<h1 class="f1 athelas mt3 mb1">langchain - 混合搜索</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2025-06-24T10:00:59-04:00">June 24, 2025</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><p>先通过BM25快速筛选关键字，再用Reranker对候选文档进行精细排序。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">keyword_and_reranking_search</span>(query, top_k<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>, num_candidates<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>):
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;Input question:&#34;</span>, query)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">##### BM25 search (lexical search) #####</span>
+</span></span><span style="display:flex;"><span>    bm25_scores <span style="color:#f92672">=</span> bm25<span style="color:#f92672">.</span>get_scores(bm25_tokenizer(query))
+</span></span><span style="display:flex;"><span>    top_n <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>argpartition(bm25_scores, <span style="color:#f92672">-</span>num_candidates)[<span style="color:#f92672">-</span>num_candidates:]		<span style="color:#75715e"># 选取分数最高的 num_candidates 个文档</span>
+</span></span><span style="display:flex;"><span>    bm25_hits <span style="color:#f92672">=</span> [{<span style="color:#e6db74">&#39;corpus_id&#39;</span>: idx, <span style="color:#e6db74">&#39;score&#39;</span>: bm25_scores[idx]} <span style="color:#66d9ef">for</span> idx <span style="color:#f92672">in</span> top_n]
+</span></span><span style="display:flex;"><span>    bm25_hits <span style="color:#f92672">=</span> sorted(bm25_hits, key<span style="color:#f92672">=</span><span style="color:#66d9ef">lambda</span> x: x[<span style="color:#e6db74">&#39;score&#39;</span>], reverse<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Top-3 lexical search (BM25) hits&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> hit <span style="color:#f92672">in</span> bm25_hits[<span style="color:#ae81ff">0</span>:top_k]:
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">{:.3f}</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">{}</span><span style="color:#e6db74">&#34;</span><span style="color:#f92672">.</span>format(hit[<span style="color:#e6db74">&#39;score&#39;</span>], texts[hit[<span style="color:#e6db74">&#39;corpus_id&#39;</span>]]<span style="color:#f92672">.</span>replace(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, <span style="color:#e6db74">&#34; &#34;</span>)))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#Add re-ranking</span>
+</span></span><span style="display:flex;"><span>    docs <span style="color:#f92672">=</span> [texts[hit[<span style="color:#e6db74">&#39;corpus_id&#39;</span>]] <span style="color:#66d9ef">for</span> hit <span style="color:#f92672">in</span> bm25_hits]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">Top-3 hits by rank-API (</span><span style="color:#e6db74">{</span>len(bm25_hits)<span style="color:#e6db74">}</span><span style="color:#e6db74"> BM25 hits re-ranked)&#34;</span>)
+</span></span><span style="display:flex;"><span>    results <span style="color:#f92672">=</span> co<span style="color:#f92672">.</span>rerank(query<span style="color:#f92672">=</span>query, documents<span style="color:#f92672">=</span>docs, top_n<span style="color:#f92672">=</span>top_k, return_documents<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> hit <span style="color:#f92672">in</span> results<span style="color:#f92672">.</span>results:
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">{:.3f}</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">{}</span><span style="color:#e6db74">&#34;</span><span style="color:#f92672">.</span>format(hit<span style="color:#f92672">.</span>relevance_score, hit<span style="color:#f92672">.</span>document<span style="color:#f92672">.</span>text<span style="color:#f92672">.</span>replace(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, <span style="color:#e6db74">&#34; &#34;</span>)))
+</span></span></code></pre></div><ul>
+<li>
+<h4 id="bm25">bm25</h4>
+<p>基于词频和逆文档频率，计算每个文档与查询的关键词匹配分数。</p>
+<ul>
+<li><strong>词频 (TF)</strong>: 这是查询中的词 q_i在文档 D 中出现的频率。词频是衡量一个词在文档中重要性的基本指标。词频越高，这个词在文档中的重要性通常越大。</li>
+<li><strong>逆文档频率 (IDF)</strong>: 逆文档频率是衡量一个词对于整个文档集合的独特性或信息量的指标。它是由整个文档集合中包含该词的文档数量决定的。一个词在很多文档中出现，其IDF值就会低，反之则高。这意味着罕见的词通常有更高的IDF值，从而在相关性评分中拥有更大的权重。</li>
+</ul>
+</li>
+<li>
+<h4 id="reranker">Reranker</h4>
+<p>使用语义模型（Cohere的Rerank API）重新评分，会考虑上下文语义（而不仅是关键词），返回更相关的排序。</p>
+<p>Reranker的计算成本较高，因此仅对BM25筛选后的少量候选（<code>num_candidates</code>）进行处理。</p>
+</li>
+</ul>
+<p> </p>
+<ul class="pa0">
+  
+   <li class="list di">
+     <a href="/tags/langchain/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">Langchain</a>
+   </li>
+  
+   <li class="list di">
+     <a href="/tags/llm/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">LLM</a>
+   </li>
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+  <div class="bg-light-gray pa3 nested-list-reset nested-copy-line-height nested-links">
+    <p class="f5 b mb3">Related</p>
+    <ul class="pa0 list">
+	   
+	     <li  class="mb2">
+          <a href="/post/langchain-agent/">langchain - Agent</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/langchain-textsplitter/">langchain - text_splitter</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/langchain-rag/">langchain - RAG</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/prompt/">Prompting Guide</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/transformer-code/">transformer-code</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/llm4/">LLM - 4.大模型增强 - RAG</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/llm3.5/">LLM - 3.指令理解阶段(核心) - 强化学习</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/llm3/">LLM - 3.指令理解阶段(核心) - 指令微调</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/llm2/">LLM - 2.预训练阶段</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/llm1/">LLM - 1.基础理论</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/bert/">BERT</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/%E5%BE%AE%E8%B0%83/">微调</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/mllm/">MLLM</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/transformer/">transformer</a>
+        </li>
+	    
+    </ul>
+</div>
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="http://localhost:1313/" >
+    &copy;  HomePage 2025 
+  </a>
+    <div><div class="ananke-socials"><a href="https://www.facebook.com/patrick.kollitsch" target="_blank" rel="noopener"
+        class="ananke-social-link link-transition facebook link dib z-999 pt3 pt0-l mr1"
+        title="follow on Facebook - Opens in a new window"
+        aria-label="follow on Facebook - Opens in a new window">
+      <span class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M512 256C512 114.6 397.4 0 256 0S0 114.6 0 256C0 376 82.7 476.8 194.2 504.5V334.2H141.4V256h52.8V222.3c0-87.1 39.4-127.5 125-127.5c16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1c-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H287V510.1C413.8 494.8 512 386.9 512 256h0z"/></svg>
+            
+          </span></a><a href="https://bsky.app/profile/kollitsch.dev" target="_blank" rel="noopener"
+        class="ananke-social-link link-transition bluesky link dib z-999 pt3 pt0-l mr1"
+        title="follow on Bluesky - Opens in a new window"
+        aria-label="follow on Bluesky - Opens in a new window">
+      <span class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M407.8 294.7c-3.3-.4-6.7-.8-10-1.3c3.4 .4 6.7 .9 10 1.3zM288 227.1C261.9 176.4 190.9 81.9 124.9 35.3C61.6-9.4 37.5-1.7 21.6 5.5C3.3 13.8 0 41.9 0 58.4S9.1 194 15 213.9c19.5 65.7 89.1 87.9 153.2 80.7c3.3-.5 6.6-.9 10-1.4c-3.3 .5-6.6 1-10 1.4C74.3 308.6-9.1 342.8 100.3 464.5C220.6 589.1 265.1 437.8 288 361.1c22.9 76.7 49.2 222.5 185.6 103.4c102.4-103.4 28.1-156-65.8-169.9c-3.3-.4-6.7-.8-10-1.3c3.4 .4 6.7 .9 10 1.3c64.1 7.1 133.6-15.1 153.2-80.7C566.9 194 576 75 576 58.4s-3.3-44.7-21.6-52.9c-15.8-7.1-40-14.9-103.2 29.8C385.1 81.9 314.1 176.4 288 227.1z"/></svg>
+            
+          </span></a><a href="http://linkedin.com/in/patrickkollitsch" target="_blank" rel="noopener"
+        class="ananke-social-link link-transition linkedin link dib z-999 pt3 pt0-l mr1"
+        title="follow on LinkedIn - Opens in a new window"
+        aria-label="follow on LinkedIn - Opens in a new window">
+      <span class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+            
+          </span></a></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

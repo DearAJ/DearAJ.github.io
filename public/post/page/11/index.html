@@ -48,7 +48,7 @@
   <meta itemprop="name" content="Articles">
   <meta itemprop="description" content="The soul selects her own society, then shuts the door. To her divine majority, present no more.">
   <meta itemprop="datePublished" content="2025-06-25T11:00:59-04:00">
-  <meta itemprop="dateModified" content="2026-06-25T10:00:59-04:00">
+  <meta itemprop="dateModified" content="2026-06-29T10:00:59-04:00">
   <meta itemprop="wordCount" content="2">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Articles">
@@ -153,43 +153,6 @@
             <div class="mb3 pa4 mid-gray overflow-hidden">
     
       <div class="f6">
-        April 6, 2025
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-%E5%8F%91%E5%B1%95%E8%B6%8B%E5%8A%BF/" class="link black dim">
-        强化学习-发展趋势
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <h4 id="1阶段">1阶段</h4>
-<p><strong>RL</strong>：一种解决马尔可夫决策过程的方法。</p>
-<p><strong>分类</strong>：value-based算法（DQN）和 policy-based算法（PPO)。</p>
-<p><strong>应用方向</strong>：多智能体强化学习， 安全强化学习等等。</p>
-<p> </p>
-<h4 id="2-阶段">2 阶段</h4>
-<p>强化学习应用的论文描述严格（必须有以下内容）：</p>
-<ol>
-<li>非常准确的状态空间和动作空间定义</li>
-<li>必须存在状态转移函数，不允许单步决策，也就是一个动作就gameover</li>
-<li>必须有过程奖励，且需要存在牺牲短期的过程奖励而获取最大累计回报的case案例</li>
-</ol>
-<p><strong>应用方向</strong>：游戏AI（份额不大）</p>
-<p> </p>
-<h4 id="3-阶段">3 阶段</h4>
-<p>RL 落地的真正难点在于<strong>问题的真实构建</strong>，而非近似构建或策略求解等等方面的问题。从原先任务只有求解策略的过程是强化学习，变成了 <strong>构建问题+求解策略</strong> 统称为强化学习。</p>
-<p>典型如 offline model-based RL 和 RLHF，其中核心的模块变成了<strong>通过神经网络模拟状态转移函数和奖励函数</strong>，策略求解反而在方法论中被一句带过。</p>
-<p>这个过程可以被解耦，变成跟强化学习毫无相关的名词概念，例如世界模型概念等。对于RL，没有有效的交互环境下的就没法达到目标，有这种有效交互环境的实际应用场景却非常少。</p>
-    </div>
-  <a href="/post/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-%E5%8F%91%E5%B1%95%E8%B6%8B%E5%8A%BF/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
         April 4, 2025
       </div>
     
@@ -288,6 +251,36 @@
 <p>PPO-惩罚（PPO-Penalty）：用拉格朗日乘数法将 KL 散度的限制放进了目标函数中，使其变成了一个无约束的优化问题，在迭代的过程中不断更新 KL 散度前的系数 beta。</p>
     </div>
   <a href="/post/ppo/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        April 2, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/trpo/" class="link black dim">
+        TRPO
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>基于策略的方法的缺点：当策略网络是深度模型时沿着策略梯度更新参数，很有可能由于步长太长，策略突然显著变差，进而影响训练效果。</p>
+<ul>
+<li>
+<p><strong>信任区域策略优化</strong>（TRPO）算法的核心思想：</p>
+<p><strong>信任区域</strong>（trust region）：在这个区域上更新策略时能够得到某种策略性能的安全性保证。</p>
+</li>
+</ul>
+<p> </p>
+<h2 id="1-策略目标">1. 策略目标</h2>
+<p><img src="/images/trpo/1.png" alt="1"></p>
+<p><img src="/images/trpo/2.png" alt="2"></p>
+    </div>
+  <a href="/post/trpo/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
   </div>
 
         </div>

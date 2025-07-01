@@ -2,7 +2,7 @@
 date: 2025-03-14T11:00:59-04:00
 description: ""
 featured_image: "/images/c++/lucky.jpg"
-tags: ["algorithm"]
+tags: ["c++", "algorithm"]
 title: "c++语法"
 ---
 

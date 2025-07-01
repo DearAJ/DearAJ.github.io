@@ -2,11 +2,22 @@
 date: 2025-02-13T11:00:59-04:00
 description: "std::unordered_map 是 C++ 标准库中的一个关联容器，基于哈希表实现，用于存储键值对。"
 featured_image: "/images/algorithm/hash.jpg"
-tags: ["algorithm"]
+tags: ["c++", algorithm"]
 title: "unordered_map"
 ---
 
+|                    | `unordered_map`                     | `unordered_set`                     |
+| :----------------- | :---------------------------------- | :---------------------------------- |
+| **存储内容**       | 键值对 (`std::pair<const Key, T>`)  | 仅存储键 (`Key`)                    |
+| **是否允许重复键** | 键唯一（重复键会覆盖）              | 键唯一（重复插入无效）              |
+| **主要用途**       | 快速通过键**查找值**                | 快速判断**键是否存在**              |
+| **典型操作**       | `map[key] = value`、`map.find(key)` | `set.insert(key)`、`set.count(key)` |
+| **内存占用**       | 更高（需存储键和值）                | 更低（仅存储键）                    |
+
+
+
 ### 1. 创建 `unordered_map` 对象
+
 ```cpp
 #include <unordered_map>
 #include <string>

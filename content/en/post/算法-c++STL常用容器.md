@@ -2,7 +2,7 @@
 date: 2025-03-14T11:00:59-04:00
 description: ""
 featured_image: "/images/c++STL/lucky.jpg"
-tags: ["algorithm"]
+tags: ["c++", "algorithm"]
 title: "算法 - C++STL常用容器"
 ---
 

@@ -45,8 +45,8 @@
   <meta property="og:type" content="website">
 
   <meta itemprop="name" content="Tags">
-  <meta itemprop="datePublished" content="2025-06-29T10:00:59-04:00">
-  <meta itemprop="dateModified" content="2025-06-29T10:00:59-04:00">
+  <meta itemprop="datePublished" content="2025-07-07T11:00:59-04:00">
+  <meta itemprop="dateModified" content="2025-07-07T11:00:59-04:00">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Tags">
 
@@ -142,65 +142,186 @@
     <section class="ph4">
       
         <h2 class="f1">
-          <a href="/tags/llm/" class="link blue hover-black">
-            Tag: LLM
+          <a href="/tags/paper/" class="link blue hover-black">
+            Tag: Paper
           </a>
         </h2>
         
             <div class="mb3 pa4 mid-gray overflow-hidden">
     
       <div class="f6">
-        June 29, 2025
+        July 7, 2025
       </div>
     
     <h1 class="f3 near-black">
-      <a href="/post/multimodal-learning/" class="link black dim">
-        multimodal learning
+      <a href="/post/graphrag/" class="link black dim">
+        GraphRAG
       </a>
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <h2 id="clip">CLIP</h2>
-<h3 id="clip-文本-图像匹配"><strong>CLIP 文本-图像匹配</strong></h3>
-<h4 id="1-使用-clipprocessor-预处理"><strong>(1) 使用 <code>CLIPProcessor</code> 预处理</strong></h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> transformers <span style="color:#f92672">import</span> CLIPTokenizerFast, CLIPProcessor, CLIPModel
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>model_id <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;openai/clip-vit-base-patch32&#34;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Load a tokenizer to preprocess the text</span>
-</span></span><span style="display:flex;"><span>clip_tokenizer <span style="color:#f92672">=</span> CLIPTokenizerFast<span style="color:#f92672">.</span>from_pretrained(model_id)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Load a processor to preprocess the images</span>
-</span></span><span style="display:flex;"><span>clip_processor <span style="color:#f92672">=</span> CLIPProcessor<span style="color:#f92672">.</span>from_pretrained(model_id)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Main model for generating text and image embeddings</span>
-</span></span><span style="display:flex;"><span>model <span style="color:#f92672">=</span> CLIPModel<span style="color:#f92672">.</span>from_pretrained(model_id)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 处理文本</span>
-</span></span><span style="display:flex;"><span>text <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#34;a photo of a cat&#34;</span>]
-</span></span><span style="display:flex;"><span>inputs <span style="color:#f92672">=</span> processor(text<span style="color:#f92672">=</span>text, return_tensors<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;pt&#34;</span>, padding<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)  <span style="color:#75715e"># -&gt; {&#34;input_ids&#34;: ..., &#34;attention_mask&#34;: ...}</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 处理图像</span>
-</span></span><span style="display:flex;"><span>image <span style="color:#f92672">=</span> Image<span style="color:#f92672">.</span>open(<span style="color:#e6db74">&#34;cat.jpg&#34;</span>)
-</span></span><span style="display:flex;"><span>processed_image <span style="color:#f92672">=</span> processor(images<span style="color:#f92672">=</span>image, return_tensors<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;pt&#34;</span>)[<span style="color:#e6db74">&#34;pixel_values&#34;</span>]  <span style="color:#75715e"># -&gt; [1, 3, 224, 224]</span>
-</span></span></code></pre></div><h4 id="2-生成-embedding"><strong>(2) 生成 Embedding</strong></h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 文本嵌入</span>
-</span></span><span style="display:flex;"><span>text_embedding <span style="color:#f92672">=</span> model<span style="color:#f92672">.</span>get_text_features(<span style="color:#f92672">**</span>inputs)  <span style="color:#75715e"># -&gt; [1, 512]</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 图像嵌入</span>
-</span></span><span style="display:flex;"><span>image_embedding <span style="color:#f92672">=</span> model<span style="color:#f92672">.</span>get_image_features(processed_image)  <span style="color:#75715e"># -&gt; [1, 512]</span>
-</span></span></code></pre></div><h4 id="3-计算相似度"><strong>(3) 计算相似度</strong></h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 归一化（使点积=余弦相似度）</span>
-</span></span><span style="display:flex;"><span>text_embedding <span style="color:#f92672">=</span> text_embedding <span style="color:#f92672">/</span> text_embedding<span style="color:#f92672">.</span>norm(dim<span style="color:#f92672">=-</span><span style="color:#ae81ff">1</span>, keepdim<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
-</span></span><span style="display:flex;"><span>image_embedding <span style="color:#f92672">=</span> image_embedding <span style="color:#f92672">/</span> image_embedding<span style="color:#f92672">.</span>norm(dim<span style="color:#f92672">=-</span><span style="color:#ae81ff">1</span>, keepdim<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 计算相似度</span>
-</span></span><span style="display:flex;"><span>similarity <span style="color:#f92672">=</span> (text_embedding <span style="color:#f92672">@</span> image_embedding<span style="color:#f92672">.</span>T)<span style="color:#f92672">.</span>item()  <span style="color:#75715e"># 值在 [-1, 1] 之间</span>
-</span></span></code></pre></div><p><strong>为什么 <code>CLIPProcessor</code> 后还需要 Embedding？</strong></p>
+      <ul>
+<li>
+<h4 id="特点">特点</h4>
+<ol>
+<li><strong>基于图的检索</strong>：GraphRAG 引入<strong>知识图谱</strong>来捕捉实体、关系及其他重要元数据。</li>
+<li><strong>层次聚类</strong>：GraphRAG 使用 <strong>Leiden</strong> 技术进行层次聚类，将实体及其关系进行组织。</li>
+<li><strong>多模式查询</strong>：支持多种查询模式。</li>
+<li><strong>全局搜索</strong>：利用<strong>社区总结</strong>来进行全局性推理。</li>
+<li><strong>局部搜索</strong>：通过<strong>扩展相关实体的邻居和关联概念</strong>来进行具体实体的推理。</li>
+<li><strong>DRIFT 搜索</strong>：结合局部搜索和社区信息，提供更准确和相关的答案。</li>
+<li><strong>图机器学习</strong>：集成图机器学习技术，并提供来自结构化和非结构化数据的深度洞察。</li>
+<li><strong>Prompt 调优</strong>：提供调优工具，帮助根据特定数据和需求调整查询提示，提高结果质量。</li>
+</ol>
+</li>
+</ul>
+<h2 id="工作流程">工作流程</h2>
+<p><img src="/images/graphRAG/1.png" alt="1"></p>
+<h3 id="1-索引-indexing-过程">1 <strong>索引 (Indexing) 过程</strong></h3>
+<p>将原始文档转化为知识图谱</p>
     </div>
-  <a href="/post/multimodal-learning/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  <a href="/post/graphrag/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
   </div>
 
+        
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        June 25, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBkimi-researcher/" class="link black dim">
+        「论文阅读」Kimi-Researcher
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p><a href="https://moonshotai.github.io/Kimi-Researcher/">这篇技术报告</a>提出了完全通过端到端 agentic reinforcement learning 进行训练的自主智能体 Kimi-Researcher，旨在通过多步骤规划、推理和工具使用来解决复杂问题。</p>
+<p>—— <strong>End-to-end agentic RL is promising but challenging</strong></p>
+<p> </p>
+<h3 id="传统-agent">传统 agent</h3>
+<ol>
+<li><strong><a href="https://www.anthropic.com/engineering/built-multi-agent-research-system">基于工作流</a></strong>：需要随着模型或环境的变化而频繁手动更新，缺乏可扩展性和灵活性。</li>
+<li><strong>使用监督微调 (SFT)进行模仿学习</strong>：在数据标记方面存在困难；特定的工具版本紧密耦合。</li>
+</ol>
+<p><strong>Kimi-Researcher</strong>：给定一个查询，agent 探索大量可能的策略，获得正确解决方案的奖励 —— 所有技能（规划、感知和工具使用）都是一起学习的，无需手工制作的rule/workflow。</p>
+<p> </p>
+<h3 id="建模">建模</h3>
+<p>给定状态观察(如系统提示符、工具声明和用户查询)，Kimi-Researcher 会生成 think和action (action 可以是工具调用，也可以是终止轨迹的指示)。</p>
+<p><img src="/images/paper-KimiResearcher/1.png" alt="1"></p>
+<h3 id="approach">Approach</h3>
+<p>主要利用三个工具：a)并行、实时、内部的 <strong>search tool;</strong> b) 用于交互式 Web 任务的基于文本的 <strong>browser tool</strong>; c)用于自动执行代码的 <strong>coding tool</strong>.</p>
+    </div>
+  <a href="/post/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBkimi-researcher/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        May 14, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBaugmented-knowledge-graph-querying-leveraging-llms/" class="link black dim">
+        「论文阅读」Augmented Knowledge Graph Querying leveraging LLMs
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p><a href="https://arxiv.org/abs/2502.01298">这篇论文</a>引入了一个名为 SparqLLM 的框架，通过结合 RAG 与 LLM，实现了从自然语言到 SPARQL 查询的自动生成，以简化知识图谱的查询过程。</p>
+<h3 id="1-introduction">1 Introduction</h3>
+<p><strong>背景</strong>：非技术员工不懂 SPARQL；KG + LLMs 无法生成精确高效的 SPARQL 查询，且存在幻觉问题。</p>
+<p><strong>SparqLLM</strong>：被设计为 RAG 框架，可自动从自然语言问题生成 SPARQL 查询，同时生成最适当的数据可视化以返回获得的结果。</p>
+<p><img src="/images/paper-SparqLLM/1.png" alt="1"></p>
+<p><strong>目标</strong>：提高 KG 的准确性、可用性和可靠性，实现与语义数据的更直观和有效的交互。</p>
+<p> </p>
+<h3 id="2-related-work">2 Related Work</h3>
+<ul>
+<li>
+<p><strong>自然语言接口 (NLI)</strong>：将非结构化输入转换为 SPARQL 等正式查询语言，使非技术用户更容易访问基于 RDF 的知识图谱。</p>
+</li>
+<li>
+<p><strong>LLMs</strong>：利用它们处理和生成复杂文本的能力，为自动生成查询提供了一个强大的框架，减少了人工干预的需要，使非专家用户也能访问知识图谱。</p>
+</li>
+<li>
+<p><strong>基于模板的方法</strong>：通过为查询生成提供确定性框架来补充上述方法。</p>
+</li>
+</ul>
+    </div>
+  <a href="/post/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBaugmented-knowledge-graph-querying-leveraging-llms/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        May 14, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBgenerate-on-graph-treat-llm-as-both-agent-and-kg-for-incomplete-knowledge-graph-question-answering/" class="link black dim">
+        「论文阅读」Generate-on-Graph: Treat LLM as both Agent and KG for Incomplete Knowledge Graph Question Answering
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p><a href="https://arxiv.org/abs/2404.14741">这篇论文</a>提出了一种称为 Generate-on-Graph(GoG) 的免训练方法，它可以在探索 KG 时，生成新的事实三元组。</p>
+<p>具体来说，在不完全知识图谱(IKGQA) 中，GoG 通过 Thinking-Searching-Generating 框架进行推理，它将 LLM 同时视为 Agent 和 KG。</p>
+<h3 id="1-introduction">1 Introduction</h3>
+<p><img src="/images/paper-GoG/1.png" alt="1"></p>
+    </div>
+  <a href="/post/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBgenerate-on-graph-treat-llm-as-both-agent-and-kg-for-incomplete-knowledge-graph-question-answering/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        
+      
+        <h2 class="f1">
+          <a href="/tags/agent/" class="link blue hover-black">
+            Tag: Agent
+          </a>
+        </h2>
+        
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        June 25, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/dify-agent/" class="link black dim">
+        dify - Agent
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <h3 id="基础实现">基础实现</h3>
+<p><img src="/images/difyAgent/1.png" alt="1"></p>
+<p>举例：<em>WikiAgent</em></p>
+<ul>
+<li>
+<p>prompt</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">***</span>xmi
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">‹</span>instruction<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">-</span> The Al Agent should be knowledgeable about the TV show <span style="color:#e6db74">&#34;The Office&#34;</span><span style="color:#f92672">.</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">-</span> If the question asked <span style="color:#f92672">is</span> <span style="color:#f92672">not</span> related to <span style="color:#e6db74">&#34;The Office&#34;</span> <span style="color:#f92672">or</span> <span style="color:#66d9ef">if</span> the Al does <span style="color:#f92672">not</span> know the answer, it should search <span style="color:#66d9ef">for</span> the answer using the Google search tool<span style="color:#f92672">.</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">-</span> The output should <span style="color:#f92672">not</span> contain any XML tags<span style="color:#f92672">.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;</span>example<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">-</span> If asked <span style="color:#e6db74">&#34;Who is the regional manager in &#39;The Office&#39;?&#34;</span>, the Al should provide the correct answer<span style="color:#f92672">.</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">-</span> If asked <span style="color:#e6db74">&#34;What year did &#39;The Office&#39; first premiere?&#34;</span>, the Al should provide the correct answer <span style="color:#f92672">or</span> search <span style="color:#66d9ef">for</span> it <span style="color:#66d9ef">if</span> unknown<span style="color:#f92672">.</span>
+</span></span></code></pre></div></li>
+</ul>
+<h3 id="agent-workflow">Agent Workflow</h3>
+<h4 id="prompt-chaining">Prompt Chaining</h4>
+<p>将任务分解为关键步骤，用gate来验证前面的输出是否符合后续处理的条件。</p>
+    </div>
+  <a href="/post/dify-agent/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        
+      
+        <h2 class="f1">
+          <a href="/tags/llm/" class="link blue hover-black">
+            Tag: LLM
+          </a>
+        </h2>
         
             <div class="mb3 pa4 mid-gray overflow-hidden">
     
@@ -316,7 +437,7 @@
       </a>
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p>可以在<a href="https://smith.langchain.com/hub/">langchainhub</a>上找prompt</p>
+      <p>可以在 <a href="https://smith.langchain.com/hub/">langchainhub</a> 上找 prompt</p>
 <h2 id="1-agentic-workflowshttpscookbookopenaicomexamplesgpt4-1_prompting_guidefeatured_ontalkpython1-agentic-workflows"><a href="https://cookbook.openai.com/examples/gpt4-1_prompting_guide?featured_on=talkpython#1-agentic-workflows">1. Agentic Workflows</a></h2>
 <h3 id="system-prompt-reminders">System Prompt Reminders</h3>
 <p>在提示中包含三种关键类型的提醒：</p>
@@ -597,208 +718,6 @@
 </ul>
     </div>
   <a href="/post/transformer/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        
-      
-        <h2 class="f1">
-          <a href="/tags/multimodal/" class="link blue hover-black">
-            Tag: Multimodal
-          </a>
-        </h2>
-        
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        June 29, 2025
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/multimodal-learning/" class="link black dim">
-        multimodal learning
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <h2 id="clip">CLIP</h2>
-<h3 id="clip-文本-图像匹配"><strong>CLIP 文本-图像匹配</strong></h3>
-<h4 id="1-使用-clipprocessor-预处理"><strong>(1) 使用 <code>CLIPProcessor</code> 预处理</strong></h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> transformers <span style="color:#f92672">import</span> CLIPTokenizerFast, CLIPProcessor, CLIPModel
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>model_id <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;openai/clip-vit-base-patch32&#34;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Load a tokenizer to preprocess the text</span>
-</span></span><span style="display:flex;"><span>clip_tokenizer <span style="color:#f92672">=</span> CLIPTokenizerFast<span style="color:#f92672">.</span>from_pretrained(model_id)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Load a processor to preprocess the images</span>
-</span></span><span style="display:flex;"><span>clip_processor <span style="color:#f92672">=</span> CLIPProcessor<span style="color:#f92672">.</span>from_pretrained(model_id)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Main model for generating text and image embeddings</span>
-</span></span><span style="display:flex;"><span>model <span style="color:#f92672">=</span> CLIPModel<span style="color:#f92672">.</span>from_pretrained(model_id)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 处理文本</span>
-</span></span><span style="display:flex;"><span>text <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#34;a photo of a cat&#34;</span>]
-</span></span><span style="display:flex;"><span>inputs <span style="color:#f92672">=</span> processor(text<span style="color:#f92672">=</span>text, return_tensors<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;pt&#34;</span>, padding<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)  <span style="color:#75715e"># -&gt; {&#34;input_ids&#34;: ..., &#34;attention_mask&#34;: ...}</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 处理图像</span>
-</span></span><span style="display:flex;"><span>image <span style="color:#f92672">=</span> Image<span style="color:#f92672">.</span>open(<span style="color:#e6db74">&#34;cat.jpg&#34;</span>)
-</span></span><span style="display:flex;"><span>processed_image <span style="color:#f92672">=</span> processor(images<span style="color:#f92672">=</span>image, return_tensors<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;pt&#34;</span>)[<span style="color:#e6db74">&#34;pixel_values&#34;</span>]  <span style="color:#75715e"># -&gt; [1, 3, 224, 224]</span>
-</span></span></code></pre></div><h4 id="2-生成-embedding"><strong>(2) 生成 Embedding</strong></h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 文本嵌入</span>
-</span></span><span style="display:flex;"><span>text_embedding <span style="color:#f92672">=</span> model<span style="color:#f92672">.</span>get_text_features(<span style="color:#f92672">**</span>inputs)  <span style="color:#75715e"># -&gt; [1, 512]</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 图像嵌入</span>
-</span></span><span style="display:flex;"><span>image_embedding <span style="color:#f92672">=</span> model<span style="color:#f92672">.</span>get_image_features(processed_image)  <span style="color:#75715e"># -&gt; [1, 512]</span>
-</span></span></code></pre></div><h4 id="3-计算相似度"><strong>(3) 计算相似度</strong></h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 归一化（使点积=余弦相似度）</span>
-</span></span><span style="display:flex;"><span>text_embedding <span style="color:#f92672">=</span> text_embedding <span style="color:#f92672">/</span> text_embedding<span style="color:#f92672">.</span>norm(dim<span style="color:#f92672">=-</span><span style="color:#ae81ff">1</span>, keepdim<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
-</span></span><span style="display:flex;"><span>image_embedding <span style="color:#f92672">=</span> image_embedding <span style="color:#f92672">/</span> image_embedding<span style="color:#f92672">.</span>norm(dim<span style="color:#f92672">=-</span><span style="color:#ae81ff">1</span>, keepdim<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 计算相似度</span>
-</span></span><span style="display:flex;"><span>similarity <span style="color:#f92672">=</span> (text_embedding <span style="color:#f92672">@</span> image_embedding<span style="color:#f92672">.</span>T)<span style="color:#f92672">.</span>item()  <span style="color:#75715e"># 值在 [-1, 1] 之间</span>
-</span></span></code></pre></div><p><strong>为什么 <code>CLIPProcessor</code> 后还需要 Embedding？</strong></p>
-    </div>
-  <a href="/post/multimodal-learning/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        
-      
-        <h2 class="f1">
-          <a href="/tags/paper/" class="link blue hover-black">
-            Tag: Paper
-          </a>
-        </h2>
-        
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        June 25, 2025
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBkimi-researcher/" class="link black dim">
-        「论文阅读」Kimi-Researcher
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p><a href="https://moonshotai.github.io/Kimi-Researcher/">这篇技术报告</a>提出了完全通过端到端 agentic reinforcement learning 进行训练的自主智能体 Kimi-Researcher，旨在通过多步骤规划、推理和工具使用来解决复杂问题。</p>
-<p>—— <strong>End-to-end agentic RL is promising but challenging</strong></p>
-<p> </p>
-<h3 id="传统-agent">传统 agent</h3>
-<ol>
-<li><strong><a href="https://www.anthropic.com/engineering/built-multi-agent-research-system">基于工作流</a></strong>：需要随着模型或环境的变化而频繁手动更新，缺乏可扩展性和灵活性。</li>
-<li><strong>使用监督微调 (SFT)进行模仿学习</strong>：在数据标记方面存在困难；特定的工具版本紧密耦合。</li>
-</ol>
-<p><strong>Kimi-Researcher</strong>：给定一个查询，agent 探索大量可能的策略，获得正确解决方案的奖励 —— 所有技能（规划、感知和工具使用）都是一起学习的，无需手工制作的rule/workflow。</p>
-<p> </p>
-<h3 id="建模">建模</h3>
-<p>给定状态观察(如系统提示符、工具声明和用户查询)，Kimi-Researcher 会生成 think和action (action 可以是工具调用，也可以是终止轨迹的指示)。</p>
-<p><img src="/images/paper-KimiResearcher/1.png" alt="1"></p>
-<h3 id="approach">Approach</h3>
-<p>主要利用三个工具：a)并行、实时、内部的 <strong>search tool;</strong> b) 用于交互式 Web 任务的基于文本的 <strong>browser tool</strong>; c)用于自动执行代码的 <strong>coding tool</strong>.</p>
-    </div>
-  <a href="/post/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBkimi-researcher/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        May 14, 2025
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBaugmented-knowledge-graph-querying-leveraging-llms/" class="link black dim">
-        「论文阅读」Augmented Knowledge Graph Querying leveraging LLMs
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p><a href="https://arxiv.org/abs/2502.01298">这篇论文</a>引入了一个名为 SparqLLM 的框架，通过结合 RAG 与 LLM，实现了从自然语言到 SPARQL 查询的自动生成，以简化知识图谱的查询过程。</p>
-<h3 id="1-introduction">1 Introduction</h3>
-<p><strong>背景</strong>：非技术员工不懂 SPARQL；KG + LLMs 无法生成精确高效的 SPARQL 查询，且存在幻觉问题。</p>
-<p><strong>SparqLLM</strong>：被设计为 RAG 框架，可自动从自然语言问题生成 SPARQL 查询，同时生成最适当的数据可视化以返回获得的结果。</p>
-<p><img src="/images/paper-SparqLLM/1.png" alt="1"></p>
-<p><strong>目标</strong>：提高 KG 的准确性、可用性和可靠性，实现与语义数据的更直观和有效的交互。</p>
-<p> </p>
-<h3 id="2-related-work">2 Related Work</h3>
-<ul>
-<li>
-<p><strong>自然语言接口 (NLI)</strong>：将非结构化输入转换为 SPARQL 等正式查询语言，使非技术用户更容易访问基于 RDF 的知识图谱。</p>
-</li>
-<li>
-<p><strong>LLMs</strong>：利用它们处理和生成复杂文本的能力，为自动生成查询提供了一个强大的框架，减少了人工干预的需要，使非专家用户也能访问知识图谱。</p>
-</li>
-<li>
-<p><strong>基于模板的方法</strong>：通过为查询生成提供确定性框架来补充上述方法。</p>
-</li>
-</ul>
-    </div>
-  <a href="/post/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBaugmented-knowledge-graph-querying-leveraging-llms/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        May 14, 2025
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBgenerate-on-graph-treat-llm-as-both-agent-and-kg-for-incomplete-knowledge-graph-question-answering/" class="link black dim">
-        「论文阅读」Generate-on-Graph: Treat LLM as both Agent and KG for Incomplete Knowledge Graph Question Answering
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p><a href="https://arxiv.org/abs/2404.14741">这篇论文</a>提出了一种称为 Generate-on-Graph(GoG) 的免训练方法，它可以在探索 KG 时，生成新的事实三元组。</p>
-<p>具体来说，在不完全知识图谱(IKGQA) 中，GoG 通过 Thinking-Searching-Generating 框架进行推理，它将 LLM 同时视为 Agent 和 KG。</p>
-<h3 id="1-introduction">1 Introduction</h3>
-<p><img src="/images/paper-GoG/1.png" alt="1"></p>
-    </div>
-  <a href="/post/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBgenerate-on-graph-treat-llm-as-both-agent-and-kg-for-incomplete-knowledge-graph-question-answering/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        
-      
-        <h2 class="f1">
-          <a href="/tags/agent/" class="link blue hover-black">
-            Tag: Agent
-          </a>
-        </h2>
-        
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        June 25, 2025
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/dify-agent/" class="link black dim">
-        dify - Agent
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <h3 id="基础实现">基础实现</h3>
-<p><img src="/images/difyAgent/1.png" alt="1"></p>
-<p>举例：<em>WikiAgent</em></p>
-<ul>
-<li>
-<p>prompt</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">***</span>xmi
-</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">‹</span>instruction<span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">-</span> The Al Agent should be knowledgeable about the TV show <span style="color:#e6db74">&#34;The Office&#34;</span><span style="color:#f92672">.</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">-</span> If the question asked <span style="color:#f92672">is</span> <span style="color:#f92672">not</span> related to <span style="color:#e6db74">&#34;The Office&#34;</span> <span style="color:#f92672">or</span> <span style="color:#66d9ef">if</span> the Al does <span style="color:#f92672">not</span> know the answer, it should search <span style="color:#66d9ef">for</span> the answer using the Google search tool<span style="color:#f92672">.</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">-</span> The output should <span style="color:#f92672">not</span> contain any XML tags<span style="color:#f92672">.</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;</span>example<span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">-</span> If asked <span style="color:#e6db74">&#34;Who is the regional manager in &#39;The Office&#39;?&#34;</span>, the Al should provide the correct answer<span style="color:#f92672">.</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">-</span> If asked <span style="color:#e6db74">&#34;What year did &#39;The Office&#39; first premiere?&#34;</span>, the Al should provide the correct answer <span style="color:#f92672">or</span> search <span style="color:#66d9ef">for</span> it <span style="color:#66d9ef">if</span> unknown<span style="color:#f92672">.</span>
-</span></span></code></pre></div></li>
-</ul>
-<h3 id="agent-workflow">Agent Workflow</h3>
-<h4 id="prompt-chaining">Prompt Chaining</h4>
-<p>将任务分解为关键步骤，用gate来验证前面的输出是否符合后续处理的条件。</p>
-    </div>
-  <a href="/post/dify-agent/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
   </div>
 
         

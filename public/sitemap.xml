@@ -3,41 +3,31 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>http://localhost:1313/</loc>
-    <lastmod>2026-06-28T10:00:59-04:00</lastmod>
+    <lastmod>2026-07-05T10:00:59-04:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>http://localhost:1313/post/</loc>
-    <lastmod>2026-06-28T10:00:59-04:00</lastmod>
+    <lastmod>2026-07-05T10:00:59-04:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:1313/tags/llm/</loc>
-    <lastmod>2025-06-29T10:00:59-04:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>http://localhost:1313/tags/multimodal/</loc>
-    <lastmod>2025-06-29T10:00:59-04:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>http://localhost:1313/post/multimodal-learning/</loc>
-    <lastmod>2025-06-29T10:00:59-04:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>http://localhost:1313/tags/</loc>
-    <lastmod>2025-06-29T10:00:59-04:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>http://localhost:1313/post/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBkimi-researcher/</loc>
-    <lastmod>2025-06-25T11:00:59-04:00</lastmod>
+    <loc>http://localhost:1313/post/graphrag/</loc>
+    <lastmod>2025-07-07T11:00:59-04:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>http://localhost:1313/tags/paper/</loc>
+    <lastmod>2025-07-07T11:00:59-04:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/tags/</loc>
+    <lastmod>2025-07-07T11:00:59-04:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/post/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBkimi-researcher/</loc>
     <lastmod>2025-06-25T11:00:59-04:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -48,6 +38,11 @@
     <priority>0.5</priority>
   </url><url>
     <loc>http://localhost:1313/post/dify-agent/</loc>
+    <lastmod>2025-06-25T10:00:59-04:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/tags/llm/</loc>
     <lastmod>2025-06-25T10:00:59-04:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>

@@ -81,7 +81,7 @@ std::cout &lt;&lt; s &lt;&lt; &#34; &#34; &lt;&lt; a &lt;&lt; std::endl;
 #include &lt;bits/stdc&#43;&#43;.h&gt; int a; cin &gt;&gt; a; // 从输入读取一个整数 // 输出a std::cout &lt;&lt; a &lt;&lt; std::endl; // 可以串联输出 // 输出：Hello, World! std::cout &lt;&lt; &#34;Hello&#34; &lt;&lt; &#34;, &#34; &lt;&lt; &#34;World!&#34; &lt;&lt; std::endl; string s = &#34;abc&#34;; a = 10; // 输出：abc 10 std::cout &lt;&lt; s &lt;&lt; &#34; &#34; &lt;&lt; a &lt;&lt; std::endl;">
   <meta itemprop="datePublished" content="2025-03-14T11:00:59-04:00">
   <meta itemprop="dateModified" content="2025-03-14T11:00:59-04:00">
-  <meta itemprop="wordCount" content="1538">
+  <meta itemprop="wordCount" content="1544">
   <meta itemprop="keywords" content="C&#43;&#43;,Algorithm">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="c&#43;&#43;语法">
@@ -369,6 +369,13 @@ std::cout &lt;&lt; s &lt;&lt; &#34; &#34; &lt;&lt; a &lt;&lt; std::endl;
 </ul>
 <p>如果需要<strong>升序</strong>排序，使用 <code>sort(classes.begin(), classes.end());</code>。</p>
 <p>如果需要<strong>降序</strong>排序，可以使用 <code>sort(classes.rbegin(), classes.rend());</code>。</p>
+<p> </p>
+<p>若使用<code>sort(intervals.begin(), intervals.end())</code>对一个二维<code>vector</code>（例如<code>vector&lt;vector&lt;int&gt;&gt; intervals</code>）进行排序时，排序的规则是基于<strong>字典序（lexicographical order）</strong>，即：</p>
+<ol>
+<li><strong>比较第一个元素</strong>：首先比较每个子向量（即每一行）的第一个元素。如果两个子向量的第一个元素不相等，则按照第一个元素的大小进行升序排序。</li>
+<li><strong>如果第一个元素相等，则比较第二个元素</strong>：如果第一个元素相同，则比较第二个元素，依此类推，直到找到不相等的元素或比较完所有元素。</li>
+</ol>
+<p> </p>
 <p> </p>
 <p>可以通过提供一个<strong>比较函数</strong>来定义排序规则 —— 使用一个 <strong>Lambda 表达式</strong>：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>sort(edges.begin(), edges.end(), [](vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;&amp;</span> a, vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;&amp;</span> b) <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">bool</span> {

@@ -47,8 +47,8 @@
 
   <meta itemprop="name" content="Articles">
   <meta itemprop="description" content="The soul selects her own society, then shuts the door. To her divine majority, present no more.">
-  <meta itemprop="datePublished" content="2025-06-25T11:00:59-04:00">
-  <meta itemprop="dateModified" content="2026-06-29T10:00:59-04:00">
+  <meta itemprop="datePublished" content="2025-07-07T11:00:59-04:00">
+  <meta itemprop="dateModified" content="2026-07-05T10:00:59-04:00">
   <meta itemprop="wordCount" content="2">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Articles">
@@ -153,6 +153,51 @@
             <div class="mb3 pa4 mid-gray overflow-hidden">
     
       <div class="f6">
+        June 24, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/langchain-semanticsearch/" class="link black dim">
+        langchain - 混合搜索
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>先通过BM25快速筛选关键字，再用Reranker对候选文档进行精细排序。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">keyword_and_reranking_search</span>(query, top_k<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>, num_candidates<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>):
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;Input question:&#34;</span>, query)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">##### BM25 search (lexical search) #####</span>
+</span></span><span style="display:flex;"><span>    bm25_scores <span style="color:#f92672">=</span> bm25<span style="color:#f92672">.</span>get_scores(bm25_tokenizer(query))
+</span></span><span style="display:flex;"><span>    top_n <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>argpartition(bm25_scores, <span style="color:#f92672">-</span>num_candidates)[<span style="color:#f92672">-</span>num_candidates:]		<span style="color:#75715e"># 选取分数最高的 num_candidates 个文档</span>
+</span></span><span style="display:flex;"><span>    bm25_hits <span style="color:#f92672">=</span> [{<span style="color:#e6db74">&#39;corpus_id&#39;</span>: idx, <span style="color:#e6db74">&#39;score&#39;</span>: bm25_scores[idx]} <span style="color:#66d9ef">for</span> idx <span style="color:#f92672">in</span> top_n]
+</span></span><span style="display:flex;"><span>    bm25_hits <span style="color:#f92672">=</span> sorted(bm25_hits, key<span style="color:#f92672">=</span><span style="color:#66d9ef">lambda</span> x: x[<span style="color:#e6db74">&#39;score&#39;</span>], reverse<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Top-3 lexical search (BM25) hits&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> hit <span style="color:#f92672">in</span> bm25_hits[<span style="color:#ae81ff">0</span>:top_k]:
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">{:.3f}</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">{}</span><span style="color:#e6db74">&#34;</span><span style="color:#f92672">.</span>format(hit[<span style="color:#e6db74">&#39;score&#39;</span>], texts[hit[<span style="color:#e6db74">&#39;corpus_id&#39;</span>]]<span style="color:#f92672">.</span>replace(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, <span style="color:#e6db74">&#34; &#34;</span>)))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#Add re-ranking</span>
+</span></span><span style="display:flex;"><span>    docs <span style="color:#f92672">=</span> [texts[hit[<span style="color:#e6db74">&#39;corpus_id&#39;</span>]] <span style="color:#66d9ef">for</span> hit <span style="color:#f92672">in</span> bm25_hits]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">Top-3 hits by rank-API (</span><span style="color:#e6db74">{</span>len(bm25_hits)<span style="color:#e6db74">}</span><span style="color:#e6db74"> BM25 hits re-ranked)&#34;</span>)
+</span></span><span style="display:flex;"><span>    results <span style="color:#f92672">=</span> co<span style="color:#f92672">.</span>rerank(query<span style="color:#f92672">=</span>query, documents<span style="color:#f92672">=</span>docs, top_n<span style="color:#f92672">=</span>top_k, return_documents<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> hit <span style="color:#f92672">in</span> results<span style="color:#f92672">.</span>results:
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">{:.3f}</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">{}</span><span style="color:#e6db74">&#34;</span><span style="color:#f92672">.</span>format(hit<span style="color:#f92672">.</span>relevance_score, hit<span style="color:#f92672">.</span>document<span style="color:#f92672">.</span>text<span style="color:#f92672">.</span>replace(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, <span style="color:#e6db74">&#34; &#34;</span>)))
+</span></span></code></pre></div><ul>
+<li>
+<h4 id="bm25">bm25</h4>
+<p>基于词频和逆文档频率，计算每个文档与查询的关键词匹配分数。</p>
+    </div>
+  <a href="/post/langchain-semanticsearch/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
         June 23, 2025
       </div>
     
@@ -215,43 +260,6 @@
 <p><img src="/images/langchain-Agent/2.png" alt="2"></p>
     </div>
   <a href="/post/langchain-agent/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        June 19, 2025
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/langchain-rag/" class="link black dim">
-        langchain - RAG
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p><img src="/images/langchain-RAG/1.png" alt="1"></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> os
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> dotenv <span style="color:#f92672">import</span> load_dotenv
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain.chains <span style="color:#f92672">import</span> create_history_aware_retriever, create_retrieval_chain
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain.chains.combine_documents <span style="color:#f92672">import</span> create_stuff_documents_chain
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_community.vectorstores <span style="color:#f92672">import</span> Chroma
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_core.messages <span style="color:#f92672">import</span> HumanMessage, SystemMessage
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_core.prompts <span style="color:#f92672">import</span> ChatPromptTemplate, MessagesPlaceholder
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_openai <span style="color:#f92672">import</span> ChatOpenAI, OpenAIEmbeddings
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Load environment variables from .env</span>
-</span></span><span style="display:flex;"><span>load_dotenv()
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Define the persistent directory</span>
-</span></span><span style="display:flex;"><span>current_dir <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>dirname(os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>abspath(__file__))
-</span></span><span style="display:flex;"><span>persistent_directory <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(current_dir, <span style="color:#e6db74">&#34;db&#34;</span>, <span style="color:#e6db74">&#34;chroma_db_with_metadata&#34;</span>)
-</span></span></code></pre></div>
-    </div>
-  <a href="/post/langchain-rag/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
   </div>
 
         </div>

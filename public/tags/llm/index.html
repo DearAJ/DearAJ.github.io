@@ -45,8 +45,8 @@
   <meta property="og:type" content="website">
 
   <meta itemprop="name" content="LLM">
-  <meta itemprop="datePublished" content="2025-06-29T10:00:59-04:00">
-  <meta itemprop="dateModified" content="2025-06-29T10:00:59-04:00">
+  <meta itemprop="datePublished" content="2025-06-25T10:00:59-04:00">
+  <meta itemprop="dateModified" content="2025-06-25T10:00:59-04:00">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="LLM">
 
@@ -139,63 +139,6 @@
   </article>
   <div class="mw8 center">
     <section class="flex-ns flex-wrap justify-around mt5">
-      
-        <div class="relative w-100  mb4 bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        June 29, 2025
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/multimodal-learning/" class="link black dim">
-        multimodal learning
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <h2 id="clip">CLIP</h2>
-<h3 id="clip-文本-图像匹配"><strong>CLIP 文本-图像匹配</strong></h3>
-<h4 id="1-使用-clipprocessor-预处理"><strong>(1) 使用 <code>CLIPProcessor</code> 预处理</strong></h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> transformers <span style="color:#f92672">import</span> CLIPTokenizerFast, CLIPProcessor, CLIPModel
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>model_id <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;openai/clip-vit-base-patch32&#34;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Load a tokenizer to preprocess the text</span>
-</span></span><span style="display:flex;"><span>clip_tokenizer <span style="color:#f92672">=</span> CLIPTokenizerFast<span style="color:#f92672">.</span>from_pretrained(model_id)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Load a processor to preprocess the images</span>
-</span></span><span style="display:flex;"><span>clip_processor <span style="color:#f92672">=</span> CLIPProcessor<span style="color:#f92672">.</span>from_pretrained(model_id)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Main model for generating text and image embeddings</span>
-</span></span><span style="display:flex;"><span>model <span style="color:#f92672">=</span> CLIPModel<span style="color:#f92672">.</span>from_pretrained(model_id)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 处理文本</span>
-</span></span><span style="display:flex;"><span>text <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#34;a photo of a cat&#34;</span>]
-</span></span><span style="display:flex;"><span>inputs <span style="color:#f92672">=</span> processor(text<span style="color:#f92672">=</span>text, return_tensors<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;pt&#34;</span>, padding<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)  <span style="color:#75715e"># -&gt; {&#34;input_ids&#34;: ..., &#34;attention_mask&#34;: ...}</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 处理图像</span>
-</span></span><span style="display:flex;"><span>image <span style="color:#f92672">=</span> Image<span style="color:#f92672">.</span>open(<span style="color:#e6db74">&#34;cat.jpg&#34;</span>)
-</span></span><span style="display:flex;"><span>processed_image <span style="color:#f92672">=</span> processor(images<span style="color:#f92672">=</span>image, return_tensors<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;pt&#34;</span>)[<span style="color:#e6db74">&#34;pixel_values&#34;</span>]  <span style="color:#75715e"># -&gt; [1, 3, 224, 224]</span>
-</span></span></code></pre></div><h4 id="2-生成-embedding"><strong>(2) 生成 Embedding</strong></h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 文本嵌入</span>
-</span></span><span style="display:flex;"><span>text_embedding <span style="color:#f92672">=</span> model<span style="color:#f92672">.</span>get_text_features(<span style="color:#f92672">**</span>inputs)  <span style="color:#75715e"># -&gt; [1, 512]</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 图像嵌入</span>
-</span></span><span style="display:flex;"><span>image_embedding <span style="color:#f92672">=</span> model<span style="color:#f92672">.</span>get_image_features(processed_image)  <span style="color:#75715e"># -&gt; [1, 512]</span>
-</span></span></code></pre></div><h4 id="3-计算相似度"><strong>(3) 计算相似度</strong></h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 归一化（使点积=余弦相似度）</span>
-</span></span><span style="display:flex;"><span>text_embedding <span style="color:#f92672">=</span> text_embedding <span style="color:#f92672">/</span> text_embedding<span style="color:#f92672">.</span>norm(dim<span style="color:#f92672">=-</span><span style="color:#ae81ff">1</span>, keepdim<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
-</span></span><span style="display:flex;"><span>image_embedding <span style="color:#f92672">=</span> image_embedding <span style="color:#f92672">/</span> image_embedding<span style="color:#f92672">.</span>norm(dim<span style="color:#f92672">=-</span><span style="color:#ae81ff">1</span>, keepdim<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 计算相似度</span>
-</span></span><span style="display:flex;"><span>similarity <span style="color:#f92672">=</span> (text_embedding <span style="color:#f92672">@</span> image_embedding<span style="color:#f92672">.</span>T)<span style="color:#f92672">.</span>item()  <span style="color:#75715e"># 值在 [-1, 1] 之间</span>
-</span></span></code></pre></div><p><strong>为什么 <code>CLIPProcessor</code> 后还需要 Embedding？</strong></p>
-    </div>
-  <a href="/post/multimodal-learning/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        </div>
       
         <div class="relative w-100  mb4 bg-white">
             <div class="mb3 pa4 mid-gray overflow-hidden">
@@ -318,7 +261,7 @@
       </a>
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p>可以在<a href="https://smith.langchain.com/hub/">langchainhub</a>上找prompt</p>
+      <p>可以在 <a href="https://smith.langchain.com/hub/">langchainhub</a> 上找 prompt</p>
 <h2 id="1-agentic-workflowshttpscookbookopenaicomexamplesgpt4-1_prompting_guidefeatured_ontalkpython1-agentic-workflows"><a href="https://cookbook.openai.com/examples/gpt4-1_prompting_guide?featured_on=talkpython#1-agentic-workflows">1. Agentic Workflows</a></h2>
 <h3 id="system-prompt-reminders">System Prompt Reminders</h3>
 <p>在提示中包含三种关键类型的提醒：</p>

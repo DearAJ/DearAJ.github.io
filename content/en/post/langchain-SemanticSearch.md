@@ -47,3 +47,52 @@ def keyword_and_reranking_search(query, top_k=3, num_candidates=10):
 
 &nbsp;
 
+
+
+
+
+```python
+class HybridRetriever(BaseRetriever):
+    def __init__(self, texts, metadatas, cohere_api_key, top_k=3, num_candidates=10):
+        self.texts = texts
+        self.metadatas = metadatas
+        self.top_k = top_k
+        self.num_candidates = num_candidates
+        self.co = cohere.Client(cohere_api_key)
+        
+        # 初始化BM25
+        tokenized_texts = [self._tokenize(text) for text in texts]
+        self.bm25 = BM25Okapi(tokenized_texts)
+    
+    def _tokenize(self, text):
+        # 将文本转换为小写；使用空格进行简单分词
+        return text.lower().split()
+    
+    def _get_relevant_documents(self, query, **kwargs):
+        # BM25初筛
+        tokenized_query = self._tokenize(query)
+        scores = self.bm25.get_scores(tokenized_query)			# 计算所有文档的 BM25 相关性分数
+        top_n_indices = np.argsort(scores)[-self.num_candidates:][::-1]	# 选出分数最高
+        
+        # 准备重排序文档
+        candidate_docs = [self.texts[i] for i in top_n_indices]
+        
+        # Cohere重排序
+        rerank_results = self.co.rerank(
+            query=query,
+            documents=candidate_docs,
+            top_n=self.top_k,
+            model="rerank-english-v2.0"
+        )
+        
+        # 构建最终文档
+        results = []
+        for res in rerank_results.results:
+            doc_index = top_n_indices[res.index]
+            results.append(Document(
+                page_content=self.texts[doc_index],
+                metadata=self.metadatas[doc_index]
+            ))
+        return results
+```
+

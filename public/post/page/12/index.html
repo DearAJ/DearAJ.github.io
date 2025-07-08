@@ -47,8 +47,8 @@
 
   <meta itemprop="name" content="Articles">
   <meta itemprop="description" content="The soul selects her own society, then shuts the door. To her divine majority, present no more.">
-  <meta itemprop="datePublished" content="2025-06-25T11:00:59-04:00">
-  <meta itemprop="dateModified" content="2026-06-29T10:00:59-04:00">
+  <meta itemprop="datePublished" content="2025-07-07T11:00:59-04:00">
+  <meta itemprop="dateModified" content="2026-07-05T10:00:59-04:00">
   <meta itemprop="wordCount" content="2">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Articles">
@@ -157,6 +157,36 @@
       </div>
     
     <h1 class="f3 near-black">
+      <a href="/post/trpo/" class="link black dim">
+        TRPO
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>基于策略的方法的缺点：当策略网络是深度模型时沿着策略梯度更新参数，很有可能由于步长太长，策略突然显著变差，进而影响训练效果。</p>
+<ul>
+<li>
+<p><strong>信任区域策略优化</strong>（TRPO）算法的核心思想：</p>
+<p><strong>信任区域</strong>（trust region）：在这个区域上更新策略时能够得到某种策略性能的安全性保证。</p>
+</li>
+</ul>
+<p> </p>
+<h2 id="1-策略目标">1. 策略目标</h2>
+<p><img src="/images/trpo/1.png" alt="1"></p>
+<p><img src="/images/trpo/2.png" alt="2"></p>
+    </div>
+  <a href="/post/trpo/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        April 2, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
       <a href="/post/actor-critic/" class="link black dim">
         Actor-Critic
       </a>
@@ -227,31 +257,6 @@
 </ul>
     </div>
   <a href="/post/reinforce/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        April 1, 2025
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/dqn/" class="link black dim">
-        DQN (deep Q network)
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p>Q-learning 算法用表格存储动作价值的做法只在 环境的状态和动作都是离散的，并且空间都比较小 的情况下适用.</p>
-<p><strong>DQN</strong>：用来解决连续状态下离散动作的问题，是离线策略算法，可以使用ε-贪婪策略来平衡探索与利用。</p>
-<p><strong>Q 网络</strong>：用于拟合函数Q函数的神经网络</p>
-<p><img src="/images/DQN/1.png" alt="1"></p>
-<p><strong>Q 网络的损失函数</strong>（均方误差形式）</p>
-<p><img src="/images/DQN/2.png" alt="2"></p>
-    </div>
-  <a href="/post/dqn/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
   </div>
 
         </div>

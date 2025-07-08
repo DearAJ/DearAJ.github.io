@@ -18,7 +18,7 @@ title: "Diffusion Model"
 
 <!--more-->
 
-
+&nbsp;
 
 ## 原理
 
@@ -81,7 +81,7 @@ Laion拥有5.85B图片，可进行搜索
   
         ![18](/images/DM/18.png)
 
-
+&nbsp;
 
 # Stable Diffusion
 
@@ -153,13 +153,13 @@ Laion拥有5.85B图片，可进行搜索
 
 ![16](/images/DM/16.png)
 
+&nbsp;
 
-
-
+&nbsp;
 
 # **评估指标**
 
-+ **KL散度**
++ **KL 散度**
 
   度量两个概率分布之间的差异程度
 

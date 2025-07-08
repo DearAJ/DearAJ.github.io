@@ -47,8 +47,8 @@
 
   <meta itemprop="name" content="Articles">
   <meta itemprop="description" content="The soul selects her own society, then shuts the door. To her divine majority, present no more.">
-  <meta itemprop="datePublished" content="2025-06-25T11:00:59-04:00">
-  <meta itemprop="dateModified" content="2026-06-29T10:00:59-04:00">
+  <meta itemprop="datePublished" content="2025-07-07T11:00:59-04:00">
+  <meta itemprop="dateModified" content="2026-07-05T10:00:59-04:00">
   <meta itemprop="wordCount" content="2">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Articles">
@@ -153,6 +153,26 @@
             <div class="mb3 pa4 mid-gray overflow-hidden">
     
       <div class="f6">
+        April 20, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/llm1/" class="link black dim">
+        LLM - 1.基础理论
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p><img src="/images/LLM1/0.png" alt="0"></p>
+    </div>
+  <a href="/post/llm1/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
         April 17, 2025
       </div>
     
@@ -233,69 +253,6 @@
 <p><strong>Torch</strong> 是一个深度学习框架，用于构建和训练神经网络，该可以利用<strong>CUDA</strong>在<strong>NVIDIA GPU</strong>上加速计算。通过在PyTorch中指定使用CUDA进行训练，可以在处理大数据集时大大提高计算效率。</p>
     </div>
   <a href="/post/%E5%B7%A5%E5%85%B7%E9%93%BE-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        April 16, 2025
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/bert/" class="link black dim">
-        BERT
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p>名字来源：美国的一个动画片芝麻街里的主人公</p>
-<p>论文：https://arxiv.org/abs/1810.04805</p>
-<h3 id="nlp-里的迁移学习">NLP 里的迁移学习</h3>
-<ol>
-<li>
-<p><strong>在 bert 之前：使用预训练好的模型来抽取词、句子的特征</strong></p>
-<ul>
-<li>如用 word2vec 或 语言模型（当作embedding层）</li>
-<li>﻿不更新预训练好的模型</li>
-<li>﻿缺点
-<ul>
-<li>需要构建新的网络来抓取新任务需要的信息</li>
-<li>﻿Word2vec 忽略了时序信息，语言模型只看了一个方向</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p><strong>bert 的动机</strong></p>
-<ul>
-<li>
-<p>基于微调的 NLP 模型</p>
-<p>前面的层不用动，改最后一层的 output layer 即可</p>
-</li>
-<li>
-<p>预训练的模型抽取了足够多的信息，新的任务只需要增加一个简单的输出层</p>
-</li>
-</ul>
-</li>
-</ol>
-<p> </p>
-<h2 id="bert-架构">BERT 架构</h2>
-<p><strong>本质</strong>：一个砍掉解码器、只有编码器的 transformer</p>
-<p>bert 的工作：证明了效果非常好</p>
-<ul>
-<li>
-<p>两个版本：</p>
-<p><strong>Base</strong>: #blocks=12, hidden size=768, #heads=12,  #parameters=110M</p>
-<p>﻿﻿<strong>Large</strong>: #blocks=24, hidden size=1024, #heads=1, #parameter=340M</p>
-</li>
-<li>
-<p>﻿在大规模数据上训练&gt;3B词</p>
-</li>
-</ul>
-    </div>
-  <a href="/post/bert/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
   </div>
 
         </div>

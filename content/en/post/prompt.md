@@ -6,7 +6,7 @@ tags: ["LLM"]
 title: "Prompting Guide"
 ---
 
-可以在[langchainhub](https://smith.langchain.com/hub/)上找prompt
+可以在 [langchainhub](https://smith.langchain.com/hub/) 上找 prompt
 
 ## [1. Agentic Workflows](https://cookbook.openai.com/examples/gpt4-1_prompting_guide?featured_on=talkpython#1-agentic-workflows)
 

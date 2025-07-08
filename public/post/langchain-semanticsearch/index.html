@@ -76,7 +76,7 @@ def keyword_and_reranking_search(query, top_k=3, num_candidates=10): print(&#34;
 def keyword_and_reranking_search(query, top_k=3, num_candidates=10): print(&#34;Input question:&#34;, query) ##### BM25 search (lexical search) ##### bm25_scores = bm25.get_scores(bm25_tokenizer(query)) top_n = np.argpartition(bm25_scores, -num_candidates)[-num_candidates:]	# 选取分数最高的 num_candidates 个文档 bm25_hits = [{&#39;corpus_id&#39;: idx, &#39;score&#39;: bm25_scores[idx]} for idx in top_n] bm25_hits = sorted(bm25_hits, key=lambda x: x[&#39;score&#39;], reverse=True) print(f&#34;Top-3 lexical search (BM25) hits&#34;) for hit in bm25_hits[0:top_k]: print(&#34;\t{:.3f}\t{}&#34;.format(hit[&#39;score&#39;], texts[hit[&#39;corpus_id&#39;]].replace(&#34;\n&#34;, &#34; &#34;))) #Add re-ranking docs = [texts[hit[&#39;corpus_id&#39;]] for hit in bm25_hits] print(f&#34;\nTop-3 hits by rank-API ({len(bm25_hits)} BM25 hits re-ranked)&#34;) results = co.rerank(query=query, documents=docs, top_n=top_k, return_documents=True) for hit in results.results: print(&#34;\t{:.3f}\t{}&#34;.format(hit.relevance_score, hit.document.text.replace(&#34;\n&#34;, &#34; &#34;))) bm25 基于词频和逆文档频率，计算每个文档与查询的关键词匹配分数。">
   <meta itemprop="datePublished" content="2025-06-24T10:00:59-04:00">
   <meta itemprop="dateModified" content="2025-06-24T10:00:59-04:00">
-  <meta itemprop="wordCount" content="101">
+  <meta itemprop="wordCount" content="202">
   <meta itemprop="keywords" content="Langchain,LLM">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="langchain - 混合搜索">
@@ -251,7 +251,49 @@ def keyword_and_reranking_search(query, top_k=3, num_candidates=10): print(&#34;
 </li>
 </ul>
 <p> </p>
-<ul class="pa0">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">HybridRetriever</span>(BaseRetriever):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self, texts, metadatas, cohere_api_key, top_k<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>, num_candidates<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>texts <span style="color:#f92672">=</span> texts
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>metadatas <span style="color:#f92672">=</span> metadatas
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>top_k <span style="color:#f92672">=</span> top_k
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>num_candidates <span style="color:#f92672">=</span> num_candidates
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>co <span style="color:#f92672">=</span> cohere<span style="color:#f92672">.</span>Client(cohere_api_key)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 初始化BM25</span>
+</span></span><span style="display:flex;"><span>        tokenized_texts <span style="color:#f92672">=</span> [self<span style="color:#f92672">.</span>_tokenize(text) <span style="color:#66d9ef">for</span> text <span style="color:#f92672">in</span> texts]
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>bm25 <span style="color:#f92672">=</span> BM25Okapi(tokenized_texts)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">_tokenize</span>(self, text):
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 将文本转换为小写；使用空格进行简单分词</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> text<span style="color:#f92672">.</span>lower()<span style="color:#f92672">.</span>split()
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">_get_relevant_documents</span>(self, query, <span style="color:#f92672">**</span>kwargs):
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># BM25初筛</span>
+</span></span><span style="display:flex;"><span>        tokenized_query <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>_tokenize(query)
+</span></span><span style="display:flex;"><span>        scores <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>bm25<span style="color:#f92672">.</span>get_scores(tokenized_query)			<span style="color:#75715e"># 计算所有文档的 BM25 相关性分数</span>
+</span></span><span style="display:flex;"><span>        top_n_indices <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>argsort(scores)[<span style="color:#f92672">-</span>self<span style="color:#f92672">.</span>num_candidates:][::<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]	<span style="color:#75715e"># 选出分数最高</span>
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 准备重排序文档</span>
+</span></span><span style="display:flex;"><span>        candidate_docs <span style="color:#f92672">=</span> [self<span style="color:#f92672">.</span>texts[i] <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> top_n_indices]
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Cohere重排序</span>
+</span></span><span style="display:flex;"><span>        rerank_results <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>co<span style="color:#f92672">.</span>rerank(
+</span></span><span style="display:flex;"><span>            query<span style="color:#f92672">=</span>query,
+</span></span><span style="display:flex;"><span>            documents<span style="color:#f92672">=</span>candidate_docs,
+</span></span><span style="display:flex;"><span>            top_n<span style="color:#f92672">=</span>self<span style="color:#f92672">.</span>top_k,
+</span></span><span style="display:flex;"><span>            model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;rerank-english-v2.0&#34;</span>
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 构建最终文档</span>
+</span></span><span style="display:flex;"><span>        results <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> res <span style="color:#f92672">in</span> rerank_results<span style="color:#f92672">.</span>results:
+</span></span><span style="display:flex;"><span>            doc_index <span style="color:#f92672">=</span> top_n_indices[res<span style="color:#f92672">.</span>index]
+</span></span><span style="display:flex;"><span>            results<span style="color:#f92672">.</span>append(Document(
+</span></span><span style="display:flex;"><span>                page_content<span style="color:#f92672">=</span>self<span style="color:#f92672">.</span>texts[doc_index],
+</span></span><span style="display:flex;"><span>                metadata<span style="color:#f92672">=</span>self<span style="color:#f92672">.</span>metadatas[doc_index]
+</span></span><span style="display:flex;"><span>            ))
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> results
+</span></span></code></pre></div><ul class="pa0">
   
    <li class="list di">
      <a href="/tags/langchain/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">Langchain</a>

@@ -47,8 +47,8 @@
 
   <meta itemprop="name" content="Articles">
   <meta itemprop="description" content="The soul selects her own society, then shuts the door. To her divine majority, present no more.">
-  <meta itemprop="datePublished" content="2025-07-11T11:00:59-04:00">
-  <meta itemprop="dateModified" content="2026-07-11T11:00:59-04:00">
+  <meta itemprop="datePublished" content="2025-07-14T11:00:59-04:00">
+  <meta itemprop="dateModified" content="2026-07-10T11:00:59-04:00">
   <meta itemprop="wordCount" content="2">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Articles">
@@ -157,6 +157,55 @@
       </div>
     
     <h1 class="f3 near-black">
+      <a href="/post/reinforce/" class="link black dim">
+        REINFORCE
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>Q-learning、DQN 算法都是<strong>基于价值</strong>（value-based）的方法</p>
+<ul>
+<li>Q-learning 是处理有限状态的算法</li>
+<li>DQN 可以用来解决连续状态的问题</li>
+</ul>
+<p>在强化学习中，除了基于值函数的方法，还有一支非常经典的方法，那就是<strong>基于策略</strong>（policy-based）的方法。</p>
+<p> </p>
+<p>对比 value-based 和 policy-based</p>
+<ul>
+<li>基于值函数：主要是学习<strong>值函数</strong>，然后根据值函数导出一个策略，学习过程中并不存在一个显式的策略；</li>
+<li>基于策略：直接显式地学习一个<strong>目标策略</strong>。策略梯度是基于策略的方法的基础。</li>
+</ul>
+<p> </p>
+<p> </p>
+<h2 id="1-策略梯度">1. 策略梯度</h2>
+<ul>
+<li>
+<p>将策略参数化：寻找一个最优策略并最大化这个策略在环境中的期望回报，即调整策略参数使平均回报最大化。</p>
+</li>
+<li>
+<p>策略学习的目标函数</p>
+<p><img src="/images/REINFORCE/1.png" alt="1"></p>
+<ul>
+<li>J(θ) 是策略的目标函数（想要最大化的量）；</li>
+<li>πθ 是参数为θ的随机性策略，并且处处可微（可以理解为AI的决策规则）；</li>
+<li>Vπθ(s0) 指从初始状态s₀开始<strong>遵循策略π能获得的预期总回报</strong>；</li>
+<li>Es0 是对所有可能的初始状态求期望。</li>
+</ul>
+</li>
+</ul>
+    </div>
+  <a href="/post/reinforce/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        April 1, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
       <a href="/post/dqn/" class="link black dim">
         DQN (deep Q network)
       </a>
@@ -210,77 +259,6 @@
 </ul>
     </div>
   <a href="/post/qlearing/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        March 31, 2025
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-%E6%98%93%E6%B7%B7%E6%B7%86%E7%82%B9/" class="link black dim">
-        强化学习-易混淆点
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <ol>
-<li>
-<h3 id="gae-和优势函数">GAE 和优势函数</h3>
-<table>
-  <thead>
-      <tr>
-          <th style="text-align: left">概念</th>
-          <th style="text-align: left">说明</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: left"><strong>优势函数 A(s,a)</strong></td>
-          <td style="text-align: left">Q(s,a)−V(s)，衡量动作比平均情况好多少</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><strong>广义优势估计 GAE</strong></td>
-          <td style="text-align: left">一种<strong>计算优势函数</strong>方法，用TD误差的加权和估计优势，超参数 λ 控制偏差-方差权衡</td>
-      </tr>
-  </tbody>
-</table>
-</li>
-</ol>
-<p> </p>
-<ol start="2">
-<li>
-<h3 id="状态价值函数-vs-动作价值函数">状态价值函数 vs 动作价值函数</h3>
-<ol>
-<li>
-<p><strong>状态价值函数</strong></p>
-<p><img src="/images/RLconfused/1.png" alt="1"></p>
-</li>
-<li>
-<p><strong>动作价值函数</strong></p>
-<p><img src="/images/RLconfused/2.png" alt="2"></p>
-</li>
-<li>
-<p><strong>优势函数</strong></p>
-<p><strong>在状态 s 下选择动作 a 比平均情况（即遵循当前策略）好多少</strong></p>
-<p>A(s,a)=Q(s,a)−V(s)</p>
-<ul>
-<li>求解优势函数：<strong>广义优势估计</strong>(GAE)</li>
-</ul>
-</li>
-<li>
-<p><strong>广义优势估计</strong>(GAE)</p>
-<p>通过指数加权平均不同步长的优势估计（从1步到无穷步），结合γ和λ的幂次衰减，实现平滑的回报估计。</p>
-<p><img src="/images/RLconfused/5.png" alt="5"></p>
-</li>
-</ol>
-</li>
-</ol>
-    </div>
-  <a href="/post/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-%E6%98%93%E6%B7%B7%E6%B7%86%E7%82%B9/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
   </div>
 
         </div>

@@ -47,8 +47,8 @@
 
   <meta itemprop="name" content="Articles">
   <meta itemprop="description" content="The soul selects her own society, then shuts the door. To her divine majority, present no more.">
-  <meta itemprop="datePublished" content="2025-07-11T11:00:59-04:00">
-  <meta itemprop="dateModified" content="2026-07-11T11:00:59-04:00">
+  <meta itemprop="datePublished" content="2025-07-14T11:00:59-04:00">
+  <meta itemprop="dateModified" content="2026-07-10T11:00:59-04:00">
   <meta itemprop="wordCount" content="2">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Articles">
@@ -148,6 +148,57 @@
 
     </section>
     <aside class="flex-ns flex-wrap justify-around mt5">
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        February 17, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/bev%E8%AE%BA%E6%96%87%E5%AD%A6%E4%B9%A0/" class="link black dim">
+        BEV 论文学习
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <h2 id="vision-centric-bev-perception-a-survey">Vision-Centric BEV Perception: A Survey</h2>
+<p>许多方法被提出以<strong>解决从透视视图（Perspective View, PV）到 BEV 的转换问题</strong>，本文将它们分为基于几何、基于深度、基于 MLP 和基于 Transformer 的四类方法。</p>
+<p>此外，本文还探讨了 BEV 感知的扩展应用，如多任务学习、多模态融合和语义占据预测等。</p>
+<h4 id="1-背景介绍">1. 背景介绍</h4>
+<p>BEV 感知的核心任务是将 PV 中的<strong>图像序列转换为BEV特征，并在BEV空间中进行感知任务</strong>（如3D目标检测和语义地图生成），能够提供精确的定位和绝对尺度信息，便于多视图、多模态和时间序列数据的融合。</p>
+<p>但由于摄像头通常安装在车辆上，捕捉到的图像是透视视图，如何将 PV 转换为 BEV 仍然是一个具有挑战性的问题。</p>
+<h4 id="3-主要方法分类">3. 主要方法分类</h4>
+<ol>
+<li>
+<p><strong>基于几何的方法</strong></p>
+<ul>
+<li><strong>优势</strong>：这类方法主要依赖于<strong>逆透视映射（IPM）</strong>，通过几何变换将 PV 图像转换为 BEV 图像。</li>
+<li><strong>缺陷</strong>：但 IPM 假设地面是平坦的，因此在复杂场景中（如存在高度变化的物体）会产生失真。为了减少失真，一些方法引入了<strong>语义信息</strong>或使用 <strong>GAN</strong> 。</li>
+</ul>
+</li>
+<li>
+<p><strong>基于深度的方法</strong></p>
+<p>通过深度估计将 2D 特征提升到 3D 空间，然后通过降维得到 BEV 表示。深度估计可以是显式的（如通过深度图）或隐式的（如通过任务监督）。</p>
+<ul>
+<li><strong>点云方法</strong>：将深度图转换为伪 LiDAR 点云，然后使用 LiDAR 检测器进行 3D 检测</li>
+<li><strong>体素方法</strong>：将 2D 特征映射到 3D 体素空间，并通过体素特征进行 BEV 感知</li>
+</ul>
+</li>
+<li>
+<p><strong>基于MLP的方法</strong></p>
+<ul>
+<li><strong>优势</strong>：MLP 方法不依赖于摄像头的几何参数，而是通过学习隐式表示来完成视图转换。</li>
+<li><strong>缺陷</strong>：尽管 MLP 具有通用逼近能力，但由于缺乏深度信息和遮挡问题，视图转换仍然具有挑战性。</li>
+</ul>
+</li>
+<li>
+<p><strong>基于Transformer的方法</strong>：</p>
+    </div>
+  <a href="/post/bev%E8%AE%BA%E6%96%87%E5%AD%A6%E4%B9%A0/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
       
         <div class="relative w-100 w-30-l mb4 bg-white">
             <div class="mb3 pa4 mid-gray overflow-hidden">
@@ -302,41 +353,6 @@
 </ol>
     </div>
   <a href="/post/%E7%AE%97%E6%B3%95-c&#43;&#43;hash/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        February 12, 2025
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/%E7%AE%97%E6%B3%95%E9%A2%98/" class="link black dim">
-        「持续更新」算法题笔记
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <h3 id="万能开头">万能开头</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#75715e">#include&lt;bits/stdc++.h&gt;
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
-</span></span></code></pre></div><p>在 C++ 中，<code>using namespace std;</code>指令允许用户使用 std 命名空间中的所有标识符，而无需在它们前面加上<code> std::</code>。</p>
-<p> </p>
-<p> </p>
-<h1 id="leetcode-hot-100">leetcode hot 100</h1>
-<h2 id="hash">hash</h2>
-<ol>
-<li>
-<h4 id="两数之和">两数之和</h4>
-<p><strong>题目描述</strong>：给定一个整数数组 <code>nums</code> 和一个整数目标值 <code>target</code>，请你在该数组中找出 <strong>和为目标值</strong> <em><code>target</code></em> 的那 <strong>两个</strong> 整数，并返回它们的数组下标。</p>
-<p><strong>方法</strong>：找数 <code>x</code>，寻找数组中是否存在 <code>target - x</code>。</p>
-<p>使用哈希表，可以将寻找 <code>target - x</code>的时间复杂度降低到从 O(N) 降低到 O(1) —— 创建一个哈希表，对于每一个 <code>x</code>，我们首先查询哈希表中是否存在 <code>target - x</code>，然后将 <code>x</code>插入到哈希表中，即可保证不会让 <code>x</code>和自己匹配。</p>
-</li>
-</ol>
-    </div>
-  <a href="/post/%E7%AE%97%E6%B3%95%E9%A2%98/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
   </div>
 
         </div>

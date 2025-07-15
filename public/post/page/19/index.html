@@ -47,8 +47,8 @@
 
   <meta itemprop="name" content="Articles">
   <meta itemprop="description" content="The soul selects her own society, then shuts the door. To her divine majority, present no more.">
-  <meta itemprop="datePublished" content="2025-07-11T11:00:59-04:00">
-  <meta itemprop="dateModified" content="2026-07-11T11:00:59-04:00">
+  <meta itemprop="datePublished" content="2025-07-14T11:00:59-04:00">
+  <meta itemprop="dateModified" content="2026-07-10T11:00:59-04:00">
   <meta itemprop="wordCount" content="2">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Articles">
@@ -153,6 +153,63 @@
             <div class="mb3 pa4 mid-gray overflow-hidden">
     
       <div class="f6">
+        March 11, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/%E7%AE%97%E6%B3%95%E6%A8%A1%E7%89%88-%E5%9B%BE/" class="link black dim">
+        「算法模版」图
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <h2 id="存储图">存储图</h2>
+<ol>
+<li>
+<h4 id="邻接矩阵">邻接矩阵</h4>
+</li>
+<li>
+<h4 id="邻接表">邻接表</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#75715e">// 对于每个点k，开一个单链表，存储k所有可以走到的点
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// h[k]存储这个单链表的头结点
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> h[N], e[N], ne[N], idx;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 添加一条边a-&gt;b
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">int</span> a, <span style="color:#66d9ef">int</span> b)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    e[idx] <span style="color:#f92672">=</span> b, ne[idx] <span style="color:#f92672">=</span> h[a], h[a] <span style="color:#f92672">=</span> idx <span style="color:#f92672">++</span> ;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 初始化
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>idx <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>memset(h, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#66d9ef">sizeof</span> h);
+</span></span></code></pre></div></li>
+</ol>
+<p> </p>
+<h2 id="回溯算法">回溯算法</h2>
+<p>回溯法：一种通过探索所有可能的候选解来找出所有的解的算法。如果候选解被确认不是一个解（或者至少不是最后一个解），回溯算法会通过在上一步进行一些变化抛弃该解，即回溯并且再次尝试。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">backtracking</span>(<span style="color:#960050;background-color:#1e0010">参数</span>) {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (<span style="color:#960050;background-color:#1e0010">终止条件</span>) {
+</span></span><span style="display:flex;"><span>		<span style="color:#960050;background-color:#1e0010">存放结果</span>;
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> (<span style="color:#960050;background-color:#1e0010">选择</span> <span style="color:#f92672">:</span> <span style="color:#960050;background-color:#1e0010">本层集合中的元素</span>) {
+</span></span><span style="display:flex;"><span>		<span style="color:#960050;background-color:#1e0010">处理节点</span>;
+</span></span><span style="display:flex;"><span>		backtracking(<span style="color:#960050;background-color:#1e0010">路径</span>, <span style="color:#960050;background-color:#1e0010">选择列表</span>); <span style="color:#75715e">// 递归
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#960050;background-color:#1e0010">撤销处理</span>; <span style="color:#75715e">// 回溯
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
+    </div>
+  <a href="/post/%E7%AE%97%E6%B3%95%E6%A8%A1%E7%89%88-%E5%9B%BE/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
         February 21, 2025
       </div>
     
@@ -238,57 +295,6 @@
 </ul>
     </div>
   <a href="/post/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        February 17, 2025
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/bev%E8%AE%BA%E6%96%87%E5%AD%A6%E4%B9%A0/" class="link black dim">
-        BEV 论文学习
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <h2 id="vision-centric-bev-perception-a-survey">Vision-Centric BEV Perception: A Survey</h2>
-<p>许多方法被提出以<strong>解决从透视视图（Perspective View, PV）到 BEV 的转换问题</strong>，本文将它们分为基于几何、基于深度、基于 MLP 和基于 Transformer 的四类方法。</p>
-<p>此外，本文还探讨了 BEV 感知的扩展应用，如多任务学习、多模态融合和语义占据预测等。</p>
-<h4 id="1-背景介绍">1. 背景介绍</h4>
-<p>BEV 感知的核心任务是将 PV 中的<strong>图像序列转换为BEV特征，并在BEV空间中进行感知任务</strong>（如3D目标检测和语义地图生成），能够提供精确的定位和绝对尺度信息，便于多视图、多模态和时间序列数据的融合。</p>
-<p>但由于摄像头通常安装在车辆上，捕捉到的图像是透视视图，如何将 PV 转换为 BEV 仍然是一个具有挑战性的问题。</p>
-<h4 id="3-主要方法分类">3. 主要方法分类</h4>
-<ol>
-<li>
-<p><strong>基于几何的方法</strong></p>
-<ul>
-<li><strong>优势</strong>：这类方法主要依赖于<strong>逆透视映射（IPM）</strong>，通过几何变换将 PV 图像转换为 BEV 图像。</li>
-<li><strong>缺陷</strong>：但 IPM 假设地面是平坦的，因此在复杂场景中（如存在高度变化的物体）会产生失真。为了减少失真，一些方法引入了<strong>语义信息</strong>或使用 <strong>GAN</strong> 。</li>
-</ul>
-</li>
-<li>
-<p><strong>基于深度的方法</strong></p>
-<p>通过深度估计将 2D 特征提升到 3D 空间，然后通过降维得到 BEV 表示。深度估计可以是显式的（如通过深度图）或隐式的（如通过任务监督）。</p>
-<ul>
-<li><strong>点云方法</strong>：将深度图转换为伪 LiDAR 点云，然后使用 LiDAR 检测器进行 3D 检测</li>
-<li><strong>体素方法</strong>：将 2D 特征映射到 3D 体素空间，并通过体素特征进行 BEV 感知</li>
-</ul>
-</li>
-<li>
-<p><strong>基于MLP的方法</strong></p>
-<ul>
-<li><strong>优势</strong>：MLP 方法不依赖于摄像头的几何参数，而是通过学习隐式表示来完成视图转换。</li>
-<li><strong>缺陷</strong>：尽管 MLP 具有通用逼近能力，但由于缺乏深度信息和遮挡问题，视图转换仍然具有挑战性。</li>
-</ul>
-</li>
-<li>
-<p><strong>基于Transformer的方法</strong>：</p>
-    </div>
-  <a href="/post/bev%E8%AE%BA%E6%96%87%E5%AD%A6%E4%B9%A0/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
   </div>
 
         </div>

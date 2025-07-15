@@ -47,8 +47,8 @@
 
   <meta itemprop="name" content="Articles">
   <meta itemprop="description" content="The soul selects her own society, then shuts the door. To her divine majority, present no more.">
-  <meta itemprop="datePublished" content="2025-07-11T11:00:59-04:00">
-  <meta itemprop="dateModified" content="2026-07-11T11:00:59-04:00">
+  <meta itemprop="datePublished" content="2025-07-14T11:00:59-04:00">
+  <meta itemprop="dateModified" content="2026-07-10T11:00:59-04:00">
   <meta itemprop="wordCount" content="2">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Articles">
@@ -153,6 +153,61 @@
             <div class="mb3 pa4 mid-gray overflow-hidden">
     
       <div class="f6">
+        April 11, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/%E6%95%B0%E6%8D%AE%E9%9B%86-nusences/" class="link black dim">
+        数据集-NuSences
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <ol>
+<li>
+<h4 id="内容">内容</h4>
+<p>nuScenes 包含 1000 个场景，大约 1.4M 的相机图像、390k LIDAR 扫描、1.4M 雷达扫描和 40k 关键帧中的 1.4M 对象边界框。</p>
+<p>nuScenes-lidarseg 包含 40000 个点云和 1000 个场景（850 个用于训练和验证的场景，以及 150 个用于测试的场景）中的 14 亿个注释点。</p>
+<p> </p>
+</li>
+<li>
+<h4 id="数据采集">数据采集</h4>
+<ol>
+<li>
+<p><strong>车辆设置</strong></p>
+<p><img src="/images/nuSences/1.png" alt="1"></p>
+<ol>
+<li>1 个旋转激光雷达 （Velodyne HDL32E）</li>
+<li>5 个远程雷达传感器 （Continental ARS 408-21）</li>
+<li>6 个相机 （Basler acA1600-60gc）</li>
+<li>1个 IMU &amp; GPS （高级导航空间版）</li>
+</ol>
+</li>
+<li>
+<p><strong>Sensor(传感器)校准 - 内外参</strong></p>
+<ol>
+<li>LIDAR extrinsics</li>
+<li>相机 extrinsics</li>
+<li>RADAR extrinsics</li>
+<li>相机 intrinsic 校准</li>
+</ol>
+</li>
+<li>
+<p><strong>Sensor(传感器)同步</strong></p>
+<p>实现跨模态数据对齐：当顶部 LIDAR 扫描相机 FOV 的中心时，会触发相机的曝光</p>
+</li>
+</ol>
+</li>
+</ol>
+    </div>
+  <a href="/post/%E6%95%B0%E6%8D%AE%E9%9B%86-nusences/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
         April 6, 2025
       </div>
     
@@ -229,65 +284,6 @@
 </ul>
     </div>
   <a href="/post/%E5%B7%A5%E5%85%B7%E9%93%BE-%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        April 3, 2025
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/ppo/" class="link black dim">
-        PPO
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <h2 id="1-论文详读">1. 论文详读</h2>
-<p><a href="https://arxiv.org/abs/1707.06347">Proximal Policy Optimization Algorithms</a>（Proximal：近似）</p>
-<h2 id="2-ppo">2. PPO</h2>
-<h4 id="回顾-trpo">回顾 TRPO</h4>
-<ul>
-<li>
-<p>使用 KL 散度约束 policy 的更新幅度；使用重要性采样</p>
-<p><strong>缺点</strong>：近似会带来误差（重要性采样的通病）；解带约束的优化问题困难</p>
-</li>
-<li>
-<h4 id="ppo-的改进">PPO 的改进</h4>
-<ol>
-<li>
-<p>TRPO 采用重要性采样 &mdash;-&gt; PPO 采用 <strong>clip 截断</strong>，限制新旧策略差异，避免更新过大。</p>
-</li>
-<li>
-<p>优势函数 At 选用多步时序差分</p>
-</li>
-<li>
-<p>自适应的 KL 惩罚项</p>
-</li>
-</ol>
-</li>
-</ul>
-<ol>
-<li>
-<p><strong>Critic网络训练</strong>：</p>
-<p>通过最小化<code>critic_loss = MSE(critic(states), td_target)</code>，让critic的价值估计更准确</p>
-</li>
-<li>
-<p><strong>Actor网络更新</strong>：</p>
-<ul>
-<li>TD误差的广义形式(GAE)被用作优势函数，指导策略更新方向</li>
-<li>优势函数越大，表示该动作比平均表现更好，应被加强</li>
-</ul>
-</li>
-</ol>
-<p> </p>
-<h2 id="3-ppo-惩罚">3. PPO-惩罚</h2>
-<p>PPO-惩罚（PPO-Penalty）：用拉格朗日乘数法将 KL 散度的限制放进了目标函数中，使其变成了一个无约束的优化问题，在迭代的过程中不断更新 KL 散度前的系数 beta。</p>
-    </div>
-  <a href="/post/ppo/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
   </div>
 
         </div>

@@ -47,8 +47,8 @@
 
   <meta itemprop="name" content="Articles">
   <meta itemprop="description" content="The soul selects her own society, then shuts the door. To her divine majority, present no more.">
-  <meta itemprop="datePublished" content="2025-07-11T11:00:59-04:00">
-  <meta itemprop="dateModified" content="2026-07-11T11:00:59-04:00">
+  <meta itemprop="datePublished" content="2025-07-14T11:00:59-04:00">
+  <meta itemprop="dateModified" content="2026-07-10T11:00:59-04:00">
   <meta itemprop="wordCount" content="2">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Articles">
@@ -153,6 +153,52 @@
             <div class="mb3 pa4 mid-gray overflow-hidden">
     
       <div class="f6">
+        June 23, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/langchain-textsplitter/" class="link black dim">
+        langchain - text_splitter
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> os
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain.text_splitter <span style="color:#f92672">import</span> (
+</span></span><span style="display:flex;"><span>    CharacterTextSplitter,
+</span></span><span style="display:flex;"><span>    RecursiveCharacterTextSplitter,
+</span></span><span style="display:flex;"><span>    SentenceTransformersTokenTextSplitter,
+</span></span><span style="display:flex;"><span>    TextSplitter,
+</span></span><span style="display:flex;"><span>    TokenTextSplitter,
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_community.document_loaders <span style="color:#f92672">import</span> TextLoader
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_community.vectorstores <span style="color:#f92672">import</span> Chroma
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_openai <span style="color:#f92672">import</span> OpenAIEmbeddings
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Define the directory containing the text file</span>
+</span></span><span style="display:flex;"><span>current_dir <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>dirname(os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>abspath(__file__))
+</span></span><span style="display:flex;"><span>file_path <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(current_dir, <span style="color:#e6db74">&#34;books&#34;</span>, <span style="color:#e6db74">&#34;romeo_and_juliet.txt&#34;</span>)
+</span></span><span style="display:flex;"><span>db_dir <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(current_dir, <span style="color:#e6db74">&#34;db&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Check if the text file exists</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>exists(file_path):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">FileNotFoundError</span>(
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;The file </span><span style="color:#e6db74">{</span>file_path<span style="color:#e6db74">}</span><span style="color:#e6db74"> does not exist. Please check the path.&#34;</span>
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Read the text content from the file</span>
+</span></span><span style="display:flex;"><span>loader <span style="color:#f92672">=</span> TextLoader(file_path)
+</span></span><span style="display:flex;"><span>documents <span style="color:#f92672">=</span> loader<span style="color:#f92672">.</span>load()
+</span></span></code></pre></div>
+    </div>
+  <a href="/post/langchain-textsplitter/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
         June 20, 2025
       </div>
     
@@ -206,39 +252,6 @@
 </span></span></code></pre></div>
     </div>
   <a href="/post/langchain-rag/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        June 17, 2025
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/%E4%B9%A6%E7%B1%8D%E9%98%85%E8%AF%BB%E8%B4%AA%E5%A9%AA%E7%9A%84%E5%A4%9A%E5%B7%B4%E8%83%BA/" class="link black dim">
-        「书籍阅读」《贪婪的多巴胺》利伯曼
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <ul>
-<li>魅力创造了不能被满足的欲望，因为这种欲望的对象只存在于想象之中。魅力就是一个谎言。</li>
-</ul>
-<p> </p>
-<ul>
-<li>
-<p>未来不是真实的，它由一系列只存在于我们大脑中的可能性组成。这些可能性往往过于理想化，因为我们通常不会想象一个平庸的结果。在所有可能的世界中，我们倾向于考虑最好的那一个，这使得未来更具吸引力。</p>
-<p>而当未来变成了现在，兴奋、热情和充满精力的感觉消散了，多巴胺停止工作了。这样很多人感到失望，他们过于依附于多巴胺能的刺激，让自己逃离了现在，躲在自己想象的舒适世界里。“明天我们做什么？”他们一边咀嚼食物一边问自己，忘记了——他们也曾热切期待着这顿饭，但现在却对它视而不见。充满希望的旅途要比到达目的地更快乐。</p>
-</li>
-</ul>
-<p> </p>
-<ul>
-<li></li>
-</ul>
-    </div>
-  <a href="/post/%E4%B9%A6%E7%B1%8D%E9%98%85%E8%AF%BB%E8%B4%AA%E5%A9%AA%E7%9A%84%E5%A4%9A%E5%B7%B4%E8%83%BA/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
   </div>
 
         </div>

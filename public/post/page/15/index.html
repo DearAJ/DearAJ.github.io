@@ -47,8 +47,8 @@
 
   <meta itemprop="name" content="Articles">
   <meta itemprop="description" content="The soul selects her own society, then shuts the door. To her divine majority, present no more.">
-  <meta itemprop="datePublished" content="2025-07-11T11:00:59-04:00">
-  <meta itemprop="dateModified" content="2026-07-11T11:00:59-04:00">
+  <meta itemprop="datePublished" content="2025-07-14T11:00:59-04:00">
+  <meta itemprop="dateModified" content="2026-07-10T11:00:59-04:00">
   <meta itemprop="wordCount" content="2">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Articles">
@@ -153,6 +153,77 @@
             <div class="mb3 pa4 mid-gray overflow-hidden">
     
       <div class="f6">
+        March 31, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-%E6%98%93%E6%B7%B7%E6%B7%86%E7%82%B9/" class="link black dim">
+        强化学习-易混淆点
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <ol>
+<li>
+<h3 id="gae-和优势函数">GAE 和优势函数</h3>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">概念</th>
+          <th style="text-align: left">说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><strong>优势函数 A(s,a)</strong></td>
+          <td style="text-align: left">Q(s,a)−V(s)，衡量动作比平均情况好多少</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>广义优势估计 GAE</strong></td>
+          <td style="text-align: left">一种<strong>计算优势函数</strong>方法，用TD误差的加权和估计优势，超参数 λ 控制偏差-方差权衡</td>
+      </tr>
+  </tbody>
+</table>
+</li>
+</ol>
+<p> </p>
+<ol start="2">
+<li>
+<h3 id="状态价值函数-vs-动作价值函数">状态价值函数 vs 动作价值函数</h3>
+<ol>
+<li>
+<p><strong>状态价值函数</strong></p>
+<p><img src="/images/RLconfused/1.png" alt="1"></p>
+</li>
+<li>
+<p><strong>动作价值函数</strong></p>
+<p><img src="/images/RLconfused/2.png" alt="2"></p>
+</li>
+<li>
+<p><strong>优势函数</strong></p>
+<p><strong>在状态 s 下选择动作 a 比平均情况（即遵循当前策略）好多少</strong></p>
+<p>A(s,a)=Q(s,a)−V(s)</p>
+<ul>
+<li>求解优势函数：<strong>广义优势估计</strong>(GAE)</li>
+</ul>
+</li>
+<li>
+<p><strong>广义优势估计</strong>(GAE)</p>
+<p>通过指数加权平均不同步长的优势估计（从1步到无穷步），结合γ和λ的幂次衰减，实现平滑的回报估计。</p>
+<p><img src="/images/RLconfused/5.png" alt="5"></p>
+</li>
+</ol>
+</li>
+</ol>
+    </div>
+  <a href="/post/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-%E6%98%93%E6%B7%B7%E6%B7%86%E7%82%B9/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
         March 30, 2025
       </div>
     
@@ -231,45 +302,6 @@
 <p>强化学习目标：训练一个Policy神经网络π，在所有状态S下，给出相应的Action，得到Return的期望最大。</p>
     </div>
   <a href="/post/ppo-%E5%8E%9F%E7%90%86/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        March 29, 2025
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2/" class="link black dim">
-        语义分割
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p>语义分割将图片中的<strong>每个像素</strong>分类到对应的类别。</p>
-<p><img src="/images/SemanticSegmentation/1.png" alt="1"></p>
-<ul>
-<li>
-<p><strong>应用</strong>：</p>
-<p>背景虚化、路面分割、实例分割(会关注具体是哪个个体，如 Mask R-CNN)、全景分割（还要对背景进行分割，如 Panoptic FPN）</p>
-</li>
-<li>
-<p><strong>常见模型</strong></p>
-<p><img src="/images/SemanticSegmentation/5.png" alt="5"></p>
-</li>
-<li>
-<p><strong>语义分割任务常见的数据集格式</strong></p>
-<ul>
-<li><strong>PASCAL VOC</strong>：PNG图片 + 每个像素的类别信息（每个像素都对应一个颜色）</li>
-<li><strong>MS COCO</strong>：每个目标都记录了一个多边形坐标，将所有的点连一起，即可得到边缘信息(还可以用于实例分析)</li>
-<li><strong>语义分割得到的具体形式</strong>：单通道图片，加上调色板 mask 蒙版后可以上色（palette），方便可视化。每个像素数值对应类别索引。</li>
-</ul>
-</li>
-</ul>
-    </div>
-  <a href="/post/%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
   </div>
 
         </div>

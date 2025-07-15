@@ -40,15 +40,16 @@
   <meta property="og:locale" content="en_US">
   <meta property="og:type" content="article">
     <meta property="article:section" content="post">
-    <meta property="article:published_time" content="2025-07-11T11:00:59-04:00">
-    <meta property="article:modified_time" content="2025-07-11T11:00:59-04:00">
+    <meta property="article:published_time" content="2025-07-14T11:00:59-04:00">
+    <meta property="article:modified_time" content="2025-07-14T11:00:59-04:00">
     <meta property="article:tag" content="Pytorch">
     <meta property="article:tag" content="AI Infra">
 
   <meta itemprop="name" content="分布式并行训练 - FSDP">
   <meta itemprop="description" content="https://docs.pytorch.org/tutorials/distributed/home.html">
-  <meta itemprop="datePublished" content="2025-07-11T11:00:59-04:00">
-  <meta itemprop="dateModified" content="2025-07-11T11:00:59-04:00">
+  <meta itemprop="datePublished" content="2025-07-14T11:00:59-04:00">
+  <meta itemprop="dateModified" content="2025-07-14T11:00:59-04:00">
+  <meta itemprop="wordCount" content="779">
   <meta itemprop="keywords" content="Pytorch,AI Infra">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="分布式并行训练 - FSDP">
@@ -170,7 +171,7 @@
         <span class="icon">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M407.8 294.7c-3.3-.4-6.7-.8-10-1.3c3.4 .4 6.7 .9 10 1.3zM288 227.1C261.9 176.4 190.9 81.9 124.9 35.3C61.6-9.4 37.5-1.7 21.6 5.5C3.3 13.8 0 41.9 0 58.4S9.1 194 15 213.9c19.5 65.7 89.1 87.9 153.2 80.7c3.3-.5 6.6-.9 10-1.4c-3.3 .5-6.6 1-10 1.4C74.3 308.6-9.1 342.8 100.3 464.5C220.6 589.1 265.1 437.8 288 361.1c22.9 76.7 49.2 222.5 185.6 103.4c102.4-103.4 28.1-156-65.8-169.9c-3.3-.4-6.7-.8-10-1.3c3.4 .4 6.7 .9 10 1.3c64.1 7.1 133.6-15.1 153.2-80.7C566.9 194 576 75 576 58.4s-3.3-44.7-21.6-52.9c-15.8-7.1-40-14.9-103.2 29.8C385.1 81.9 314.1 176.4 288 227.1z"/></svg>
                 
-              </span></a><a href="https://www.linkedin.com/shareArticle?&amp;mini=true&amp;source=http%3A%2F%2Flocalhost%3A1313%2Fpost%2F%25E5%2588%2586%25E5%25B8%2583%25E5%25BC%258F%25E5%25B9%25B6%25E8%25A1%258C%25E8%25AE%25AD%25E7%25BB%2583-fsdp%2F&amp;summary=&amp;title=%E5%88%86%E5%B8%83%E5%BC%8F%E5%B9%B6%E8%A1%8C%E8%AE%AD%E7%BB%83&#43;-&#43;FSDP&amp;url=http%3A%2F%2Flocalhost%3A1313%2Fpost%2F%25E5%2588%2586%25E5%25B8%2583%25E5%25BC%258F%25E5%25B9%25B6%25E8%25A1%258C%25E8%25AE%25AD%25E7%25BB%2583-fsdp%2F"
+              </span></a><a href="https://www.linkedin.com/shareArticle?&amp;mini=true&amp;source=http%3A%2F%2Flocalhost%3A1313%2Fpost%2F%25E5%2588%2586%25E5%25B8%2583%25E5%25BC%258F%25E5%25B9%25B6%25E8%25A1%258C%25E8%25AE%25AD%25E7%25BB%2583-fsdp%2F&amp;summary=Fully&#43;Sharded&#43;Data&#43;Parallel&#43;DDP&#43;%E5%9B%9E%E9%A1%BE&#43;%E5%90%8D%E8%AF%8D%E8%A7%A3%E9%87%8A%0AHost%EF%BC%9A%E5%8F%AF%E4%BB%A5%E7%90%86%E8%A7%A3%E4%B8%BA%E2%BC%80%E5%8F%B0%E4%B8%BB%E6%9C%BA%EF%BC%8C%E6%AF%8F%E4%B8%AA%E4%B8%BB%E6%9C%BA%E6%9C%89%E2%BE%83%E2%BC%B0%E7%9A%84IP%E5%9C%B0%E5%9D%80%EF%BC%8C%E2%BD%A4%E4%BA%8E%E9%80%9A%E4%BF%A1%E3%80%82%0ALocal&#43;Rank%EF%BC%9A%E6%AF%8F%E4%B8%AA%E4%B8%BB%E6%9C%BA%E4%B8%8A%EF%BC%8C%E5%AF%B9%E4%B8%8D%E5%90%8CGPU%E8%AE%BE%E5%A4%87%E7%9A%84%E7%BC%96%E3%80%82%0AGlobal&#43;Rank%EF%BC%9A%E5%85%A8%E5%B1%80%E7%9A%84GPU%E8%AE%BE%E5%A4%87%E7%BC%96%E5%8F%B7%EF%BC%8CGlobal&#43;Rank&#43;%3D&#43;Host&#43;%2A&#43;num&#43;GPUs&#43;per&#43;host&#43;%2B&#43;Local&#43;Rank%E3%80%82%0AWorldsize%EF%BC%9A%E6%80%BB%E7%9A%84GPU%E4%B8%AA%E6%95%B0%E3%80%82num&#43;Hosts&#43;%2A&#43;num&#43;GPUs&#43;per&#43;host%0ADDP&#43;%E5%8F%82%E6%95%B0%E6%9B%B4%E6%96%B0%E8%BF%87%E7%A8%8B&#43;&amp;title=%E5%88%86%E5%B8%83%E5%BC%8F%E5%B9%B6%E8%A1%8C%E8%AE%AD%E7%BB%83&#43;-&#43;FSDP&amp;url=http%3A%2F%2Flocalhost%3A1313%2Fpost%2F%25E5%2588%2586%25E5%25B8%2583%25E5%25BC%258F%25E5%25B9%25B6%25E8%25A1%258C%25E8%25AE%25AD%25E7%25BB%2583-fsdp%2F"
         class="ananke-social-link linkedin no-underline"
         title="Share on LinkedIn" aria-label="Share on LinkedIn"
         target="_blank" rel="nofollow noopener noreferrer">
@@ -182,13 +183,346 @@
       
       
       
-      <time class="f6 mv4 dib tracked" datetime="2025-07-11T11:00:59-04:00">July 11, 2025</time>
+      <time class="f6 mv4 dib tracked" datetime="2025-07-14T11:00:59-04:00">July 14, 2025</time>
       
 
       
       
     </header>
-    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><ul class="pa0">
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><h2 id="fully-sharded-data-parallel">Fully Sharded Data Parallel</h2>
+<h3 id="ddp-回顾">DDP 回顾</h3>
+<ul>
+<li>
+<p>名词解释</p>
+<p><img src="/images/DPT-FSDP/0.0.png" alt="0.0"></p>
+<p><strong>Host</strong>：可以理解为⼀台主机，每个主机有⾃⼰的IP地址，⽤于通信。</p>
+<p><strong>Local Rank</strong>：每个主机上，对不同GPU设备的编。</p>
+<p><strong>Global Rank</strong>：全局的GPU设备编号，Global Rank = Host * num GPUs per host + Local Rank。</p>
+<p><strong>Worldsize</strong>：总的GPU个数。num Hosts * num GPUs per host</p>
+</li>
+</ul>
+<h4 id="ddp-参数更新过程">DDP 参数更新过程</h4>
+<p><img src="/images/DPT-FSDP/0.png" alt="0"></p>
+<ul>
+<li>
+<p><strong>all-reduce 操作</strong>：同步，将所有GPU设备上的梯度进⾏求和取平均</p>
+<p><img src="/images/DPT-FSDP/0.1.png" alt="0.1"></p>
+</li>
+</ul>
+<p><strong>缺点</strong>：每个设备都要进行设备的拷贝，存在模型的冗余</p>
+<p> </p>
+<h3 id="fsdp2-的工作原理">FSDP2 的工作原理</h3>
+<p>与 DDP 相比，FSDP 通过<strong>分片</strong>模型的参数、梯度和优化器状态来减少 GPU 内存占用，通过通信操作(all-gather/reduce-scatter)<strong>在计算需要时重建完整参数</strong>:</p>
+<p><img src="/Users/aijunyang/DearAJ.github.io/static/images/DPT-FSDP/3.jpg" alt="3"></p>
+<ol>
+<li>
+<p><strong>常规状态（非计算时）</strong>：所有参数默认保持&quot;分片&quot;状态（即被分散存储在不同设备上）</p>
+</li>
+<li>
+<p><strong>前向/反向计算准备阶段</strong>；当需要计算时，系统会通过 <em>all-gather</em> 操作从所有设备收集参数分片，<strong>所有GPU均拥有完整的参数副本</strong>，但<strong>每个GPU处理的数据不同</strong>。</p>
+<p>在同一轮前向传播和反向传播中，同一个GPU处理的始终是同一个Batch的数据</p>
+</li>
+<li>
+<p><strong>反向传播阶段</strong>：计算得到完整的本地梯度后，使用 <em>reduce-scatter</em> 操作将梯度重新分散到各设备，每个设备最终只保留自己负责的那部分梯度</p>
+<ul>
+<li><strong>Reduce（聚合）</strong>：对所有GPU的梯度 <strong>按元素相加</strong>，得到全局梯度 <code>G_total = G0 + G1 + ...</code>。</li>
+</ul>
+<ul>
+<li><strong>Scatter（分片）</strong>：将 <code>G_total</code> 按参数分片规则拆分，每个GPU只保留自己负责的部分。</li>
+</ul>
+<pre tabindex="0"><code>GPU0: [G0] --\      /-- [G_total_part0] → GPU0
+GPU1: [G1] ---⊕--&gt; | -- [G_total_part1] → GPU1
+GPU2: [G2] ---/      \-- [G_total_part2] → GPU2
+</code></pre></li>
+<li>
+<p><strong>参数更新阶段</strong>：每个设备只更新自己持有的那部分参数（参数分片）、只使用对应的梯度分片，优化器状态也是分片存储的。</p>
+</li>
+</ol>
+<p><img src="/Users/aijunyang/DearAJ.github.io/static/images/DPT-FSDP/1.png" alt="1"></p>
+<ul>
+<li>
+<h4 id="完整过程">完整过程</h4>
+<ul>
+<li>
+<p><strong>Constructor</strong></p>
+<p>对模型参数进行切片分发到每个rank上</p>
+</li>
+<li>
+<p><strong>Forward pass</strong></p>
+<ol>
+<li>对每个 FSDP unit，运行 all_gather 收集所有 rank 上的模型参数切片，使每个 rank 上拥有当前 unit 的全部参数</li>
+<li>执行前向计算</li>
+<li>重新执行切片，丢掉不属于当前rank的模型参数，释放 memory</li>
+</ol>
+</li>
+<li>
+<p><strong>Backward pass (梯度)</strong></p>
+<ol>
+<li>对每个 FSDP unit，运行 all_gather 收集所有 rank 上的模型参数切片</li>
+<li>执行反向计算</li>
+<li>重新执行切片丢掉不属于当前 rank 的模型参数，释放 memory</li>
+<li>执行 reduce_scatter，在不同的 rank 间同步梯度</li>
+</ol>
+</li>
+<li>
+<p><strong>Optimizer updates (优化器状态)</strong></p>
+<p>每个 rank 对属于自己的局部梯度的分片进行更新</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>FSDP 可以被视为 <strong>DDP 的 all-reduce</strong> 分解为 <strong>reduce-scatter 和 all-gather</strong> 的操作。</p>
+<p><img src="/Users/aijunyang/DearAJ.github.io/static/images/DPT-FSDP/2.png" alt="2"></p>
+<ul>
+<li>与 FSDP1 相比，FSDP2 的<strong>优点</strong>：
+<ul>
+<li>将分片参数表示为在 dim-i 上分片的 <a href="https://docs.pytorch.org/docs/stable/distributed.tensor.html">DTensor</a>，从而可以轻松作单个参数、无通信分片状态字典 和 更简单的元设备初始化流程。</li>
+<li>改进内存管理系统，通过避免 <code>recordStream</code> (<a href="https://dev-discuss.pytorch.org/t/fsdp-cudacachingallocator-an-outsider-newb-perspective/1486">doc</a>) 实现更低且确定的 GPU 内存，并且能在没有任何 CPU 同步的情况下这样做。</li>
+<li>提供张量子类扩展点来自定义 all-gather，例如，对于<a href="https://dev-discuss.pytorch.org/t/enabling-float8-all-gather-in-fsdp2/2359">用于 float8 线性的 float8 all-gather</a> 和 <a href="https://github.com/pytorch/torchtune/blob/main/README.md">用于 QLoRA 的 NF4</a>。</li>
+<li>将 frozen 和非 frozen 参数混合到同一个通信组中，无需使用额外的内存。</li>
+</ul>
+</li>
+</ul>
+<p> </p>
+<h3 id="fsdp-的使用httpspytorchaccntutorialsintermediatefsdp_tutorialhtmlhow-to-use-fsdp"><a href="https://pytorch.ac.cn/tutorials/intermediate/FSDP_tutorial.html#how-to-use-fsdp">FSDP 的使用</a></h3>
+<h4 id="模型初始化">模型初始化</h4>
+<p>以一个小模型在 MNIST 数据集上运行训练以进行演示：</p>
+<p><strong>1.1 安装 PyTorch 和 Torchvision</strong></p>
+<p><strong>1.2 导入必要包</strong></p>
+<p><strong>1.3 分布式训练设置。</strong></p>
+<p>FSDP 是一种需要分布式训练环境的数据并行类型，因此这里我们使用两个辅助函数来<strong>初始化分布式训练的进程</strong>并进行<strong>清理</strong>。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">setup</span>(rank, world_size):
+</span></span><span style="display:flex;"><span>    os<span style="color:#f92672">.</span>environ[<span style="color:#e6db74">&#39;MASTER_ADDR&#39;</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;localhost&#39;</span>
+</span></span><span style="display:flex;"><span>    os<span style="color:#f92672">.</span>environ[<span style="color:#e6db74">&#39;MASTER_PORT&#39;</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;12355&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># initialize the process group</span>
+</span></span><span style="display:flex;"><span>    dist<span style="color:#f92672">.</span>init_process_group(<span style="color:#e6db74">&#34;nccl&#34;</span>, rank<span style="color:#f92672">=</span>rank, world_size<span style="color:#f92672">=</span>world_size)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">cleanup</span>():
+</span></span><span style="display:flex;"><span>    dist<span style="color:#f92672">.</span>destroy_process_group()
+</span></span></code></pre></div><p><strong>2.1 定义用于分类手写数字的模型 Net()</strong></p>
+<p><strong>2.2 定义训练函数 train()</strong></p>
+<p><strong>2.3 定义验证函数 test()</strong></p>
+<p><strong>2.4 定义一个用 FSDP 包装模型的分布式训练函数</strong></p>
+<blockquote>
+<p>[!IMPORTANT]</p>
+<p>为了保存 FSDP 模型，我们需要在每个进程上调用 state_dict，然后在 Rank 0 上保存整体状态。</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">fsdp_main</span>(rank, world_size, args):
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 初始化分布式训练环境</span>
+</span></span><span style="display:flex;"><span>    setup(rank, world_size)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 定义数据预处理变换</span>
+</span></span><span style="display:flex;"><span>    transform <span style="color:#f92672">=</span> transforms<span style="color:#f92672">.</span>Compose([
+</span></span><span style="display:flex;"><span>        transforms<span style="color:#f92672">.</span>ToTensor(),  <span style="color:#75715e"># 将PIL图像转换为Tensor</span>
+</span></span><span style="display:flex;"><span>        transforms<span style="color:#f92672">.</span>Normalize((<span style="color:#ae81ff">0.1307</span>,), (<span style="color:#ae81ff">0.3081</span>,))  <span style="color:#75715e"># 标准化（MNIST数据集的均值和标准差）</span>
+</span></span><span style="display:flex;"><span>    ])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 加载MNIST训练集和测试集</span>
+</span></span><span style="display:flex;"><span>    dataset1 <span style="color:#f92672">=</span> datasets<span style="color:#f92672">.</span>MNIST(<span style="color:#e6db74">&#39;../data&#39;</span>, train<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>, download<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>                        transform<span style="color:#f92672">=</span>transform)
+</span></span><span style="display:flex;"><span>    dataset2 <span style="color:#f92672">=</span> datasets<span style="color:#f92672">.</span>MNIST(<span style="color:#e6db74">&#39;../data&#39;</span>, train<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>,
+</span></span><span style="display:flex;"><span>                        transform<span style="color:#f92672">=</span>transform)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 为分布式训练创建采样器</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 训练集采样器，会打乱数据</span>
+</span></span><span style="display:flex;"><span>    sampler1 <span style="color:#f92672">=</span> DistributedSampler(dataset1, rank<span style="color:#f92672">=</span>rank, num_replicas<span style="color:#f92672">=</span>world_size, shuffle<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 测试集采样器，不打乱数据</span>
+</span></span><span style="display:flex;"><span>    sampler2 <span style="color:#f92672">=</span> DistributedSampler(dataset2, rank<span style="color:#f92672">=</span>rank, num_replicas<span style="color:#f92672">=</span>world_size)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 配置训练和测试的数据加载器参数</span>
+</span></span><span style="display:flex;"><span>    train_kwargs <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#39;batch_size&#39;</span>: args<span style="color:#f92672">.</span>batch_size, <span style="color:#e6db74">&#39;sampler&#39;</span>: sampler1}
+</span></span><span style="display:flex;"><span>    test_kwargs <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#39;batch_size&#39;</span>: args<span style="color:#f92672">.</span>test_batch_size, <span style="color:#e6db74">&#39;sampler&#39;</span>: sampler2}
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># CUDA相关的数据加载配置</span>
+</span></span><span style="display:flex;"><span>    cuda_kwargs <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#39;num_workers&#39;</span>: <span style="color:#ae81ff">2</span>,  <span style="color:#75715e"># 数据加载的线程数</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#39;pin_memory&#39;</span>: <span style="color:#66d9ef">True</span>,  <span style="color:#75715e"># 将数据固定在内存中加速传输到GPU</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#39;shuffle&#39;</span>: <span style="color:#66d9ef">False</span>}  <span style="color:#75715e"># 采样器已经处理了shuffle，所以这里设为False</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 合并参数</span>
+</span></span><span style="display:flex;"><span>    train_kwargs<span style="color:#f92672">.</span>update(cuda_kwargs)
+</span></span><span style="display:flex;"><span>    test_kwargs<span style="color:#f92672">.</span>update(cuda_kwargs)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 创建训练和测试数据加载器</span>
+</span></span><span style="display:flex;"><span>    train_loader <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>utils<span style="color:#f92672">.</span>data<span style="color:#f92672">.</span>DataLoader(dataset1, <span style="color:#f92672">**</span>train_kwargs)
+</span></span><span style="display:flex;"><span>    test_loader <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>utils<span style="color:#f92672">.</span>data<span style="color:#f92672">.</span>DataLoader(dataset2, <span style="color:#f92672">**</span>test_kwargs)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 定义FSDP的自动包装策略 - 当模块参数大于100时进行分片</span>
+</span></span><span style="display:flex;"><span>    my_auto_wrap_policy <span style="color:#f92672">=</span> functools<span style="color:#f92672">.</span>partial(
+</span></span><span style="display:flex;"><span>        size_based_auto_wrap_policy, min_num_params<span style="color:#f92672">=</span><span style="color:#ae81ff">100</span>
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 设置当前使用的GPU设备</span>
+</span></span><span style="display:flex;"><span>    torch<span style="color:#f92672">.</span>cuda<span style="color:#f92672">.</span>set_device(rank)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 创建 CUDA 事件用于计时</span>
+</span></span><span style="display:flex;"><span>    init_start_event <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>cuda<span style="color:#f92672">.</span>Event(enable_timing<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>    init_end_event <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>cuda<span style="color:#f92672">.</span>Event(enable_timing<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 初始化模型并移动到当前GPU</span>
+</span></span><span style="display:flex;"><span>    model <span style="color:#f92672">=</span> Net()<span style="color:#f92672">.</span>to(rank)
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 使用FSDP包装模型</span>
+</span></span><span style="display:flex;"><span>    model <span style="color:#f92672">=</span> FSDP(model)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 定义优化器（Adadelta）和学习率调度器</span>
+</span></span><span style="display:flex;"><span>    optimizer <span style="color:#f92672">=</span> optim<span style="color:#f92672">.</span>Adadelta(model<span style="color:#f92672">.</span>parameters(), lr<span style="color:#f92672">=</span>args<span style="color:#f92672">.</span>lr)
+</span></span><span style="display:flex;"><span>    scheduler <span style="color:#f92672">=</span> StepLR(optimizer, step_size<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>, gamma<span style="color:#f92672">=</span>args<span style="color:#f92672">.</span>gamma)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 开始计时</span>
+</span></span><span style="display:flex;"><span>    init_start_event<span style="color:#f92672">.</span>record()
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 训练循环</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> epoch <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">1</span>, args<span style="color:#f92672">.</span>epochs <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>):
+</span></span><span style="display:flex;"><span>        train(args, model, rank, world_size, train_loader, optimizer, epoch, sampler<span style="color:#f92672">=</span>sampler1)
+</span></span><span style="display:flex;"><span>        test(model, rank, world_size, test_loader)
+</span></span><span style="display:flex;"><span>        scheduler<span style="color:#f92672">.</span>step()  <span style="color:#75715e"># 更新学习率</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 结束计时</span>
+</span></span><span style="display:flex;"><span>    init_end_event<span style="color:#f92672">.</span>record()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 主进程（rank 0）打印训练时间和模型信息</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> rank <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
+</span></span><span style="display:flex;"><span>        init_end_event<span style="color:#f92672">.</span>synchronize()
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;CUDA event elapsed time: </span><span style="color:#e6db74">{</span>init_start_event<span style="color:#f92672">.</span>elapsed_time(init_end_event) <span style="color:#f92672">/</span> <span style="color:#ae81ff">1000</span><span style="color:#e6db74">}</span><span style="color:#e6db74">sec&#34;</span>)
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>model<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 如果需要保存模型</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> args<span style="color:#f92672">.</span>save_model:
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 使用屏障确保所有进程完成训练</span>
+</span></span><span style="display:flex;"><span>        dist<span style="color:#f92672">.</span>barrier()
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 获取模型状态字典</span>
+</span></span><span style="display:flex;"><span>        states <span style="color:#f92672">=</span> model<span style="color:#f92672">.</span>state_dict()
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 只有主进程保存模型</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> rank <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
+</span></span><span style="display:flex;"><span>            torch<span style="color:#f92672">.</span>save(states, <span style="color:#e6db74">&#34;mnist_cnn.pt&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 清理分布式训练环境</span>
+</span></span><span style="display:flex;"><span>    cleanup()
+</span></span></code></pre></div><p><strong>2.5 最后，解析参数并设置主函数</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;__main__&#39;</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Training settings</span>
+</span></span><span style="display:flex;"><span>    parser <span style="color:#f92672">=</span> argparse<span style="color:#f92672">.</span>ArgumentParser(description<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;PyTorch MNIST Example&#39;</span>)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    parser<span style="color:#f92672">.</span>add_argument(<span style="color:#e6db74">&#39;--batch-size&#39;</span>, type<span style="color:#f92672">=</span>int, default<span style="color:#f92672">=</span><span style="color:#ae81ff">64</span>, metavar<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;N&#39;</span>,
+</span></span><span style="display:flex;"><span>                        help<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;input batch size for training (default: 64)&#39;</span>)
+</span></span><span style="display:flex;"><span>    parser<span style="color:#f92672">.</span>add_argument(<span style="color:#e6db74">&#39;--test-batch-size&#39;</span>, type<span style="color:#f92672">=</span>int, default<span style="color:#f92672">=</span><span style="color:#ae81ff">1000</span>, metavar<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;N&#39;</span>,
+</span></span><span style="display:flex;"><span>                        help<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;input batch size for testing (default: 1000)&#39;</span>)
+</span></span><span style="display:flex;"><span>    parser<span style="color:#f92672">.</span>add_argument(<span style="color:#e6db74">&#39;--epochs&#39;</span>, type<span style="color:#f92672">=</span>int, default<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>, metavar<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;N&#39;</span>,
+</span></span><span style="display:flex;"><span>                        help<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;number of epochs to train (default: 14)&#39;</span>)
+</span></span><span style="display:flex;"><span>    parser<span style="color:#f92672">.</span>add_argument(<span style="color:#e6db74">&#39;--lr&#39;</span>, type<span style="color:#f92672">=</span>float, default<span style="color:#f92672">=</span><span style="color:#ae81ff">1.0</span>, metavar<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;LR&#39;</span>,
+</span></span><span style="display:flex;"><span>                        help<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;learning rate (default: 1.0)&#39;</span>)
+</span></span><span style="display:flex;"><span>    parser<span style="color:#f92672">.</span>add_argument(<span style="color:#e6db74">&#39;--gamma&#39;</span>, type<span style="color:#f92672">=</span>float, default<span style="color:#f92672">=</span><span style="color:#ae81ff">0.7</span>, metavar<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;M&#39;</span>,
+</span></span><span style="display:flex;"><span>                        help<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Learning rate step gamma (default: 0.7)&#39;</span>)
+</span></span><span style="display:flex;"><span>    parser<span style="color:#f92672">.</span>add_argument(<span style="color:#e6db74">&#39;--no-cuda&#39;</span>, action<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;store_true&#39;</span>, default<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>,
+</span></span><span style="display:flex;"><span>                        help<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;disables CUDA training&#39;</span>)
+</span></span><span style="display:flex;"><span>    parser<span style="color:#f92672">.</span>add_argument(<span style="color:#e6db74">&#39;--seed&#39;</span>, type<span style="color:#f92672">=</span>int, default<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>, metavar<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;S&#39;</span>,
+</span></span><span style="display:flex;"><span>                        help<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;random seed (default: 1)&#39;</span>)
+</span></span><span style="display:flex;"><span>    parser<span style="color:#f92672">.</span>add_argument(<span style="color:#e6db74">&#39;--save-model&#39;</span>, action<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;store_true&#39;</span>, default<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>,
+</span></span><span style="display:flex;"><span>                        help<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;For Saving the current Model&#39;</span>)
+</span></span><span style="display:flex;"><span>    args <span style="color:#f92672">=</span> parser<span style="color:#f92672">.</span>parse_args()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    torch<span style="color:#f92672">.</span>manual_seed(args<span style="color:#f92672">.</span>seed)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    WORLD_SIZE <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>cuda<span style="color:#f92672">.</span>device_count()
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 使用多进程启动分布式训练</span>
+</span></span><span style="display:flex;"><span>    mp<span style="color:#f92672">.</span>spawn(fsdp_main,        <span style="color:#75715e"># 主训练函数</span>
+</span></span><span style="display:flex;"><span>            args<span style="color:#f92672">=</span>(WORLD_SIZE, args),  <span style="color:#75715e"># 传递给主训练函数的参数</span>
+</span></span><span style="display:flex;"><span>            nprocs<span style="color:#f92672">=</span>WORLD_SIZE, <span style="color:#75715e"># 启动的进程数（等于GPU数量）</span>
+</span></span><span style="display:flex;"><span>            join<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)        <span style="color:#75715e"># 等待所有进程完成</span>
+</span></span></code></pre></div><p>用 FSDP 包装模型后，模型将如下所示，我们可以看到模型被包装在一个 FSDP 单元中：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>   FullyShardedDataParallel(
+</span></span><span style="display:flex;"><span>     (_fsdp_wrapped_module): FlattenParamsWrapper(			<span style="color:#75715e"># FSDP 内部的一个辅助模块，用于扁平化参数</span>
+</span></span><span style="display:flex;"><span>       (_fpw_module): Net(
+</span></span><span style="display:flex;"><span>       (conv1): Conv2d(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">32</span>, kernel_size<span style="color:#f92672">=</span>(<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>), stride<span style="color:#f92672">=</span>(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>))
+</span></span><span style="display:flex;"><span>       (conv2): Conv2d(<span style="color:#ae81ff">32</span>, <span style="color:#ae81ff">64</span>, kernel_size<span style="color:#f92672">=</span>(<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>), stride<span style="color:#f92672">=</span>(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>))
+</span></span><span style="display:flex;"><span>       (dropout1): Dropout(p<span style="color:#f92672">=</span><span style="color:#ae81ff">0.25</span>, inplace<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
+</span></span><span style="display:flex;"><span>       (dropout2): Dropout(p<span style="color:#f92672">=</span><span style="color:#ae81ff">0.5</span>, inplace<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
+</span></span><span style="display:flex;"><span>       (fc1): Linear(in_features<span style="color:#f92672">=</span><span style="color:#ae81ff">9216</span>, out_features<span style="color:#f92672">=</span><span style="color:#ae81ff">128</span>, bias<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>       (fc2): Linear(in_features<span style="color:#f92672">=</span><span style="color:#ae81ff">128</span>, out_features<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>, bias<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>       )
+</span></span><span style="display:flex;"><span>   )
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><p> </p>
+<h4 id="auto_wrap_policy"><em>auto_wrap_policy</em></h4>
+<ul>
+<li>背景：假设模型包含 100 个 Linear 层，
+<ul>
+<li>执行 FSDP(model) <strong>只会有一个 FSDP 单元包装整个模型</strong>。在这种情况下，all-gather 会收集所有 100 个 Linear 层的全部参数，因此<strong>不会节省 CUDA 内存</strong>用于参数分片；</li>
+<li>此外，对于所有 100 个 Linear 层只有一个阻塞的 all-gather 调用，层之间不会有通信和计算重叠。</li>
+</ul>
+</li>
+</ul>
+<p><strong>解决方式</strong>：传入一个 auto_wrap_policy，当满足指定条件（如大小限制）时，它会<strong>自动密封当前 FSDP 单元并启动一个新的单元</strong>。</p>
+<p>例如，有 5 个 FSDP 单元，每个单元包装 20 个 Linear 层。那么，在前向传播中，第一个 FSDP 单元会收集前 20 个 Linear 层的参数，进行计算，丢弃参数，然后继续处理接下来的 20 个 Linear 层。因此，在任何时间点，每个进程只实例化 20 个而不是 100 个 Linear 层的参数/梯度:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>my_auto_wrap_policy <span style="color:#f92672">=</span> functools<span style="color:#f92672">.</span>partial(
+</span></span><span style="display:flex;"><span>        size_based_auto_wrap_policy, min_num_params<span style="color:#f92672">=</span><span style="color:#ae81ff">20000</span>
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>torch<span style="color:#f92672">.</span>cuda<span style="color:#f92672">.</span>set_device(rank)
+</span></span><span style="display:flex;"><span>model <span style="color:#f92672">=</span> Net()<span style="color:#f92672">.</span>to(rank)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>model <span style="color:#f92672">=</span> FSDP(model,
+</span></span><span style="display:flex;"><span>    auto_wrap_policy<span style="color:#f92672">=</span>my_auto_wrap_policy)
+</span></span></code></pre></div><p>应用 auto_wrap_policy 后，模型将如下所示:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>  FullyShardedDataParallel(
+</span></span><span style="display:flex;"><span>(_fsdp_wrapped_module): FlattenParamsWrapper(
+</span></span><span style="display:flex;"><span>  (_fpw_module): Net(
+</span></span><span style="display:flex;"><span>    (conv1): Conv2d(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">32</span>, kernel_size<span style="color:#f92672">=</span>(<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>), stride<span style="color:#f92672">=</span>(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>))
+</span></span><span style="display:flex;"><span>    (conv2): Conv2d(<span style="color:#ae81ff">32</span>, <span style="color:#ae81ff">64</span>, kernel_size<span style="color:#f92672">=</span>(<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>), stride<span style="color:#f92672">=</span>(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>))
+</span></span><span style="display:flex;"><span>    (dropout1): Dropout(p<span style="color:#f92672">=</span><span style="color:#ae81ff">0.25</span>, inplace<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
+</span></span><span style="display:flex;"><span>    (dropout2): Dropout(p<span style="color:#f92672">=</span><span style="color:#ae81ff">0.5</span>, inplace<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
+</span></span><span style="display:flex;"><span>    (fc1): FullyShardedDataParallel(			<span style="color:#75715e"># fc1 嵌套封装 FSDP</span>
+</span></span><span style="display:flex;"><span>      (_fsdp_wrapped_module): FlattenParamsWrapper(
+</span></span><span style="display:flex;"><span>        (_fpw_module): Linear(in_features<span style="color:#f92672">=</span><span style="color:#ae81ff">9216</span>, out_features<span style="color:#f92672">=</span><span style="color:#ae81ff">128</span>, bias<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>      )
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>    (fc2): Linear(in_features<span style="color:#f92672">=</span><span style="color:#ae81ff">128</span>, out_features<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>, bias<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>  )
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><p> </p>
+<p>在 2.4 中，我们只需将 auto_wrap_policy 添加到 FSDP 包装器中：</p>
+<pre tabindex="0"><code>model = FSDP(model,
+    auto_wrap_policy=my_auto_wrap_policy,
+    cpu_offload=CPUOffload(offload_params=True))
+</code></pre><p>DDP 中，每个进程都持有一个模型的副本，因此内存占用量更高；FSDP 将模型参数、优化器状态和梯度分片到 DDP 进程中，内存占用量更小。</p>
+<p>使用带有 auto_wrap policy 的 FSDP 的峰值内存使用量最低，其次是 FSDP 和 DDP。</p>
+<p>有关 DDP 和 FSDP 的详细分析和比较：请见<a href="https://pytorch.medium.com/6c8da2be180d">博客</a>。</p>
+<p> </p>
+<p> </p>
+<h2 id="使用-fsdp-进行高级模型的训练">使用 FSDP 进行高级模型的训练</h2>
+<p>以<strong>使用 FSDP 微调 HuggingFace (HF) T5 模型进行文本摘要</strong>为例：</p>
+<h4 id="fsdp-工作原理回顾">FSDP 工作原理回顾</h4>
+<p>从高层次看，FSDP 工作流程如下：</p>
+<ul>
+<li>
+<p><em>在构造函数中</em></p>
+<ul>
+<li>分片模型参数，每个 Rank 只保留自己的分片</li>
+</ul>
+</li>
+<li>
+<p><em>在前向传播中</em></p>
+<ul>
+<li>
+<p>运行 all_gather 收集所有 Rank 的所有分片，以恢复此 FSDP 单元的完整参数，并运行前向计算</p>
+</li>
+<li>
+<p>丢弃刚刚收集的非自身拥有的参数分片以释放内存</p>
+</li>
+</ul>
+</li>
+<li>
+<p><em>在反向传播中</em></p>
+<ul>
+<li>
+<p>运行 all_gather 收集所有 Rank 的所有分片，以恢复此 FSDP 单元的完整参数，并运行反向计算</p>
+</li>
+<li>
+<p>丢弃非自身拥有的参数以释放内存。</p>
+</li>
+<li>
+<p>运行 reduce_scatter 以同步梯度</p>
+</li>
+</ul>
+</li>
+</ul><ul class="pa0">
   
    <li class="list di">
      <a href="/tags/pytorch/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">Pytorch</a>

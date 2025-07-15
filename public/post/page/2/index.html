@@ -47,8 +47,8 @@
 
   <meta itemprop="name" content="Articles">
   <meta itemprop="description" content="The soul selects her own society, then shuts the door. To her divine majority, present no more.">
-  <meta itemprop="datePublished" content="2025-07-11T11:00:59-04:00">
-  <meta itemprop="dateModified" content="2026-07-11T11:00:59-04:00">
+  <meta itemprop="datePublished" content="2025-07-14T11:00:59-04:00">
+  <meta itemprop="dateModified" content="2026-07-10T11:00:59-04:00">
   <meta itemprop="wordCount" content="2">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Articles">
@@ -153,6 +153,39 @@
             <div class="mb3 pa4 mid-gray overflow-hidden">
     
       <div class="f6">
+        July 9, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/machine-learning/" class="link black dim">
+        machine learning
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>好久没碰又忘了&hellip;😣 复习复习！！！</p>
+<h2 id="logistic-逻辑回归模型">logistic 逻辑回归模型</h2>
+<h3 id="1-sigmoid-function-logistic-function">1. sigmoid function (logistic function)</h3>
+<p><img src="/images/ml/1.png" alt="1"></p>
+<p>输出$f_{w,b}(x) = P(y=1|x;w,b)$：y 等于 1 的概率</p>
+<blockquote>
+<p>[!NOTE]</p>
+<p>如何理解？</p>
+<p>​	When is $f_{w,b}(x) ≥ 0.5$</p>
+<p>​	g(z) ≥ 0.5</p>
+<p>​	z ≥ 0</p>
+<p>​	w*x + b ≥ 0</p>
+<p><strong>决策边界:</strong> z = w*x+b = 0</p>
+</blockquote>
+    </div>
+  <a href="/post/machine-learning/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
         July 7, 2025
       </div>
     
@@ -208,40 +241,6 @@
 <p><img src="/images/paper-AlphaEvolve/2.png" alt="2"></p>
     </div>
   <a href="/post/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBalphaevolve/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        June 25, 2025
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBkimi-researcher/" class="link black dim">
-        「论文阅读」Kimi-Researcher
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p><a href="https://moonshotai.github.io/Kimi-Researcher/">这篇技术报告</a>提出了完全通过端到端 agentic reinforcement learning 进行训练的自主智能体 Kimi-Researcher，旨在通过多步骤规划、推理和工具使用来解决复杂问题。</p>
-<p>—— <strong>End-to-end agentic RL is promising but challenging</strong></p>
-<p> </p>
-<h3 id="传统-agent">传统 agent</h3>
-<ol>
-<li><strong><a href="https://www.anthropic.com/engineering/built-multi-agent-research-system">基于工作流</a></strong>：需要随着模型或环境的变化而频繁手动更新，缺乏可扩展性和灵活性。</li>
-<li><strong>使用监督微调 (SFT)进行模仿学习</strong>：在数据标记方面存在困难；特定的工具版本紧密耦合。</li>
-</ol>
-<p><strong>Kimi-Researcher</strong>：给定一个查询，agent 探索大量可能的策略，获得正确解决方案的奖励 —— 所有技能（规划、感知和工具使用）都是一起学习的，无需手工制作的rule/workflow。</p>
-<p> </p>
-<h3 id="建模">建模</h3>
-<p>给定状态观察(如系统提示符、工具声明和用户查询)，Kimi-Researcher 会生成 think和action (action 可以是工具调用，也可以是终止轨迹的指示)。</p>
-<p><img src="/images/paper-KimiResearcher/1.png" alt="1"></p>
-<h3 id="approach">Approach</h3>
-<p>主要利用三个工具：a)并行、实时、内部的 <strong>search tool;</strong> b) 用于交互式 Web 任务的基于文本的 <strong>browser tool</strong>; c)用于自动执行代码的 <strong>coding tool</strong>.</p>
-    </div>
-  <a href="/post/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBkimi-researcher/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
   </div>
 
         </div>

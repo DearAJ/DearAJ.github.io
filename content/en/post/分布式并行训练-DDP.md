@@ -417,6 +417,16 @@ title: "分布式并行训练 - DDP"
        使用 [hydra](https://hydra.cc/) 集中管理训练运行的所有配置。
 
      - [main.py](https://github.com/pytorch/examples/blob/main/distributed/minGPT-ddp/mingpt/main.py)：训练任务的入口点，设置 DDP 进程组，读取 yaml 中的配置来启动训练任务。
+   
+   **使用[混合精度](https://pytorch.ac.cn/docs/stable/amp.html)**：可加快训练速度。在混合精度中，训练过程的某些部分以较低精度进行，而对精度下降更敏感的其他步骤则保持 FP32 精度。
+   
+   + #### **何时 DDP 不够用？**
+   
+     内存占用包括**模型权重、激活、梯度、输入批次和优化器状态**。由于 DDP 在每个 GPU 上复制模型，因此**只有当 GPU 有足够的容量容纳全部内存占用时**才能工作
+   
+     - 当模型变得更大时：
+       - [激活检查点](https://pytorch.ac.cn/docs/stable/checkpoint.html)：在正向传播期间，不保存中间激活，而是在反向传播期间重新计算激活。计算增加。
+       - [全分片数据并行 (FSDP)](https://pytorch.ac.cn/docs/stable/fsdp.html)：模型不是复制的，而是在所有 GPU 上“分片”，计算与前向和后向传播中的通信重叠。例如，[使用 FSDP 训练具有 1 万亿参数的模型](https://medium.com/pytorch/training-a-1-trillion-parameter-model-with-pytorch-fully-sharded-data-parallel-on-aws-3ac13aa96cff)。
 
 
 

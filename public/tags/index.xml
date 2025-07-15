@@ -6,8 +6,29 @@
     <description>Recent content in Tags on HomePage</description>
     <generator>Hugo</generator>
     <language>en-US</language>
-    <lastBuildDate>Mon, 07 Jul 2025 11:00:59 -0400</lastBuildDate>
+    <lastBuildDate>Fri, 11 Jul 2025 11:00:59 -0400</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AI Infra</title>
+      <link>http://localhost:1313/tags/ai-infra/</link>
+      <pubDate>Fri, 11 Jul 2025 11:00:59 -0400</pubDate>
+      <guid>http://localhost:1313/tags/ai-infra/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Pytorch</title>
+      <link>http://localhost:1313/tags/pytorch/</link>
+      <pubDate>Fri, 11 Jul 2025 11:00:59 -0400</pubDate>
+      <guid>http://localhost:1313/tags/pytorch/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>ML</title>
+      <link>http://localhost:1313/tags/ml/</link>
+      <pubDate>Wed, 09 Jul 2025 11:00:59 -0400</pubDate>
+      <guid>http://localhost:1313/tags/ml/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Paper</title>
       <link>http://localhost:1313/tags/paper/</link>
@@ -121,17 +142,17 @@
       <description></description>
     </item>
     <item>
-      <title>Data Processing</title>
-      <link>http://localhost:1313/tags/data-processing/</link>
-      <pubDate>Thu, 17 Apr 2025 05:00:59 -0700</pubDate>
-      <guid>http://localhost:1313/tags/data-processing/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>AD</title>
       <link>http://localhost:1313/tags/ad/</link>
       <pubDate>Fri, 11 Apr 2025 04:00:59 -0700</pubDate>
       <guid>http://localhost:1313/tags/ad/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Data Processing</title>
+      <link>http://localhost:1313/tags/data-processing/</link>
+      <pubDate>Fri, 11 Apr 2025 04:00:59 -0700</pubDate>
+      <guid>http://localhost:1313/tags/data-processing/</guid>
       <description></description>
     </item>
     <item>

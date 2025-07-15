@@ -47,8 +47,8 @@
 
   <meta itemprop="name" content="Articles">
   <meta itemprop="description" content="The soul selects her own society, then shuts the door. To her divine majority, present no more.">
-  <meta itemprop="datePublished" content="2025-07-07T11:00:59-04:00">
-  <meta itemprop="dateModified" content="2026-07-05T10:00:59-04:00">
+  <meta itemprop="datePublished" content="2025-07-11T11:00:59-04:00">
+  <meta itemprop="dateModified" content="2026-07-11T11:00:59-04:00">
   <meta itemprop="wordCount" content="2">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Articles">
@@ -153,87 +153,93 @@
             <div class="mb3 pa4 mid-gray overflow-hidden">
     
       <div class="f6">
-        April 29, 2025
+        May 12, 2025
       </div>
     
     <h1 class="f3 near-black">
-      <a href="/post/efficientnet/" class="link black dim">
-        EfficientNet
+      <a href="/post/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/" class="link black dim">
+        知识图谱
       </a>
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <ul>
-<li>
-<p><strong>传统的模型缩放</strong>：</p>
-<p>任意增加 CNN 的深度或宽度，或使用更大的输入图像分辨率进行训练和评估。</p>
-<p><strong>缺点</strong>：通常需要长时间的手动调优，并且仍然会经常产生次优的性能。</p>
-</li>
-<li>
-<p><strong><a href="https://arxiv.org/abs/1905.11946">EfficientNet</a></strong>：</p>
+      <p>知识图谱于14年出现，之后进入平稳期，23年由于大模型的出现再次火爆。</p>
 <ol>
-<li>提出了一种新的模型缩放方法和 AutoML 技术，使用使用简单但高效的<strong>复合系数</strong>，均匀缩放深度/宽度/分辨率的所有维度。</li>
-<li>使用神经架构搜索来设计一个新的基线网络，并将其扩展以获得一系列模型，称为 EfficientNets。</li>
-</ol>
-<p><strong>优点</strong>：更小、更快。</p>
+<li>
+<h4 id="大模型的幻觉问题的解决方式">大模型的“幻觉”问题的解决方式</h4>
+<ul>
+<li>提高LLM的能力</li>
+<li>框定边界（大量符合逻辑的<strong>facts</strong>），大模型在边界内通过自身的理解能力，提供回复
+<ul>
+<li>facts 来源于：一些网络/企业内部文档/企业内的数据库/结构化的知识图谱</li>
+</ul>
 </li>
 </ul>
-<p> </p>
-<h3 id="复合模型放缩">复合模型放缩</h3>
-<h4 id="1-概述">1. 概述</h4>
-<p><strong>目的</strong>：找到在固定资源约束下，基线网络的不同缩放维度之间的关系。</p>
-<p><img src="/images/efficientNet/1.png" alt="1"></p>
-    </div>
-  <a href="/post/efficientnet/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        April 27, 2025
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/llm2/" class="link black dim">
-        LLM - 2.预训练阶段
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p><img src="/images/LLM2/0.png" alt="0"></p>
-    </div>
-  <a href="/post/llm2/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        April 24, 2025
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/resnet18/" class="link black dim">
-        ResNet18
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <h3 id="1-退化现象">1. 退化现象</h3>
-<p>ResNet 随着网络层不断的加深，模型的准确率</p>
+</li>
+<li>
+<h4 id="知识图谱一种存储facts的方式">知识图谱：一种存储facts的方式</h4>
+<p>采用了“实体&amp;关系”的方法来存储信息</p>
+<p>区别于简单的图：包含多种实体和多种关系</p>
+</li>
+<li>
+<h4 id="知识图谱的优势">知识图谱的优势</h4>
 <ol>
-<li>先是不断的提高，达到最大值（准确率饱和），</li>
-<li>然后随着网络深度的继续增加，模型准确率出现大幅度的降低。</li>
+<li>关系直观</li>
+<li>抓住重要信息</li>
+<li>弥补文本到向量直接的关系（GraphRAG：KG与向量数据库融合）</li>
 </ol>
-<p><strong>原因</strong>：随着网络深度的不断增大，所引入的激活函数也越来越多，数据被映射到更加离散的空间，此时已经难以让数据回到原点。也就是说，神经网络将这些数据映射回原点所需要的计算量，已经远远超过我们所能承受的。</p>
+</li>
+</ol>
 <p> </p>
-<h3 id="2-快捷连接">2. 快捷连接</h3>
-<p>核心思想：通过添加额外的连接来解决深度神经网络训练中的<strong>梯度消失和梯度爆炸</strong>等问题，从而允许构建非常深的神经网络。</p>
-<p><img src="/images/resnet18/1.jpg" alt="1"></p>
+<h2 id="rag-与知识图谱结合">RAG 与知识图谱结合</h2>
+<ol>
+<li>
+<h4 id="知识图谱的必要性">知识图谱的必要性</h4>
+<p>e.g：问题:“感冒常用药物的负作用”；数据库存储的是“冲剂” 的描述，对应段落刚好没有出现“感冒” 这个关键词；两者相似度不够高，无法匹配</p>
+<p>—— 使用知识图谱找到“感冒”和“冲剂”之间的<strong>关系</strong></p>
+</li>
+</ol>
     </div>
-  <a href="/post/resnet18/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  <a href="/post/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        May 11, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/llm4/" class="link black dim">
+        LLM - 4.大模型增强 - RAG
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p><img src="/images/RAG/0-1.png" alt="0-1"></p>
+    </div>
+  <a href="/post/llm4/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        May 2, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/llm3.5/" class="link black dim">
+        LLM - 3.指令理解阶段(核心) - 强化学习
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p><img src="/images/LLM3.5/0.png" alt="0"></p>
+    </div>
+  <a href="/post/llm3.5/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
   </div>
 
         </div>
@@ -266,7 +272,7 @@
         <a href="/post/page/9/" aria-label="Next" class="page-link" role="button"><span aria-hidden="true">&raquo;</span></a>
       </li>
       <li class="page-item">
-        <a href="/post/page/23/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/post/page/24/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
       </li>
     </ul>
   </article>

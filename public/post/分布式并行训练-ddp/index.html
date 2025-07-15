@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>分布式并行训练 - DDP | HomePage</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="https://docs.pytorch.org/tutorials/distributed/home.html">
+    <meta name="generator" content="Hugo 0.140.2">
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+    
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="http://localhost:1313/post/%E5%88%86%E5%B8%83%E5%BC%8F%E5%B9%B6%E8%A1%8C%E8%AE%AD%E7%BB%83-ddp/">
+    
+
+    <meta property="og:url" content="http://localhost:1313/post/%E5%88%86%E5%B8%83%E5%BC%8F%E5%B9%B6%E8%A1%8C%E8%AE%AD%E7%BB%83-ddp/">
+  <meta property="og:site_name" content="HomePage">
+  <meta property="og:title" content="分布式并行训练 - DDP">
+  <meta property="og:description" content="https://docs.pytorch.org/tutorials/distributed/home.html">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2025-07-11T11:00:59-04:00">
+    <meta property="article:modified_time" content="2025-07-11T11:00:59-04:00">
+    <meta property="article:tag" content="Pytorch">
+    <meta property="article:tag" content="AI Infra">
+
+  <meta itemprop="name" content="分布式并行训练 - DDP">
+  <meta itemprop="description" content="https://docs.pytorch.org/tutorials/distributed/home.html">
+  <meta itemprop="datePublished" content="2025-07-11T11:00:59-04:00">
+  <meta itemprop="dateModified" content="2025-07-11T11:00:59-04:00">
+  <meta itemprop="wordCount" content="753">
+  <meta itemprop="keywords" content="Pytorch,AI Infra">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="分布式并行训练 - DDP">
+  <meta name="twitter:description" content="https://docs.pytorch.org/tutorials/distributed/home.html">
+
+	
+  </head><body class="ma0 avenir bg-near-white development">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('http://localhost:1313/images/DPT/jaz.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        HomePage
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/about/" title="About ME page">
+              About ME
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/post/" title="Articles page">
+              Articles
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/contact/" title="Contact page">
+              Contact
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"><a href="https://www.facebook.com/patrick.kollitsch" target="_blank" rel="noopener"
+        class="ananke-social-link link-transition facebook link dib z-999 pt3 pt0-l mr1"
+        title="follow on Facebook - Opens in a new window"
+        aria-label="follow on Facebook - Opens in a new window">
+      <span class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M512 256C512 114.6 397.4 0 256 0S0 114.6 0 256C0 376 82.7 476.8 194.2 504.5V334.2H141.4V256h52.8V222.3c0-87.1 39.4-127.5 125-127.5c16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1c-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H287V510.1C413.8 494.8 512 386.9 512 256h0z"/></svg>
+            
+          </span></a><a href="https://bsky.app/profile/kollitsch.dev" target="_blank" rel="noopener"
+        class="ananke-social-link link-transition bluesky link dib z-999 pt3 pt0-l mr1"
+        title="follow on Bluesky - Opens in a new window"
+        aria-label="follow on Bluesky - Opens in a new window">
+      <span class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M407.8 294.7c-3.3-.4-6.7-.8-10-1.3c3.4 .4 6.7 .9 10 1.3zM288 227.1C261.9 176.4 190.9 81.9 124.9 35.3C61.6-9.4 37.5-1.7 21.6 5.5C3.3 13.8 0 41.9 0 58.4S9.1 194 15 213.9c19.5 65.7 89.1 87.9 153.2 80.7c3.3-.5 6.6-.9 10-1.4c-3.3 .5-6.6 1-10 1.4C74.3 308.6-9.1 342.8 100.3 464.5C220.6 589.1 265.1 437.8 288 361.1c22.9 76.7 49.2 222.5 185.6 103.4c102.4-103.4 28.1-156-65.8-169.9c-3.3-.4-6.7-.8-10-1.3c3.4 .4 6.7 .9 10 1.3c64.1 7.1 133.6-15.1 153.2-80.7C566.9 194 576 75 576 58.4s-3.3-44.7-21.6-52.9c-15.8-7.1-40-14.9-103.2 29.8C385.1 81.9 314.1 176.4 288 227.1z"/></svg>
+            
+          </span></a><a href="http://linkedin.com/in/patrickkollitsch" target="_blank" rel="noopener"
+        class="ananke-social-link link-transition linkedin link dib z-999 pt3 pt0-l mr1"
+        title="follow on LinkedIn - Opens in a new window"
+        aria-label="follow on LinkedIn - Opens in a new window">
+      <span class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+            
+          </span></a></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">分布式并行训练 - DDP</div>
+          
+            <div class="fw1 f5 f3-l white-80 measure-wide-l center lh-copy mt3 mb4">
+              https://docs.pytorch.org/tutorials/distributed/home.html
+            </div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked ttu">
+          
+        Articles
+      </aside><div id="sharing" class="mt3 ananke-socials"><a href="mailto:?&amp;body=http%3A%2F%2Flocalhost%3A1313%2Fpost%2F%25E5%2588%2586%25E5%25B8%2583%25E5%25BC%258F%25E5%25B9%25B6%25E8%25A1%258C%25E8%25AE%25AD%25E7%25BB%2583-ddp%2F&amp;subject=%E5%88%86%E5%B8%83%E5%BC%8F%E5%B9%B6%E8%A1%8C%E8%AE%AD%E7%BB%83&#43;-&#43;DDP"
+        class="ananke-social-link email no-underline"
+        title="Share on Email" aria-label="Share on Email"
+        target="_blank" rel="nofollow noopener noreferrer">
+        <span class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M64 112c-8.8 0-16 7.2-16 16l0 22.1L220.5 291.7c20.7 17 50.4 17 71.1 0L464 150.1l0-22.1c0-8.8-7.2-16-16-16L64 112zM48 212.2L48 384c0 8.8 7.2 16 16 16l384 0c8.8 0 16-7.2 16-16l0-171.8L322 328.8c-38.4 31.5-93.7 31.5-132 0L48 212.2zM0 128C0 92.7 28.7 64 64 64l384 0c35.3 0 64 28.7 64 64l0 256c0 35.3-28.7 64-64 64L64 448c-35.3 0-64-28.7-64-64L0 128z"/></svg>
+                
+              </span></a><a href="https://facebook.com/sharer/sharer.php?&amp;u=http%3A%2F%2Flocalhost%3A1313%2Fpost%2F%25E5%2588%2586%25E5%25B8%2583%25E5%25BC%258F%25E5%25B9%25B6%25E8%25A1%258C%25E8%25AE%25AD%25E7%25BB%2583-ddp%2F"
+        class="ananke-social-link facebook no-underline"
+        title="Share on Facebook" aria-label="Share on Facebook"
+        target="_blank" rel="nofollow noopener noreferrer">
+        <span class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M512 256C512 114.6 397.4 0 256 0S0 114.6 0 256C0 376 82.7 476.8 194.2 504.5V334.2H141.4V256h52.8V222.3c0-87.1 39.4-127.5 125-127.5c16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1c-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H287V510.1C413.8 494.8 512 386.9 512 256h0z"/></svg>
+                
+              </span></a><a href="https://bsky.app/intent/compose?&amp;text=http%3A%2F%2Flocalhost%3A1313%2Fpost%2F%25E5%2588%2586%25E5%25B8%2583%25E5%25BC%258F%25E5%25B9%25B6%25E8%25A1%258C%25E8%25AE%25AD%25E7%25BB%2583-ddp%2F"
+        class="ananke-social-link bluesky no-underline"
+        title="Share on Bluesky" aria-label="Share on Bluesky"
+        target="_blank" rel="nofollow noopener noreferrer">
+        <span class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M407.8 294.7c-3.3-.4-6.7-.8-10-1.3c3.4 .4 6.7 .9 10 1.3zM288 227.1C261.9 176.4 190.9 81.9 124.9 35.3C61.6-9.4 37.5-1.7 21.6 5.5C3.3 13.8 0 41.9 0 58.4S9.1 194 15 213.9c19.5 65.7 89.1 87.9 153.2 80.7c3.3-.5 6.6-.9 10-1.4c-3.3 .5-6.6 1-10 1.4C74.3 308.6-9.1 342.8 100.3 464.5C220.6 589.1 265.1 437.8 288 361.1c22.9 76.7 49.2 222.5 185.6 103.4c102.4-103.4 28.1-156-65.8-169.9c-3.3-.4-6.7-.8-10-1.3c3.4 .4 6.7 .9 10 1.3c64.1 7.1 133.6-15.1 153.2-80.7C566.9 194 576 75 576 58.4s-3.3-44.7-21.6-52.9c-15.8-7.1-40-14.9-103.2 29.8C385.1 81.9 314.1 176.4 288 227.1z"/></svg>
+                
+              </span></a><a href="https://www.linkedin.com/shareArticle?&amp;mini=true&amp;source=http%3A%2F%2Flocalhost%3A1313%2Fpost%2F%25E5%2588%2586%25E5%25B8%2583%25E5%25BC%258F%25E5%25B9%25B6%25E8%25A1%258C%25E8%25AE%25AD%25E7%25BB%2583-ddp%2F&amp;summary=%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%AD%E7%BB%83%E5%B0%86%E8%AE%AD%E7%BB%83%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD%E5%88%86%E6%95%A3%E5%88%B0%E5%A4%9A%E4%B8%AA%E5%B7%A5%E4%BD%9C%E8%8A%82%E7%82%B9%EF%BC%8C%E5%9B%A0%E6%AD%A4%E5%8F%AF%E4%BB%A5%E6%98%BE%E8%91%97%E6%8F%90%E9%AB%98%E8%AE%AD%E7%BB%83%E9%80%9F%E5%BA%A6%E5%92%8C%E6%A8%A1%E5%9E%8B%E5%87%86%E7%A1%AE%E6%80%A7%E3%80%82%0ADistributed&#43;Data&#43;Parallel&#43;%E4%B8%BA%E4%BB%80%E4%B9%88%E7%94%A8&#43;Distributed&#43;Training%EF%BC%9F&#43;%E8%8A%82%E7%BA%A6%E6%97%B6%E9%97%B4%E3%80%81%E5%A2%9E%E5%8A%A0%E8%AE%A1%E7%AE%97%E9%87%8F%E3%80%81%E6%A8%A1%E5%9E%8B%E6%9B%B4%E5%BF%AB%E3%80%82&#43;%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%EF%BC%9F&#43;%E5%9C%A8%E5%90%8C%E4%B8%80%E6%9C%BA%E5%99%A8%E4%B8%8A%E4%BD%BF%E7%94%A8%E5%A4%9A%E4%B8%AA&#43;GPUs&#43;%E5%9C%A8%E9%9B%86%E7%BE%A4%E4%B8%8A%E4%BD%BF%E7%94%A8%E5%A4%9A%E4%B8%AA%E6%9C%BA%E5%99%A8&#43;%E4%BB%80%E4%B9%88%E6%98%AFDDP%EF%BC%9F&#43;%E5%8D%B3%E5%9C%A8%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B%E4%B8%AD%E5%86%85%E9%83%A8%E4%BF%9D%E6%8C%81%E5%90%8C%E6%AD%A5%EF%BC%9A%E6%AF%8F%E4%B8%AA&#43;GPU&#43;%E8%BF%9B%E7%A8%8B%E4%BB%85%E6%95%B0%E6%8D%AE%E4%B8%8D%E5%90%8C%E3%80%82%0A%E6%A8%A1%E5%9E%8B%E5%9C%A8%E6%89%80%E6%9C%89%E8%AE%BE%E5%A4%87%E4%B8%8A%E5%A4%8D%E5%88%B6%E3%80%82DistributedSampler&#43;%E7%A1%AE%E4%BF%9D%E6%AF%8F%E4%B8%AA%E8%AE%BE%E5%A4%87%E8%8E%B7%E5%BE%97%E4%B8%8D%E9%87%8D%E5%8F%A0%E7%9A%84%E8%BE%93%E5%85%A5%E6%89%B9%E6%AC%A1%EF%BC%8C%E4%BB%8E%E8%80%8C%E5%A4%84%E7%90%86&#43;n&#43;%E5%80%8D%E6%95%B0%E6%8D%AE%E3%80%82%0A%E6%A8%A1%E5%9E%8B%E6%8E%A5%E5%8F%97%E4%B8%8D%E5%90%8C%E8%BE%93%E5%85%A5%E7%9A%84%E6%95%B0%E6%8D%AE%E5%90%8E%EF%BC%8C%E5%9C%A8%E6%9C%AC%E5%9C%B0%E8%BF%90%E8%A1%8C%E5%89%8D%E5%90%91%E4%BC%A0%E6%92%AD%E5%92%8C%E5%90%8E%E5%90%91%E4%BC%A0%E6%92%AD%E3%80%82%0A&amp;title=%E5%88%86%E5%B8%83%E5%BC%8F%E5%B9%B6%E8%A1%8C%E8%AE%AD%E7%BB%83&#43;-&#43;DDP&amp;url=http%3A%2F%2Flocalhost%3A1313%2Fpost%2F%25E5%2588%2586%25E5%25B8%2583%25E5%25BC%258F%25E5%25B9%25B6%25E8%25A1%258C%25E8%25AE%25AD%25E7%25BB%2583-ddp%2F"
+        class="ananke-social-link linkedin no-underline"
+        title="Share on LinkedIn" aria-label="Share on LinkedIn"
+        target="_blank" rel="nofollow noopener noreferrer">
+        <span class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+                
+              </span></a></div>
+<h1 class="f1 athelas mt3 mb1">分布式并行训练 - DDP</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2025-07-11T11:00:59-04:00">July 11, 2025</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><p>分布式训练将训练工作负载分散到多个工作节点，因此可以显著提高训练速度和模型准确性。</p>
+<h2 id="distributed-data-parallel">Distributed Data Parallel</h2>
+<ul>
+<li><strong>为什么用 Distributed Training？</strong> 节约时间、增加计算量、模型更快。</li>
+<li><strong>如何实现？</strong>
+<ol>
+<li>在同一机器上使用多个 GPUs</li>
+<li>在集群上使用多个机器</li>
+</ol>
+</li>
+</ul>
+<ol>
+<li>
+<h3 id="什么是ddp">什么是DDP？</h3>
+<p>即在训练过程中内部保持同步：每个 GPU 进程仅数据不同。</p>
+<ol>
+<li>
+<p>模型在所有设备上复制。<strong>DistributedSampler</strong> 确保每个设备获得不重叠的输入批次，从而处理 n  倍数据。</p>
+<p><img src="/images/DPT/4.png" alt="4"></p>
+</li>
+<li>
+<p>模型接受不同输入的数据后，在本地运行<strong>前向传播和后向传播</strong>。</p>
+<p><img src="/images/DPT/1.png" alt="1"></p>
+</li>
+</ol>
+</li>
+</ol>
+<ol start="3">
+<li>
+<p>每个副本模型累计的梯度不同，<strong>DDP</strong> 启动<strong>同步</strong>：使用<a href="https://tech.preferred.jp/en/blog/technologies-behind-distributed-deep-learning-allreduce/">环状 AllReduce 算法</a>聚合所有副本的梯度，将梯度与通信重叠</p>
+<p><img src="/images/DPT/2.png" alt="2"></p>
+<p><strong>同步</strong> 不会等待所有的梯度计算完成，它在反向传播进行的同时沿环进行通信，确保 GPU 不会空闲</p>
+<ol start="4">
+<li>
+<p>运行<strong>优化器</strong>，将所有副本模型的参数更新为相同的值</p>
+<p><img src="/images/DPT/3.png" alt="3"></p>
+</li>
+</ol>
+<p>对比 <code>DataParallel</code> (DP)：DP 非常简单（只需额外一行代码），但性能要差得多。</p>
+<p> </p>
+</li>
+<li>
+<h3 id="单节点多-gpu-训练---单台机器上使用多-gpu-训练模型">单节点多 GPU 训练 - 单台机器上使用多 GPU 训练模型</h3>
+<ul>
+<li>
+<p><a href="https://github.com/pytorch/examples/blob/main/distributed/ddp-tutorial-series/single_gpu.py">single GPU</a></p>
+</li>
+<li>
+<p><a href="https://github.com/pytorch/examples/blob/main/distributed/ddp-tutorial-series/multigpu.py">muti GPU</a></p>
+<ul>
+<li>
+<p><strong>增加 import 模块</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> torch.multiprocessing <span style="color:#66d9ef">as</span> mp
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch.utils.data.distributed <span style="color:#f92672">import</span> DistributedSampler
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch.nn.parallel <span style="color:#f92672">import</span> DistributedDataParallel <span style="color:#66d9ef">as</span> DDP
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch.distributed <span style="color:#f92672">import</span> init_process_group, destroy_process_group
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> os
+</span></span></code></pre></div><p><code>torch.multiprocessing</code> 是 PyTorch 对 Python 原生多进程的封装</p>
+<p>分布式进程组包含所有可以相互通信和同步的进程。</p>
+</li>
+<li>
+<p><strong>构建进程组（ddp_setup 函数）</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">ddp_setup</span>(rank, world_size):
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    Args:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        rank: Unique identifier of each process
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        world_size: Total number of processes
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    os<span style="color:#f92672">.</span>environ[<span style="color:#e6db74">&#34;MASTER_ADDR&#34;</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;localhost&#34;</span>		<span style="color:#75715e"># master主管其他进程</span>
+</span></span><span style="display:flex;"><span>    os<span style="color:#f92672">.</span>environ[<span style="color:#e6db74">&#34;MASTER_PORT&#34;</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;12355&#34;</span>
+</span></span><span style="display:flex;"><span>    torch<span style="color:#f92672">.</span>cuda<span style="color:#f92672">.</span>set_device(rank)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    init_process_group(backend<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;nccl&#34;</span>, rank<span style="color:#f92672">=</span>rank, world_size<span style="color:#f92672">=</span>world_size)
+</span></span></code></pre></div><p><a href="https://pytorch.ac.cn/docs/stable/generated/torch.cuda.set_device.html?highlight=set_device#torch.cuda.set_device">set_device</a> 为每个进程设置默认 GPU，防止 GPU:0 上的挂起或过度内存占用。</p>
+<p>进程组通过 TCP（默认）或共享文件系统进行初始化。</p>
+<p><a href="https://pytorch.ac.cn/docs/stable/distributed.html?highlight=init_process_group#torch.distributed.init_process_group">init_process_group</a> 初始化分布式进程组。</p>
+<blockquote>
+<p>[!TIP]</p>
+<p>阅读更多关于<a href="https://pytorch.ac.cn/docs/stable/distributed.html#which-backend-to-use">选择 DDP 后端</a>的信息</p>
+</blockquote>
+</li>
+<li>
+<p><strong>用 DDP 包装 Trainer</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Trainer</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(
+</span></span><span style="display:flex;"><span>        self,
+</span></span><span style="display:flex;"><span>        model: torch<span style="color:#f92672">.</span>nn<span style="color:#f92672">.</span>Module,
+</span></span><span style="display:flex;"><span>        train_data: DataLoader,
+</span></span><span style="display:flex;"><span>        optimizer: torch<span style="color:#f92672">.</span>optim<span style="color:#f92672">.</span>Optimizer,
+</span></span><span style="display:flex;"><span>        gpu_id: int,
+</span></span><span style="display:flex;"><span>        save_every: int,
+</span></span><span style="display:flex;"><span>    ) <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">None</span>:
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>gpu_id <span style="color:#f92672">=</span> gpu_id
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>model <span style="color:#f92672">=</span> model<span style="color:#f92672">.</span>to(gpu_id)
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>train_data <span style="color:#f92672">=</span> train_data
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>optimizer <span style="color:#f92672">=</span> optimizer
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>save_every <span style="color:#f92672">=</span> save_every
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>model <span style="color:#f92672">=</span> DDP(model, device_ids<span style="color:#f92672">=</span>[gpu_id])
+</span></span></code></pre></div></li>
+<li>
+<p><strong>保存模型</strong>：用modul 访问底层模型参数</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">_save_checkpoint</span>(self, epoch):
+</span></span><span style="display:flex;"><span>        ckp <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>model<span style="color:#f92672">.</span>module<span style="color:#f92672">.</span>state_dict()
+</span></span><span style="display:flex;"><span>        PATH <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;checkpoint.pt&#34;</span>
+</span></span><span style="display:flex;"><span>        torch<span style="color:#f92672">.</span>save(ckp, PATH)
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Epoch </span><span style="color:#e6db74">{</span>epoch<span style="color:#e6db74">}</span><span style="color:#e6db74"> | Training checkpoint saved at </span><span style="color:#e6db74">{</span>PATH<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span></code></pre></div></li>
+<li>
+<p><strong>仅保存一个进程的检查点即可</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">train</span>(self, max_epochs: int):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> epoch <span style="color:#f92672">in</span> range(max_epochs):
+</span></span><span style="display:flex;"><span>            self<span style="color:#f92672">.</span>_run_epoch(epoch)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>gpu_id <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">and</span> epoch <span style="color:#f92672">%</span> self<span style="color:#f92672">.</span>save_every <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
+</span></span><span style="display:flex;"><span>                self<span style="color:#f92672">.</span>_save_checkpoint(epoch)
+</span></span></code></pre></div><p>如果没有 if 条件，每个进程都会保存一份相同的模型副本。</p>
+</li>
+<li>
+<p><strong>分布式输入数据</strong>：DataLoader 要包含 DistributedSampler，且不 shuffle</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">prepare_dataloader</span>(dataset: Dataset, batch_size: int):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> DataLoader(
+</span></span><span style="display:flex;"><span>        dataset,
+</span></span><span style="display:flex;"><span>        batch_size<span style="color:#f92672">=</span>batch_size,
+</span></span><span style="display:flex;"><span>        pin_memory<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>        shuffle<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>,
+</span></span><span style="display:flex;"><span>        sampler<span style="color:#f92672">=</span>DistributedSampler(dataset)
+</span></span><span style="display:flex;"><span>    )
+</span></span></code></pre></div><p><a href="https://pytorch.ac.cn/docs/stable/data.html?highlight=distributedsampler#torch.utils.data.distributed.DistributedSampler">
+DistributedSampler</a> 将输入数据分块分发到所有分布式进程。</p>
+<p><a href="https://pytorch.ac.cn/docs/stable/data.html#torch.utils.data.DataLoader">DataLoader</a> 结合了数据集和采样器，并为给定数据集提供一个可迭代对象。</p>
+<ul>
+<li>每个进程将接收一个包含 32 个样本的输入批次；有效批次大小是 <code>32 * nprocs</code>，在使用 4 个 GPU 时为 128。</li>
+</ul>
+</li>
+<li>
+<p>更新 main 函数</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main</span>(rank: int, world_size: int, save_every: int, total_epochs: int, batch_size: int):
+</span></span><span style="display:flex;"><span>    ddp_setup(rank, world_size)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    dataset, model, optimizer <span style="color:#f92672">=</span> load_train_objs()
+</span></span><span style="display:flex;"><span>    train_data <span style="color:#f92672">=</span> prepare_dataloader(dataset, batch_size)
+</span></span><span style="display:flex;"><span>    trainer <span style="color:#f92672">=</span> Trainer(model, train_data, optimizer, rank, save_every)
+</span></span><span style="display:flex;"><span>    trainer<span style="color:#f92672">.</span>train(total_epochs)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    destroy_process_group()
+</span></span></code></pre></div></li>
+<li>
+<p>spwn() 启动多进程，并行执行制定函数</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">import</span> argparse
+</span></span><span style="display:flex;"><span>    parser <span style="color:#f92672">=</span> argparse<span style="color:#f92672">.</span>ArgumentParser(description<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;simple distributed training job&#39;</span>)
+</span></span><span style="display:flex;"><span>    parser<span style="color:#f92672">.</span>add_argument(<span style="color:#e6db74">&#39;total_epochs&#39;</span>, type<span style="color:#f92672">=</span>int, help<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Total epochs to train the model&#39;</span>)
+</span></span><span style="display:flex;"><span>    parser<span style="color:#f92672">.</span>add_argument(<span style="color:#e6db74">&#39;save_every&#39;</span>, type<span style="color:#f92672">=</span>int, help<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;How often to save a snapshot&#39;</span>)
+</span></span><span style="display:flex;"><span>    parser<span style="color:#f92672">.</span>add_argument(<span style="color:#e6db74">&#39;--batch_size&#39;</span>, default<span style="color:#f92672">=</span><span style="color:#ae81ff">32</span>, type<span style="color:#f92672">=</span>int, help<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Input batch size on each device (default: 32)&#39;</span>)
+</span></span><span style="display:flex;"><span>    args <span style="color:#f92672">=</span> parser<span style="color:#f92672">.</span>parse_args()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    world_size <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>cuda<span style="color:#f92672">.</span>device_count()
+</span></span><span style="display:flex;"><span>    mp<span style="color:#f92672">.</span>spawn(main, args<span style="color:#f92672">=</span>(world_size, args<span style="color:#f92672">.</span>save_every, args<span style="color:#f92672">.</span>total_epochs, args<span style="color:#f92672">.</span>batch_size), nprocs<span style="color:#f92672">=</span>world_size)
+</span></span></code></pre></div><p>包含新的参数 <code>rank</code>（替换 <code>device</code>）和 <code>world_size</code>。</p>
+<p>调用 <a href="https://pytorch.ac.cn/docs/stable/multiprocessing.html#spawning-subprocesses">mp.spawn</a> 时，<code>rank</code> 由 DDP 自动分配。</p>
+<p><code>world_size</code> 是整个训练任务中的进程数。对于 GPU 训练，这对应于使用的 GPU 数量，并且每个进程在一个专用的 GPU 上工作。</p>
+</li>
+</ul>
+<blockquote>
+<p>[!NOTE]</p>
+<p>如果模型包含任何 <code>BatchNorm</code> 层，则需要将其转换为 <code>SyncBatchNorm</code>，以便在副本之间同步 <code>BatchNorm</code> 层的运行统计信息。</p>
+<p>使用辅助函数 <a href="https://pytorch.ac.cn/docs/stable/generated/torch.nn.SyncBatchNorm.html#torch.nn.SyncBatchNorm.convert_sync_batchnorm">torch.nn.SyncBatchNorm.convert_sync_batchnorm(model)</a> 可以将模型中的所有 <code>BatchNorm</code> 层转换为 <code>SyncBatchNorm</code>。</p>
+</blockquote>
+</li>
+</ul>
+<p> </p>
+</li>
+<li>
+<h3 id="容错分布式训练---torchrun-使分布式训练具有鲁棒性">容错分布式训练 - <code>torchrun </code>使分布式训练具有鲁棒性</h3>
+<p>在分布式训练中，单个进程故障可能会中断整个训练任务。我们希望训练脚本具有鲁棒性、训练任务具有<em>弹性</em>，<em>例如，计算资源可以在任务执行期间动态加入和离开</em>。</p>
+<p><code>torchrun</code> 提供了容错和弹性训练功能。当发生故障时，<code>torchrun</code> 会记录错误并尝试从上次保存的训练任务“<strong>快照</strong>”自动重启所有进程。快照保存<strong>模型状态、已运行的 epoch 数量、优化器状态 / 训练任务连续性所需的任何其他有状态属性</strong>的详细信息。</p>
+<ul>
+<li>
+<p><strong>进程组初始化</strong>：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">ddp_setup</span>():
+</span></span><span style="display:flex;"><span>    torch<span style="color:#f92672">.</span>cuda<span style="color:#f92672">.</span>set_device(int(os<span style="color:#f92672">.</span>environ[<span style="color:#e6db74">&#34;LOCAL_RANK&#34;</span>]))
+</span></span><span style="display:flex;"><span>    init_process_group(backend<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;nccl&#34;</span>)
+</span></span></code></pre></div><p><code>torchrun</code> 会自动分配 <code>RANK</code>、 <code>WORLD_SIZE</code> 和<a href="https://pytorch.ac.cn/docs/stable/elastic/run.html#environment-variables">其他环境变量</a></p>
+</li>
+<li>
+<p><strong>在 Trainer 构造函数中加载快照</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Trainer</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(
+</span></span><span style="display:flex;"><span>        self,
+</span></span><span style="display:flex;"><span>        model: torch<span style="color:#f92672">.</span>nn<span style="color:#f92672">.</span>Module,
+</span></span><span style="display:flex;"><span>        train_data: DataLoader,
+</span></span><span style="display:flex;"><span>        optimizer: torch<span style="color:#f92672">.</span>optim<span style="color:#f92672">.</span>Optimizer,
+</span></span><span style="display:flex;"><span>        save_every: int,
+</span></span><span style="display:flex;"><span>        snapshot_path: str,
+</span></span><span style="display:flex;"><span>    ) <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">None</span>:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>gpu_id <span style="color:#f92672">=</span> int(os<span style="color:#f92672">.</span>environ[<span style="color:#e6db74">&#34;LOCAL_RANK&#34;</span>])		<span style="color:#75715e"># 使用 torchrun 提供的环境变量</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>model <span style="color:#f92672">=</span> model<span style="color:#f92672">.</span>to(self<span style="color:#f92672">.</span>gpu_id)
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>train_data <span style="color:#f92672">=</span> train_data
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>optimizer <span style="color:#f92672">=</span> optimizer
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>save_every <span style="color:#f92672">=</span> save_every
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>epochs_run <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 当重启中断的训练任务时，脚本将首先尝试加载快照以从中恢复训练</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>snapshot_path <span style="color:#f92672">=</span> snapshot_path
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>exists(snapshot_path):
+</span></span><span style="display:flex;"><span>            print(<span style="color:#e6db74">&#34;Loading snapshot&#34;</span>)
+</span></span><span style="display:flex;"><span>            self<span style="color:#f92672">.</span>_load_snapshot(snapshot_path)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>model <span style="color:#f92672">=</span> DDP(self<span style="color:#f92672">.</span>model, device_ids<span style="color:#f92672">=</span>[self<span style="color:#f92672">.</span>gpu_id])
+</span></span></code></pre></div></li>
+<li>
+<p><strong>保存和加载快照</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">_load_snapshot</span>(self, snapshot_path):
+</span></span><span style="display:flex;"><span>        loc <span style="color:#f92672">=</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;cuda:</span><span style="color:#e6db74">{</span>self<span style="color:#f92672">.</span>gpu_id<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>        snapshot <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>load(snapshot_path, map_location<span style="color:#f92672">=</span>loc)
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>model<span style="color:#f92672">.</span>load_state_dict(snapshot[<span style="color:#e6db74">&#34;MODEL_STATE&#34;</span>])
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>epochs_run <span style="color:#f92672">=</span> snapshot[<span style="color:#e6db74">&#34;EPOCHS_RUN&#34;</span>]
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Resuming training from snapshot at Epoch </span><span style="color:#e6db74">{</span>self<span style="color:#f92672">.</span>epochs_run<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">_save_snapshot</span>(self, epoch):
+</span></span><span style="display:flex;"><span>        snapshot <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;MODEL_STATE&#34;</span>: self<span style="color:#f92672">.</span>model<span style="color:#f92672">.</span>module<span style="color:#f92672">.</span>state_dict(),
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;EPOCHS_RUN&#34;</span>: epoch,
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        torch<span style="color:#f92672">.</span>save(snapshot, self<span style="color:#f92672">.</span>snapshot_path)
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Epoch </span><span style="color:#e6db74">{</span>epoch<span style="color:#e6db74">}</span><span style="color:#e6db74"> | Training snapshot saved at </span><span style="color:#e6db74">{</span>self<span style="color:#f92672">.</span>snapshot_path<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span></code></pre></div><p>定期将所有相关信息存储在快照中，可以使我们的训练任务在中断后无缝恢复</p>
+</li>
+<li>
+<p><strong>训练脚本</strong>（从断点处开始训练）：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">train</span>(self, max_epochs: int):
+</span></span><span style="display:flex;"><span>  			<span style="color:#75715e"># 训练可以从上次运行的 epoch 恢复，而不是从头开始</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> epoch <span style="color:#f92672">in</span> range(self<span style="color:#f92672">.</span>epochs_run, max_epochs):
+</span></span><span style="display:flex;"><span>            self<span style="color:#f92672">.</span>_run_epoch(epoch)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>gpu_id <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">and</span> epoch <span style="color:#f92672">%</span> self<span style="color:#f92672">.</span>save_every <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
+</span></span><span style="display:flex;"><span>                self<span style="color:#f92672">.</span>_save_snapshot(epoch)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main</span>(save_every: int, total_epochs: int, batch_size: int, snapshot_path: str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;snapshot.pt&#34;</span>):<span style="color:#960050;background-color:#1e0010">：</span>
+</span></span><span style="display:flex;"><span>    ddp_setup()
+</span></span><span style="display:flex;"><span>    dataset, model, optimizer <span style="color:#f92672">=</span> load_train_objs()
+</span></span><span style="display:flex;"><span>    train_data <span style="color:#f92672">=</span> prepare_dataloader(dataset, batch_size)
+</span></span><span style="display:flex;"><span>    trainer <span style="color:#f92672">=</span> Trainer(model, train_data, optimizer, save_every, snapshot_path)
+</span></span><span style="display:flex;"><span>    trainer<span style="color:#f92672">.</span>train(total_epochs)
+</span></span><span style="display:flex;"><span>    destroy_process_group()
+</span></span></code></pre></div><p>如果发生故障，<code>torchrun</code> 将<strong>终止所有进程并重新启动它们</strong>。</p>
+<p>每个进程入口点首先加载并初始化上次保存的快照，然后从那里继续训练。因此，在任何故障发生时，你只会丢失上次保存快照之后的训练进度。</p>
+<p>在弹性训练中，无论何时发生成员变化（添加或移除节点），<code>torchrun</code> 都会 终止 并 在可用设备上生成进程，从而确保训练任务可以在无需手动干预的情况下继续进行。</p>
+</li>
+<li>
+<p><strong>运行脚本</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">import</span> argparse
+</span></span><span style="display:flex;"><span>    parser <span style="color:#f92672">=</span> argparse<span style="color:#f92672">.</span>ArgumentParser(description<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;simple distributed training job&#39;</span>)
+</span></span><span style="display:flex;"><span>    parser<span style="color:#f92672">.</span>add_argument(<span style="color:#e6db74">&#39;total_epochs&#39;</span>, type<span style="color:#f92672">=</span>int, help<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Total epochs to train the model&#39;</span>)
+</span></span><span style="display:flex;"><span>    parser<span style="color:#f92672">.</span>add_argument(<span style="color:#e6db74">&#39;save_every&#39;</span>, type<span style="color:#f92672">=</span>int, help<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;How often to save a snapshot&#39;</span>)
+</span></span><span style="display:flex;"><span>    parser<span style="color:#f92672">.</span>add_argument(<span style="color:#e6db74">&#39;--batch_size&#39;</span>, default<span style="color:#f92672">=</span><span style="color:#ae81ff">32</span>, type<span style="color:#f92672">=</span>int, help<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Input batch size on each device (default: 32)&#39;</span>)
+</span></span><span style="display:flex;"><span>    args <span style="color:#f92672">=</span> parser<span style="color:#f92672">.</span>parse_args()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># torchrun 会自动生成进程</span>
+</span></span><span style="display:flex;"><span>    main(args<span style="color:#f92672">.</span>save_every, args<span style="color:#f92672">.</span>total_epochs, args<span style="color:#f92672">.</span>batch_size)
+</span></span></code></pre></div><p>删除了所有显示的环境变量，因为 <code>torchrun</code> 会处理这些变量。</p>
+<pre tabindex="0"><code>torchrun --standalone --nproc_per_node=4 multigpu_torchrun.py 50 10
+</code></pre></li>
+</ul>
+<p> </p>
+<h4 id="为何使用-torchrun">为何使用 <code>torchrun</code>：</h4>
+<ul>
+<li>无需设置环境变量或显式传递 <code>rank</code> 和 <code>world_size</code>；<code>torchrun</code> 会自动分配<a href="https://pytorch.ac.cn/docs/stable/elastic/run.html#environment-variables"><strong>环境变量</strong></a>。</li>
+<li>无需在脚本中调用 <code>mp.spawn</code>；只需要一个通用的 <code>main()</code> 入口点，然后使用 <code>torchrun</code> 启动脚本。<strong>同一个脚本可以在非分布式、单节点和多节点环境中运行</strong>。</li>
+<li>从上次保存的训练<strong>快照</strong>处重启训练。</li>
+</ul>
+<p> </p>
+</li>
+<li>
+<h3 id="多节点训练---在多台机器上用多个-gpu-训练模型">多节点训练 - 在多台机器上用多个 GPU 训练模型</h3>
+<ul>
+<li>多节点训练指将训练作业部署到多台机器上。有两种方法可以实现：
+<ol>
+<li>在每台机器上运行具有<strong>相同 rendezvous 参数的 <code>torchrun</code> 命令</strong>，或</li>
+<li>使用**工作负载管理器（如 SLURM）**将其部署在计算集群上</li>
+</ol>
+</li>
+<li>Torchrun 支持<em>异构扩展</em>，即: 每个多节点机器可以参与训练作业的 GPU 数量不同</li>
+</ul>
+<p>多节点训练的瓶颈在于<strong>节点间通信延迟</strong>。在单个节点上使用 4 个 GPU 运行训练作业将比在 4 个节点上每个节点使用 1 个 GPU 运行要快。</p>
+<ul>
+<li>
+<h4 id="本地-rank-和全局-rank">本地 Rank 和全局 Rank</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>self<span style="color:#f92672">.</span>local_rank <span style="color:#f92672">=</span> int(os<span style="color:#f92672">.</span>environ[<span style="color:#e6db74">&#34;LOCAL_RANK&#34;</span>])
+</span></span><span style="display:flex;"><span>self<span style="color:#f92672">.</span>global_rank <span style="color:#f92672">=</span> int(os<span style="color:#f92672">.</span>environ[<span style="color:#e6db74">&#34;RANK&#34;</span>])
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">_run_epoch</span>(self, epoch):
+</span></span><span style="display:flex;"><span>  	b_sz <span style="color:#f92672">=</span> len(next(iter(self<span style="color:#f92672">.</span>train_data))[<span style="color:#ae81ff">0</span>])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  	print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;[GPU</span><span style="color:#e6db74">{</span>self<span style="color:#f92672">.</span>global_rank<span style="color:#e6db74">}</span><span style="color:#e6db74">] Epoch </span><span style="color:#e6db74">{</span>epoch<span style="color:#e6db74">}</span><span style="color:#e6db74"> | Batchsize: </span><span style="color:#e6db74">{</span>b_sz<span style="color:#e6db74">}</span><span style="color:#e6db74"> | Steps: </span><span style="color:#e6db74">{</span>len(self<span style="color:#f92672">.</span>train_data)<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  	self<span style="color:#f92672">.</span>train_data<span style="color:#f92672">.</span>sampler<span style="color:#f92672">.</span>set_epoch(epoch)
+</span></span><span style="display:flex;"><span>  	<span style="color:#66d9ef">for</span> source, targets <span style="color:#f92672">in</span> self<span style="color:#f92672">.</span>train_data:
+</span></span><span style="display:flex;"><span>    		source <span style="color:#f92672">=</span> source<span style="color:#f92672">.</span>to(self<span style="color:#f92672">.</span>local_rank)
+</span></span><span style="display:flex;"><span>        targets <span style="color:#f92672">=</span> targets<span style="color:#f92672">.</span>to(self<span style="color:#f92672">.</span>local_rank)
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>_run_batch(source, targets)
+</span></span></code></pre></div><p><img src="/images/DPT/5.png" alt="5"></p>
+<p><img src="/images/DPT/6.png" alt="6"></p>
+<blockquote>
+<p>[!WARNING]</p>
+<p>请勿在训练作业的关键逻辑中使用 <code>RANK</code>。当 <code>torchrun</code> 在故障或成员变更后重启进程时，无法保证进程会保持相同的 <code>LOCAL_RANK</code> 和 <code>RANKS</code></p>
+</blockquote>
+</li>
+<li>
+<h4 id="方法一在每台机器上运行-torchrun">方法一：在每台机器上运行 <code>torchrun</code></h4>
+<ul>
+<li>
+<p>例如</p>
+<p><img src="/images/DPT/7.png" alt="7"></p>
+</li>
+</ul>
+</li>
+<li>
+<h4 id="方法二使用-slurm-运行-torchrun">方法二：使用 SLURM 运行 <code>torchrun</code></h4>
+<ol>
+<li>
+<p>在AWS上设置集群</p>
+</li>
+<li>
+<p>运行脚本</p>
+<pre tabindex="0"><code>cat slurm/sbatch_run.sh
+</code></pre></li>
+<li>
+<p>检查状态</p>
+<pre tabindex="0"><code>squeue
+</code></pre></li>
+<li>
+<p>查看输出</p>
+<pre tabindex="0"><code>cat slurm-15.out
+</code></pre></li>
+</ol>
+</li>
+<li>
+<h4 id="故障排除">故障排除</h4>
+<ul>
+<li>
+<p>确保节点可以通过 TCP 相互通信。</p>
+</li>
+<li>
+<p>将环境变量 <code>NCCL_DEBUG</code> 设置为 <code>INFO</code>以打印详细日志：</p>
+<pre tabindex="0"><code>export NCCL_SOCKET_IFNAME=eth0
+</code></pre></li>
+<li>
+<p>有时可能需要<a href="https://pytorch.ac.cn/docs/stable/distributed.html#choosing-the-network-interface-to-use">显式设置分布式后端的网络接口</a>（<code>export NCCL_SOCKET_IFNAME=eth0</code>）。</p>
+</li>
+</ul>
+</li>
+</ul>
+<p> </p>
+</li>
+<li>
+<h3 id="使用-ddp-训练-minigpt-模型">使用 DDP 训练 miniGPT 模型</h3>
+<p>首先，克隆 <a href="https://github.com/karpathy/minGPT">minGPT 仓库</a>，并重构 Trainer。代码重构完成后，首先在带有 4 个 GPU 的单节点上运行它，然后在 slurm 集群上运行。</p>
+<ul>
+<li>
+<h4 id="用于训练的文件">用于训练的文件</h4>
+<ul>
+<li>
+<p><a href="https://github.com/pytorch/examples/blob/main/distributed/minGPT-ddp/mingpt/trainer.py">trainer.py</a>：包含 Trainer 类，基于提供的数据集在模型上运行分布式训练迭代。</p>
+</li>
+<li>
+<p><a href="https://github.com/pytorch/examples/blob/main/distributed/minGPT-ddp/mingpt/model.py">model.py</a>：定义了 GPT 模型架构。</p>
+</li>
+<li>
+<p><a href="https://github.com/pytorch/examples/blob/main/distributed/minGPT-ddp/mingpt/char_dataset.py">char_dataset.py</a>：包含字符级别数据集的 <code>Dataset</code> 类。</p>
+</li>
+<li>
+<p><a href="https://github.com/pytorch/examples/blob/main/distributed/minGPT-ddp/mingpt/gpt2_train_cfg.yaml">gpt2_train_cfg.yaml</a>：包含数据、模型、优化器和训练运行的配置。</p>
+<p>使用 <a href="https://hydra.cc/">hydra</a> 集中管理训练运行的所有配置。</p>
+</li>
+<li>
+<p><a href="https://github.com/pytorch/examples/blob/main/distributed/minGPT-ddp/mingpt/main.py">main.py</a>：训练任务的入口点，设置 DDP 进程组，读取 yaml 中的配置来启动训练任务。</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol><ul class="pa0">
+  
+   <li class="list di">
+     <a href="/tags/pytorch/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">Pytorch</a>
+   </li>
+  
+   <li class="list di">
+     <a href="/tags/ai-infra/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">AI Infra</a>
+   </li>
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+  <div class="bg-light-gray pa3 nested-list-reset nested-copy-line-height nested-links">
+    <p class="f5 b mb3">Related</p>
+    <ul class="pa0 list">
+	   
+	     <li  class="mb2">
+          <a href="/post/pytorch%E5%9F%BA%E7%A1%80/">pytorch 基础</a>
+        </li>
+	    
+    </ul>
+</div>
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="http://localhost:1313/" >
+    &copy;  HomePage 2025 
+  </a>
+    <div><div class="ananke-socials"><a href="https://www.facebook.com/patrick.kollitsch" target="_blank" rel="noopener"
+        class="ananke-social-link link-transition facebook link dib z-999 pt3 pt0-l mr1"
+        title="follow on Facebook - Opens in a new window"
+        aria-label="follow on Facebook - Opens in a new window">
+      <span class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M512 256C512 114.6 397.4 0 256 0S0 114.6 0 256C0 376 82.7 476.8 194.2 504.5V334.2H141.4V256h52.8V222.3c0-87.1 39.4-127.5 125-127.5c16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1c-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H287V510.1C413.8 494.8 512 386.9 512 256h0z"/></svg>
+            
+          </span></a><a href="https://bsky.app/profile/kollitsch.dev" target="_blank" rel="noopener"
+        class="ananke-social-link link-transition bluesky link dib z-999 pt3 pt0-l mr1"
+        title="follow on Bluesky - Opens in a new window"
+        aria-label="follow on Bluesky - Opens in a new window">
+      <span class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M407.8 294.7c-3.3-.4-6.7-.8-10-1.3c3.4 .4 6.7 .9 10 1.3zM288 227.1C261.9 176.4 190.9 81.9 124.9 35.3C61.6-9.4 37.5-1.7 21.6 5.5C3.3 13.8 0 41.9 0 58.4S9.1 194 15 213.9c19.5 65.7 89.1 87.9 153.2 80.7c3.3-.5 6.6-.9 10-1.4c-3.3 .5-6.6 1-10 1.4C74.3 308.6-9.1 342.8 100.3 464.5C220.6 589.1 265.1 437.8 288 361.1c22.9 76.7 49.2 222.5 185.6 103.4c102.4-103.4 28.1-156-65.8-169.9c-3.3-.4-6.7-.8-10-1.3c3.4 .4 6.7 .9 10 1.3c64.1 7.1 133.6-15.1 153.2-80.7C566.9 194 576 75 576 58.4s-3.3-44.7-21.6-52.9c-15.8-7.1-40-14.9-103.2 29.8C385.1 81.9 314.1 176.4 288 227.1z"/></svg>
+            
+          </span></a><a href="http://linkedin.com/in/patrickkollitsch" target="_blank" rel="noopener"
+        class="ananke-social-link link-transition linkedin link dib z-999 pt3 pt0-l mr1"
+        title="follow on LinkedIn - Opens in a new window"
+        aria-label="follow on LinkedIn - Opens in a new window">
+      <span class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+            
+          </span></a></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

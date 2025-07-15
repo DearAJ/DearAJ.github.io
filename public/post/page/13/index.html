@@ -47,8 +47,8 @@
 
   <meta itemprop="name" content="Articles">
   <meta itemprop="description" content="The soul selects her own society, then shuts the door. To her divine majority, present no more.">
-  <meta itemprop="datePublished" content="2025-07-07T11:00:59-04:00">
-  <meta itemprop="dateModified" content="2026-07-05T10:00:59-04:00">
+  <meta itemprop="datePublished" content="2025-07-11T11:00:59-04:00">
+  <meta itemprop="dateModified" content="2026-07-11T11:00:59-04:00">
   <meta itemprop="wordCount" content="2">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Articles">
@@ -153,134 +153,110 @@
             <div class="mb3 pa4 mid-gray overflow-hidden">
     
       <div class="f6">
+        April 2, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/trpo/" class="link black dim">
+        TRPO
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>基于策略的方法的缺点：当策略网络是深度模型时沿着策略梯度更新参数，很有可能由于步长太长，策略突然显著变差，进而影响训练效果。</p>
+<ul>
+<li>
+<p><strong>信任区域策略优化</strong>（TRPO）算法的核心思想：</p>
+<p><strong>信任区域</strong>（trust region）：在这个区域上更新策略时能够得到某种策略性能的安全性保证。</p>
+</li>
+</ul>
+<p> </p>
+<h2 id="1-策略目标">1. 策略目标</h2>
+<p><img src="/images/trpo/1.png" alt="1"></p>
+<p><img src="/images/trpo/2.png" alt="2"></p>
+    </div>
+  <a href="/post/trpo/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        April 2, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/actor-critic/" class="link black dim">
+        Actor-Critic
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>Actor-Critic 算法本质上是基于策略的算法，因为这一系列算法的<strong>目标都是优化一个带参数的策略，只是会额外学习价值函数</strong>，从而帮助策略函数更好地学习。</p>
+<p>Actor-Critic 算法则可以在每一步之后都进行更新，并且不对任务的步数做限制。</p>
+<ul>
+<li>
+<p>更一般形式的策略梯度</p>
+<p><img src="/images/ac/1.png" alt="1"></p>
+</li>
+</ul>
+<p> </p>
+<h3 id="1-actor策略网络">1. Actor（策略网络）</h3>
+<p>Actor 要做的是与环境交互，并在 Critic 价值函数的指导下用策略梯度学习一个更好的策略。</p>
+<p>Actor 的更新采用策略梯度的原则。</p>
+<h3 id="2--critic价值网络">2.  Critic（价值网络）</h3>
+<p>Critic 要做的是通过 Actor 与环境交互收集的数据学习一个价值函数，这个价值函数会用于判断在当前状态什么动作是好的，什么动作不是好的，进而帮助 Actor 进行策略更新。</p>
+    </div>
+  <a href="/post/actor-critic/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
         April 1, 2025
       </div>
     
     <h1 class="f3 near-black">
-      <a href="/post/dqn/" class="link black dim">
-        DQN (deep Q network)
+      <a href="/post/reinforce/" class="link black dim">
+        REINFORCE
       </a>
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p>Q-learning 算法用表格存储动作价值的做法只在 环境的状态和动作都是离散的，并且空间都比较小 的情况下适用.</p>
-<p><strong>DQN</strong>：用来解决连续状态下离散动作的问题，是离线策略算法，可以使用ε-贪婪策略来平衡探索与利用。</p>
-<p><strong>Q 网络</strong>：用于拟合函数Q函数的神经网络</p>
-<p><img src="/images/DQN/1.png" alt="1"></p>
-<p><strong>Q 网络的损失函数</strong>（均方误差形式）</p>
-<p><img src="/images/DQN/2.png" alt="2"></p>
-    </div>
-  <a href="/post/dqn/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        March 31, 2025
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/qlearing/" class="link black dim">
-        Q-learing
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p><strong>无模型的强化学习</strong>：不需要事先知道环境的奖励函数和状态转移函数，而是直接使用和环境交互的过程中采样到的数据来学习。</p>
-<h2 id="1-时序差分方法">1. 时序差分方法</h2>
-<p>时序差分方法核心：对未来动作选择的价值估计来更新对当前动作选择的价值估计。</p>
-<h3 id="蒙特卡洛方法monte-carlo-methods">蒙特卡洛方法（Monte-Carlo methods）</h3>
-<p>使用重复随机抽样，然后运用概率统计方法来从抽样结果中归纳出我们想求的目标的数值估计。</p>
+      <p>Q-learning、DQN 算法都是<strong>基于价值</strong>（value-based）的方法</p>
 <ul>
-<li>
-<p>用蒙特卡洛方法来估计一个策略在一个马尔可夫决策过程中的状态价值函数：<strong>用样本均值作为期望值的估计</strong></p>
-<ol>
-<li>在 MDP 上采样很多条序列，计算从这个状态出发的回报再求其期望</li>
-<li>一条序列只计算一次回报，也就是这条序列第一次出现该状态时计算后面的累积奖励，而后面再次出现该状态时，该状态就被忽略了。</li>
-</ol>
-</li>
-<li>
-<p>蒙特卡洛方法对价值函数的增量更新方式</p>
-<p><img src="/images/QLearning/1.png" alt="1"></p>
-</li>
-<li>
-<p>时序差分方法只需要当前步结束即可进行计算</p>
-</li>
+<li>Q-learning 是处理有限状态的算法</li>
+<li>DQN 可以用来解决连续状态的问题</li>
 </ul>
-    </div>
-  <a href="/post/qlearing/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        March 31, 2025
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-%E6%98%93%E6%B7%B7%E6%B7%86%E7%82%B9/" class="link black dim">
-        强化学习-易混淆点
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <ol>
-<li>
-<h3 id="gae-和优势函数">GAE 和优势函数</h3>
-<table>
-  <thead>
-      <tr>
-          <th style="text-align: left">概念</th>
-          <th style="text-align: left">说明</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: left"><strong>优势函数 A(s,a)</strong></td>
-          <td style="text-align: left">Q(s,a)−V(s)，衡量动作比平均情况好多少</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><strong>广义优势估计 GAE</strong></td>
-          <td style="text-align: left">一种<strong>计算优势函数</strong>方法，用TD误差的加权和估计优势，超参数 λ 控制偏差-方差权衡</td>
-      </tr>
-  </tbody>
-</table>
-</li>
-</ol>
+<p>在强化学习中，除了基于值函数的方法，还有一支非常经典的方法，那就是<strong>基于策略</strong>（policy-based）的方法。</p>
 <p> </p>
-<ol start="2">
-<li>
-<h3 id="状态价值函数-vs-动作价值函数">状态价值函数 vs 动作价值函数</h3>
-<ol>
-<li>
-<p><strong>状态价值函数</strong></p>
-<p><img src="/images/RLconfused/1.png" alt="1"></p>
-</li>
-<li>
-<p><strong>动作价值函数</strong></p>
-<p><img src="/images/RLconfused/2.png" alt="2"></p>
-</li>
-<li>
-<p><strong>优势函数</strong></p>
-<p><strong>在状态 s 下选择动作 a 比平均情况（即遵循当前策略）好多少</strong></p>
-<p>A(s,a)=Q(s,a)−V(s)</p>
+<p>对比 value-based 和 policy-based</p>
 <ul>
-<li>求解优势函数：<strong>广义优势估计</strong>(GAE)</li>
+<li>基于值函数：主要是学习<strong>值函数</strong>，然后根据值函数导出一个策略，学习过程中并不存在一个显式的策略；</li>
+<li>基于策略：直接显式地学习一个<strong>目标策略</strong>。策略梯度是基于策略的方法的基础。</li>
+</ul>
+<p> </p>
+<p> </p>
+<h2 id="1-策略梯度">1. 策略梯度</h2>
+<ul>
+<li>
+<p>将策略参数化：寻找一个最优策略并最大化这个策略在环境中的期望回报，即调整策略参数使平均回报最大化。</p>
+</li>
+<li>
+<p>策略学习的目标函数</p>
+<p><img src="/images/REINFORCE/1.png" alt="1"></p>
+<ul>
+<li>J(θ) 是策略的目标函数（想要最大化的量）；</li>
+<li>πθ 是参数为θ的随机性策略，并且处处可微（可以理解为AI的决策规则）；</li>
+<li>Vπθ(s0) 指从初始状态s₀开始<strong>遵循策略π能获得的预期总回报</strong>；</li>
+<li>Es0 是对所有可能的初始状态求期望。</li>
 </ul>
 </li>
-<li>
-<p><strong>广义优势估计</strong>(GAE)</p>
-<p>通过指数加权平均不同步长的优势估计（从1步到无穷步），结合γ和λ的幂次衰减，实现平滑的回报估计。</p>
-<p><img src="/images/RLconfused/5.png" alt="5"></p>
-</li>
-</ol>
-</li>
-</ol>
+</ul>
     </div>
-  <a href="/post/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-%E6%98%93%E6%B7%B7%E6%B7%86%E7%82%B9/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  <a href="/post/reinforce/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
   </div>
 
         </div>
@@ -313,7 +289,7 @@
         <a href="/post/page/14/" aria-label="Next" class="page-link" role="button"><span aria-hidden="true">&raquo;</span></a>
       </li>
       <li class="page-item">
-        <a href="/post/page/23/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/post/page/24/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
       </li>
     </ul>
   </article>

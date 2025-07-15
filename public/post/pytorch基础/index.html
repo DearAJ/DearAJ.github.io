@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>pytorch 基础 | HomePage</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="https://pytorch.ac.cn/tutorials/beginner/basics/quickstart_tutorial.html">
+    <meta name="generator" content="Hugo 0.140.2">
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+    
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="http://localhost:1313/post/pytorch%E5%9F%BA%E7%A1%80/">
+    
+
+    <meta property="og:url" content="http://localhost:1313/post/pytorch%E5%9F%BA%E7%A1%80/">
+  <meta property="og:site_name" content="HomePage">
+  <meta property="og:title" content="pytorch 基础">
+  <meta property="og:description" content="https://pytorch.ac.cn/tutorials/beginner/basics/quickstart_tutorial.html">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2025-07-10T11:00:59-04:00">
+    <meta property="article:modified_time" content="2025-07-10T11:00:59-04:00">
+    <meta property="article:tag" content="Pytorch">
+    <meta property="article:tag" content="AI Infra">
+
+  <meta itemprop="name" content="pytorch 基础">
+  <meta itemprop="description" content="https://pytorch.ac.cn/tutorials/beginner/basics/quickstart_tutorial.html">
+  <meta itemprop="datePublished" content="2025-07-10T11:00:59-04:00">
+  <meta itemprop="dateModified" content="2025-07-10T11:00:59-04:00">
+  <meta itemprop="wordCount" content="698">
+  <meta itemprop="keywords" content="Pytorch,AI Infra">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="pytorch 基础">
+  <meta name="twitter:description" content="https://pytorch.ac.cn/tutorials/beginner/basics/quickstart_tutorial.html">
+
+	
+  </head><body class="ma0 avenir bg-near-white development">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('http://localhost:1313/images/pytorch/jaz.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        HomePage
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/about/" title="About ME page">
+              About ME
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/post/" title="Articles page">
+              Articles
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/contact/" title="Contact page">
+              Contact
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"><a href="https://www.facebook.com/patrick.kollitsch" target="_blank" rel="noopener"
+        class="ananke-social-link link-transition facebook link dib z-999 pt3 pt0-l mr1"
+        title="follow on Facebook - Opens in a new window"
+        aria-label="follow on Facebook - Opens in a new window">
+      <span class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M512 256C512 114.6 397.4 0 256 0S0 114.6 0 256C0 376 82.7 476.8 194.2 504.5V334.2H141.4V256h52.8V222.3c0-87.1 39.4-127.5 125-127.5c16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1c-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H287V510.1C413.8 494.8 512 386.9 512 256h0z"/></svg>
+            
+          </span></a><a href="https://bsky.app/profile/kollitsch.dev" target="_blank" rel="noopener"
+        class="ananke-social-link link-transition bluesky link dib z-999 pt3 pt0-l mr1"
+        title="follow on Bluesky - Opens in a new window"
+        aria-label="follow on Bluesky - Opens in a new window">
+      <span class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M407.8 294.7c-3.3-.4-6.7-.8-10-1.3c3.4 .4 6.7 .9 10 1.3zM288 227.1C261.9 176.4 190.9 81.9 124.9 35.3C61.6-9.4 37.5-1.7 21.6 5.5C3.3 13.8 0 41.9 0 58.4S9.1 194 15 213.9c19.5 65.7 89.1 87.9 153.2 80.7c3.3-.5 6.6-.9 10-1.4c-3.3 .5-6.6 1-10 1.4C74.3 308.6-9.1 342.8 100.3 464.5C220.6 589.1 265.1 437.8 288 361.1c22.9 76.7 49.2 222.5 185.6 103.4c102.4-103.4 28.1-156-65.8-169.9c-3.3-.4-6.7-.8-10-1.3c3.4 .4 6.7 .9 10 1.3c64.1 7.1 133.6-15.1 153.2-80.7C566.9 194 576 75 576 58.4s-3.3-44.7-21.6-52.9c-15.8-7.1-40-14.9-103.2 29.8C385.1 81.9 314.1 176.4 288 227.1z"/></svg>
+            
+          </span></a><a href="http://linkedin.com/in/patrickkollitsch" target="_blank" rel="noopener"
+        class="ananke-social-link link-transition linkedin link dib z-999 pt3 pt0-l mr1"
+        title="follow on LinkedIn - Opens in a new window"
+        aria-label="follow on LinkedIn - Opens in a new window">
+      <span class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+            
+          </span></a></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">pytorch 基础</div>
+          
+            <div class="fw1 f5 f3-l white-80 measure-wide-l center lh-copy mt3 mb4">
+              https://pytorch.ac.cn/tutorials/beginner/basics/quickstart_tutorial.html
+            </div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked ttu">
+          
+        Articles
+      </aside><div id="sharing" class="mt3 ananke-socials"><a href="mailto:?&amp;body=http%3A%2F%2Flocalhost%3A1313%2Fpost%2Fpytorch%25E5%259F%25BA%25E7%25A1%2580%2F&amp;subject=pytorch&#43;%E5%9F%BA%E7%A1%80"
+        class="ananke-social-link email no-underline"
+        title="Share on Email" aria-label="Share on Email"
+        target="_blank" rel="nofollow noopener noreferrer">
+        <span class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M64 112c-8.8 0-16 7.2-16 16l0 22.1L220.5 291.7c20.7 17 50.4 17 71.1 0L464 150.1l0-22.1c0-8.8-7.2-16-16-16L64 112zM48 212.2L48 384c0 8.8 7.2 16 16 16l384 0c8.8 0 16-7.2 16-16l0-171.8L322 328.8c-38.4 31.5-93.7 31.5-132 0L48 212.2zM0 128C0 92.7 28.7 64 64 64l384 0c35.3 0 64 28.7 64 64l0 256c0 35.3-28.7 64-64 64L64 448c-35.3 0-64-28.7-64-64L0 128z"/></svg>
+                
+              </span></a><a href="https://facebook.com/sharer/sharer.php?&amp;u=http%3A%2F%2Flocalhost%3A1313%2Fpost%2Fpytorch%25E5%259F%25BA%25E7%25A1%2580%2F"
+        class="ananke-social-link facebook no-underline"
+        title="Share on Facebook" aria-label="Share on Facebook"
+        target="_blank" rel="nofollow noopener noreferrer">
+        <span class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M512 256C512 114.6 397.4 0 256 0S0 114.6 0 256C0 376 82.7 476.8 194.2 504.5V334.2H141.4V256h52.8V222.3c0-87.1 39.4-127.5 125-127.5c16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1c-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H287V510.1C413.8 494.8 512 386.9 512 256h0z"/></svg>
+                
+              </span></a><a href="https://bsky.app/intent/compose?&amp;text=http%3A%2F%2Flocalhost%3A1313%2Fpost%2Fpytorch%25E5%259F%25BA%25E7%25A1%2580%2F"
+        class="ananke-social-link bluesky no-underline"
+        title="Share on Bluesky" aria-label="Share on Bluesky"
+        target="_blank" rel="nofollow noopener noreferrer">
+        <span class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M407.8 294.7c-3.3-.4-6.7-.8-10-1.3c3.4 .4 6.7 .9 10 1.3zM288 227.1C261.9 176.4 190.9 81.9 124.9 35.3C61.6-9.4 37.5-1.7 21.6 5.5C3.3 13.8 0 41.9 0 58.4S9.1 194 15 213.9c19.5 65.7 89.1 87.9 153.2 80.7c3.3-.5 6.6-.9 10-1.4c-3.3 .5-6.6 1-10 1.4C74.3 308.6-9.1 342.8 100.3 464.5C220.6 589.1 265.1 437.8 288 361.1c22.9 76.7 49.2 222.5 185.6 103.4c102.4-103.4 28.1-156-65.8-169.9c-3.3-.4-6.7-.8-10-1.3c3.4 .4 6.7 .9 10 1.3c64.1 7.1 133.6-15.1 153.2-80.7C566.9 194 576 75 576 58.4s-3.3-44.7-21.6-52.9c-15.8-7.1-40-14.9-103.2 29.8C385.1 81.9 314.1 176.4 288 227.1z"/></svg>
+                
+              </span></a><a href="https://www.linkedin.com/shareArticle?&amp;mini=true&amp;source=http%3A%2F%2Flocalhost%3A1313%2Fpost%2Fpytorch%25E5%259F%25BA%25E7%25A1%2580%2F&amp;summary=%E6%95%B0%E6%8D%AE&#43;PyTorch&#43;%E6%9C%89%E4%B8%A4%E4%B8%AA%E7%94%A8%E4%BA%8E%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE%E7%9A%84%E5%9F%BA%E5%85%83%EF%BC%9A&#43;torch.utils.data.DataLoader&#43;%E5%92%8C&#43;torch.utils.data.Dataset%0ADataset&#43;%E5%AD%98%E5%82%A8%E6%A0%B7%E6%9C%AC%E5%8F%8A%E5%85%B6%E7%9B%B8%E5%BA%94%E7%9A%84%E6%A0%87%E7%AD%BE%EF%BC%8CDataLoader&#43;%E5%88%99%E5%B0%86%E4%B8%80%E4%B8%AA%E5%8F%AF%E8%BF%AD%E4%BB%A3%E5%AF%B9%E8%B1%A1%E5%B0%81%E8%A3%85%E5%9C%A8&#43;Dataset&#43;%E5%91%A8%E5%9B%B4%0Aimport&#43;torch&#43;from&#43;torch&#43;import&#43;nn&#43;from&#43;torch.utils.data&#43;import&#43;DataLoader&#43;from&#43;torchvision&#43;import&#43;datasets&#43;from&#43;torchvision.transforms&#43;import&#43;ToTensor&#43;PyTorch&#43;%E6%8F%90%E4%BE%9B%E7%89%B9%E5%AE%9A%E4%BA%8E%E5%9F%9F%E7%9A%84%E5%BA%93%EF%BC%8C%E4%BE%8B%E5%A6%82&#43;TorchText%E3%80%81TorchVision&#43;%E5%92%8C&#43;TorchAudio%EF%BC%8C%E6%89%80%E6%9C%89%E8%BF%99%E4%BA%9B%E5%BA%93%E9%83%BD%E5%8C%85%E5%90%AB%E6%95%B0%E6%8D%AE%E9%9B%86%E3%80%82%E4%BB%A5&#43;TorchVision%29&#43;%E4%B8%AD%E7%9A%84&#43;FashionMNIST&#43;%E6%95%B0%E6%8D%AE%E9%9B%86%E4%B8%BA%E4%BE%8B%EF%BC%9A%0A%E6%AF%8F%E4%B8%AA&#43;TorchVision&#43;Dataset&#43;%E9%83%BD%E5%8C%85%E5%90%AB%E4%B8%A4%E4%B8%AA%E5%8F%82%E6%95%B0%EF%BC%9Atransform&#43;%E5%92%8C&#43;target_transform%EF%BC%8C%E5%88%86%E5%88%AB%E7%94%A8%E4%BA%8E%E4%BF%AE%E6%94%B9%E6%A0%B7%E6%9C%AC%E5%92%8C%E6%A0%87%E7%AD%BE%EF%BC%9A%0A%23&#43;Download&#43;training&#43;data&#43;from&#43;open&#43;datasets.&#43;training_data&#43;%3D&#43;datasets.FashionMNIST%28&#43;root%3D%26amp%3B%2334%3Bdata%26amp%3B%2334%3B%2C&#43;train%3DTrue%2C&#43;download%3DTrue%2C&#43;transform%3DToTensor%28%29%2C&#43;%29&#43;&amp;title=pytorch&#43;%E5%9F%BA%E7%A1%80&amp;url=http%3A%2F%2Flocalhost%3A1313%2Fpost%2Fpytorch%25E5%259F%25BA%25E7%25A1%2580%2F"
+        class="ananke-social-link linkedin no-underline"
+        title="Share on LinkedIn" aria-label="Share on LinkedIn"
+        target="_blank" rel="nofollow noopener noreferrer">
+        <span class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+                
+              </span></a></div>
+<h1 class="f1 athelas mt3 mb1">pytorch 基础</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2025-07-10T11:00:59-04:00">July 10, 2025</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><h2 id="数据httpspytorchaccntutorialsbeginnerbasicsdata_tutorialhtml"><a href="https://pytorch.ac.cn/tutorials/beginner/basics/data_tutorial.html">数据</a></h2>
+<p>PyTorch 有两个用于处理数据的基元： <code>torch.utils.data.DataLoader</code> 和 <code>torch.utils.data.Dataset</code></p>
+<p><code>Dataset</code> 存储样本及其相应的标签，<code>DataLoader</code> 则将一个可迭代对象封装在 <code>Dataset</code> 周围</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> torch
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch <span style="color:#f92672">import</span> nn
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch.utils.data <span style="color:#f92672">import</span> DataLoader
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torchvision <span style="color:#f92672">import</span> datasets
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torchvision.transforms <span style="color:#f92672">import</span> ToTensor
+</span></span></code></pre></div><p>PyTorch 提供特定于域的库，例如 TorchText、TorchVision 和 TorchAudio，所有这些库都包含数据集。<em>以 <a href="https://pytorch.ac.cn/vision/stable/datasets.html">TorchVision</a>) 中的 FashionMNIST 数据集为例：</em></p>
+<p>每个 TorchVision <code>Dataset</code> 都包含两个参数：<code>transform</code> 和 <code>target_transform</code>，分别用于修改样本和标签：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Download training data from open datasets.</span>
+</span></span><span style="display:flex;"><span>training_data <span style="color:#f92672">=</span> datasets<span style="color:#f92672">.</span>FashionMNIST(
+</span></span><span style="display:flex;"><span>    root<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;data&#34;</span>,
+</span></span><span style="display:flex;"><span>    train<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>    download<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>    transform<span style="color:#f92672">=</span>ToTensor(),
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Download test data from open datasets.</span>
+</span></span><span style="display:flex;"><span>test_data <span style="color:#f92672">=</span> datasets<span style="color:#f92672">.</span>FashionMNIST(
+</span></span><span style="display:flex;"><span>    root<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;data&#34;</span>,
+</span></span><span style="display:flex;"><span>    train<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>,
+</span></span><span style="display:flex;"><span>    download<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>    transform<span style="color:#f92672">=</span>ToTensor(),
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><p>在我们的数据集上封装一个可迭代对象：将 <code>Dataset</code> 作为参数传递给 <code>DataLoader</code> —— 支持自动批量处理、采样、洗牌和多进程数据加载。</p>
+<p>batch size 定义为 64：数据加载器可迭代对象中的每个元素将返回 a batch of 64 features and labels</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>batch_size <span style="color:#f92672">=</span> <span style="color:#ae81ff">64</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Create data loaders.</span>
+</span></span><span style="display:flex;"><span>train_dataloader <span style="color:#f92672">=</span> DataLoader(training_data, batch_size<span style="color:#f92672">=</span>batch_size)
+</span></span><span style="display:flex;"><span>test_dataloader <span style="color:#f92672">=</span> DataLoader(test_data, batch_size<span style="color:#f92672">=</span>batch_size)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> X, y <span style="color:#f92672">in</span> test_dataloader:
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Shape of X [N, C, H, W]: </span><span style="color:#e6db74">{</span>X<span style="color:#f92672">.</span>shape<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Shape of y: </span><span style="color:#e6db74">{</span>y<span style="color:#f92672">.</span>shape<span style="color:#e6db74">}</span><span style="color:#e6db74"> </span><span style="color:#e6db74">{</span>y<span style="color:#f92672">.</span>dtype<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">break</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>Shape of X [N, C, H, W]: torch<span style="color:#f92672">.</span>Size([<span style="color:#ae81ff">64</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">28</span>, <span style="color:#ae81ff">28</span>])
+</span></span><span style="display:flex;"><span>Shape of y: torch<span style="color:#f92672">.</span>Size([<span style="color:#ae81ff">64</span>]) torch<span style="color:#f92672">.</span>int64
+</span></span></code></pre></div><p><code>[N, C, H, W]</code> 是描述张量（tensor）形状的常用表示方式，具体含义如下：</p>
+<ul>
+<li><strong>N (Batch Size)</strong>: 当前批次中的样本数量</li>
+<li><strong>C (Channels)</strong>: 图像的通道数（例如：灰度图为1，RGB彩色图为3）</li>
+<li><strong>H (Height)</strong>: 图像的高度（像素数）</li>
+<li><strong>W (Width)</strong>: 图像的宽度（像素数）</li>
+</ul>
+<p> </p>
+<h2 id="模型httpspytorchaccntutorialsbeginnerbasicsbuildmodel_tutorialhtml"><a href="https://pytorch.ac.cn/tutorials/beginner/basics/buildmodel_tutorial.html">模型</a></h2>
+<p>在 PyTorch 中定义神经网络需创建一个继承自 <a href="https://pytorch.ac.cn/docs/stable/generated/torch.nn.Module.html">nn.Module</a> 的类 —— 在 <code>__init__</code> 函数中定义网络的层，并在 <code>forward</code> 函数中指定数据如何通过网络。</p>
+<p>为了加速神经网络中的运算，可将其移动到 <a href="https://pytorch.ac.cn/docs/stable/torch.html#accelerators">加速器</a>（如 CUDA、MPS、MTIA 或 XPU）</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>device <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>accelerator<span style="color:#f92672">.</span>current_accelerator()<span style="color:#f92672">.</span>type <span style="color:#66d9ef">if</span> torch<span style="color:#f92672">.</span>accelerator<span style="color:#f92672">.</span>is_available() <span style="color:#66d9ef">else</span> <span style="color:#e6db74">&#34;cpu&#34;</span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Using </span><span style="color:#e6db74">{</span>device<span style="color:#e6db74">}</span><span style="color:#e6db74"> device&#34;</span>)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Define model</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">NeuralNetwork</span>(nn<span style="color:#f92672">.</span>Module):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self):
+</span></span><span style="display:flex;"><span>        super()<span style="color:#f92672">.</span>__init__()
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>flatten <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>Flatten()							<span style="color:#75715e"># 将 [B,C,H,W] 展平为 [B,C*H*W]</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>linear_relu_stack <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>Sequential(	<span style="color:#75715e"># 按顺序堆叠多个层</span>
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>Linear(<span style="color:#ae81ff">28</span><span style="color:#f92672">*</span><span style="color:#ae81ff">28</span>, <span style="color:#ae81ff">512</span>),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>ReLU(),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>Linear(<span style="color:#ae81ff">512</span>, <span style="color:#ae81ff">512</span>),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>ReLU(),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>Linear(<span style="color:#ae81ff">512</span>, <span style="color:#ae81ff">10</span>)							<span style="color:#75715e"># 10 维对应 MNIST 的10个类别。</span>
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">forward</span>(self, x):
+</span></span><span style="display:flex;"><span>        x <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>flatten(x)
+</span></span><span style="display:flex;"><span>        logits <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>linear_relu_stack(x)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> logits
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>model <span style="color:#f92672">=</span> NeuralNetwork()<span style="color:#f92672">.</span>to(device)
+</span></span><span style="display:flex;"><span>print(model)			<span style="color:#75715e"># 输出模型结构</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>Using cuda device
+</span></span><span style="display:flex;"><span>NeuralNetwork(
+</span></span><span style="display:flex;"><span>  (flatten): Flatten(start_dim<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>, end_dim<span style="color:#f92672">=-</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>  (linear_relu_stack): Sequential(
+</span></span><span style="display:flex;"><span>    (<span style="color:#ae81ff">0</span>): Linear(in_features<span style="color:#f92672">=</span><span style="color:#ae81ff">784</span>, out_features<span style="color:#f92672">=</span><span style="color:#ae81ff">512</span>, bias<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>    (<span style="color:#ae81ff">1</span>): ReLU()
+</span></span><span style="display:flex;"><span>    (<span style="color:#ae81ff">2</span>): Linear(in_features<span style="color:#f92672">=</span><span style="color:#ae81ff">512</span>, out_features<span style="color:#f92672">=</span><span style="color:#ae81ff">512</span>, bias<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>    (<span style="color:#ae81ff">3</span>): ReLU()
+</span></span><span style="display:flex;"><span>    (<span style="color:#ae81ff">4</span>): Linear(in_features<span style="color:#f92672">=</span><span style="color:#ae81ff">512</span>, out_features<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>, bias<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>  )
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><p> </p>
+<h2 id="优化模型参数httpspytorchaccntutorialsbeginnerbasicsoptimization_tutorialhtml"><a href="https://pytorch.ac.cn/tutorials/beginner/basics/optimization_tutorial.html">优化模型参数</a></h2>
+<p>训练模型需要 <a href="https://pytorch.ac.cn/docs/stable/nn.html#loss-functions">损失函数</a> 和 <a href="https://pytorch.ac.cn/docs/stable/optim.html">优化器</a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>loss_fn <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>CrossEntropyLoss()
+</span></span><span style="display:flex;"><span>optimizer <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>optim<span style="color:#f92672">.</span>SGD(model<span style="color:#f92672">.</span>parameters(), lr<span style="color:#f92672">=</span><span style="color:#ae81ff">1e-3</span>)
+</span></span></code></pre></div><p>一个训练循环中，模型对训练数据集（以批次形式输入）进行预测，然后通过<strong>反向传播</strong>预测误差来调整模型的参数。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">train</span>(dataloader, model, loss_fn, optimizer):
+</span></span><span style="display:flex;"><span>    size <span style="color:#f92672">=</span> len(dataloader<span style="color:#f92672">.</span>dataset)				<span style="color:#75715e"># 整个数据集的总样本数</span>
+</span></span><span style="display:flex;"><span>    model<span style="color:#f92672">.</span>train()													<span style="color:#75715e"># 将模型设置为训练模式</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 每次迭代返回一个batch索引和数据(X, y)（特征和标签）</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> batch, (X, y) <span style="color:#f92672">in</span> enumerate(dataloader):	
+</span></span><span style="display:flex;"><span>        X, y <span style="color:#f92672">=</span> X<span style="color:#f92672">.</span>to(device), y<span style="color:#f92672">.</span>to(device)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Compute prediction error</span>
+</span></span><span style="display:flex;"><span>        pred <span style="color:#f92672">=</span> model(X)
+</span></span><span style="display:flex;"><span>        loss <span style="color:#f92672">=</span> loss_fn(pred, y)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Backpropagation</span>
+</span></span><span style="display:flex;"><span>        loss<span style="color:#f92672">.</span>backward()
+</span></span><span style="display:flex;"><span>        optimizer<span style="color:#f92672">.</span>step()
+</span></span><span style="display:flex;"><span>        optimizer<span style="color:#f92672">.</span>zero_grad()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> batch <span style="color:#f92672">%</span> <span style="color:#ae81ff">100</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
+</span></span><span style="display:flex;"><span>            loss, current <span style="color:#f92672">=</span> loss<span style="color:#f92672">.</span>item(), (batch <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">*</span> len(X)		
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># len(X)为 batch 的样本数，current 计算的是当前已经处理了多少个样本</span>
+</span></span><span style="display:flex;"><span>            print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;loss: </span><span style="color:#e6db74">{</span>loss<span style="color:#e6db74">:</span><span style="color:#e6db74">&gt;7f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">  [</span><span style="color:#e6db74">{</span>current<span style="color:#e6db74">:</span><span style="color:#e6db74">&gt;5d</span><span style="color:#e6db74">}</span><span style="color:#e6db74">/</span><span style="color:#e6db74">{</span>size<span style="color:#e6db74">:</span><span style="color:#e6db74">&gt;5d</span><span style="color:#e6db74">}</span><span style="color:#e6db74">]&#34;</span>)
+</span></span></code></pre></div><p><strong>评估模型在测试集上的性能</strong>（计算准确率和平均损失）：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">test</span>(dataloader, model, loss_fn):
+</span></span><span style="display:flex;"><span>    size <span style="color:#f92672">=</span> len(dataloader<span style="color:#f92672">.</span>dataset)
+</span></span><span style="display:flex;"><span>    num_batches <span style="color:#f92672">=</span> len(dataloader)
+</span></span><span style="display:flex;"><span>    model<span style="color:#f92672">.</span>eval()									<span style="color:#75715e"># 将模型设置为评估模式</span>
+</span></span><span style="display:flex;"><span>    test_loss, correct <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">with</span> torch<span style="color:#f92672">.</span>no_grad():					<span style="color:#75715e"># 在评估时不计算梯度（不需要反向传播），节约内存</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> X, y <span style="color:#f92672">in</span> dataloader:
+</span></span><span style="display:flex;"><span>            X, y <span style="color:#f92672">=</span> X<span style="color:#f92672">.</span>to(device), y<span style="color:#f92672">.</span>to(device)
+</span></span><span style="display:flex;"><span>            pred <span style="color:#f92672">=</span> model(X)
+</span></span><span style="display:flex;"><span>            test_loss <span style="color:#f92672">+=</span> loss_fn(pred, y)<span style="color:#f92672">.</span>item()
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># pred.argmax(1)：获取预测的类别</span>
+</span></span><span style="display:flex;"><span>            correct <span style="color:#f92672">+=</span> (pred<span style="color:#f92672">.</span>argmax(<span style="color:#ae81ff">1</span>) <span style="color:#f92672">==</span> y)<span style="color:#f92672">.</span>type(torch<span style="color:#f92672">.</span>float)<span style="color:#f92672">.</span>sum()<span style="color:#f92672">.</span>item()
+</span></span><span style="display:flex;"><span>    test_loss <span style="color:#f92672">/=</span> num_batches
+</span></span><span style="display:flex;"><span>    correct <span style="color:#f92672">/=</span> size
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Test Error: </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74"> Accuracy: </span><span style="color:#e6db74">{</span>(<span style="color:#ae81ff">100</span><span style="color:#f92672">*</span>correct)<span style="color:#e6db74">:</span><span style="color:#e6db74">&gt;0.1f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">%, Avg loss: </span><span style="color:#e6db74">{</span>test_loss<span style="color:#e6db74">:</span><span style="color:#e6db74">&gt;8f</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>)
+</span></span></code></pre></div><p>训练过程会进行多次迭代（<em>epochs</em>，即周期）：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>epochs <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> t <span style="color:#f92672">in</span> range(epochs):
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Epoch </span><span style="color:#e6db74">{</span>t<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span><span style="color:#e6db74">}</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">-------------------------------&#34;</span>)
+</span></span><span style="display:flex;"><span>    train(train_dataloader, model, loss_fn, optimizer)
+</span></span><span style="display:flex;"><span>    test(test_dataloader, model, loss_fn)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;Done!&#34;</span>)
+</span></span></code></pre></div><pre tabindex="0"><code>Epoch 1
+-------------------------------
+loss: 2.303494  [   64/60000]
+loss: 2.294637  [ 6464/60000]
+loss: 2.277102  [12864/60000]
+loss: 2.269977  [19264/60000]
+loss: 2.254234  [25664/60000]
+loss: 2.237145  [32064/60000]
+loss: 2.231056  [38464/60000]
+loss: 2.205036  [44864/60000]
+loss: 2.203239  [51264/60000]
+loss: 2.170890  [57664/60000]
+Test Error:
+ Accuracy: 53.9%, Avg loss: 2.168587
+
+Epoch 2
+-------------------------------
+loss: 2.177784  [   64/60000]
+loss: 2.168083  [ 6464/60000]
+loss: 2.114908  [12864/60000]
+loss: 2.130411  [19264/60000]
+loss: 2.087470  [25664/60000]
+loss: 2.039667  [32064/60000]
+loss: 2.054271  [38464/60000]
+loss: 1.985452  [44864/60000]
+loss: 1.996019  [51264/60000]
+loss: 1.917239  [57664/60000]
+Test Error:
+ Accuracy: 60.2%, Avg loss: 1.920371
+
+Epoch 3
+-------------------------------
+loss: 1.951699  [   64/60000]
+loss: 1.919513  [ 6464/60000]
+loss: 1.808724  [12864/60000]
+loss: 1.846544  [19264/60000]
+loss: 1.740612  [25664/60000]
+loss: 1.698728  [32064/60000]
+loss: 1.708887  [38464/60000]
+loss: 1.614431  [44864/60000]
+loss: 1.646473  [51264/60000]
+loss: 1.524302  [57664/60000]
+Test Error:
+ Accuracy: 61.4%, Avg loss: 1.547089
+
+Epoch 4
+-------------------------------
+loss: 1.612693  [   64/60000]
+loss: 1.570868  [ 6464/60000]
+loss: 1.424729  [12864/60000]
+loss: 1.489538  [19264/60000]
+loss: 1.367247  [25664/60000]
+loss: 1.373463  [32064/60000]
+loss: 1.376742  [38464/60000]
+loss: 1.304958  [44864/60000]
+loss: 1.347153  [51264/60000]
+loss: 1.230657  [57664/60000]
+Test Error:
+ Accuracy: 62.7%, Avg loss: 1.260888
+
+Epoch 5
+-------------------------------
+loss: 1.337799  [   64/60000]
+loss: 1.313273  [ 6464/60000]
+loss: 1.151835  [12864/60000]
+loss: 1.252141  [19264/60000]
+loss: 1.123040  [25664/60000]
+loss: 1.159529  [32064/60000]
+loss: 1.175010  [38464/60000]
+loss: 1.115551  [44864/60000]
+loss: 1.160972  [51264/60000]
+loss: 1.062725  [57664/60000]
+Test Error:
+ Accuracy: 64.6%, Avg loss: 1.087372
+
+Done!
+</code></pre><p> </p>
+<h2 id="保存模型httpspytorchaccntutorialsbeginnerbasicssaveloadrun_tutorialhtml"><a href="https://pytorch.ac.cn/tutorials/beginner/basics/saveloadrun_tutorial.html">保存模型</a></h2>
+<p>保存模型的常用方法是<strong>序列化内部状态字典</strong>（包含模型参数）:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>torch<span style="color:#f92672">.</span>save(model<span style="color:#f92672">.</span>state_dict(), <span style="color:#e6db74">&#34;model.pth&#34;</span>)
+</span></span></code></pre></div><h2 id="加载模型">加载模型</h2>
+<p>加载模型的过程包括 **重新创建模型结构 **并 <strong>将状态字典加载到其中</strong>：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>model <span style="color:#f92672">=</span> NeuralNetwork()<span style="color:#f92672">.</span>to(device)
+</span></span><span style="display:flex;"><span>model<span style="color:#f92672">.</span>load_state_dict(torch<span style="color:#f92672">.</span>load(<span style="color:#e6db74">&#34;model.pth&#34;</span>, weights_only<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>))
+</span></span></code></pre></div><pre tabindex="0"><code>&lt;All keys matched successfully&gt;
+</code></pre><p>然后该模型就可以用于进行<strong>预测</strong>：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>classes <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;T-shirt/top&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Trouser&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Pullover&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Dress&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Coat&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Sandal&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Shirt&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Sneaker&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Bag&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Ankle boot&#34;</span>,
+</span></span><span style="display:flex;"><span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>model<span style="color:#f92672">.</span>eval()
+</span></span><span style="display:flex;"><span>x, y <span style="color:#f92672">=</span> test_data[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">0</span>], test_data[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">1</span>]
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">with</span> torch<span style="color:#f92672">.</span>no_grad():
+</span></span><span style="display:flex;"><span>    x <span style="color:#f92672">=</span> x<span style="color:#f92672">.</span>to(device)
+</span></span><span style="display:flex;"><span>    pred <span style="color:#f92672">=</span> model(x)
+</span></span><span style="display:flex;"><span>    predicted, actual <span style="color:#f92672">=</span> classes[pred[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>argmax(<span style="color:#ae81ff">0</span>)], classes[y]
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;Predicted: &#34;</span><span style="color:#e6db74">{</span>predicted<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;, Actual: &#34;</span><span style="color:#e6db74">{</span>actual<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;&#39;</span>)
+</span></span></code></pre></div><pre tabindex="0"><code>Predicted: &#34;Ankle boot&#34;, Actual: &#34;Ankle boot&#34;
+</code></pre><ul class="pa0">
+  
+   <li class="list di">
+     <a href="/tags/pytorch/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">Pytorch</a>
+   </li>
+  
+   <li class="list di">
+     <a href="/tags/ai-infra/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">AI Infra</a>
+   </li>
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="http://localhost:1313/" >
+    &copy;  HomePage 2025 
+  </a>
+    <div><div class="ananke-socials"><a href="https://www.facebook.com/patrick.kollitsch" target="_blank" rel="noopener"
+        class="ananke-social-link link-transition facebook link dib z-999 pt3 pt0-l mr1"
+        title="follow on Facebook - Opens in a new window"
+        aria-label="follow on Facebook - Opens in a new window">
+      <span class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M512 256C512 114.6 397.4 0 256 0S0 114.6 0 256C0 376 82.7 476.8 194.2 504.5V334.2H141.4V256h52.8V222.3c0-87.1 39.4-127.5 125-127.5c16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1c-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H287V510.1C413.8 494.8 512 386.9 512 256h0z"/></svg>
+            
+          </span></a><a href="https://bsky.app/profile/kollitsch.dev" target="_blank" rel="noopener"
+        class="ananke-social-link link-transition bluesky link dib z-999 pt3 pt0-l mr1"
+        title="follow on Bluesky - Opens in a new window"
+        aria-label="follow on Bluesky - Opens in a new window">
+      <span class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M407.8 294.7c-3.3-.4-6.7-.8-10-1.3c3.4 .4 6.7 .9 10 1.3zM288 227.1C261.9 176.4 190.9 81.9 124.9 35.3C61.6-9.4 37.5-1.7 21.6 5.5C3.3 13.8 0 41.9 0 58.4S9.1 194 15 213.9c19.5 65.7 89.1 87.9 153.2 80.7c3.3-.5 6.6-.9 10-1.4c-3.3 .5-6.6 1-10 1.4C74.3 308.6-9.1 342.8 100.3 464.5C220.6 589.1 265.1 437.8 288 361.1c22.9 76.7 49.2 222.5 185.6 103.4c102.4-103.4 28.1-156-65.8-169.9c-3.3-.4-6.7-.8-10-1.3c3.4 .4 6.7 .9 10 1.3c64.1 7.1 133.6-15.1 153.2-80.7C566.9 194 576 75 576 58.4s-3.3-44.7-21.6-52.9c-15.8-7.1-40-14.9-103.2 29.8C385.1 81.9 314.1 176.4 288 227.1z"/></svg>
+            
+          </span></a><a href="http://linkedin.com/in/patrickkollitsch" target="_blank" rel="noopener"
+        class="ananke-social-link link-transition linkedin link dib z-999 pt3 pt0-l mr1"
+        title="follow on LinkedIn - Opens in a new window"
+        aria-label="follow on LinkedIn - Opens in a new window">
+      <span class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+            
+          </span></a></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

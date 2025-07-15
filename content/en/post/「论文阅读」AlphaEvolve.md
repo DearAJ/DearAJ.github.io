@@ -1,72 +1,120 @@
 ---
-date: 2026-07-02T11:00:59-04:00
-description: ""
+date: 2025-07-02T11:00:59-04:00
+description: " AlphaEvolve 是一种进化编码代理，可显着增强 LLM 在挑战性任务上的能力（如解决开放的科学问题、优化计算基础设施）"
 featured_image: "/images/paper-AlphaEvolve/jaz.png"
 tags: ["paper"]
-title: "「论文阅读」AlphaEvolve: A Gemini-powered coding agent for designing advanced algorithms"
+title: "「论文阅读」AlphaEvolve: A coding agent for scientific and algorithmic discovery"
 ---
 
-AlphaEvolve：一款由**进化的代码智能体**。
+[*AlphaEvolve*](http://arxiv.org/abs/2506.13131) 使用进化方法，不断接收来自一个或多个评估者的反馈，迭代改进算法，从而有可能带来新的科学和实践发现。
 
-**核心思想**：在很多科学研究和工程问题中，发现一个更好的算法或者数学构造比评估一个解的好坏要难很多 —— AlphaEvolve 就把目标放在了发现这些“**最优解**”的程序上。
+## Introduction
 
-**流程**：从database抽样一组prompts→生成新的程序→评估（只能对算法、数学题这种有比较明确的评估指标的算法使用）→将新的程序储存到database中，database 用进化算法评估程序会不会用于未来的prompts
+AlphaEvolve represents the candidates (for example, new mathematical objects or practical heuristics) as algorithms and **uses a set of LLMs to generate, critique, and evolve** a pool of such algorithms.
 
-![1](/Users/aijunyang/DearAJ.github.io/static/images/paper-AlphaEvolve/1.png)
+![1](/images/paper-AlphaEvolve/1.png)
 
-**1. LLM 团队 (LLMs ensemble)：**
+## AlphaEvolve
 
-这是一群非常擅长**理解、生成和修改代码**的 LLM。它们是实验室里的“创意大脑”，负责根据现有的“最佳实践”提出各种改进程序的想法或直接生成新的程序代码。
+![2](/images/paper-AlphaEvolve/2.png)
 
-AlphaEvolve 使用了先进的 LLM，比如 Gemini 2.0 Flash 和 Gemini 2.0 Pro 的组合，Flash 模型负责快速生成大量候选，而 Pro 模型则提供更高质量、更有突破性的想法。这使得 AlphaEvolve 比之前的FunSearch更强大。
+<!--more-->
 
-**2. 程序数据库 (Program database)：**
+1. 用户提供初始程序（带有待发展的组件标记）、评估代码和可选配置
+2. AlphaEvolve 启动进化循环
+   + ***Prompt sampler*** 使用 Program 数据库中的程序来构建丰富的提示
+   + 根据这些提示，***LLMs ensemble*** 生成代码修改 （diffs），用于创建新程序
+   + ***Evaluators*** 对这些项目进行评分
+   + 并将好的解决方案重新注册回 ***Program database*** 中，推动迭代发现越来越好的程序
 
-和 FunSearch 一样，它也有一个不断增长的数据库，里面存储着 AlphaEvolve 迄今为止发现的、并且经过严格评估的、表现优秀的程序。
+![3](/images/paper-AlphaEvolve/3.png)
 
-这个数据库借鉴了FunSearch的思想，比如分成了不同的“岛屿”，来维持程序的多样性，避免所有想法都集中在少数几种上。
+&nbsp;
 
-**3. 严格评估器 (Evaluators pool)：**
+### 1 Task specification
 
-每当 LLM 团队提出了一个新程序或修改建议，这个严格的评审团就会实际运行代码，并根据用户定义的自动化评估标准（一个函数 h）给它打分。这个评估过程是高度自动化的，并且可以并行执行，甚至可以持续评估数小时。评估器还可以设计成一个“级联”系统，先用简单的测试快速筛掉不好的程序，再用更难的测试来评估有潜力的程序。
+#### Evaluation
 
-这种机制是 AlphaEvolve 的**核心优势**，因为它直接用代码执行结果来验证和评估，大大减少了 LLM 幻觉问题，AlphaEvolve 甚至可以同时优化多个评估指标。
+用户需提供自动评估生成解决方案的机制（函数h），其形式为将解决方案映射到一组标量评估指标的函数，通常以Python函数实现。*AlphaEvolve* 基于此解决问题。
 
-**4. 进化过程 (Evolutionary process)**：
+#### API
 
-AlphaEvolve 的核心驱动力是一个进化算法。
+支持用户通过输入API对代码库中的代码块进行注释，以便集成到现有代码库中，作为 AlphaEvolve 的初始解决方案。
 
-它会从程序数据库中选择得分高的程序作为“灵感”.。然后，**LLM 团队会根据这些优秀程序（通常通过生成代码修改块，即 diffs）来创建新的“子代”程序。这些新程序再交给评估器打分，表现好的就进入数据库，取代表现差的。**这个过程就像程序的优胜劣汰和迭代改进。用户可以提供一个初始程序的“骨架”，并标记出需要由 AlphaEvolve 进化的代码块.
+![4](/images/paper-AlphaEvolve/4.png)
 
+1. a. 用户提供的文件，其中包含标记为 evolution 的块，以及可以调用以对当前版本代码进行评分的特殊 evaluate 函数
 
+   b. Example of an assembled prompt to be provided to the LLMs
 
+   c. LLM 生成的示例输出.
 
+2. （c） 中建议的 diffs 将应用于提示 （b） 中显示的“当前程序”，修改后的程序将发送给评估人员
 
+   评估者将从 （a） 中调用 evaluate 函数，以获得新提议的程序的分数
 
+#### Flexibility in choosing the abstraction
 
-### 成果
+AlphaEvolve 可以以同的方式解决同一个问题
 
-1. **纯数学发现：**它被应用于解决著名的数学难题，成功发现了比人类之前已知更好的构造。
+### 2 Prompt sampling
 
-2. **矩阵乘法算法改进**：在查找更快矩阵乘法的张量分解算法方面，AlphaEvolve 改进了 14 种矩阵乘法算法的已知上界。
+利用SOTA LLMs，支持多种类型的自定义，并提供长上下文作为主要进化提示的一部分。
 
-3. **优化 Google 核心基础设施**：AlphaEvolve 被用于优化 Google 计算栈的关键组件。
+提示包括：多个从程序数据库采样的先前发现的解决方案、系统指令、随机格式化、渲染的评估结果以及元提示进化等内容。
 
-4. **数据中心调度：**它发现了一个比现有生产环境使用的更高效的调度启发式函数，部署后平均恢复了 Google 舰队 0.7% 的计算资源。
+### 3 Creative generation
 
-5. **协助硬件设计**
+利用 SOTA LLMs 的能力，消化有关先前开发解决方案的信息并提出新的多样化改进方案。
 
-   AlphaEvolve 提出了 Verilog 重写方案，以去除矩阵乘法关键、高度优化算术电路中的不必要位。最重要的是，该方案必须通过稳健的验证方法，以确认修改后的电路保持功能正确性。这项建议被集成到即将推出的谷歌定制人工智能加速器张量处理单元（TPU）中。通过用芯片设计人员的标准语言提出修改建议，AlphaEvolve 促进了人工智能和硬件工程师之间的合作，从而加速了未来专用芯片的设计。
+### 4 Evaluation
 
-6. **LLM 训练优化：**它优化了用于训练 Gemini 等 LLM 的矩阵乘法内核 (kernels)，使得内核平均加速 23%，Gemini 的整体训练时间减少了 1%
+每个新提出的解决方案都会自动评估——相当于简单地对生成的解**执行用户提供的评估函数 h** 
 
-7. **优化编译器生成代码：**它甚至能直接优化像 FlashAttention 这样的高性能计算库经编译器 (XLA) 生成的中间表示 (IR) 代码。
+- 支持可选机制以提高评估的灵活性和效率：
+  - 评估级联（假设检验）：指定难度递增的测试用例集成，只有当新解决方案在所有早期阶段都取得了足够有希望的结果时，才会在下一阶段进行评估
+  - LLM-生成的反馈：使用单独的LLM调用进行评分，并添加到分数字典中以指导进化，或者当不满足标准时，它们可用于丢弃解决方案
+  - 平行化评估：允许 AlphaEvolve 通过对评估集群的异步调用来分发工作
 
-8. **启发人类洞察：**通过分析 AlphaEvolve 发现的程序代码，研究人员能够获得新的数学洞察，有时甚至反过来指导进一步的搜索
++ 允许优化多个用户提供的分数，即在一个或多个评估指标下获得高分的进化对象
 
+### 5 Evolution
 
+进化过程中不断生成带有评估结果的解决方案，并存储在进化数据库中，旨在优化重新利用先前探索的想法，同时保持多样性以鼓励探索整个搜索空间
 
+数据库实现的算法受 MAP elites 算法和基于岛屿的种群模型的启发
 
+### 6 分布式
 
+AlphaEvolve 被设计为**异步计算管道**，由 *控制器、LLM采样器和评估节点* 组成，优化整体吞吐量而非单个计算的速率，以在特定计算预算内最大化提出和评估的想法数量。
 
+&nbsp;
 
+&nbsp;
+
+## Results
+
+#### 加速矩阵乘法
+
+- 从基本梯度算法出发，AlphaEvolve能开发出超越现有方法的复杂张量分解算法。
+- 在表2中展示了针对14个不同矩阵乘法目标的改进结果，特别是在4×4复值矩阵乘法上取得了突破，发现了使用48次标量乘法的算法，这是56年来首次在该设置上超过Strassen算法。
+
+#### 解决数学问题
+
+- 应用于50多个数学问题，涵盖分析、组合学、数论和几何等多个分支，在75%的情况下重新发现了最佳已知构造，在20%的情况下发现了比之前已知最佳构造更好的新对象，从而改进了SOTA。
+- 例如在分析方面改进了自相关不等式的最佳已知界限，在组合学和数论方面对Erdős的最小重叠问题建立了新的上界，在几何和打包方面改善了11维中的吻数问题等。
+
+#### 优化谷歌计算生态系统
+
+- **数据中心调度**：将在线作业调度问题视为向量装箱问题，AlphaEvolve发现了一个简单而有效的启发式函数，应用于谷歌数据中心的模拟器后，在测试数据集上表现优于生产中的启发式函数，部署后可平均恢复谷歌车队0.7%的计算资源。
+- **Gemini内核工程**：优化用于训练Gemini的重要矩阵乘法内核的平铺策略，AlphaEvolve迭代探索和细化平铺启发式，使所有内核的平均运行速度提高了23%，Gemini的整体训练时间减少了1%，并将内核优化时间从数月缩短至数天。
+- **硬件电路设计**：优化TPU算术电路，AlphaEvolve找到了一个简单的代码重写，去除了不必要的位，该改进已集成到即将推出的TPU中，代表了Gemini对TPU算术电路的首次直接贡献。
+- **编译器生成代码优化**：直接优化XLA生成的IRs封装的FlashAttention内核及预处理和后处理代码，使感兴趣配置的FlashAttention内核速度提高了32%，预处理和后处理部分速度提高了15%。
+
+&nbsp;
+
+### 5 Ablations 消融实验
+
+对两个任务（寻找更快矩阵乘法的张量分解和计算吻数的下界）进行了消融实验，以了解AlphaEvolve各组成部分的有效性。
+
+- 结果表明，进化方法、提示中的上下文、元提示、全文件进化以及强大的语言模型等组件都对结果有显著改进。

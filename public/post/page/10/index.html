@@ -47,8 +47,8 @@
 
   <meta itemprop="name" content="Articles">
   <meta itemprop="description" content="The soul selects her own society, then shuts the door. To her divine majority, present no more.">
-  <meta itemprop="datePublished" content="2025-07-07T11:00:59-04:00">
-  <meta itemprop="dateModified" content="2026-07-05T10:00:59-04:00">
+  <meta itemprop="datePublished" content="2025-07-11T11:00:59-04:00">
+  <meta itemprop="dateModified" content="2026-07-11T11:00:59-04:00">
   <meta itemprop="wordCount" content="2">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Articles">
@@ -153,61 +153,28 @@
             <div class="mb3 pa4 mid-gray overflow-hidden">
     
       <div class="f6">
-        April 16, 2025
+        April 24, 2025
       </div>
     
     <h1 class="f3 near-black">
-      <a href="/post/bert/" class="link black dim">
-        BERT
+      <a href="/post/resnet18/" class="link black dim">
+        ResNet18
       </a>
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p>名字来源：美国的一个动画片芝麻街里的主人公</p>
-<p>论文：https://arxiv.org/abs/1810.04805</p>
-<h3 id="nlp-里的迁移学习">NLP 里的迁移学习</h3>
+      <h3 id="1-退化现象">1. 退化现象</h3>
+<p>ResNet 随着网络层不断的加深，模型的准确率</p>
 <ol>
-<li>
-<p><strong>在 bert 之前：使用预训练好的模型来抽取词、句子的特征</strong></p>
-<ul>
-<li>如用 word2vec 或 语言模型（当作embedding层）</li>
-<li>﻿不更新预训练好的模型</li>
-<li>﻿缺点
-<ul>
-<li>需要构建新的网络来抓取新任务需要的信息</li>
-<li>﻿Word2vec 忽略了时序信息，语言模型只看了一个方向</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p><strong>bert 的动机</strong></p>
-<ul>
-<li>
-<p>基于微调的 NLP 模型</p>
-<p>前面的层不用动，改最后一层的 output layer 即可</p>
-</li>
-<li>
-<p>预训练的模型抽取了足够多的信息，新的任务只需要增加一个简单的输出层</p>
-</li>
-</ul>
-</li>
+<li>先是不断的提高，达到最大值（准确率饱和），</li>
+<li>然后随着网络深度的继续增加，模型准确率出现大幅度的降低。</li>
 </ol>
+<p><strong>原因</strong>：随着网络深度的不断增大，所引入的激活函数也越来越多，数据被映射到更加离散的空间，此时已经难以让数据回到原点。也就是说，神经网络将这些数据映射回原点所需要的计算量，已经远远超过我们所能承受的。</p>
 <p> </p>
-<h2 id="bert-架构">BERT 架构</h2>
-<p><strong>本质</strong>：一个砍掉解码器、只有编码器的 transformer</p>
-<p>bert 的工作：证明了效果非常好</p>
-<ul>
-<li>
-<p>两个版本：</p>
-<p><strong>Base</strong>: #blocks=12, hidden size=768, #heads=12,  #parameters=110M</p>
-<p>﻿﻿<strong>Large</strong>: #blocks=24, hidden size=1024, #heads=1, #parameter=340M</p>
-</li>
-<li>
-<p>﻿在大规模数据上训练&gt;3B词</p>
-</li>
-</ul>
+<h3 id="2-快捷连接">2. 快捷连接</h3>
+<p>核心思想：通过添加额外的连接来解决深度神经网络训练中的<strong>梯度消失和梯度爆炸</strong>等问题，从而允许构建非常深的神经网络。</p>
+<p><img src="/images/resnet18/1.jpg" alt="1"></p>
     </div>
-  <a href="/post/bert/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  <a href="/post/resnet18/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
   </div>
 
         </div>
@@ -216,29 +183,18 @@
             <div class="mb3 pa4 mid-gray overflow-hidden">
     
       <div class="f6">
-        April 14, 2025
+        April 20, 2025
       </div>
     
     <h1 class="f3 near-black">
-      <a href="/post/lss%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/" class="link black dim">
-        LSS代码
+      <a href="/post/llm1/" class="link black dim">
+        LLM - 1.基础理论
       </a>
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p>文章搬运，自用。</p>
-<p>论文：<a href="https://arxiv.org/abs/2008.05711">Lift, Splat, Shoot: Encoding Images From Arbitrary Camera Rigs by Implicitly Unprojecting to 3D</a></p>
-<p>官方源码：<a href="https://github.com/nv-tlabs/lift-splat-shoot">lift-splat-shoot</a></p>
-<p> </p>
-<h4 id="lift-splat-shoot图像bev安装与模型代码详解httpsblogcsdnnetqq_41366026articledetails133840315"><a href="https://blog.csdn.net/qq_41366026/article/details/133840315">Lift, Splat, Shoot图像BEV安装与模型代码详解</a></h4>
-<p>对于任意数量不同相机帧的图像直接提取场景的BEV表达；主要由三部分实现：</p>
-<ol>
-<li><strong>Lift</strong>：将每一个相机的图像帧根据相机的内参转换提升到 frustum（锥形）形状的点云空间中。</li>
-<li><strong>splate</strong>：将所有相机转换到锥形点云空间中的特征根据相机的内参 K 与相机相对于 ego 的外参T映射到栅格化的 3D 空间（BEV）中来融合多帧信息。</li>
-<li><strong>shoot</strong>：根据上述 BEV 的检测或分割结果来生成规划的路径 proposal；从而实现可解释的端到端的路径规划任务。</li>
-</ol>
-<p>注：LSS在训练的过程中并不需要激光雷达的点云来进行监督。</p>
+      <p><img src="/images/LLM1/0.png" alt="0"></p>
     </div>
-  <a href="/post/lss%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  <a href="/post/llm1/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
   </div>
 
         </div>
@@ -247,53 +203,41 @@
             <div class="mb3 pa4 mid-gray overflow-hidden">
     
       <div class="f6">
-        April 11, 2025
+        April 17, 2025
       </div>
     
     <h1 class="f3 near-black">
-      <a href="/post/%E6%95%B0%E6%8D%AE%E9%9B%86-nusences/" class="link black dim">
-        数据集-NuSences
+      <a href="/post/%E5%B7%A5%E5%85%B7%E9%93%BE-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" class="link black dim">
+        工具链-深度学习
       </a>
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <ol>
+      <h2 id="torch--cuda--nvidia"><strong>Torch + CUDA + NVIDIA</strong>：</h2>
+<ul>
 <li>
-<h4 id="内容">内容</h4>
-<p>nuScenes 包含 1000 个场景，大约 1.4M 的相机图像、390k LIDAR 扫描、1.4M 雷达扫描和 40k 关键帧中的 1.4M 对象边界框。</p>
-<p>nuScenes-lidarseg 包含 40000 个点云和 1000 个场景（850 个用于训练和验证的场景，以及 150 个用于测试的场景）中的 14 亿个注释点。</p>
-<p> </p>
-</li>
-<li>
-<h4 id="数据采集">数据采集</h4>
+<p>安装步骤：</p>
 <ol>
 <li>
-<p><strong>车辆设置</strong></p>
-<p><img src="/images/nuSences/1.png" alt="1"></p>
-<ol>
-<li>1 个旋转激光雷达 （Velodyne HDL32E）</li>
-<li>5 个远程雷达传感器 （Continental ARS 408-21）</li>
-<li>6 个相机 （Basler acA1600-60gc）</li>
-<li>1个 IMU &amp; GPS （高级导航空间版）</li>
-</ol>
+<p>去 Nvidia 官网下载 CUDA 并安装（核心：驱动+CUDA开发环境）</p>
+<p><img src="/images/DLtool/1.png" alt="1"></p>
+<p>检查：<code>nvidia-smi</code> 指令</p>
 </li>
 <li>
-<p><strong>Sensor(传感器)校准 - 内外参</strong></p>
-<ol>
-<li>LIDAR extrinsics</li>
-<li>相机 extrinsics</li>
-<li>RADAR extrinsics</li>
-<li>相机 intrinsic 校准</li>
-</ol>
+<p>下载 Anaconda，用于运行 python 环境</p>
 </li>
 <li>
-<p><strong>Sensor(传感器)同步</strong></p>
-<p>实现跨模态数据对齐：当顶部 LIDAR 扫描相机 FOV 的中心时，会触发相机的曝光</p>
+<p>下载 GPU 版本的 pytorch</p>
+<p><img src="/images/DLtool/2.png" alt="2"></p>
+</li>
+<li>
+<p>可以开始跑深度学习了！</p>
 </li>
 </ol>
 </li>
-</ol>
+</ul>
+<p><strong>Torch</strong> 是一个深度学习框架，用于构建和训练神经网络，该可以利用<strong>CUDA</strong>在<strong>NVIDIA GPU</strong>上加速计算。通过在PyTorch中指定使用CUDA进行训练，可以在处理大数据集时大大提高计算效率。</p>
     </div>
-  <a href="/post/%E6%95%B0%E6%8D%AE%E9%9B%86-nusences/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  <a href="/post/%E5%B7%A5%E5%85%B7%E9%93%BE-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
   </div>
 
         </div>
@@ -326,7 +270,7 @@
         <a href="/post/page/11/" aria-label="Next" class="page-link" role="button"><span aria-hidden="true">&raquo;</span></a>
       </li>
       <li class="page-item">
-        <a href="/post/page/23/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/post/page/24/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
       </li>
     </ul>
   </article>

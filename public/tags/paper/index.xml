@@ -16,6 +16,13 @@
       <description>&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;h4 id=&#34;特点&#34;&gt;特点&lt;/h4&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&lt;strong&gt;基于图的检索&lt;/strong&gt;：GraphRAG 引入&lt;strong&gt;知识图谱&lt;/strong&gt;来捕捉实体、关系及其他重要元数据。&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;层次聚类&lt;/strong&gt;：GraphRAG 使用 &lt;strong&gt;Leiden&lt;/strong&gt; 技术进行层次聚类，将实体及其关系进行组织。&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;多模式查询&lt;/strong&gt;：支持多种查询模式。&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;全局搜索&lt;/strong&gt;：利用&lt;strong&gt;社区总结&lt;/strong&gt;来进行全局性推理。&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;局部搜索&lt;/strong&gt;：通过&lt;strong&gt;扩展相关实体的邻居和关联概念&lt;/strong&gt;来进行具体实体的推理。&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;DRIFT 搜索&lt;/strong&gt;：结合局部搜索和社区信息，提供更准确和相关的答案。&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;图机器学习&lt;/strong&gt;：集成图机器学习技术，并提供来自结构化和非结构化数据的深度洞察。&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Prompt 调优&lt;/strong&gt;：提供调优工具，帮助根据特定数据和需求调整查询提示，提高结果质量。&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;工作流程&#34;&gt;工作流程&lt;/h2&gt;&#xA;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/graphRAG/1.png&#34; alt=&#34;1&#34;&gt;&lt;/p&gt;&#xA;&lt;h3 id=&#34;1-索引-indexing-过程&#34;&gt;1 &lt;strong&gt;索引 (Indexing) 过程&lt;/strong&gt;&lt;/h3&gt;&#xA;&lt;p&gt;将原始文档转化为知识图谱&lt;/p&gt;</description>
     </item>
     <item>
+      <title>「论文阅读」AlphaEvolve: A coding agent for scientific and algorithmic discovery</title>
+      <link>http://localhost:1313/post/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBalphaevolve/</link>
+      <pubDate>Wed, 02 Jul 2025 11:00:59 -0400</pubDate>
+      <guid>http://localhost:1313/post/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBalphaevolve/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;http://arxiv.org/abs/2506.13131&#34;&gt;&lt;em&gt;AlphaEvolve&lt;/em&gt;&lt;/a&gt; 使用进化方法，不断接收来自一个或多个评估者的反馈，迭代改进算法，从而有可能带来新的科学和实践发现。&lt;/p&gt;&#xA;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;&#xA;&lt;p&gt;AlphaEvolve represents the candidates (for example, new mathematical objects or practical heuristics) as algorithms and &lt;strong&gt;uses a set of LLMs to generate, critique, and evolve&lt;/strong&gt; a pool of such algorithms.&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/paper-AlphaEvolve/1.png&#34; alt=&#34;1&#34;&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;alphaevolve&#34;&gt;AlphaEvolve&lt;/h2&gt;&#xA;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/paper-AlphaEvolve/2.png&#34; alt=&#34;2&#34;&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
       <title>「论文阅读」Kimi-Researcher</title>
       <link>http://localhost:1313/post/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBkimi-researcher/</link>
       <pubDate>Wed, 25 Jun 2025 11:00:59 -0400</pubDate>

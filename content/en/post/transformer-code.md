@@ -16,9 +16,7 @@ transformer 架构：基于编码器-解码器来处理序列对；基于纯注�
 | **Multi-Head**      | 多子空间联合建模     | 多视角学习、表达能力强 | 计算量增加、头可能冗余         | 增强Self/Cross-Attention |
 | **Cross-Attention** | 跨序列关系建模       | 跨序列对齐、信息融合   | 依赖外部序列质量               | Decoder连接Encoder       |
 
-1. **短文本或高精度需求**：优先用Multi-Head Self-Attention（更多头）。
-2. **长序列（如文档）**：考虑稀疏注意力（如Longformer）或分块计算降低复杂度。
-3. **跨模态任务**：Cross-Attention是必备模块（如视觉问答中文本查询图像特征）。
+
 
 &nbsp;
 
@@ -41,57 +39,113 @@ transformer 架构：基于编码器-解码器来处理序列对；基于纯注�
 
 
 ```python
-import math
 import torch
-from torch import nn
-from d21 import torch as d2l
+import torch.nn as nn
+import torch.nn.functional as F
 ```
-
-选择缩放点积注意力作为每一个注意力头
 
 ```python
 class MultiHeadAttention(nn.Module):
-  def _init_(self, key_size, query_size, value_size,
-            num_hiddens, nums_heads, dropout, bias=False, **kwargs):
-    super(MultiHeadAttenion, self)._init_(**kwargs)
-    self.num_heads = nums_heads
-    self.attention = d2l.DotProductAttention(dropout)
-    self.W_q = nn.Linear(query_size, num_hiddens, bias=bias)
-    self.W_k = nn.Linear(key_size, num_hiddens, bias=bias)
-    self.W_v = nn.Linear(value_size, num_hiddens, bias=bias)
-    self.W_o = nn.Linear(num_hiddens, num_hiddens, bias=bias)
-  
-  def transpose_qkv(x, num_heads):
-    X = X.reshape(X.shape[0], X.shape[1], num_heads, -1)
-    X = X.permute(0, 2, 1, 3)
-    return X.reshape(-1, X.shape[2], X.shape[3])
-  
-  def transpose_output(X, num_heads):
-    X = X.reshape(-1, num_heads, X.shape[1], X.shape[2])
-    X = X.permute(0, 2, 1, 3)
-    return X.reshape(X.shape[0], X.shape[1], -1)
-  
-  def forward(self, queries, keys, values, valid_lens):
-    queries = transpose_qkv(self.W_q(queries), self.num_heads)
-    keys = transpose_qkv(self.W_k(queries), self.num_heads)
-    values = transpose_qkv(self.W_v (queries), self.num_heads)
-    
-    if valid_lens is not None:
-      valis_lens = torch.repeat_interleave(valid_lens, 
-                                           repeats=self.num_heads, 
-                                           dim=0)
-    
-    output = self.attention(queries, keys, values, valid_lens)
-    output_concat = transpose_output(output, self.num_heads)
-    
-    return self.W_o(output_concat)
+    def __init__(self, d_model, num_heads, dropout=0.1):
+        """
+        多头注意力机制实现
+        
+        参数:
+            d_model: 输入向量的维度
+            num_heads: 注意力头的数量
+            dropout: dropout概率
+        """
+        super(MultiHeadAttention, self).__init__()
+        
+        self.d_model = d_model    # 模型总维度（如512）
+        self.num_heads = num_heads # 注意力头数量（如8）
+        self.d_k = d_model // num_heads  # 每个头的维度（如512/8=64）
+        
+        # 查询(Query)、键(Key)、值(Value)的线性变换
+        self.W_q = nn.Linear(d_model, d_model)  # 查询变换
+        self.W_k = nn.Linear(d_model, d_model)  # 键变换
+        self.W_v = nn.Linear(d_model, d_model)  # 值变换
+        
+        # 输出线性层（合并多头结果）
+        self.W_o = nn.Linear(d_model, d_model)
+        
+        # 防止过拟合的dropout层
+        self.dropout = nn.Dropout(dropout)
+        
+        # 缩放因子（用于稳定梯度）
+        self.scale = torch.sqrt(torch.FloatTensor([self.d_k]))
 ```
 
+```python
+def forward(self, q, k, v, mask=None):
+        """
+        前向传播
+        
+        参数:
+            q: 查询向量 (batch_size, seq_len, d_model)
+            k: 键向量 (batch_size, seq_len, d_model)
+            v: 值向量 (batch_size, seq_len, d_model)
+            mask: 掩码 (batch_size, seq_len, seq_len)
+        
+        返回:
+            output: 注意力输出 (batch_size, seq_len, d_model)
+            attention: 注意力权重 (batch_size, num_heads, seq_len, seq_len)
+        """
+        batch_size = q.size(0)
+        
+        # 线性变换并分割为多头
+        Q = self.W_q(q).view(batch_size, -1, self.num_heads, self.d_k).transpose(1, 2)
+        K = self.W_k(k).view(batch_size, -1, self.num_heads, self.d_k).transpose(1, 2)
+        V = self.W_v(v).view(batch_size, -1, self.num_heads, self.d_k).transpose(1, 2)
+        
+        # 计算注意力分数
+        scores = torch.matmul(Q, K.transpose(-2, -1)) / self.scale.to(q.device)
+        
+        # 应用掩码(如果有)
+        if mask is not None:
+            mask = mask.unsqueeze(1)  # 为多头增加维度
+            scores = scores.masked_fill(mask == 0, -1e9)
+        
+        # 计算注意力权重
+        attention = F.softmax(scores, dim=-1)
+        attention = self.dropout(attention)
+        
+        # 应用注意力权重到V上
+        output = torch.matmul(attention, V)
+        
+        # 合并多头
+        output = output.transpose(1, 2).contiguous().view(batch_size, -1, self.d_model)
+        
+        # 最终线性变换
+        output = self.W_o(output)
+        
+        return output, attention
 
+```
+
+**视图变换(view)**：将线性变换后的张量重塑为多头的形式
+
+**维度转置(transpose)**：将头维度移到第1维，便于并行计算
+
+**保持信息完整**：总维度d_model被分割为num_heads × d_k，信息量不变
 
 ### 
 
-```
+`transpose(1, 2)` - 维度转置
+
+**作用**：交换张量的第1和第2维度
+
+`contiguous()` - 确保内存连续
+
+**作用**：返回一个内存连续的新张量，包含与原始张量相同的数据
+
+`view(batch_size, -1, self.d_model)` - **实际合并多头信息**
+
+**作用**：将张量重新塑形而不改变其数据
+
+**转换前形状**：`(32, 10, 8, 64)`
+**转换后形状**：`(32, 10, 512)`
 
 ```
-
+# -1自动推断
+```

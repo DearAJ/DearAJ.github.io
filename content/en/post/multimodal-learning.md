@@ -8,8 +8,6 @@ title: "multimodal learning"
 
 ## CLIP
 
-
-
 ### **CLIP 文本-图像匹配**
 
 #### **(1) 使用 `CLIPProcessor` 预处理**

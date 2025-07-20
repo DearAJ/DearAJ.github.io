@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>vllm | HomePage</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="vLLM 是一个专门用于高效运行大语言模型的 Python 库。">
+    <meta name="generator" content="Hugo 0.140.2">
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+    
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="http://localhost:1313/post/vllm/">
+    
+
+    <meta property="og:url" content="http://localhost:1313/post/vllm/">
+  <meta property="og:site_name" content="HomePage">
+  <meta property="og:title" content="vllm">
+  <meta property="og:description" content="vLLM 是一个专门用于高效运行大语言模型的 Python 库。">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2025-07-19T11:00:59-04:00">
+    <meta property="article:modified_time" content="2025-07-19T11:00:59-04:00">
+    <meta property="article:tag" content="Inference">
+
+  <meta itemprop="name" content="vllm">
+  <meta itemprop="description" content="vLLM 是一个专门用于高效运行大语言模型的 Python 库。">
+  <meta itemprop="datePublished" content="2025-07-19T11:00:59-04:00">
+  <meta itemprop="dateModified" content="2025-07-19T11:00:59-04:00">
+  <meta itemprop="wordCount" content="406">
+  <meta itemprop="keywords" content="Inference">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="vllm">
+  <meta name="twitter:description" content="vLLM 是一个专门用于高效运行大语言模型的 Python 库。">
+
+	
+  </head><body class="ma0 avenir bg-near-white development">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('http://localhost:1313/images/vllm/jaz.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        HomePage
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/about/" title="About ME page">
+              About ME
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/post/" title="Articles page">
+              Articles
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/contact/" title="Contact page">
+              Contact
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"><a href="https://www.facebook.com/patrick.kollitsch" target="_blank" rel="noopener"
+        class="ananke-social-link link-transition facebook link dib z-999 pt3 pt0-l mr1"
+        title="follow on Facebook - Opens in a new window"
+        aria-label="follow on Facebook - Opens in a new window">
+      <span class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M512 256C512 114.6 397.4 0 256 0S0 114.6 0 256C0 376 82.7 476.8 194.2 504.5V334.2H141.4V256h52.8V222.3c0-87.1 39.4-127.5 125-127.5c16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1c-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H287V510.1C413.8 494.8 512 386.9 512 256h0z"/></svg>
+            
+          </span></a><a href="https://bsky.app/profile/kollitsch.dev" target="_blank" rel="noopener"
+        class="ananke-social-link link-transition bluesky link dib z-999 pt3 pt0-l mr1"
+        title="follow on Bluesky - Opens in a new window"
+        aria-label="follow on Bluesky - Opens in a new window">
+      <span class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M407.8 294.7c-3.3-.4-6.7-.8-10-1.3c3.4 .4 6.7 .9 10 1.3zM288 227.1C261.9 176.4 190.9 81.9 124.9 35.3C61.6-9.4 37.5-1.7 21.6 5.5C3.3 13.8 0 41.9 0 58.4S9.1 194 15 213.9c19.5 65.7 89.1 87.9 153.2 80.7c3.3-.5 6.6-.9 10-1.4c-3.3 .5-6.6 1-10 1.4C74.3 308.6-9.1 342.8 100.3 464.5C220.6 589.1 265.1 437.8 288 361.1c22.9 76.7 49.2 222.5 185.6 103.4c102.4-103.4 28.1-156-65.8-169.9c-3.3-.4-6.7-.8-10-1.3c3.4 .4 6.7 .9 10 1.3c64.1 7.1 133.6-15.1 153.2-80.7C566.9 194 576 75 576 58.4s-3.3-44.7-21.6-52.9c-15.8-7.1-40-14.9-103.2 29.8C385.1 81.9 314.1 176.4 288 227.1z"/></svg>
+            
+          </span></a><a href="http://linkedin.com/in/patrickkollitsch" target="_blank" rel="noopener"
+        class="ananke-social-link link-transition linkedin link dib z-999 pt3 pt0-l mr1"
+        title="follow on LinkedIn - Opens in a new window"
+        aria-label="follow on LinkedIn - Opens in a new window">
+      <span class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+            
+          </span></a></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">vllm</div>
+          
+            <div class="fw1 f5 f3-l white-80 measure-wide-l center lh-copy mt3 mb4">
+              vLLM 是一个专门用于高效运行大语言模型的 Python 库。
+            </div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked ttu">
+          
+        Articles
+      </aside><div id="sharing" class="mt3 ananke-socials"><a href="mailto:?&amp;body=http%3A%2F%2Flocalhost%3A1313%2Fpost%2Fvllm%2F&amp;subject=vllm"
+        class="ananke-social-link email no-underline"
+        title="Share on Email" aria-label="Share on Email"
+        target="_blank" rel="nofollow noopener noreferrer">
+        <span class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M64 112c-8.8 0-16 7.2-16 16l0 22.1L220.5 291.7c20.7 17 50.4 17 71.1 0L464 150.1l0-22.1c0-8.8-7.2-16-16-16L64 112zM48 212.2L48 384c0 8.8 7.2 16 16 16l384 0c8.8 0 16-7.2 16-16l0-171.8L322 328.8c-38.4 31.5-93.7 31.5-132 0L48 212.2zM0 128C0 92.7 28.7 64 64 64l384 0c35.3 0 64 28.7 64 64l0 256c0 35.3-28.7 64-64 64L64 448c-35.3 0-64-28.7-64-64L0 128z"/></svg>
+                
+              </span></a><a href="https://facebook.com/sharer/sharer.php?&amp;u=http%3A%2F%2Flocalhost%3A1313%2Fpost%2Fvllm%2F"
+        class="ananke-social-link facebook no-underline"
+        title="Share on Facebook" aria-label="Share on Facebook"
+        target="_blank" rel="nofollow noopener noreferrer">
+        <span class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M512 256C512 114.6 397.4 0 256 0S0 114.6 0 256C0 376 82.7 476.8 194.2 504.5V334.2H141.4V256h52.8V222.3c0-87.1 39.4-127.5 125-127.5c16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1c-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H287V510.1C413.8 494.8 512 386.9 512 256h0z"/></svg>
+                
+              </span></a><a href="https://bsky.app/intent/compose?&amp;text=http%3A%2F%2Flocalhost%3A1313%2Fpost%2Fvllm%2F"
+        class="ananke-social-link bluesky no-underline"
+        title="Share on Bluesky" aria-label="Share on Bluesky"
+        target="_blank" rel="nofollow noopener noreferrer">
+        <span class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M407.8 294.7c-3.3-.4-6.7-.8-10-1.3c3.4 .4 6.7 .9 10 1.3zM288 227.1C261.9 176.4 190.9 81.9 124.9 35.3C61.6-9.4 37.5-1.7 21.6 5.5C3.3 13.8 0 41.9 0 58.4S9.1 194 15 213.9c19.5 65.7 89.1 87.9 153.2 80.7c3.3-.5 6.6-.9 10-1.4c-3.3 .5-6.6 1-10 1.4C74.3 308.6-9.1 342.8 100.3 464.5C220.6 589.1 265.1 437.8 288 361.1c22.9 76.7 49.2 222.5 185.6 103.4c102.4-103.4 28.1-156-65.8-169.9c-3.3-.4-6.7-.8-10-1.3c3.4 .4 6.7 .9 10 1.3c64.1 7.1 133.6-15.1 153.2-80.7C566.9 194 576 75 576 58.4s-3.3-44.7-21.6-52.9c-15.8-7.1-40-14.9-103.2 29.8C385.1 81.9 314.1 176.4 288 227.1z"/></svg>
+                
+              </span></a><a href="https://www.linkedin.com/shareArticle?&amp;mini=true&amp;source=http%3A%2F%2Flocalhost%3A1313%2Fpost%2Fvllm%2F&amp;summary=&#43;KV&#43;Cache%0A%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8E%A8%E7%90%86%E6%97%B6&#43;huggingface&#43;%E6%8C%89%E7%85%A7%E5%8F%AF%E7%94%9F%E6%88%90%E6%9C%80%E9%95%BF%E5%BA%8F%E5%88%97%E9%95%BF%E5%BA%A6%E5%88%86%E9%85%8D%E6%98%BE%E5%AD%98%E3%80%82%E4%BD%86%E8%BF%99%E9%80%A0%E6%88%90%E4%B8%89%E7%A7%8D%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%B5%AA%E8%B4%B9%EF%BC%9A%0A%EF%BB%BF%EF%BB%BF%E9%A2%84%E5%88%86%E9%85%8D%E6%9C%80%E5%A4%A7%E7%9A%84&#43;token&#43;%E6%95%B0%EF%BC%8C%E4%BD%86%E4%B8%8D%E4%BC%9A%E7%94%A8%E5%88%B0%E3%80%82&#43;%EF%BB%BF%EF%BB%BF%E5%89%A9%E4%B8%8B%E7%9A%84&#43;token&#43;%E8%BF%98%E5%B0%9A%E6%9C%AA%E7%94%A8%E5%88%B0%EF%BC%8C%E4%BD%86%E7%8E%B0%E5%AD%98%E5%B7%B2%E8%A2%AB%E9%A2%84%E5%88%86%E9%85%8D%E5%8D%A0%E7%94%A8%E3%80%82&#43;%EF%BB%BF%EF%BB%BF%E6%98%BE%E5%AD%98%E4%B9%8B%E9%97%B4%E7%9A%84%E9%97%B4%E9%9A%94%E7%A2%8E%E7%89%87%EF%BC%8C%E5%9B%A0%E4%B8%BA&#43;prompt&#43;%E4%B9%8B%E9%97%B4%E4%B8%8D%E5%90%8C%EF%BC%8C%E6%98%BE%E5%AD%98%E4%B8%8D%E8%B6%B3%E4%BB%A5%E9%A2%84%E5%88%86%E9%85%8D%E7%BB%99%E4%B8%8B%E4%B8%80%E4%B8%AA%E6%96%87%E6%9C%AC%E7%94%9F%E6%88%90%E3%80%82&#43;%E6%96%B0&#43;token&#43;%E5%8F%AA%E7%94%A8%E5%88%B0%E5%89%8D%E9%9D%A2&#43;token&#43;%E7%9A%84&#43;kv&#43;%E5%90%91%E9%87%8F%EF%BC%8C%E4%BA%8B%E5%AE%9E%E4%B8%8A%E5%8F%AA%E9%9C%80%E4%BF%9D%E5%AD%98%E4%B9%8B%E5%89%8D%E7%9A%84&#43;kv&#43;%E5%90%91%E9%87%8F%E3%80%82%0APage&#43;Attention&#43;%E5%80%9F%E9%89%B4&#43;OS&#43;%E4%B8%AD%E7%9A%84%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E5%92%8C%E9%A1%B5%E7%AE%A1%E7%90%86%E6%8A%80%E6%9C%AF%EF%BC%8C%E6%8A%8A%E6%98%BE%E5%AD%98%E5%88%92%E5%88%86%E4%B8%BA&#43;KVBlock%EF%BC%8C%E6%98%BE%E5%AD%98%E6%8C%89%E7%85%A7&#43;KVBlock&#43;%E6%9D%A5%E7%AE%A1%E7%90%86&#43;KVCache%EF%BC%8C%E4%B8%8D%E7%94%A8%E6%8F%90%E5%89%8D%E5%88%86%E9%85%8D%E3%80%82%0A&amp;title=vllm&amp;url=http%3A%2F%2Flocalhost%3A1313%2Fpost%2Fvllm%2F"
+        class="ananke-social-link linkedin no-underline"
+        title="Share on LinkedIn" aria-label="Share on LinkedIn"
+        target="_blank" rel="nofollow noopener noreferrer">
+        <span class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+                
+              </span></a></div>
+<h1 class="f1 athelas mt3 mb1">vllm</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2025-07-19T11:00:59-04:00">July 19, 2025</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><ul>
+<li>
+<p><strong>KV Cache</strong></p>
+<p>大模型推理时 huggingface 按照可生成最长序列长度分配显存。但这造成三种类型的浪费：</p>
+<ol>
+<li>﻿﻿预分配最大的 token 数，但不会用到。</li>
+<li>﻿﻿剩下的 token 还尚未用到，但现存已被预分配占用。</li>
+<li>﻿﻿显存之间的间隔碎片，因为 prompt 之间不同，显存不足以预分配给下一个文本生成。</li>
+</ol>
+<p><img src="/images/vllm/1.png" alt="1"></p>
+<p>新 token 只用到前面 token 的 kv 向量，事实上只需保存之前的 kv 向量。</p>
+</li>
+<li>
+<h4 id="page-attention"><strong>Page Attention</strong></h4>
+<p>借鉴 OS 中的虚拟内存和页管理技术，把显存划分为 KVBlock，显存按照 KVBlock 来管理 KVCache，不用提前分配。</p>
+<p><img src="/images/vllm/2.png" alt="2"></p>
+</li>
+</ul>
+<ul>
+<li>
+<p><strong>虚拟内存</strong></p>
+<p>每个请求都有一个逻辑的 KVCache，VLLM 会在后台维护一个逻辑映射表：</p>
+<p><img src="/images/vllm/3.png" alt="3"></p>
+</li>
+<li>
+<h4 id="kvblocks-共享"><strong>KVBlocks 共享</strong></h4>
+<p>增加引用标志，<strong>不同序列的同一个 prompt</strong> 可以在物理上存放为同一份 KVBlock。当且仅当引用数为0时对应显存才会被释放。</p>
+<p><img src="/images/vllm/4.png" alt="4"></p>
+<ul>
+<li>
+<p><strong>Copy on Write</strong></p>
+<p>写入时，当引用数不为1时，不能直接写，需要拷贝一份后再写入新的KVBlock，同时原有的 KVBlock 引用数减1：</p>
+<p><img src="/images/vllm/5.png" alt="5"></p>
+<p>当引用数为1时，可以直接写入下一个 token：</p>
+<p><img src="/images/vllm/6.png" alt="6"></p>
+</li>
+</ul>
+</li>
+</ul>
+<p> </p>
+<p> </p>
+<h2 id="离线批量推理">离线批量推理</h2>
+<ol>
+<li>
+<p><strong>导入 LLM 和 SamplingParams 类</strong></p>
+<ul>
+<li><a href="https://docs.vllm.com.cn/en/latest/api/vllm/index.html#vllm.LLM">LLM</a> 是使用 vLLM 引擎运行离线推理的主要类</li>
+<li><a href="https://docs.vllm.com.cn/en/latest/api/vllm/index.html#vllm.SamplingParams">SamplingParams</a> 指定采样过程的参数</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> vllm <span style="color:#f92672">import</span> LLM, SamplingParams
+</span></span></code></pre></div></li>
+<li>
+<p><strong>定义一系列输入提示词和文本生成采样参数</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>prompts <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Hello, my name is&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;The president of the United States is&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;The capital of France is&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;The future of AI is&#34;</span>,
+</span></span><span style="display:flex;"><span>]
+</span></span><span style="display:flex;"><span>sampling_params <span style="color:#f92672">=</span> SamplingParams(temperature<span style="color:#f92672">=</span><span style="color:#ae81ff">0.8</span>, top_p<span style="color:#f92672">=</span><span style="color:#ae81ff">0.95</span>)
+</span></span></code></pre></div><ul>
+<li>
+<p><code>temperature</code>：用于控制采样的随机性。较低的值使模型更具确定性，而较高的值使模型更具随机性。零表示贪婪采样。</p>
+</li>
+<li>
+<p><code>top_p</code>：float 值，控制排名靠前的 Token 的累积概率。设置为 1 表示考虑所有标记。</p>
+</li>
+<li>
+<p><code>top_k</code>：float 值，控制排名靠前的令牌数的整数。0/-1 表示考虑所有令牌。</p>
+</li>
+<li>
+<p><code>min_p</code>：float 值，表示考虑 Token 的最小概率。设置为 0 表示禁用此功能。</p>
+</li>
+<li>
+<p><code>seed</code>：用于生成的 Random seed。</p>
+</li>
+<li>
+<p><code>n</code>：给定提示词，返回的输出序列数</p>
+</li>
+<li>
+<p><code>best_of</code>：给定提示词，生成的输出序列</p>
+</li>
+<li>
+<p><code>presence_penalty</code>：float 值，基于 new tokens 目前为止是否出现在 生成的文档 里。值 &gt; 0 鼓励模型使用新标记，而值 &lt; 0 鼓励模型重复标记。</p>
+</li>
+<li>
+<p><code>frequency_penalty</code>：float 值，基于 new tokens 在生成文档中的频率。值 &gt; 0 鼓励模型使用新标记，而值 &lt; 0 鼓励模型重复标记。</p>
+</li>
+<li>
+<p><code>repetition_penalty</code>：float 值，基于 new tokens 目前为止是否出现在 提示词 和 生成的文档 里。值 &gt; 0 鼓励模型使用新标记，而值 &lt; 0 鼓励模型重复标记。</p>
+</li>
+<li>
+<p><code>stop</code>：停止生成时，生成的字符串列表。</p>
+</li>
+<li>
+<p><code>stop_token_ids</code>：停止生成时，生成的 tokens 列表。</p>
+</li>
+<li>
+<p><code>bad_words</code>：不允许生成的单词列表。</p>
+</li>
+<li>
+<p><code>max_tokens</code>：每个输出序列的最大 tokens 数。</p>
+</li>
+<li>
+<p><code>min_tokens</code>：每个输出序列的最小 tokens 数。</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong><a href="https://docs.vllm.com.cn/en/latest/api/vllm/index.html#vllm.LLM">LLM</a> 类初始化 vLLM 的引擎、用于离线推理的 <a href="https://arxiv.org/abs/2205.01068">OPT-125M 模型</a></strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>llm <span style="color:#f92672">=</span> LLM(model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;facebook/opt-125m&#34;</span>)
+</span></span></code></pre></div><p>支持的模型列表：https://docs.vllm.com.cn/en/latest/features/reasoning_outputs.html#supported-models</p>
+</li>
+<li>
+<p><strong>使用 <code>llm.generate</code> 输出生成</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>outputs <span style="color:#f92672">=</span> llm<span style="color:#f92672">.</span>generate(prompts, sampling_params)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> output <span style="color:#f92672">in</span> outputs:
+</span></span><span style="display:flex;"><span>    prompt <span style="color:#f92672">=</span> output<span style="color:#f92672">.</span>prompt
+</span></span><span style="display:flex;"><span>    generated_text <span style="color:#f92672">=</span> output<span style="color:#f92672">.</span>outputs[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>text
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Prompt: </span><span style="color:#e6db74">{</span>prompt<span style="color:#e6db74">!r}</span><span style="color:#e6db74">, Generated text: </span><span style="color:#e6db74">{</span>generated_text<span style="color:#e6db74">!r}</span><span style="color:#e6db74">&#34;</span>)
+</span></span></code></pre></div><ul>
+<li>将输入提示词添加到 vLLM 引擎的等待队列中</li>
+<li>执行 vLLM 引擎以高吞吐量生成输出。输出以 <code>RequestOutput</code> 对象的列表形式返回，其中包括所有输出 token。</li>
+</ul>
+</li>
+</ol>
+<p> </p>
+<h2 id="在线服务使用-openai-兼容服务器">在线服务：使用 OpenAI 兼容服务器</h2>
+<p>默认情况下，vllm 在 <code>http://localhost:8000</code> 启动服务器，该服务器可以以 OpenAI API 相同的格式进行查询。用户可使用 <code>--host</code> 和 <code>--port</code> 参数指定地址。</p>
+<ol>
+<li>
+<p>启动模型为 Qwen2.5-1.5B-Instruct 的 vLLM 服务器。</p>
+<pre tabindex="0"><code>vllm serve Qwen/Qwen2.5-1.5B-Instruct
+</code></pre></li>
+<li>
+<p>查询模型：</p>
+<pre tabindex="0"><code>curl http://localhost:8000/v1/models
+</code></pre></li>
+</ol>
+<h3 id="使用-vllm-的-openai-completions-api">使用 vLLM 的 OpenAI Completions API</h3>
+<p>使用输入提示词查询：</p>
+<pre tabindex="0"><code>curl http://localhost:8000/v1/completions \
+    -H &#34;Content-Type: application/json&#34; \
+    -d &#39;{
+        &#34;model&#34;: &#34;Qwen/Qwen2.5-1.5B-Instruct&#34;,
+        &#34;prompt&#34;: &#34;San Francisco is a&#34;,
+        &#34;max_tokens&#34;: 7,
+        &#34;temperature&#34;: 0
+    }&#39;
+</code></pre><p>通过 <code>openai</code> Python 包查询：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> openai <span style="color:#f92672">import</span> OpenAI
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Modify OpenAI&#39;s API key and API base to use vLLM&#39;s API server.</span>
+</span></span><span style="display:flex;"><span>openai_api_key <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;EMPTY&#34;</span>
+</span></span><span style="display:flex;"><span>openai_api_base <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;http://localhost:8000/v1&#34;</span>
+</span></span><span style="display:flex;"><span>client <span style="color:#f92672">=</span> OpenAI(
+</span></span><span style="display:flex;"><span>    api_key<span style="color:#f92672">=</span>openai_api_key,
+</span></span><span style="display:flex;"><span>    base_url<span style="color:#f92672">=</span>openai_api_base,
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>completion <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>completions<span style="color:#f92672">.</span>create(model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Qwen/Qwen2.5-1.5B-Instruct&#34;</span>,
+</span></span><span style="display:flex;"><span>                                      prompt<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;San Francisco is a&#34;</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;Completion result:&#34;</span>, completion)
+</span></span></code></pre></div><h3 id="使用-vllm-的-openai-chat-completions-api">使用 vLLM 的 OpenAI Chat Completions API</h3>
+<p>使用 <a href="https://platform.openai.com/docs/api-reference/chat/completions/create">创建聊天补全</a> 端点与模型交互:</p>
+<pre tabindex="0"><code>curl http://localhost:8000/v1/chat/completions \
+    -H &#34;Content-Type: application/json&#34; \
+    -d &#39;{
+        &#34;model&#34;: &#34;Qwen/Qwen2.5-1.5B-Instruct&#34;,
+        &#34;messages&#34;: [
+            {&#34;role&#34;: &#34;system&#34;, &#34;content&#34;: &#34;You are a helpful assistant.&#34;},
+            {&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;Who won the world series in 2020?&#34;}
+        ]
+    }&#39;
+</code></pre><p>使用 <code>openai</code> Python 包与模型交互:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> openai <span style="color:#f92672">import</span> OpenAI
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Set OpenAI&#39;s API key and API base to use vLLM&#39;s API server.</span>
+</span></span><span style="display:flex;"><span>openai_api_key <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;EMPTY&#34;</span>
+</span></span><span style="display:flex;"><span>openai_api_base <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;http://localhost:8000/v1&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>client <span style="color:#f92672">=</span> OpenAI(
+</span></span><span style="display:flex;"><span>    api_key<span style="color:#f92672">=</span>openai_api_key,
+</span></span><span style="display:flex;"><span>    base_url<span style="color:#f92672">=</span>openai_api_base,
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>chat_response <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>chat<span style="color:#f92672">.</span>completions<span style="color:#f92672">.</span>create(
+</span></span><span style="display:flex;"><span>    model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Qwen/Qwen2.5-1.5B-Instruct&#34;</span>,
+</span></span><span style="display:flex;"><span>    messages<span style="color:#f92672">=</span>[
+</span></span><span style="display:flex;"><span>        {<span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;system&#34;</span>, <span style="color:#e6db74">&#34;content&#34;</span>: <span style="color:#e6db74">&#34;You are a helpful assistant.&#34;</span>},
+</span></span><span style="display:flex;"><span>        {<span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;user&#34;</span>, <span style="color:#e6db74">&#34;content&#34;</span>: <span style="color:#e6db74">&#34;Tell me a joke.&#34;</span>},
+</span></span><span style="display:flex;"><span>    ]
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;Chat response:&#34;</span>, chat_response)
+</span></span></code></pre></div><ul class="pa0">
+  
+   <li class="list di">
+     <a href="/tags/inference/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">Inference</a>
+   </li>
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="http://localhost:1313/" >
+    &copy;  HomePage 2025 
+  </a>
+    <div><div class="ananke-socials"><a href="https://www.facebook.com/patrick.kollitsch" target="_blank" rel="noopener"
+        class="ananke-social-link link-transition facebook link dib z-999 pt3 pt0-l mr1"
+        title="follow on Facebook - Opens in a new window"
+        aria-label="follow on Facebook - Opens in a new window">
+      <span class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M512 256C512 114.6 397.4 0 256 0S0 114.6 0 256C0 376 82.7 476.8 194.2 504.5V334.2H141.4V256h52.8V222.3c0-87.1 39.4-127.5 125-127.5c16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1c-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H287V510.1C413.8 494.8 512 386.9 512 256h0z"/></svg>
+            
+          </span></a><a href="https://bsky.app/profile/kollitsch.dev" target="_blank" rel="noopener"
+        class="ananke-social-link link-transition bluesky link dib z-999 pt3 pt0-l mr1"
+        title="follow on Bluesky - Opens in a new window"
+        aria-label="follow on Bluesky - Opens in a new window">
+      <span class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M407.8 294.7c-3.3-.4-6.7-.8-10-1.3c3.4 .4 6.7 .9 10 1.3zM288 227.1C261.9 176.4 190.9 81.9 124.9 35.3C61.6-9.4 37.5-1.7 21.6 5.5C3.3 13.8 0 41.9 0 58.4S9.1 194 15 213.9c19.5 65.7 89.1 87.9 153.2 80.7c3.3-.5 6.6-.9 10-1.4c-3.3 .5-6.6 1-10 1.4C74.3 308.6-9.1 342.8 100.3 464.5C220.6 589.1 265.1 437.8 288 361.1c22.9 76.7 49.2 222.5 185.6 103.4c102.4-103.4 28.1-156-65.8-169.9c-3.3-.4-6.7-.8-10-1.3c3.4 .4 6.7 .9 10 1.3c64.1 7.1 133.6-15.1 153.2-80.7C566.9 194 576 75 576 58.4s-3.3-44.7-21.6-52.9c-15.8-7.1-40-14.9-103.2 29.8C385.1 81.9 314.1 176.4 288 227.1z"/></svg>
+            
+          </span></a><a href="http://linkedin.com/in/patrickkollitsch" target="_blank" rel="noopener"
+        class="ananke-social-link link-transition linkedin link dib z-999 pt3 pt0-l mr1"
+        title="follow on LinkedIn - Opens in a new window"
+        aria-label="follow on LinkedIn - Opens in a new window">
+      <span class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+            
+          </span></a></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

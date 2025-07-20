@@ -6,8 +6,15 @@
     <description>Recent content in AJ&#39;s blog on HomePage</description>
     <generator>Hugo</generator>
     <language>en-US</language>
-    <lastBuildDate>Mon, 14 Jul 2025 11:00:59 -0400</lastBuildDate>
+    <lastBuildDate>Sat, 19 Jul 2025 11:00:59 -0400</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>vllm</title>
+      <link>http://localhost:1313/post/vllm/</link>
+      <pubDate>Sat, 19 Jul 2025 11:00:59 -0400</pubDate>
+      <guid>http://localhost:1313/post/vllm/</guid>
+      <description>&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;KV Cache&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;大模型推理时 huggingface 按照可生成最长序列长度分配显存。但这造成三种类型的浪费：&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;﻿﻿预分配最大的 token 数，但不会用到。&lt;/li&gt;&#xA;&lt;li&gt;﻿﻿剩下的 token 还尚未用到，但现存已被预分配占用。&lt;/li&gt;&#xA;&lt;li&gt;﻿﻿显存之间的间隔碎片，因为 prompt 之间不同，显存不足以预分配给下一个文本生成。&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/vllm/1.png&#34; alt=&#34;1&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;新 token 只用到前面 token 的 kv 向量，事实上只需保存之前的 kv 向量。&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;h4 id=&#34;page-attention&#34;&gt;&lt;strong&gt;Page Attention&lt;/strong&gt;&lt;/h4&gt;&#xA;&lt;p&gt;借鉴 OS 中的虚拟内存和页管理技术，把显存划分为 KVBlock，显存按照 KVBlock 来管理 KVCache，不用提前分配。&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/vllm/2.png&#34; alt=&#34;2&#34;&gt;&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
+    </item>
     <item>
       <title>分布式并行训练 - FSDP</title>
       <link>http://localhost:1313/post/%E5%88%86%E5%B8%83%E5%BC%8F%E5%B9%B6%E8%A1%8C%E8%AE%AD%E7%BB%83-fsdp/</link>

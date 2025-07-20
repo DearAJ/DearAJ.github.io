@@ -47,8 +47,8 @@
 
   <meta itemprop="name" content="Articles">
   <meta itemprop="description" content="The soul selects her own society, then shuts the door. To her divine majority, present no more.">
-  <meta itemprop="datePublished" content="2025-07-14T11:00:59-04:00">
-  <meta itemprop="dateModified" content="2026-07-10T11:00:59-04:00">
+  <meta itemprop="datePublished" content="2025-07-19T11:00:59-04:00">
+  <meta itemprop="dateModified" content="2026-07-14T11:00:59-04:00">
   <meta itemprop="wordCount" content="2">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Articles">
@@ -153,6 +153,37 @@
             <div class="mb3 pa4 mid-gray overflow-hidden">
     
       <div class="f6">
+        April 14, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/lss%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/" class="link black dim">
+        LSS代码
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>文章搬运，自用。</p>
+<p>论文：<a href="https://arxiv.org/abs/2008.05711">Lift, Splat, Shoot: Encoding Images From Arbitrary Camera Rigs by Implicitly Unprojecting to 3D</a></p>
+<p>官方源码：<a href="https://github.com/nv-tlabs/lift-splat-shoot">lift-splat-shoot</a></p>
+<p> </p>
+<h4 id="lift-splat-shoot图像bev安装与模型代码详解httpsblogcsdnnetqq_41366026articledetails133840315"><a href="https://blog.csdn.net/qq_41366026/article/details/133840315">Lift, Splat, Shoot图像BEV安装与模型代码详解</a></h4>
+<p>对于任意数量不同相机帧的图像直接提取场景的BEV表达；主要由三部分实现：</p>
+<ol>
+<li><strong>Lift</strong>：将每一个相机的图像帧根据相机的内参转换提升到 frustum（锥形）形状的点云空间中。</li>
+<li><strong>splate</strong>：将所有相机转换到锥形点云空间中的特征根据相机的内参 K 与相机相对于 ego 的外参T映射到栅格化的 3D 空间（BEV）中来融合多帧信息。</li>
+<li><strong>shoot</strong>：根据上述 BEV 的检测或分割结果来生成规划的路径 proposal；从而实现可解释的端到端的路径规划任务。</li>
+</ol>
+<p>注：LSS在训练的过程中并不需要激光雷达的点云来进行监督。</p>
+    </div>
+  <a href="/post/lss%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
         April 11, 2025
       </div>
     
@@ -241,53 +272,6 @@
 
         </div>
       
-        <div class="relative w-100 w-30-l mb4 bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        April 4, 2025
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/%E5%B7%A5%E5%85%B7%E9%93%BE-%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" class="link black dim">
-        工具链-强化学习
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <h2 id="1-gym">1. gym</h2>
-<p>官方文档：https://www.gymlibrary.dev</p>
-<ul>
-<li>
-<p>最小例子 <code>CartPole-v0</code></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python3" data-lang="python3"><span style="display:flex;"><span><span style="color:#f92672">import</span> gymenv <span style="color:#f92672">=</span> gym<span style="color:#f92672">.</span>make(<span style="color:#e6db74">&#39;CartPole-v0&#39;</span>)
-</span></span><span style="display:flex;"><span>env<span style="color:#f92672">.</span>reset()
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> _ <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">1000</span>):
-</span></span><span style="display:flex;"><span>    env<span style="color:#f92672">.</span>render()
-</span></span><span style="display:flex;"><span>    env<span style="color:#f92672">.</span>step(env<span style="color:#f92672">.</span>action_space<span style="color:#f92672">.</span>sample()) <span style="color:#75715e"># take a random action</span>
-</span></span></code></pre></div></li>
-</ul>
-<p> </p>
-<h3 id="观测-observations">观测 (Observations)</h3>
-<p>在 Gym 仿真中，每一次回合开始，需要先执行 <code>reset()</code> 函数，返回<strong>初始观测信息，然后根据标志位 <code>done</code> 的状态，来决定是否进行下一次回合</strong>。代码表示：</p>
-<p> </p>
-<p><code>env.step()</code> 函数对每一步进行仿真，返回 4 个参数：</p>
-<ul>
-<li>
-<p><strong>观测</strong> Observation (Object)：当前 step 执行后，环境的观测(类型为对象)。例如，从相机获取的像素点，机器人各个关节的角度或棋盘游戏当前的状态等；</p>
-</li>
-<li>
-<p><strong>奖励</strong> Reward (Float): 执行上一步动作(action)后，智体(agent)获得的奖励，不同的环境中奖励值变化范围也不相同，但是强化学习的目标就是使得总奖励值最大；</p>
-</li>
-<li>
-<p><strong>完成</strong> Done (Boolen): 表示是否需要将环境重置 <code>env.reset</code>。</p>
-</li>
-</ul>
-    </div>
-  <a href="/post/%E5%B7%A5%E5%85%B7%E9%93%BE-%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        </div>
-      
     </aside>
     
     <ul class="pagination pagination-default">
@@ -316,7 +300,7 @@
         <a href="/post/page/13/" aria-label="Next" class="page-link" role="button"><span aria-hidden="true">&raquo;</span></a>
       </li>
       <li class="page-item">
-        <a href="/post/page/24/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/post/page/25/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
       </li>
     </ul>
   </article>

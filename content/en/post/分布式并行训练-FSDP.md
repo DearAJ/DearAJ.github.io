@@ -341,7 +341,7 @@ DDP 中，每个进程都持有一个模型的副本，因此内存占用量更�
 
 &nbsp;
 
-## 使用 FSDP 进行高级模型的训练
+## [使用 FSDP 进行高级模型的训练](https://pytorch.ac.cn/tutorials/intermediate/FSDP_advanced_tutorial.html)
 
 以**使用 FSDP 微调 HuggingFace (HF) T5 模型进行文本摘要**为例：
 

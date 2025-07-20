@@ -47,8 +47,8 @@
 
   <meta itemprop="name" content="Articles">
   <meta itemprop="description" content="The soul selects her own society, then shuts the door. To her divine majority, present no more.">
-  <meta itemprop="datePublished" content="2025-07-14T11:00:59-04:00">
-  <meta itemprop="dateModified" content="2026-07-10T11:00:59-04:00">
+  <meta itemprop="datePublished" content="2025-07-19T11:00:59-04:00">
+  <meta itemprop="dateModified" content="2026-07-14T11:00:59-04:00">
   <meta itemprop="wordCount" content="2">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Articles">
@@ -157,6 +157,64 @@
       </div>
     
     <h1 class="f3 near-black">
+      <a href="/post/ppo-%E5%8E%9F%E7%90%86/" class="link black dim">
+        PPO-直观理解
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <h2 id="1-基础概念">1. 基础概念</h2>
+<p><img src="/images/PPO/1.png" alt="1"></p>
+<ol>
+<li>
+<p><strong>enviroment</strong>：看到的画面+看不到的后台画面，不了解细节</p>
+</li>
+<li>
+<p><strong>agent(智能体)</strong>：根据策略得到尽可能多的奖励</p>
+</li>
+<li>
+<p><strong>state</strong>：当前状态</p>
+</li>
+<li>
+<p><strong>observation</strong>：state的一部分（有时候agent无法看全）</p>
+</li>
+<li>
+<p><strong>action</strong>：agent做出的动作</p>
+</li>
+<li>
+<p><strong>reward</strong>：agent做出一个动作后环境给予的奖励</p>
+</li>
+<li>
+<p><strong>action space</strong>：可以选择的动作，如上下左右</p>
+</li>
+<li>
+<p><strong>policy</strong>：策略函数，输入state，输出Action的<strong>概率分布</strong>。一般用π表示。</p>
+<ol>
+<li>训练时应尝试各种action</li>
+<li>输出应具有多样性</li>
+</ol>
+</li>
+<li>
+<p><strong>Trajectory/Episode/Rollout</strong>：轨迹，用 t 表示一连串状态和动作的序列。有的状态转移是确定的，也有的是不确定的。</p>
+</li>
+<li>
+<p><strong>Return</strong>：回报，从当前时间点到游戏结束的 Reward 的累积和。</p>
+</li>
+</ol>
+<p>强化学习目标：训练一个Policy神经网络π，在所有状态S下，给出相应的Action，得到Return的期望最大。</p>
+    </div>
+  <a href="/post/ppo-%E5%8E%9F%E7%90%86/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        March 29, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
       <a href="/post/%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2/" class="link black dim">
         语义分割
       </a>
@@ -225,31 +283,6 @@
 
         </div>
       
-        <div class="relative w-100 w-30-l mb4 bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        March 22, 2025
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/%E5%A4%8D%E8%AF%95%E9%A1%B9%E7%9B%AE/" class="link black dim">
-        「复试」项目
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p>尊敬的各位老师好！我叫yaj，本科就读于北京航空航天大学，计算机科学与技术专业。</p>
-<p>在校期间，我掌握了较扎实的数学基础和编程能力，通过查阅期刊论文了解最新科研动向。</p>
-<p>除此之外，我积极参与各类比赛并获得奖项，有效提升了我的工程实践能力。在毕业设计中，我独立完成从文献调研到模型实现的全流程工作，并且，该项目被获评为北航校级优秀毕设。</p>
-<p>在实践方面，我先后在中国软件与技术服公司、北京航空航天大学和清华大学进行实习。实习期间，我参与了世界模型、时间序列预测、强化学习和目标检测等人工智能相关项目。这些经历使我不仅掌握了深层技术，更形成了&quot;从理论到应用&quot;的完整研发视角。</p>
-<p>上海交通大学一直是我向往的学校，很希望能得到在贵校学习的机会。攻读研究生期间，我会专注于理论与实践的双向发展，深入学习技术背后的底层原理。我的目标是成为一名优秀的工程师，为这个行业做出实质性贡献。我深信计算机领域的技术发展，必将将推动社会的下一场变革。</p>
-<p>以上是我的自我介绍。非常感谢各位老师的聆听！</p>
-    </div>
-  <a href="/post/%E5%A4%8D%E8%AF%95%E9%A1%B9%E7%9B%AE/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        </div>
-      
     </aside>
     
     <ul class="pagination pagination-default">
@@ -278,7 +311,7 @@
         <a href="/post/page/17/" aria-label="Next" class="page-link" role="button"><span aria-hidden="true">&raquo;</span></a>
       </li>
       <li class="page-item">
-        <a href="/post/page/24/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/post/page/25/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
       </li>
     </ul>
   </article>

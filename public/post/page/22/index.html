@@ -47,8 +47,8 @@
 
   <meta itemprop="name" content="Articles">
   <meta itemprop="description" content="The soul selects her own society, then shuts the door. To her divine majority, present no more.">
-  <meta itemprop="datePublished" content="2025-07-14T11:00:59-04:00">
-  <meta itemprop="dateModified" content="2026-07-10T11:00:59-04:00">
+  <meta itemprop="datePublished" content="2025-07-19T11:00:59-04:00">
+  <meta itemprop="dateModified" content="2026-07-14T11:00:59-04:00">
   <meta itemprop="wordCount" content="2">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Articles">
@@ -153,6 +153,48 @@
             <div class="mb3 pa4 mid-gray overflow-hidden">
     
       <div class="f6">
+        February 9, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/mllm/" class="link black dim">
+        MLLM
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <h1 id="1基础">1基础</h1>
+<h2 id="1-特征提取">1. 特征提取</h2>
+<h3 id="一cv中的特征提取"><strong>一、CV中的特征提取</strong></h3>
+<h4 id="1-传统方法手工设计特征"><strong>1. 传统方法（手工设计特征）</strong></h4>
+<p><strong>(1) 低级视觉特征</strong>：颜色、纹理、 边缘与形状&hellip;</p>
+<p><strong>(2) 中级语义特征</strong>：SIFT（尺度不变特征变换）、SURF（加速鲁棒特征）、LBP（局部二值模式）&hellip;</p>
+<p> </p>
+<h4 id="2-深度学习方法自动学习特征"><strong>2. 深度学习方法（自动学习特征）</strong></h4>
+<h5 id="1-卷积神经网络cnn"><strong>(1) 卷积神经网络（CNN）</strong></h5>
+<ul>
+<li>
+<p><strong>核心思想</strong>：通过卷积层提取局部特征，池化层降低维度，全连接层进行分类。</p>
+</li>
+<li>
+<p><strong>经典模型</strong>：LeNet-5、AlexNet、VGGNet、ResNet(使用残差可以训练更深的网络)&hellip;</p>
+<p><img src="/images/MLLM/1.png" alt="1"></p>
+</li>
+</ul>
+<h5 id="2-视觉transformervit"><strong>(2) 视觉Transformer（ViT）</strong></h5>
+<ul>
+<li><strong>核心思想</strong>：将图像分割为小块（patches），通过自注意力机制建模全局关系。</li>
+<li><strong>优势</strong>：无需局部卷积先验，直接建模长距离依赖; 在ImageNet等任务上超越传统CNN。</li>
+</ul>
+    </div>
+  <a href="/post/mllm/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
         February 8, 2025
       </div>
     
@@ -240,46 +282,6 @@
 
         </div>
       
-        <div class="relative w-100 w-30-l mb4 bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        January 31, 2025
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/object-detection/" class="link black dim">
-        目标检测
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p><img src="/images/CV/19.png" alt="19"></p>
-<ul>
-<li>
-<p>技巧</p>
-<p><strong>Ensembling</strong>：Train several networks independently and average their outputs <strong>Multi-crop at test time</strong>：Run classifier on multiple versions of test images and average results</p>
-</li>
-</ul>
-<p> </p>
-<h3 id="定位">定位</h3>
-<p><img src="/images/CV/20.png" alt="20"></p>
-<p>Need to output bx, by, bn, bw, class label (1-4)</p>
-<p><img src="/images/CV/21.png" alt="21"></p>
-<p>需人工标注<strong>特征点的坐标</strong></p>
-<p> </p>
-<h3 id="基于滑动窗口的目标检测算法">基于滑动窗口的目标检测算法</h3>
-<ol>
-<li>先训练卷积网络识别物体</li>
-<li>滑动+放大窗口+再次滑动</li>
-</ol>
-<p><strong>问题</strong>：计算效率大，慢</p>
-<p> </p>
-    </div>
-  <a href="/post/object-detection/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        </div>
-      
     </aside>
     
     <ul class="pagination pagination-default">
@@ -308,7 +310,7 @@
         <a href="/post/page/23/" aria-label="Next" class="page-link" role="button"><span aria-hidden="true">&raquo;</span></a>
       </li>
       <li class="page-item">
-        <a href="/post/page/24/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/post/page/25/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
       </li>
     </ul>
   </article>

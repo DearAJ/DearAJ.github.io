@@ -47,8 +47,8 @@
 
   <meta itemprop="name" content="Articles">
   <meta itemprop="description" content="The soul selects her own society, then shuts the door. To her divine majority, present no more.">
-  <meta itemprop="datePublished" content="2025-07-14T11:00:59-04:00">
-  <meta itemprop="dateModified" content="2026-07-10T11:00:59-04:00">
+  <meta itemprop="datePublished" content="2025-07-19T11:00:59-04:00">
+  <meta itemprop="dateModified" content="2026-07-14T11:00:59-04:00">
   <meta itemprop="wordCount" content="2">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Articles">
@@ -153,6 +153,53 @@
             <div class="mb3 pa4 mid-gray overflow-hidden">
     
       <div class="f6">
+        April 4, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/%E5%B7%A5%E5%85%B7%E9%93%BE-%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" class="link black dim">
+        工具链-强化学习
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <h2 id="1-gym">1. gym</h2>
+<p>官方文档：https://www.gymlibrary.dev</p>
+<ul>
+<li>
+<p>最小例子 <code>CartPole-v0</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python3" data-lang="python3"><span style="display:flex;"><span><span style="color:#f92672">import</span> gymenv <span style="color:#f92672">=</span> gym<span style="color:#f92672">.</span>make(<span style="color:#e6db74">&#39;CartPole-v0&#39;</span>)
+</span></span><span style="display:flex;"><span>env<span style="color:#f92672">.</span>reset()
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> _ <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">1000</span>):
+</span></span><span style="display:flex;"><span>    env<span style="color:#f92672">.</span>render()
+</span></span><span style="display:flex;"><span>    env<span style="color:#f92672">.</span>step(env<span style="color:#f92672">.</span>action_space<span style="color:#f92672">.</span>sample()) <span style="color:#75715e"># take a random action</span>
+</span></span></code></pre></div></li>
+</ul>
+<p> </p>
+<h3 id="观测-observations">观测 (Observations)</h3>
+<p>在 Gym 仿真中，每一次回合开始，需要先执行 <code>reset()</code> 函数，返回<strong>初始观测信息，然后根据标志位 <code>done</code> 的状态，来决定是否进行下一次回合</strong>。代码表示：</p>
+<p> </p>
+<p><code>env.step()</code> 函数对每一步进行仿真，返回 4 个参数：</p>
+<ul>
+<li>
+<p><strong>观测</strong> Observation (Object)：当前 step 执行后，环境的观测(类型为对象)。例如，从相机获取的像素点，机器人各个关节的角度或棋盘游戏当前的状态等；</p>
+</li>
+<li>
+<p><strong>奖励</strong> Reward (Float): 执行上一步动作(action)后，智体(agent)获得的奖励，不同的环境中奖励值变化范围也不相同，但是强化学习的目标就是使得总奖励值最大；</p>
+</li>
+<li>
+<p><strong>完成</strong> Done (Boolen): 表示是否需要将环境重置 <code>env.reset</code>。</p>
+</li>
+</ul>
+    </div>
+  <a href="/post/%E5%B7%A5%E5%85%B7%E9%93%BE-%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
         April 3, 2025
       </div>
     
@@ -238,39 +285,6 @@
 
         </div>
       
-        <div class="relative w-100 w-30-l mb4 bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        April 2, 2025
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/actor-critic/" class="link black dim">
-        Actor-Critic
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p>Actor-Critic 算法本质上是基于策略的算法，因为这一系列算法的<strong>目标都是优化一个带参数的策略，只是会额外学习价值函数</strong>，从而帮助策略函数更好地学习。</p>
-<p>Actor-Critic 算法则可以在每一步之后都进行更新，并且不对任务的步数做限制。</p>
-<ul>
-<li>
-<p>更一般形式的策略梯度</p>
-<p><img src="/images/ac/1.png" alt="1"></p>
-</li>
-</ul>
-<p> </p>
-<h3 id="1-actor策略网络">1. Actor（策略网络）</h3>
-<p>Actor 要做的是与环境交互，并在 Critic 价值函数的指导下用策略梯度学习一个更好的策略。</p>
-<p>Actor 的更新采用策略梯度的原则。</p>
-<h3 id="2--critic价值网络">2.  Critic（价值网络）</h3>
-<p>Critic 要做的是通过 Actor 与环境交互收集的数据学习一个价值函数，这个价值函数会用于判断在当前状态什么动作是好的，什么动作不是好的，进而帮助 Actor 进行策略更新。</p>
-    </div>
-  <a href="/post/actor-critic/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        </div>
-      
     </aside>
     
     <ul class="pagination pagination-default">
@@ -299,7 +313,7 @@
         <a href="/post/page/14/" aria-label="Next" class="page-link" role="button"><span aria-hidden="true">&raquo;</span></a>
       </li>
       <li class="page-item">
-        <a href="/post/page/24/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/post/page/25/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
       </li>
     </ul>
   </article>

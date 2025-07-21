@@ -47,7 +47,7 @@
 
   <meta itemprop="name" content="Articles">
   <meta itemprop="description" content="The soul selects her own society, then shuts the door. To her divine majority, present no more.">
-  <meta itemprop="datePublished" content="2025-07-19T11:00:59-04:00">
+  <meta itemprop="datePublished" content="2025-07-21T11:00:59-04:00">
   <meta itemprop="dateModified" content="2026-07-14T11:00:59-04:00">
   <meta itemprop="wordCount" content="2">
   <meta name="twitter:card" content="summary">
@@ -153,188 +153,148 @@
             <div class="mb3 pa4 mid-gray overflow-hidden">
     
       <div class="f6">
+        February 19, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/" class="link black dim">
+        强化学习-数学基础
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <h2 id="总述">总述</h2>
+<p><img src="/images/RL2/1.png" alt="1"></p>
+<ul>
+<li>
+<h4 id="基础工具"><strong>基础工具</strong></h4>
+<ol>
+<li><strong>基本概念</strong>：state, action, reward, return, episode, policy, mdp&hellip;</li>
+<li><strong>贝尔曼公式</strong>：用于评价策略</li>
+<li><strong>贝尔曼最优公式</strong>：强化学习的最终目标是求解最优策略</li>
+</ol>
+</li>
+<li>
+<h4 id="算法方法">算法/方法</h4>
+<ol start="4">
+<li><strong>值迭代、策略迭代—— truncated policy iteration</strong>：值和策略update不断迭代</li>
+<li><strong>Monte Carlo Learning</strong>：无模型学习</li>
+<li><strong>随即近似理论</strong>：from non-incremental to incremental</li>
+<li><strong>时序差分方法(TD)</strong></li>
+<li><strong>值函数估计</strong>：tabular representation to function representation，引入神经网络</li>
+<li><strong>Policy Gradient Methods</strong>：from value-based to policy-based</li>
+<li><strong>Actor-Critic Methods</strong>：policy-based + value-based</li>
+</ol>
+</li>
+</ul>
+    </div>
+  <a href="/post/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        February 17, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/bev%E8%AE%BA%E6%96%87%E5%AD%A6%E4%B9%A0/" class="link black dim">
+        BEV 论文学习
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <h2 id="vision-centric-bev-perception-a-survey">Vision-Centric BEV Perception: A Survey</h2>
+<p>许多方法被提出以<strong>解决从透视视图（Perspective View, PV）到 BEV 的转换问题</strong>，本文将它们分为基于几何、基于深度、基于 MLP 和基于 Transformer 的四类方法。</p>
+<p>此外，本文还探讨了 BEV 感知的扩展应用，如多任务学习、多模态融合和语义占据预测等。</p>
+<h4 id="1-背景介绍">1. 背景介绍</h4>
+<p>BEV 感知的核心任务是将 PV 中的<strong>图像序列转换为BEV特征，并在BEV空间中进行感知任务</strong>（如3D目标检测和语义地图生成），能够提供精确的定位和绝对尺度信息，便于多视图、多模态和时间序列数据的融合。</p>
+<p>但由于摄像头通常安装在车辆上，捕捉到的图像是透视视图，如何将 PV 转换为 BEV 仍然是一个具有挑战性的问题。</p>
+<h4 id="3-主要方法分类">3. 主要方法分类</h4>
+<ol>
+<li>
+<p><strong>基于几何的方法</strong></p>
+<ul>
+<li><strong>优势</strong>：这类方法主要依赖于<strong>逆透视映射（IPM）</strong>，通过几何变换将 PV 图像转换为 BEV 图像。</li>
+<li><strong>缺陷</strong>：但 IPM 假设地面是平坦的，因此在复杂场景中（如存在高度变化的物体）会产生失真。为了减少失真，一些方法引入了<strong>语义信息</strong>或使用 <strong>GAN</strong> 。</li>
+</ul>
+</li>
+<li>
+<p><strong>基于深度的方法</strong></p>
+<p>通过深度估计将 2D 特征提升到 3D 空间，然后通过降维得到 BEV 表示。深度估计可以是显式的（如通过深度图）或隐式的（如通过任务监督）。</p>
+<ul>
+<li><strong>点云方法</strong>：将深度图转换为伪 LiDAR 点云，然后使用 LiDAR 检测器进行 3D 检测</li>
+<li><strong>体素方法</strong>：将 2D 特征映射到 3D 体素空间，并通过体素特征进行 BEV 感知</li>
+</ul>
+</li>
+<li>
+<p><strong>基于MLP的方法</strong></p>
+<ul>
+<li><strong>优势</strong>：MLP 方法不依赖于摄像头的几何参数，而是通过学习隐式表示来完成视图转换。</li>
+<li><strong>缺陷</strong>：尽管 MLP 具有通用逼近能力，但由于缺乏深度信息和遮挡问题，视图转换仍然具有挑战性。</li>
+</ul>
+</li>
+<li>
+<p><strong>基于Transformer的方法</strong>：</p>
+    </div>
+  <a href="/post/bev%E8%AE%BA%E6%96%87%E5%AD%A6%E4%B9%A0/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
         February 13, 2025
       </div>
     
     <h1 class="f3 near-black">
-      <a href="/post/%E7%AE%97%E6%B3%95-c&#43;&#43;hash/" class="link black dim">
-        unordered_map
+      <a href="/post/%E7%AE%97%E6%B3%95%E6%A8%A1%E7%89%88-%E5%9F%BA%E7%A1%80/" class="link black dim">
+        「算法模版」基础
       </a>
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <table>
-  <thead>
-      <tr>
-          <th style="text-align: left"></th>
-          <th style="text-align: left"><code>unordered_map</code></th>
-          <th style="text-align: left"><code>unordered_set</code></th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: left"><strong>存储内容</strong></td>
-          <td style="text-align: left">键值对 (<code>std::pair&lt;const Key, T&gt;</code>)</td>
-          <td style="text-align: left">仅存储键 (<code>Key</code>)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><strong>是否允许重复键</strong></td>
-          <td style="text-align: left">键唯一（重复键会覆盖）</td>
-          <td style="text-align: left">键唯一（重复插入无效）</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><strong>主要用途</strong></td>
-          <td style="text-align: left">快速通过键<strong>查找值</strong></td>
-          <td style="text-align: left">快速判断<strong>键是否存在</strong></td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><strong>典型操作</strong></td>
-          <td style="text-align: left"><code>map[key] = value</code>、<code>map.find(key)</code></td>
-          <td style="text-align: left"><code>set.insert(key)</code>、<code>set.count(key)</code></td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><strong>内存占用</strong></td>
-          <td style="text-align: left">更高（需存储键和值）</td>
-          <td style="text-align: left">更低（仅存储键）</td>
-      </tr>
-  </tbody>
-</table>
-<h3 id="1-创建-unordered_map-对象">1. 创建 <code>unordered_map</code> 对象</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;unordered_map&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;string&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 默认构造函数
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    std<span style="color:#f92672">::</span>unordered_map<span style="color:#f92672">&lt;</span>std<span style="color:#f92672">::</span>string, <span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> map1;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 初始化列表构造函数
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    std<span style="color:#f92672">::</span>unordered_map<span style="color:#f92672">&lt;</span>std<span style="color:#f92672">::</span>string, <span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> map2 <span style="color:#f92672">=</span> {{<span style="color:#e6db74">&#34;apple&#34;</span>, <span style="color:#ae81ff">1</span>}, {<span style="color:#e6db74">&#34;banana&#34;</span>, <span style="color:#ae81ff">2</span>}};
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 拷贝构造函数
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    std<span style="color:#f92672">::</span>unordered_map<span style="color:#f92672">&lt;</span>std<span style="color:#f92672">::</span>string, <span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> map3(map2);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p> </p>
-<h3 id="2-插入">2. 插入</h3>
+      <ul>
+<li><strong>主要思想</strong></li>
+<li><strong>代码模版</strong>
+<ul>
+<li><strong>背过：快速默写，调试通过</strong>
+<ul>
+<li>先看模版思想 —— 模版已为我们考虑好了所有边界情况</li>
+<li>默写一遍（用题目）</li>
+</ul>
+</li>
+<li><strong>提高熟练度</strong>
+<ul>
+<li>一道题目重复3-5次</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p> </p>
+<h1 id="一排序">一、排序</h1>
+<h3 id="1-快速排序">1. 快速排序</h3>
 <ol>
 <li>
-<p><code>insert</code></p>
-<p>插入一个键值对</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>map1.insert({<span style="color:#e6db74">&#34;orange&#34;</span>, <span style="color:#ae81ff">3</span>});
-</span></span><span style="display:flex;"><span>map1.insert(std<span style="color:#f92672">::</span>make_pair(<span style="color:#e6db74">&#34;grape&#34;</span>, <span style="color:#ae81ff">4</span>));
-</span></span></code></pre></div></li>
-<li>
-<p><code>operator[]</code></p>
-<p>通过键插入或访问值。<strong>如果键不存在，会插入一个默认值</strong>。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>map1[<span style="color:#e6db74">&#34;apple&#34;</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>; <span style="color:#75715e">// 插入或修改
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> value <span style="color:#f92672">=</span> map1[<span style="color:#e6db74">&#34;apple&#34;</span>]; <span style="color:#75715e">// 访问
-</span></span></span></code></pre></div></li>
+<h5 id="核心思想--分治">核心思想 —— 分治</h5>
+<ol>
+<li>确定分界点x</li>
+<li><strong>调整区间</strong></li>
+<li>递归处理左右两段</li>
 </ol>
-<p> </p>
-<h3 id="3-访问元素">3. <strong>访问元素</strong></h3>
-<ol>
+</li>
 <li>
-<p><code>at</code></p>
-<p>访问指定键的值，如果键不存在会抛出 <code>std::out_of_range</code> 异常。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> value <span style="color:#f92672">=</span> map1.at(<span style="color:#e6db74">&#34;apple&#34;</span>);
-</span></span></code></pre></div></li>
+<p><strong>调整区间的暴力做法</strong>：选定x，开a,b两数组，遍历q，小于x放a，大于x放b。</p>
+</li>
 <li>
-<p><code>operator[]</code></p>
-<p>访问或插入指定键的值。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> value <span style="color:#f92672">=</span> map1[<span style="color:#e6db74">&#34;apple&#34;</span>];
-</span></span></code></pre></div></li>
-</ol>
-    </div>
-  <a href="/post/%E7%AE%97%E6%B3%95-c&#43;&#43;hash/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        February 12, 2025
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/%E7%AE%97%E6%B3%95%E9%A2%98/" class="link black dim">
-        「持续更新」算法题笔记
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <h3 id="万能开头">万能开头</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#75715e">#include&lt;bits/stdc++.h&gt;
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
-</span></span></code></pre></div><p>在 C++ 中，<code>using namespace std;</code>指令允许用户使用 std 命名空间中的所有标识符，而无需在它们前面加上<code> std::</code>。</p>
-<p> </p>
-<p> </p>
-<h1 id="leetcode-hot-100">leetcode hot 100</h1>
-<h2 id="hash">hash</h2>
-<ol>
-<li>
-<h4 id="两数之和">两数之和</h4>
-<p><strong>题目描述</strong>：给定一个整数数组 <code>nums</code> 和一个整数目标值 <code>target</code>，请你在该数组中找出 <strong>和为目标值</strong> <em><code>target</code></em> 的那 <strong>两个</strong> 整数，并返回它们的数组下标。</p>
-<p><strong>方法</strong>：找数 <code>x</code>，寻找数组中是否存在 <code>target - x</code>。</p>
-<p>使用哈希表，可以将寻找 <code>target - x</code>的时间复杂度降低到从 O(N) 降低到 O(1) —— 创建一个哈希表，对于每一个 <code>x</code>，我们首先查询哈希表中是否存在 <code>target - x</code>，然后将 <code>x</code>插入到哈希表中，即可保证不会让 <code>x</code>和自己匹配。</p>
+<p><strong>优雅做法</strong>：用两个指针i、j，分别指向第一和最后一个数，两指针向中间移动，使得i左小于x，j右大于x；否则交换i、所指的数。</p>
 </li>
 </ol>
     </div>
-  <a href="/post/%E7%AE%97%E6%B3%95%E9%A2%98/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        February 12, 2025
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/btree/" class="link black dim">
-        二叉树
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <h1 id="二叉树">二叉树</h1>
-<h2 id="二叉树的实现方式">二叉树的实现方式</h2>
-<ol>
-<li>
-<p>最常见的二叉树就是类似链表那样的链式存储结构，每个二叉树节点有指向左右子节点的指针</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TreeNode</span> {
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> val;
-</span></span><span style="display:flex;"><span>    TreeNode<span style="color:#f92672">*</span> left;
-</span></span><span style="display:flex;"><span>    TreeNode<span style="color:#f92672">*</span> right;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 构造函数，参数是int x， :后面的部分是初始化列表，{} 是构造函数的函数体为空，即不需要额外的操作。
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    TreeNode(<span style="color:#66d9ef">int</span> x) <span style="color:#f92672">:</span> val(x), left(<span style="color:#66d9ef">nullptr</span>), right(<span style="color:#66d9ef">nullptr</span>) {}
-</span></span><span style="display:flex;"><span>};
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// 你可以这样构建一棵二叉树：
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>TreeNode<span style="color:#f92672">*</span> root <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> TreeNode(<span style="color:#ae81ff">1</span>);
-</span></span><span style="display:flex;"><span>root<span style="color:#f92672">-&gt;</span>left <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> TreeNode(<span style="color:#ae81ff">2</span>);
-</span></span><span style="display:flex;"><span>root<span style="color:#f92672">-&gt;</span>right <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> TreeNode(<span style="color:#ae81ff">3</span>);
-</span></span><span style="display:flex;"><span>root<span style="color:#f92672">-&gt;</span>left<span style="color:#f92672">-&gt;</span>left <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> TreeNode(<span style="color:#ae81ff">4</span>);
-</span></span><span style="display:flex;"><span>root<span style="color:#f92672">-&gt;</span>right<span style="color:#f92672">-&gt;</span>left <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> TreeNode(<span style="color:#ae81ff">5</span>);
-</span></span><span style="display:flex;"><span>root<span style="color:#f92672">-&gt;</span>right<span style="color:#f92672">-&gt;</span>right <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> TreeNode(<span style="color:#ae81ff">6</span>);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// 构建出来的二叉树是这样的：
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//     1
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//    / \
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//   2   3
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//  /   / \
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// 4   5   6
-</span></span></span></code></pre></div><h5 id="public用法总结"><code>public</code>用法总结：</h5>
-<ol>
-<li><code>public</code> 关键字用于指定类成员的访问权限，允许外部代码直接访问这些成员。</li>
-<li>如果不加 <code>public</code>，这些成员默认是 <code>private</code> 的，外部代码无法直接访问它们。</li>
-</ol>
-<p>在 <code>TreeNode</code> 的构造函数中，初始化列表的作用是：</p>
-    </div>
-  <a href="/post/btree/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  <a href="/post/%E7%AE%97%E6%B3%95%E6%A8%A1%E7%89%88-%E5%9F%BA%E7%A1%80/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
   </div>
 
         </div>
@@ -367,7 +327,7 @@
         <a href="/post/page/22/" aria-label="Next" class="page-link" role="button"><span aria-hidden="true">&raquo;</span></a>
       </li>
       <li class="page-item">
-        <a href="/post/page/25/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/post/page/26/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
       </li>
     </ul>
   </article>

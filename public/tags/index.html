@@ -45,8 +45,8 @@
   <meta property="og:type" content="website">
 
   <meta itemprop="name" content="Tags">
-  <meta itemprop="datePublished" content="2025-07-14T11:00:59-04:00">
-  <meta itemprop="dateModified" content="2025-07-14T11:00:59-04:00">
+  <meta itemprop="datePublished" content="2025-07-20T11:00:59-04:00">
+  <meta itemprop="dateModified" content="2025-07-20T11:00:59-04:00">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Tags">
 
@@ -140,6 +140,292 @@
   </article>
   <div class="mw8 center">
     <section class="ph4">
+      
+        <h2 class="f1">
+          <a href="/tags/paper/" class="link blue hover-black">
+            Tag: Paper
+          </a>
+        </h2>
+        
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        July 20, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBkernelbench/" class="link black dim">
+        「论文阅读」KernelBench
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>KernelBench 是一个评估 LLMs 在生成高性能 GPU 内核代码（特别是 CUDA 代码）上能力的基准测试框架。</p>
+<p>引入<strong>新评估指标 fast_p</strong>：衡量生成的正确内核的百分比。</p>
+<h2 id="introduction">Introduction</h2>
+<p><strong>背景</strong>：每个硬件都有不同的规格和指令集，跨平台移植算法是行业痛点。</p>
+<p><strong>论文核心探讨</strong>：LM 可以帮助编写正确和优化的内核吗？</p>
+<p><img src="/images/paper-KernelBench/1.png" alt="1"></p>
+<p><strong>KernelBench 的任务</strong>：让 LMs 基于给定的 PyTorch 目标模型架构，生成优化的 CUDA 内核；并进行自动评估。</p>
+<ul>
+<li>
+<p>环境要求：</p>
+<ul>
+<li><strong>自动化</strong> AI 工程师的工作流程。</li>
+<li>支持<strong>多种</strong> AI 算法、编程语言和硬件平台。</li>
+<li><strong>轻松</strong>评估 LM 代的性能和功能正确性，并从生成的内核中分析信息。</li>
+</ul>
+</li>
+<li>
+<p>KernelBench 在三个级别的 AI 工作负载上测试 LM 优化：</p>
+<ul>
+<li><strong>Individual operations:</strong>：包括各种 AI 运算符、包括矩阵乘法、卷积、激活、范数和损失。</li>
+<li><strong>Sequence of operations</strong>：评估模型融合多个算子的能力。</li>
+<li><strong>端到端架构</strong>：Github 上流行 AI 存储库中的架构。</li>
+</ul>
+</li>
+</ul>
+    </div>
+  <a href="/post/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBkernelbench/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        July 7, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/graphrag/" class="link black dim">
+        GraphRAG
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <ul>
+<li>
+<h4 id="特点">特点</h4>
+<ol>
+<li><strong>基于图的检索</strong>：GraphRAG 引入<strong>知识图谱</strong>来捕捉实体、关系及其他重要元数据。</li>
+<li><strong>层次聚类</strong>：GraphRAG 使用 <strong>Leiden</strong> 技术进行层次聚类，将实体及其关系进行组织。</li>
+<li><strong>多模式查询</strong>：支持多种查询模式。</li>
+<li><strong>全局搜索</strong>：利用<strong>社区总结</strong>来进行全局性推理。</li>
+<li><strong>局部搜索</strong>：通过<strong>扩展相关实体的邻居和关联概念</strong>来进行具体实体的推理。</li>
+<li><strong>DRIFT 搜索</strong>：结合局部搜索和社区信息，提供更准确和相关的答案。</li>
+<li><strong>图机器学习</strong>：集成图机器学习技术，并提供来自结构化和非结构化数据的深度洞察。</li>
+<li><strong>Prompt 调优</strong>：提供调优工具，帮助根据特定数据和需求调整查询提示，提高结果质量。</li>
+</ol>
+</li>
+</ul>
+<h2 id="工作流程">工作流程</h2>
+<p><img src="/images/graphRAG/1.png" alt="1"></p>
+<h3 id="1-索引-indexing-过程">1 <strong>索引 (Indexing) 过程</strong></h3>
+<p>将原始文档转化为知识图谱</p>
+    </div>
+  <a href="/post/graphrag/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        July 2, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBalphaevolve/" class="link black dim">
+        「论文阅读」AlphaEvolve: A coding agent for scientific and algorithmic discovery
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p><a href="http://arxiv.org/abs/2506.13131"><em>AlphaEvolve</em></a> 使用进化方法，不断接收来自一个或多个评估者的反馈，迭代改进算法，从而有可能带来新的科学和实践发现。</p>
+<h2 id="introduction">Introduction</h2>
+<p>AlphaEvolve represents the candidates (for example, new mathematical objects or practical heuristics) as algorithms and <strong>uses a set of LLMs to generate, critique, and evolve</strong> a pool of such algorithms.</p>
+<p><img src="/images/paper-AlphaEvolve/1.png" alt="1"></p>
+<h2 id="alphaevolve">AlphaEvolve</h2>
+<p><img src="/images/paper-AlphaEvolve/2.png" alt="2"></p>
+    </div>
+  <a href="/post/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBalphaevolve/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        June 25, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBkimi-researcher/" class="link black dim">
+        「论文阅读」Kimi-Researcher
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p><a href="https://moonshotai.github.io/Kimi-Researcher/">这篇技术报告</a>提出了完全通过端到端 agentic reinforcement learning 进行训练的自主智能体 Kimi-Researcher，旨在通过多步骤规划、推理和工具使用来解决复杂问题。</p>
+<p>—— <strong>End-to-end agentic RL is promising but challenging</strong></p>
+<p> </p>
+<h3 id="传统-agent">传统 agent</h3>
+<ol>
+<li><strong><a href="https://www.anthropic.com/engineering/built-multi-agent-research-system">基于工作流</a></strong>：需要随着模型或环境的变化而频繁手动更新，缺乏可扩展性和灵活性。</li>
+<li><strong>使用监督微调 (SFT)进行模仿学习</strong>：在数据标记方面存在困难；特定的工具版本紧密耦合。</li>
+</ol>
+<p><strong>Kimi-Researcher</strong>：给定一个查询，agent 探索大量可能的策略，获得正确解决方案的奖励 —— 所有技能（规划、感知和工具使用）都是一起学习的，无需手工制作的rule/workflow。</p>
+<p> </p>
+<h3 id="建模">建模</h3>
+<p>给定状态观察(如系统提示符、工具声明和用户查询)，Kimi-Researcher 会生成 think和action (action 可以是工具调用，也可以是终止轨迹的指示)。</p>
+<p><img src="/images/paper-KimiResearcher/1.png" alt="1"></p>
+<h3 id="approach">Approach</h3>
+<p>主要利用三个工具：a)并行、实时、内部的 <strong>search tool;</strong> b) 用于交互式 Web 任务的基于文本的 <strong>browser tool</strong>; c)用于自动执行代码的 <strong>coding tool</strong>.</p>
+    </div>
+  <a href="/post/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBkimi-researcher/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        May 14, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBaugmented-knowledge-graph-querying-leveraging-llms/" class="link black dim">
+        「论文阅读」Augmented Knowledge Graph Querying leveraging LLMs
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p><a href="https://arxiv.org/abs/2502.01298">这篇论文</a>引入了一个名为 SparqLLM 的框架，通过结合 RAG 与 LLM，实现了从自然语言到 SPARQL 查询的自动生成，以简化知识图谱的查询过程。</p>
+<h3 id="1-introduction">1 Introduction</h3>
+<p><strong>背景</strong>：非技术员工不懂 SPARQL；KG + LLMs 无法生成精确高效的 SPARQL 查询，且存在幻觉问题。</p>
+<p><strong>SparqLLM</strong>：被设计为 RAG 框架，可自动从自然语言问题生成 SPARQL 查询，同时生成最适当的数据可视化以返回获得的结果。</p>
+<p><img src="/images/paper-SparqLLM/1.png" alt="1"></p>
+<p><strong>目标</strong>：提高 KG 的准确性、可用性和可靠性，实现与语义数据的更直观和有效的交互。</p>
+<p> </p>
+<h3 id="2-related-work">2 Related Work</h3>
+<ul>
+<li>
+<p><strong>自然语言接口 (NLI)</strong>：将非结构化输入转换为 SPARQL 等正式查询语言，使非技术用户更容易访问基于 RDF 的知识图谱。</p>
+</li>
+<li>
+<p><strong>LLMs</strong>：利用它们处理和生成复杂文本的能力，为自动生成查询提供了一个强大的框架，减少了人工干预的需要，使非专家用户也能访问知识图谱。</p>
+</li>
+<li>
+<p><strong>基于模板的方法</strong>：通过为查询生成提供确定性框架来补充上述方法。</p>
+</li>
+</ul>
+    </div>
+  <a href="/post/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBaugmented-knowledge-graph-querying-leveraging-llms/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        May 14, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBgenerate-on-graph-treat-llm-as-both-agent-and-kg-for-incomplete-knowledge-graph-question-answering/" class="link black dim">
+        「论文阅读」Generate-on-Graph: Treat LLM as both Agent and KG for Incomplete Knowledge Graph Question Answering
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p><a href="https://arxiv.org/abs/2404.14741">这篇论文</a>提出了一种称为 Generate-on-Graph(GoG) 的免训练方法，它可以在探索 KG 时，生成新的事实三元组。</p>
+<p>具体来说，在不完全知识图谱(IKGQA) 中，GoG 通过 Thinking-Searching-Generating 框架进行推理，它将 LLM 同时视为 Agent 和 KG。</p>
+<h3 id="1-introduction">1 Introduction</h3>
+<p><img src="/images/paper-GoG/1.png" alt="1"></p>
+    </div>
+  <a href="/post/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBgenerate-on-graph-treat-llm-as-both-agent-and-kg-for-incomplete-knowledge-graph-question-answering/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        
+      
+        <h2 class="f1">
+          <a href="/tags/inference/" class="link blue hover-black">
+            Tag: Inference
+          </a>
+        </h2>
+        
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        July 19, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/sglang/" class="link black dim">
+        SGLang
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>优势：<strong>后端运行快速</strong>、<strong>前端语言灵活</strong>、<strong>模型支持广泛</strong>、<strong>社区活跃</strong>。</p>
+<p>SGLang 的核心是通过其 Python API 构建和执行 Language Model Program。</p>
+<h4 id="启动服务器"><strong>启动服务器</strong></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> sglang <span style="color:#66d9ef">as</span> sgl
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 配置 SGLang 运行时</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 如果在本地运行服务，这里指定服务地址和端口</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 如果直接在 Python 进程中加载模型 (需要安装 sglang[srt])，可以使用 sgl.init(&#34;model_path&#34;)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 假设此时服务已在本地 30000 端口启动，并加载了模型：</span>
+</span></span><span style="display:flex;"><span>sgl<span style="color:#f92672">.</span>init(<span style="color:#e6db74">&#34;http://127.0.0.1:30000&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 或者，如果在 Python 进程中直接加载模型（需要足够的显存）</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># sgl.init(&#34;meta-llama/Llama-3.1-8B-Instruct&#34;) # 使用 Hugging Face ID</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 或者</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># sgl.init(&#34;/path/to/your/model_dir&#34;) # 使用本地模型路径</span>
+</span></span></code></pre></div><ol>
+<li>
+<h4 id="定义和运行一个简单的生成任务">定义和运行一个简单的生成任务</h4>
+<p><code>sgl.Runtime()</code> 是 LM 程序的入口。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> sglang <span style="color:#66d9ef">as</span> sgl		<span style="color:#75715e"># 假设已经通过 sgl.init(...) 初始化了运行时</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 定义一个 LM Program</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@sgl.function</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">simple_gen</span>(s, query):
+</span></span><span style="display:flex;"><span>    s <span style="color:#f92672">+=</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;用户问：</span><span style="color:#e6db74">{</span>query<span style="color:#e6db74">}</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 使用 sgl.gen() 进行文本生成</span>
+</span></span><span style="display:flex;"><span>    s <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34;回答：&#34;</span> <span style="color:#f92672">+</span> sgl<span style="color:#f92672">.</span>gen(<span style="color:#e6db74">&#34;answer&#34;</span>, max_tokens<span style="color:#f92672">=</span><span style="color:#ae81ff">64</span>)	<span style="color:#75715e"># 使用 sgl.gen() 进行文本生成</span>
+</span></span></code></pre></div></li>
+</ol>
+    </div>
+  <a href="/post/sglang/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        July 19, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/vllm/" class="link black dim">
+        vLLM
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>vLLM 是一个专门用于高效运行大语言模型的 Python 库。</p>
+<ul>
+<li>
+<p><strong>KV Cache</strong></p>
+<p>大模型推理时 huggingface 按照可生成最长序列长度分配显存。但这造成三种类型的浪费：</p>
+<ol>
+<li>﻿﻿预分配最大的 token 数，但不会用到。</li>
+<li>﻿﻿剩下的 token 还尚未用到，但现存已被预分配占用。</li>
+<li>﻿﻿显存之间的间隔碎片，因为 prompt 之间不同，显存不足以预分配给下一个文本生成。</li>
+</ol>
+<p><img src="/images/vllm/1.png" alt="1"></p>
+<p>新 token 只用到前面 token 的 kv 向量，事实上只需保存之前的 kv 向量。</p>
+</li>
+<li>
+<h4 id="page-attention"><strong>Page Attention</strong></h4>
+<p>借鉴 OS 中的虚拟内存和页管理技术，把显存划分为 KVBlock，显存按照 KVBlock 来管理 KVCache，不用提前分配。</p>
+<p><img src="/images/vllm/2.png" alt="2"></p>
+</li>
+</ul>
+    </div>
+  <a href="/post/vllm/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        
       
         <h2 class="f1">
           <a href="/tags/ai-infra/" class="link blue hover-black">
@@ -409,161 +695,6 @@
 </blockquote>
     </div>
   <a href="/post/machine-learning/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        
-      
-        <h2 class="f1">
-          <a href="/tags/paper/" class="link blue hover-black">
-            Tag: Paper
-          </a>
-        </h2>
-        
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        July 7, 2025
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/graphrag/" class="link black dim">
-        GraphRAG
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <ul>
-<li>
-<h4 id="特点">特点</h4>
-<ol>
-<li><strong>基于图的检索</strong>：GraphRAG 引入<strong>知识图谱</strong>来捕捉实体、关系及其他重要元数据。</li>
-<li><strong>层次聚类</strong>：GraphRAG 使用 <strong>Leiden</strong> 技术进行层次聚类，将实体及其关系进行组织。</li>
-<li><strong>多模式查询</strong>：支持多种查询模式。</li>
-<li><strong>全局搜索</strong>：利用<strong>社区总结</strong>来进行全局性推理。</li>
-<li><strong>局部搜索</strong>：通过<strong>扩展相关实体的邻居和关联概念</strong>来进行具体实体的推理。</li>
-<li><strong>DRIFT 搜索</strong>：结合局部搜索和社区信息，提供更准确和相关的答案。</li>
-<li><strong>图机器学习</strong>：集成图机器学习技术，并提供来自结构化和非结构化数据的深度洞察。</li>
-<li><strong>Prompt 调优</strong>：提供调优工具，帮助根据特定数据和需求调整查询提示，提高结果质量。</li>
-</ol>
-</li>
-</ul>
-<h2 id="工作流程">工作流程</h2>
-<p><img src="/images/graphRAG/1.png" alt="1"></p>
-<h3 id="1-索引-indexing-过程">1 <strong>索引 (Indexing) 过程</strong></h3>
-<p>将原始文档转化为知识图谱</p>
-    </div>
-  <a href="/post/graphrag/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        July 2, 2025
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBalphaevolve/" class="link black dim">
-        「论文阅读」AlphaEvolve: A coding agent for scientific and algorithmic discovery
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p><a href="http://arxiv.org/abs/2506.13131"><em>AlphaEvolve</em></a> 使用进化方法，不断接收来自一个或多个评估者的反馈，迭代改进算法，从而有可能带来新的科学和实践发现。</p>
-<h2 id="introduction">Introduction</h2>
-<p>AlphaEvolve represents the candidates (for example, new mathematical objects or practical heuristics) as algorithms and <strong>uses a set of LLMs to generate, critique, and evolve</strong> a pool of such algorithms.</p>
-<p><img src="/images/paper-AlphaEvolve/1.png" alt="1"></p>
-<h2 id="alphaevolve">AlphaEvolve</h2>
-<p><img src="/images/paper-AlphaEvolve/2.png" alt="2"></p>
-    </div>
-  <a href="/post/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBalphaevolve/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        June 25, 2025
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBkimi-researcher/" class="link black dim">
-        「论文阅读」Kimi-Researcher
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p><a href="https://moonshotai.github.io/Kimi-Researcher/">这篇技术报告</a>提出了完全通过端到端 agentic reinforcement learning 进行训练的自主智能体 Kimi-Researcher，旨在通过多步骤规划、推理和工具使用来解决复杂问题。</p>
-<p>—— <strong>End-to-end agentic RL is promising but challenging</strong></p>
-<p> </p>
-<h3 id="传统-agent">传统 agent</h3>
-<ol>
-<li><strong><a href="https://www.anthropic.com/engineering/built-multi-agent-research-system">基于工作流</a></strong>：需要随着模型或环境的变化而频繁手动更新，缺乏可扩展性和灵活性。</li>
-<li><strong>使用监督微调 (SFT)进行模仿学习</strong>：在数据标记方面存在困难；特定的工具版本紧密耦合。</li>
-</ol>
-<p><strong>Kimi-Researcher</strong>：给定一个查询，agent 探索大量可能的策略，获得正确解决方案的奖励 —— 所有技能（规划、感知和工具使用）都是一起学习的，无需手工制作的rule/workflow。</p>
-<p> </p>
-<h3 id="建模">建模</h3>
-<p>给定状态观察(如系统提示符、工具声明和用户查询)，Kimi-Researcher 会生成 think和action (action 可以是工具调用，也可以是终止轨迹的指示)。</p>
-<p><img src="/images/paper-KimiResearcher/1.png" alt="1"></p>
-<h3 id="approach">Approach</h3>
-<p>主要利用三个工具：a)并行、实时、内部的 <strong>search tool;</strong> b) 用于交互式 Web 任务的基于文本的 <strong>browser tool</strong>; c)用于自动执行代码的 <strong>coding tool</strong>.</p>
-    </div>
-  <a href="/post/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBkimi-researcher/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        May 14, 2025
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBaugmented-knowledge-graph-querying-leveraging-llms/" class="link black dim">
-        「论文阅读」Augmented Knowledge Graph Querying leveraging LLMs
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p><a href="https://arxiv.org/abs/2502.01298">这篇论文</a>引入了一个名为 SparqLLM 的框架，通过结合 RAG 与 LLM，实现了从自然语言到 SPARQL 查询的自动生成，以简化知识图谱的查询过程。</p>
-<h3 id="1-introduction">1 Introduction</h3>
-<p><strong>背景</strong>：非技术员工不懂 SPARQL；KG + LLMs 无法生成精确高效的 SPARQL 查询，且存在幻觉问题。</p>
-<p><strong>SparqLLM</strong>：被设计为 RAG 框架，可自动从自然语言问题生成 SPARQL 查询，同时生成最适当的数据可视化以返回获得的结果。</p>
-<p><img src="/images/paper-SparqLLM/1.png" alt="1"></p>
-<p><strong>目标</strong>：提高 KG 的准确性、可用性和可靠性，实现与语义数据的更直观和有效的交互。</p>
-<p> </p>
-<h3 id="2-related-work">2 Related Work</h3>
-<ul>
-<li>
-<p><strong>自然语言接口 (NLI)</strong>：将非结构化输入转换为 SPARQL 等正式查询语言，使非技术用户更容易访问基于 RDF 的知识图谱。</p>
-</li>
-<li>
-<p><strong>LLMs</strong>：利用它们处理和生成复杂文本的能力，为自动生成查询提供了一个强大的框架，减少了人工干预的需要，使非专家用户也能访问知识图谱。</p>
-</li>
-<li>
-<p><strong>基于模板的方法</strong>：通过为查询生成提供确定性框架来补充上述方法。</p>
-</li>
-</ul>
-    </div>
-  <a href="/post/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBaugmented-knowledge-graph-querying-leveraging-llms/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        May 14, 2025
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBgenerate-on-graph-treat-llm-as-both-agent-and-kg-for-incomplete-knowledge-graph-question-answering/" class="link black dim">
-        「论文阅读」Generate-on-Graph: Treat LLM as both Agent and KG for Incomplete Knowledge Graph Question Answering
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p><a href="https://arxiv.org/abs/2404.14741">这篇论文</a>提出了一种称为 Generate-on-Graph(GoG) 的免训练方法，它可以在探索 KG 时，生成新的事实三元组。</p>
-<p>具体来说，在不完全知识图谱(IKGQA) 中，GoG 通过 Thinking-Searching-Generating 框架进行推理，它将 LLM 同时视为 Agent 和 KG。</p>
-<h3 id="1-introduction">1 Introduction</h3>
-<p><img src="/images/paper-GoG/1.png" alt="1"></p>
-    </div>
-  <a href="/post/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBgenerate-on-graph-treat-llm-as-both-agent-and-kg-for-incomplete-knowledge-graph-question-answering/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
   </div>
 
         

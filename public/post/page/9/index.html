@@ -47,7 +47,7 @@
 
   <meta itemprop="name" content="Articles">
   <meta itemprop="description" content="The soul selects her own society, then shuts the door. To her divine majority, present no more.">
-  <meta itemprop="datePublished" content="2025-07-19T11:00:59-04:00">
+  <meta itemprop="datePublished" content="2025-07-21T11:00:59-04:00">
   <meta itemprop="dateModified" content="2026-07-14T11:00:59-04:00">
   <meta itemprop="wordCount" content="2">
   <meta name="twitter:card" content="summary">
@@ -153,18 +153,22 @@
             <div class="mb3 pa4 mid-gray overflow-hidden">
     
       <div class="f6">
-        May 11, 2025
+        May 13, 2025
       </div>
     
     <h1 class="f3 near-black">
-      <a href="/post/llm4/" class="link black dim">
-        LLM - 4.大模型增强 - RAG
+      <a href="/post/%E5%B7%A5%E5%85%B7%E9%93%BE-carla/" class="link black dim">
+        工具链-Carla
       </a>
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p><img src="/images/RAG/0-1.png" alt="0-1"></p>
+      <p>官方文档：<a href="https://carla.readthedocs.io/en/0.9.9/#getting-started">https://carla.readthedocs.io/en/0.9.9/#getting-started</a></p>
+<p>Carla是一款开源的 <em>自动驾驶</em> 仿真器，它基本可以用来帮助训练自动驾驶的所有模块，包括感知系统，Localization，规划系统等等。许多自动驾驶公司在进行实际路跑前都要在这Carla上先进行训练。</p>
+<h3 id="1-基本架构">1. 基本架构</h3>
+<h4 id="client-server-的交互形式">Client-Server 的交互形式</h4>
+<p>Carla主要分为Server与Client两个模块</p>
     </div>
-  <a href="/post/llm4/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  <a href="/post/%E5%B7%A5%E5%85%B7%E9%93%BE-carla/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
   </div>
 
         </div>
@@ -173,18 +177,40 @@
             <div class="mb3 pa4 mid-gray overflow-hidden">
     
       <div class="f6">
-        May 2, 2025
+        May 12, 2025
       </div>
     
     <h1 class="f3 near-black">
-      <a href="/post/llm3.5/" class="link black dim">
-        LLM - 3.指令理解阶段(核心) - 强化学习
+      <a href="/post/%E4%B8%8A%E6%B5%B7%E5%88%9B%E6%99%BA%E5%AD%A6%E9%99%A22025pe%E8%80%83%E8%AF%95/" class="link black dim">
+        上海创智学院2025PE考试
       </a>
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p><img src="/images/LLM3.5/0.png" alt="0"></p>
+      <blockquote>
+<p>注意：提示词都是用中文编写，若将中文直接翻译成英文，效果可能下降。</p>
+</blockquote>
+<h3 id="任务理解">任务理解</h3>
+<hr>
+<p>给定数据结构如下所示的数据：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">val.jsonl中，每⼀条数据的字段说明：</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;user_id&#34;</span>: <span style="color:#ae81ff">5737</span>, <span style="color:#75715e">// ⽤⼾编号
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#f92672">&#34;item_list&#34;</span>: [ <span style="color:#75715e">// ⽤⼾历史观看电影列表，按时间顺序排列，越靠后表⽰越近期观看
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    [<span style="color:#ae81ff">1836</span>, <span style="color:#e6db74">&#34;Last Days of Disco, The&#34;</span>], <span style="color:#75715e">// [电影ID, 电影名称]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    [<span style="color:#ae81ff">3565</span>, <span style="color:#e6db74">&#34;Where the Heart Is&#34;</span>],
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// ... 更多历史观看记录，⻓度不定
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    ],
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;target_item&#34;</span>: [<span style="color:#ae81ff">1893</span>, <span style="color:#e6db74">&#34;Beyond Silence&#34;</span>], <span style="color:#75715e">// ⽤⼾实际观看的下⼀部电影 [电影ID, 电影名称]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#f92672">&#34;candidates&#34;</span>: [ <span style="color:#75715e">// 推荐系统召回阶段得到的候选电影列表
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    [<span style="color:#ae81ff">2492</span>, <span style="color:#e6db74">&#34;20 Dates&#34;</span>],
+</span></span><span style="display:flex;"><span>    [<span style="color:#ae81ff">684</span>, <span style="color:#e6db74">&#34;Windows&#34;</span>],
+</span></span><span style="display:flex;"><span>    [<span style="color:#ae81ff">1893</span>, <span style="color:#e6db74">&#34;Beyond Silence&#34;</span>], <span style="color:#75715e">// 包含⽤⼾实际观看的下⼀部电影
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// ... 更多候选电影，⻓度不定，⼀般为20个左右
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    ]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>我们需要将candidates列表按照匹配度进行重排序，列表第一个元素是最有可能（最喜欢）观看的电影，列表最后一个是最不可能（最不喜欢）的电影。</p>
     </div>
-  <a href="/post/llm3.5/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  <a href="/post/%E4%B8%8A%E6%B5%B7%E5%88%9B%E6%99%BA%E5%AD%A6%E9%99%A22025pe%E8%80%83%E8%AF%95/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
   </div>
 
         </div>
@@ -193,20 +219,53 @@
             <div class="mb3 pa4 mid-gray overflow-hidden">
     
       <div class="f6">
-        May 1, 2025
+        May 12, 2025
       </div>
     
     <h1 class="f3 near-black">
-      <a href="/post/llm3/" class="link black dim">
-        LLM - 3.指令理解阶段(核心) - 指令微调
+      <a href="/post/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/" class="link black dim">
+        知识图谱
       </a>
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p><img src="/images/LLM3/0.png" alt="0"></p>
-<p>指令微调又称有监督微调，旨在使模型具备指令遵循 （Instruction Following）能力。</p>
-<p>核心问题：<em>如何构造指令数据？如何高效低成本地进行指令微调训练？如何在语言模型基础上进一步扩大上下文？</em></p>
+      <p>知识图谱于14年出现，之后进入平稳期，23年由于大模型的出现再次火爆。</p>
+<ol>
+<li>
+<h4 id="大模型的幻觉问题的解决方式">大模型的“幻觉”问题的解决方式</h4>
+<ul>
+<li>提高LLM的能力</li>
+<li>框定边界（大量符合逻辑的<strong>facts</strong>），大模型在边界内通过自身的理解能力，提供回复
+<ul>
+<li>facts 来源于：一些网络/企业内部文档/企业内的数据库/结构化的知识图谱</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<h4 id="知识图谱一种存储facts的方式">知识图谱：一种存储facts的方式</h4>
+<p>采用了“实体&amp;关系”的方法来存储信息</p>
+<p>区别于简单的图：包含多种实体和多种关系</p>
+</li>
+<li>
+<h4 id="知识图谱的优势">知识图谱的优势</h4>
+<ol>
+<li>关系直观</li>
+<li>抓住重要信息</li>
+<li>弥补文本到向量直接的关系（GraphRAG：KG与向量数据库融合）</li>
+</ol>
+</li>
+</ol>
+<p> </p>
+<h2 id="rag-与知识图谱结合">RAG 与知识图谱结合</h2>
+<ol>
+<li>
+<h4 id="知识图谱的必要性">知识图谱的必要性</h4>
+<p>e.g：问题:“感冒常用药物的负作用”；数据库存储的是“冲剂” 的描述，对应段落刚好没有出现“感冒” 这个关键词；两者相似度不够高，无法匹配</p>
+<p>—— 使用知识图谱找到“感冒”和“冲剂”之间的<strong>关系</strong></p>
+</li>
+</ol>
     </div>
-  <a href="/post/llm3/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  <a href="/post/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
   </div>
 
         </div>
@@ -239,7 +298,7 @@
         <a href="/post/page/10/" aria-label="Next" class="page-link" role="button"><span aria-hidden="true">&raquo;</span></a>
       </li>
       <li class="page-item">
-        <a href="/post/page/25/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/post/page/26/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
       </li>
     </ul>
   </article>

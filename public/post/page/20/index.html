@@ -47,7 +47,7 @@
 
   <meta itemprop="name" content="Articles">
   <meta itemprop="description" content="The soul selects her own society, then shuts the door. To her divine majority, present no more.">
-  <meta itemprop="datePublished" content="2025-07-19T11:00:59-04:00">
+  <meta itemprop="datePublished" content="2025-07-21T11:00:59-04:00">
   <meta itemprop="dateModified" content="2026-07-14T11:00:59-04:00">
   <meta itemprop="wordCount" content="2">
   <meta name="twitter:card" content="summary">
@@ -153,41 +153,47 @@
             <div class="mb3 pa4 mid-gray overflow-hidden">
     
       <div class="f6">
-        February 19, 2025
+        March 12, 2025
       </div>
     
     <h1 class="f3 near-black">
-      <a href="/post/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/" class="link black dim">
-        强化学习-数学基础
+      <a href="/post/%E7%AE%97%E6%B3%95%E6%A8%A1%E7%89%88-%E6%A0%91/" class="link black dim">
+        「算法模版」树
       </a>
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <h2 id="总述">总述</h2>
-<p><img src="/images/RL2/1.png" alt="1"></p>
-<ul>
-<li>
-<h4 id="基础工具"><strong>基础工具</strong></h4>
-<ol>
-<li><strong>基本概念</strong>：state, action, reward, return, episode, policy, mdp&hellip;</li>
-<li><strong>贝尔曼公式</strong>：用于评价策略</li>
-<li><strong>贝尔曼最优公式</strong>：强化学习的最终目标是求解最优策略</li>
-</ol>
-</li>
-<li>
-<h4 id="算法方法">算法/方法</h4>
-<ol start="4">
-<li><strong>值迭代、策略迭代—— truncated policy iteration</strong>：值和策略update不断迭代</li>
-<li><strong>Monte Carlo Learning</strong>：无模型学习</li>
-<li><strong>随即近似理论</strong>：from non-incremental to incremental</li>
-<li><strong>时序差分方法(TD)</strong></li>
-<li><strong>值函数估计</strong>：tabular representation to function representation，引入神经网络</li>
-<li><strong>Policy Gradient Methods</strong>：from value-based to policy-based</li>
-<li><strong>Actor-Critic Methods</strong>：policy-based + value-based</li>
-</ol>
-</li>
-</ul>
+      <h2 id="层级遍历">层级遍历</h2>
+<p><strong>while</strong> 循环控制⼀层⼀层往下⾛，<strong>for</strong> 循环利⽤ <strong>sz</strong> 变量控制从左到右遍历每⼀层⼆叉树节点。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#75715e">// 输⼊⼀棵⼆叉树的根节点，层序遍历这棵⼆叉树
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">levelTraverse</span>(TreeNode root) {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (root <span style="color:#f92672">==</span> null) <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>  Queue<span style="color:#f92672">&lt;</span>TreeNode<span style="color:#f92672">&gt;</span> q <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> LinkedList<span style="color:#f92672">&lt;&gt;</span>();
+</span></span><span style="display:flex;"><span>  q.push(root);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> depth <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// 从上到下遍历⼆叉树的每⼀层
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">while</span> (<span style="color:#f92672">!</span>q.isEmpty()) {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">int</span> sz <span style="color:#f92672">=</span> q.size();
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 从左到右遍历每⼀层的每个节点
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> sz; i<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>      TreeNode cur <span style="color:#f92672">=</span> q.poll();
+</span></span><span style="display:flex;"><span>      printf(<span style="color:#e6db74">&#34;节点 %s 在第 %s 层&#34;</span>, cur, depth);
+</span></span><span style="display:flex;"><span>      
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// 将下⼀层节点放⼊队列
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#66d9ef">if</span> (cur.left <span style="color:#f92672">!=</span> null) {
+</span></span><span style="display:flex;"><span>        q.push(cur.left);
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (cur.right <span style="color:#f92672">!=</span> null) {
+</span></span><span style="display:flex;"><span>        q.offer(cur.right);
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    depth<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><img src="/images/btree/1.png" alt="1"></p>
     </div>
-  <a href="/post/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  <a href="/post/%E7%AE%97%E6%B3%95%E6%A8%A1%E7%89%88-%E6%A0%91/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
   </div>
 
         </div>
@@ -196,105 +202,105 @@
             <div class="mb3 pa4 mid-gray overflow-hidden">
     
       <div class="f6">
-        February 17, 2025
+        March 11, 2025
       </div>
     
     <h1 class="f3 near-black">
-      <a href="/post/bev%E8%AE%BA%E6%96%87%E5%AD%A6%E4%B9%A0/" class="link black dim">
-        BEV 论文学习
+      <a href="/post/%E7%AE%97%E6%B3%95%E6%A8%A1%E7%89%88-%E5%9B%BE/" class="link black dim">
+        「算法模版」图
       </a>
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <h2 id="vision-centric-bev-perception-a-survey">Vision-Centric BEV Perception: A Survey</h2>
-<p>许多方法被提出以<strong>解决从透视视图（Perspective View, PV）到 BEV 的转换问题</strong>，本文将它们分为基于几何、基于深度、基于 MLP 和基于 Transformer 的四类方法。</p>
-<p>此外，本文还探讨了 BEV 感知的扩展应用，如多任务学习、多模态融合和语义占据预测等。</p>
-<h4 id="1-背景介绍">1. 背景介绍</h4>
-<p>BEV 感知的核心任务是将 PV 中的<strong>图像序列转换为BEV特征，并在BEV空间中进行感知任务</strong>（如3D目标检测和语义地图生成），能够提供精确的定位和绝对尺度信息，便于多视图、多模态和时间序列数据的融合。</p>
-<p>但由于摄像头通常安装在车辆上，捕捉到的图像是透视视图，如何将 PV 转换为 BEV 仍然是一个具有挑战性的问题。</p>
-<h4 id="3-主要方法分类">3. 主要方法分类</h4>
+      <h2 id="存储图">存储图</h2>
 <ol>
 <li>
-<p><strong>基于几何的方法</strong></p>
-<ul>
-<li><strong>优势</strong>：这类方法主要依赖于<strong>逆透视映射（IPM）</strong>，通过几何变换将 PV 图像转换为 BEV 图像。</li>
-<li><strong>缺陷</strong>：但 IPM 假设地面是平坦的，因此在复杂场景中（如存在高度变化的物体）会产生失真。为了减少失真，一些方法引入了<strong>语义信息</strong>或使用 <strong>GAN</strong> 。</li>
-</ul>
+<h4 id="邻接矩阵">邻接矩阵</h4>
 </li>
 <li>
-<p><strong>基于深度的方法</strong></p>
-<p>通过深度估计将 2D 特征提升到 3D 空间，然后通过降维得到 BEV 表示。深度估计可以是显式的（如通过深度图）或隐式的（如通过任务监督）。</p>
-<ul>
-<li><strong>点云方法</strong>：将深度图转换为伪 LiDAR 点云，然后使用 LiDAR 检测器进行 3D 检测</li>
-<li><strong>体素方法</strong>：将 2D 特征映射到 3D 体素空间，并通过体素特征进行 BEV 感知</li>
-</ul>
-</li>
-<li>
-<p><strong>基于MLP的方法</strong></p>
-<ul>
-<li><strong>优势</strong>：MLP 方法不依赖于摄像头的几何参数，而是通过学习隐式表示来完成视图转换。</li>
-<li><strong>缺陷</strong>：尽管 MLP 具有通用逼近能力，但由于缺乏深度信息和遮挡问题，视图转换仍然具有挑战性。</li>
-</ul>
-</li>
-<li>
-<p><strong>基于Transformer的方法</strong>：</p>
-    </div>
-  <a href="/post/bev%E8%AE%BA%E6%96%87%E5%AD%A6%E4%B9%A0/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        February 13, 2025
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/%E7%AE%97%E6%B3%95%E6%A8%A1%E7%89%88-%E5%9F%BA%E7%A1%80/" class="link black dim">
-        「算法模版」基础
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <ul>
-<li><strong>主要思想</strong></li>
-<li><strong>代码模版</strong>
-<ul>
-<li><strong>背过：快速默写，调试通过</strong>
-<ul>
-<li>先看模版思想 —— 模版已为我们考虑好了所有边界情况</li>
-<li>默写一遍（用题目）</li>
-</ul>
-</li>
-<li><strong>提高熟练度</strong>
-<ul>
-<li>一道题目重复3-5次</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+<h4 id="邻接表">邻接表</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#75715e">// 对于每个点k，开一个单链表，存储k所有可以走到的点
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// h[k]存储这个单链表的头结点
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> h[N], e[N], ne[N], idx;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 添加一条边a-&gt;b
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">int</span> a, <span style="color:#66d9ef">int</span> b)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    e[idx] <span style="color:#f92672">=</span> b, ne[idx] <span style="color:#f92672">=</span> h[a], h[a] <span style="color:#f92672">=</span> idx <span style="color:#f92672">++</span> ;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 初始化
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>idx <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>memset(h, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#66d9ef">sizeof</span> h);
+</span></span></code></pre></div></li>
+</ol>
 <p> </p>
-<h1 id="一排序">一、排序</h1>
-<h3 id="1-快速排序">1. 快速排序</h3>
-<ol>
-<li>
-<h5 id="核心思想--分治">核心思想 —— 分治</h5>
-<ol>
-<li>确定分界点x</li>
-<li><strong>调整区间</strong></li>
-<li>递归处理左右两段</li>
-</ol>
-</li>
-<li>
-<p><strong>调整区间的暴力做法</strong>：选定x，开a,b两数组，遍历q，小于x放a，大于x放b。</p>
-</li>
-<li>
-<p><strong>优雅做法</strong>：用两个指针i、j，分别指向第一和最后一个数，两指针向中间移动，使得i左小于x，j右大于x；否则交换i、所指的数。</p>
-</li>
-</ol>
+<h2 id="回溯算法">回溯算法</h2>
+<p>回溯法：一种通过探索所有可能的候选解来找出所有的解的算法。如果候选解被确认不是一个解（或者至少不是最后一个解），回溯算法会通过在上一步进行一些变化抛弃该解，即回溯并且再次尝试。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">backtracking</span>(<span style="color:#960050;background-color:#1e0010">参数</span>) {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (<span style="color:#960050;background-color:#1e0010">终止条件</span>) {
+</span></span><span style="display:flex;"><span>		<span style="color:#960050;background-color:#1e0010">存放结果</span>;
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> (<span style="color:#960050;background-color:#1e0010">选择</span> <span style="color:#f92672">:</span> <span style="color:#960050;background-color:#1e0010">本层集合中的元素</span>) {
+</span></span><span style="display:flex;"><span>		<span style="color:#960050;background-color:#1e0010">处理节点</span>;
+</span></span><span style="display:flex;"><span>		backtracking(<span style="color:#960050;background-color:#1e0010">路径</span>, <span style="color:#960050;background-color:#1e0010">选择列表</span>); <span style="color:#75715e">// 递归
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#960050;background-color:#1e0010">撤销处理</span>; <span style="color:#75715e">// 回溯
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
     </div>
-  <a href="/post/%E7%AE%97%E6%B3%95%E6%A8%A1%E7%89%88-%E5%9F%BA%E7%A1%80/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  <a href="/post/%E7%AE%97%E6%B3%95%E6%A8%A1%E7%89%88-%E5%9B%BE/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        February 21, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/%E5%AE%A1%E7%A8%BF/" class="link black dim">
+        审稿
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <h3 id="什么是好的研究工作">什么是好的研究工作？</h3>
+<ul>
+<li>
+<h4 id="核心用有新意的方法有效的解决一个研究问题"><strong>核心</strong>：用有<strong>新意</strong>的方法<strong>有效</strong>的解决一个<strong>研究</strong>问题</h4>
+<ul>
+<li><strong>研究问题：一个困难的问题，在试之前不知道是否可行</strong>
+<ul>
+<li>1: 把之前的一个工作在某个点上做得不好的地方进行改进</li>
+<li>10: 如 cv 里某一个视觉的子任务</li>
+<li>100: 如提升机器对图片的理解/机器对文字的理解/解决通用人工问题</li>
+</ul>
+</li>
+<li><strong>有效：相对于之前的工作，我解决该问题的有效性有所提升 —— 效果好(精度)、规模大成本低、安全</strong>
+<ul>
+<li>1: 如关心一个模型的精度，比之前的好一点点</li>
+<li>10: 如在一年之内，和领域研究者一起，把整个数据集的精度提升10个点；自己的工作可以提升1个点</li>
+<li>100: 一个工作就推了5+个点</li>
+</ul>
+</li>
+<li><strong>新意：相对于同专业的研究者，用到了他们之前没有想到过的的方法</strong>
+<ul>
+<li>1: 大家一点都不意外，用了之后大家都大概知道结果是什么样的</li>
+<li>10: 在某一个方面，非常聪明地用某个技术解决了还不错的问题</li>
+<li>100: 我用的技术大家不熟，我用了之后打开了新世界的大门</li>
+</ul>
+</li>
+</ul>
+<p><strong>新意度 x 有效性 x 问题大小 = 价值</strong></p>
+<p>在某个维度掉为1，就不太可能成为顶会论文</p>
+</li>
+</ul>
+    </div>
+  <a href="/post/%E5%AE%A1%E7%A8%BF/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
   </div>
 
         </div>
@@ -327,7 +333,7 @@
         <a href="/post/page/21/" aria-label="Next" class="page-link" role="button"><span aria-hidden="true">&raquo;</span></a>
       </li>
       <li class="page-item">
-        <a href="/post/page/25/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/post/page/26/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
       </li>
     </ul>
   </article>

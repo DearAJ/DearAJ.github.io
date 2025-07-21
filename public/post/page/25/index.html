@@ -47,7 +47,7 @@
 
   <meta itemprop="name" content="Articles">
   <meta itemprop="description" content="The soul selects her own society, then shuts the door. To her divine majority, present no more.">
-  <meta itemprop="datePublished" content="2025-07-19T11:00:59-04:00">
+  <meta itemprop="datePublished" content="2025-07-21T11:00:59-04:00">
   <meta itemprop="dateModified" content="2026-07-14T11:00:59-04:00">
   <meta itemprop="wordCount" content="2">
   <meta name="twitter:card" content="summary">
@@ -153,34 +153,132 @@
             <div class="mb3 pa4 mid-gray overflow-hidden">
     
       <div class="f6">
-        December 26, 2024
+        January 4, 2025
       </div>
     
     <h1 class="f3 near-black">
-      <a href="/post/e2e/" class="link black dim">
-        End2End
+      <a href="/post/generativeai/" class="link black dim">
+        Generative AI
       </a>
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p>对于由多个阶段组成的学习系统，端到端学习捕获所有阶段，将其替代为单个神经网络。</p>
+      <h1 id="chatgpt">ChatGPT</h1>
+<p><img src="/images/GA/1.png" alt="1"></p>
 <ul>
-<li>优点：
-<ul>
-<li>Let the data speak</li>
-<li>Less hand-designing of components needed</li>
-</ul>
+<li>
+<p>G：generative</p>
 </li>
-<li>缺点：
-<ul>
-<li>May need large amount of data</li>
-<li>Excludes potentially useful hand-designed components</li>
-</ul>
+<li>
+<p>P：pre-trained</p>
+</li>
+<li>
+<p>T：transformer</p>
 </li>
 </ul>
-<p><strong>关键</strong>：是否有足够的数据</p>
-<p><img src="/images/e2e/1.png" alt="1"></p>
     </div>
-  <a href="/post/e2e/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  <a href="/post/generativeai/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        January 2, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-%E7%9B%B4%E8%A7%82%E7%90%86%E8%A7%A3/" class="link black dim">
+        强化学习-直观理解
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>不用告诉该怎么做，而是给定奖励函数，什么时候做好。</p>
+<h3 id="回归">回归</h3>
+<p>增加折现因子</p>
+<p><img src="/images/RL/1.png" alt="1"></p>
+<p><img src="/images/RL/2.png" alt="2"></p>
+<h3 id="强化学习的形式化">强化学习的形式化</h3>
+<p>A policy is a function $\pi(s) = a$ mapping from states to actions, that tells you what $action \space a$ to take in a given $state \space s$.</p>
+<p><strong>goal</strong>: Find a $policy \space \pi$ that tells you what $action (a = (s))$ to take in every $state (s)$ so as to maximize the return.</p>
+<p><img src="/images/RL/3.png" alt="3"></p>
+<ul>
+<li>
+<p><strong>状态动作值函数</strong>（Q-Function）</p>
+<p><strong>Q(s,a)</strong> = Return if you:</p>
+<ul>
+<li>start in state <em>s</em>.</li>
+<li>take action <em>a</em> (once).</li>
+<li>then behave optimally after that.</li>
+</ul>
+<p>The best possible return from state s is max$Q(s, a)$. The best possible action in state s is the action a that gives max$Q(s, a)$.</p>
+</li>
+</ul>
+    </div>
+  <a href="/post/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-%E7%9B%B4%E8%A7%82%E7%90%86%E8%A7%A3/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        December 27, 2024
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/cv/" class="link black dim">
+        CV
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>问题: 处理高分辨率图像时，原始图像的像素数量通常非常庞大。</p>
+<h3 id="边缘检测">边缘检测</h3>
+<ol>
+<li>
+<p><strong>垂直边缘检测滤波</strong></p>
+<p><img src="/images/CV/6.png" alt="6"></p>
+</li>
+<li>
+<p><strong>变权</strong></p>
+<p><img src="/images/CV/7.png" alt="7"></p>
+</li>
+<li>
+<p><strong>利用反向传播学习</strong></p>
+</li>
+</ol>
+<p> </p>
+<h3 id="padding">Padding</h3>
+<ol>
+<li>
+<p>Padding：外层填充像素</p>
+<ul>
+<li>存在问题：
+<ul>
+<li>throw away information from edge</li>
+<li>shranky output</li>
+</ul>
+</li>
+</ul>
+<p>解决：<strong>外层填充像素</strong></p>
+</li>
+<li>
+<p>填充多少像素？</p>
+<ul>
+<li>
+<p><strong>Valid:</strong> (n-f+1) * (n-f+1)</p>
+</li>
+<li>
+<p><strong>Same</strong>: Pad so that output size is the same as the input size.</p>
+</li>
+</ul>
+</li>
+</ol>
+<p> </p>
+    </div>
+  <a href="/post/cv/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
   </div>
 
         </div>
@@ -195,9 +293,6 @@
         <a href="/post/page/24/" aria-label="Previous" class="page-link" role="button"><span aria-hidden="true">&laquo;</span></a>
       </li>
       <li class="page-item">
-        <a href="/post/page/21/" aria-label="Page 21" class="page-link" role="button">21</a>
-      </li>
-      <li class="page-item">
         <a href="/post/page/22/" aria-label="Page 22" class="page-link" role="button">22</a>
       </li>
       <li class="page-item">
@@ -209,11 +304,14 @@
       <li class="page-item active">
         <a aria-current="page" aria-label="Page 25" class="page-link" role="button">25</a>
       </li>
-      <li class="page-item disabled">
-        <a aria-disabled="true" aria-label="Next" class="page-link" role="button" tabindex="-1"><span aria-hidden="true">&raquo;</span></a>
+      <li class="page-item">
+        <a href="/post/page/26/" aria-label="Page 26" class="page-link" role="button">26</a>
       </li>
-      <li class="page-item disabled">
-        <a aria-disabled="true" aria-label="Last" class="page-link" role="button" tabindex="-1"><span aria-hidden="true">&raquo;&raquo;</span></a>
+      <li class="page-item">
+        <a href="/post/page/26/" aria-label="Next" class="page-link" role="button"><span aria-hidden="true">&raquo;</span></a>
+      </li>
+      <li class="page-item">
+        <a href="/post/page/26/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
       </li>
     </ul>
   </article>

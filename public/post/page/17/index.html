@@ -47,7 +47,7 @@
 
   <meta itemprop="name" content="Articles">
   <meta itemprop="description" content="The soul selects her own society, then shuts the door. To her divine majority, present no more.">
-  <meta itemprop="datePublished" content="2025-07-19T11:00:59-04:00">
+  <meta itemprop="datePublished" content="2025-07-21T11:00:59-04:00">
   <meta itemprop="dateModified" content="2026-07-14T11:00:59-04:00">
   <meta itemprop="wordCount" content="2">
   <meta name="twitter:card" content="summary">
@@ -153,23 +153,56 @@
             <div class="mb3 pa4 mid-gray overflow-hidden">
     
       <div class="f6">
-        March 22, 2025
+        March 29, 2025
       </div>
     
     <h1 class="f3 near-black">
-      <a href="/post/%E5%A4%8D%E8%AF%95%E9%A1%B9%E7%9B%AE/" class="link black dim">
-        「复试」项目
+      <a href="/post/ppo-%E5%8E%9F%E7%90%86/" class="link black dim">
+        PPO-直观理解
       </a>
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p>尊敬的各位老师好！我叫yaj，本科就读于北京航空航天大学，计算机科学与技术专业。</p>
-<p>在校期间，我掌握了较扎实的数学基础和编程能力，通过查阅期刊论文了解最新科研动向。</p>
-<p>除此之外，我积极参与各类比赛并获得奖项，有效提升了我的工程实践能力。在毕业设计中，我独立完成从文献调研到模型实现的全流程工作，并且，该项目被获评为北航校级优秀毕设。</p>
-<p>在实践方面，我先后在中国软件与技术服公司、北京航空航天大学和清华大学进行实习。实习期间，我参与了世界模型、时间序列预测、强化学习和目标检测等人工智能相关项目。这些经历使我不仅掌握了深层技术，更形成了&quot;从理论到应用&quot;的完整研发视角。</p>
-<p>上海交通大学一直是我向往的学校，很希望能得到在贵校学习的机会。攻读研究生期间，我会专注于理论与实践的双向发展，深入学习技术背后的底层原理。我的目标是成为一名优秀的工程师，为这个行业做出实质性贡献。我深信计算机领域的技术发展，必将将推动社会的下一场变革。</p>
-<p>以上是我的自我介绍。非常感谢各位老师的聆听！</p>
+      <h2 id="1-基础概念">1. 基础概念</h2>
+<p><img src="/images/PPO/1.png" alt="1"></p>
+<ol>
+<li>
+<p><strong>enviroment</strong>：看到的画面+看不到的后台画面，不了解细节</p>
+</li>
+<li>
+<p><strong>agent(智能体)</strong>：根据策略得到尽可能多的奖励</p>
+</li>
+<li>
+<p><strong>state</strong>：当前状态</p>
+</li>
+<li>
+<p><strong>observation</strong>：state的一部分（有时候agent无法看全）</p>
+</li>
+<li>
+<p><strong>action</strong>：agent做出的动作</p>
+</li>
+<li>
+<p><strong>reward</strong>：agent做出一个动作后环境给予的奖励</p>
+</li>
+<li>
+<p><strong>action space</strong>：可以选择的动作，如上下左右</p>
+</li>
+<li>
+<p><strong>policy</strong>：策略函数，输入state，输出Action的<strong>概率分布</strong>。一般用π表示。</p>
+<ol>
+<li>训练时应尝试各种action</li>
+<li>输出应具有多样性</li>
+</ol>
+</li>
+<li>
+<p><strong>Trajectory/Episode/Rollout</strong>：轨迹，用 t 表示一连串状态和动作的序列。有的状态转移是确定的，也有的是不确定的。</p>
+</li>
+<li>
+<p><strong>Return</strong>：回报，从当前时间点到游戏结束的 Reward 的累积和。</p>
+</li>
+</ol>
+<p>强化学习目标：训练一个Policy神经网络π，在所有状态S下，给出相应的Action，得到Return的期望最大。</p>
     </div>
-  <a href="/post/%E5%A4%8D%E8%AF%95%E9%A1%B9%E7%9B%AE/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  <a href="/post/ppo-%E5%8E%9F%E7%90%86/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
   </div>
 
         </div>
@@ -178,59 +211,74 @@
             <div class="mb3 pa4 mid-gray overflow-hidden">
     
       <div class="f6">
-        March 19, 2025
+        March 29, 2025
       </div>
     
     <h1 class="f3 near-black">
-      <a href="/post/%E5%A4%8D%E8%AF%95%E8%8B%B1%E8%AF%AD%E5%8F%A3%E8%AF%AD/" class="link black dim">
-        「复试」英语口语
+      <a href="/post/%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2/" class="link black dim">
+        语义分割
       </a>
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p>Good morning, professors. My name is Yang Aijun. I am from Beihang University, where I majored in Computer Science and Technology. During my undergraduate studies, I built a strong foundation in mathematics and programming, and I try to keep up with the latest developments in computer science by reviewing journal papers. I actively participated in various competitions, and earned awards for my efforts. And my graduation thesis was recognized as one of the most outstanding project at the school level.</p>
-<p>Additionally, I have gained practical experience through internships at China Software and Technology Company, Beihang University, and Tsinghua University. During these experiences, I worked on AI-related projects such as world models, time series prediction, reinforcement learning, and object detection. These experiences have greatly enhanced my skills and deepened my passion for computer science.</p>
-<p>As for my master studies, I plan to focus on both the theoretical and practical aspects of artificial intelligence, particularly reinforcement learning. My goal is to become an outstanding engineer and contribute meaningfully to this industry. I strongly believe that the progress made in these fields will drive significant changes in technology.</p>
-<p>That&rsquo;s all for my brief introdution. Thank you very much for taking the time to interview me.</p>
-<p> </p>
-<p>不要说自己英文不好，按照自己理解的逻辑即可。主要是靠英文能力，不是考内容。能表达自己听到的问题，流利回答，<strong>语速不要太快</strong>。有前置语言。所有的问题是没有标准答案的，要自信。</p>
-<p>有五到六个考官，面对主考官说即可。眼睛一定要面对老师。就算老师没关注我，也要注视老师，可眼神互动。</p>
-<p>不要说，自己可能回答的不够好，要展现自己的自信。</p>
-    </div>
-  <a href="/post/%E5%A4%8D%E8%AF%95%E8%8B%B1%E8%AF%AD%E5%8F%A3%E8%AF%AD/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        March 19, 2025
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/%E5%BE%AE%E8%B0%83/" class="link black dim">
-        微调
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <h2 id="大模型预训练">大模型预训练</h2>
-<h4 id="1-从零开始的预训练">1 从零开始的预训练</h4>
-<h4 id="2-在已有开源模型基础上针对特定任务进行训练">2 在已有开源模型基础上针对特定任务进行训练</h4>
-<p> </p>
-<h3 id="lora">LoRa</h3>
-<p>通过化简权重矩阵，实现高效微调</p>
-<p><img src="/images/preTrain/1.png" alt="1"></p>
-<p>将loraA与loraB相乘得到一个lora权重矩阵，将lora权重矩阵加在原始权重矩阵上，就得到了对原始网络的更新。</p>
-<p>训练参数量减少，但微调效果基本不变。</p>
+      <p>语义分割将图片中的<strong>每个像素</strong>分类到对应的类别。</p>
+<p><img src="/images/SemanticSegmentation/1.png" alt="1"></p>
 <ul>
 <li>
-<p>两个重要参数：</p>
-<p><img src="/images/preTrain/2.png" alt="2"></p>
+<p><strong>应用</strong>：</p>
+<p>背景虚化、路面分割、实例分割(会关注具体是哪个个体，如 Mask R-CNN)、全景分割（还要对背景进行分割，如 Panoptic FPN）</p>
+</li>
+<li>
+<p><strong>常见模型</strong></p>
+<p><img src="/images/SemanticSegmentation/5.png" alt="5"></p>
+</li>
+<li>
+<p><strong>语义分割任务常见的数据集格式</strong></p>
+<ul>
+<li><strong>PASCAL VOC</strong>：PNG图片 + 每个像素的类别信息（每个像素都对应一个颜色）</li>
+<li><strong>MS COCO</strong>：每个目标都记录了一个多边形坐标，将所有的点连一起，即可得到边缘信息(还可以用于实例分析)</li>
+<li><strong>语义分割得到的具体形式</strong>：单通道图片，加上调色板 mask 蒙版后可以上色（palette），方便可视化。每个像素数值对应类别索引。</li>
+</ul>
 </li>
 </ul>
     </div>
-  <a href="/post/%E5%BE%AE%E8%B0%83/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  <a href="/post/%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        March 27, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/lss/" class="link black dim">
+        Lift-splat-shoot
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p><a href="https://arxiv.org/abs/2008.05711">Lift, Splat, Shoot: Encoding Images From Arbitrary Camera Rigs by Implicitly Unprojecting to 3D</a></p>
+<p>简单来说，<strong>Lift</strong>就是预测了一个<strong>深度值分布D</strong>，以及<strong>提取的特征c</strong>，然后将两种进行外积操作，实现了<strong>增维</strong>操作。</p>
+<p>**Splat（拍扁）**操作则是使用了一种特殊的“求和池化”操作（z累加，压平），实现降维。</p>
+<p>最后的<strong>Shooting</strong>，则是将预测的一组轨迹投射出来，选取最优的轨迹作为预测结果。</p>
+<p> </p>
+<h3 id="1-关键lift">1. 关键：Lift</h3>
+<p><img src="/images/lss/1.png" alt="1"></p>
+<ol>
+<li>
+<p><strong>特征提取&amp;深度估计</strong></p>
+<p>多视角相机输入后，进行特征提取与深度估计</p>
+</li>
+<li>
+<p><strong>外积（Outer product）</strong>—— 最核心的操作</p>
+<p>无法确定每个 pixel 的特征投影 BEV 视角下的具体位置；对于每个 pixel 特征，使用的是“all possible depths”。</p>
+<p>使用外积操作，将 Image feature (H * W * C) 和 Depth feature (H * W * D)构造成一个(H * W * D * C) 的 Frustum feature。</p>
+</li>
+</ol>
+    </div>
+  <a href="/post/lss/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
   </div>
 
         </div>
@@ -263,7 +311,7 @@
         <a href="/post/page/18/" aria-label="Next" class="page-link" role="button"><span aria-hidden="true">&raquo;</span></a>
       </li>
       <li class="page-item">
-        <a href="/post/page/25/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/post/page/26/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
       </li>
     </ul>
   </article>

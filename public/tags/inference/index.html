@@ -45,6 +45,8 @@
   <meta property="og:type" content="website">
 
   <meta itemprop="name" content="Inference">
+  <meta itemprop="datePublished" content="2025-07-19T11:00:59-04:00">
+  <meta itemprop="dateModified" content="2025-07-19T11:00:59-04:00">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Inference">
 
@@ -137,6 +139,92 @@
   </article>
   <div class="mw8 center">
     <section class="flex-ns flex-wrap justify-around mt5">
+      
+        <div class="relative w-100  mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        July 19, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/sglang/" class="link black dim">
+        SGLang
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>优势：<strong>后端运行快速</strong>、<strong>前端语言灵活</strong>、<strong>模型支持广泛</strong>、<strong>社区活跃</strong>。</p>
+<p>SGLang 的核心是通过其 Python API 构建和执行 Language Model Program。</p>
+<h4 id="启动服务器"><strong>启动服务器</strong></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> sglang <span style="color:#66d9ef">as</span> sgl
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 配置 SGLang 运行时</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 如果在本地运行服务，这里指定服务地址和端口</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 如果直接在 Python 进程中加载模型 (需要安装 sglang[srt])，可以使用 sgl.init(&#34;model_path&#34;)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 假设此时服务已在本地 30000 端口启动，并加载了模型：</span>
+</span></span><span style="display:flex;"><span>sgl<span style="color:#f92672">.</span>init(<span style="color:#e6db74">&#34;http://127.0.0.1:30000&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 或者，如果在 Python 进程中直接加载模型（需要足够的显存）</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># sgl.init(&#34;meta-llama/Llama-3.1-8B-Instruct&#34;) # 使用 Hugging Face ID</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 或者</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># sgl.init(&#34;/path/to/your/model_dir&#34;) # 使用本地模型路径</span>
+</span></span></code></pre></div><ol>
+<li>
+<h4 id="定义和运行一个简单的生成任务">定义和运行一个简单的生成任务</h4>
+<p><code>sgl.Runtime()</code> 是 LM 程序的入口。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> sglang <span style="color:#66d9ef">as</span> sgl		<span style="color:#75715e"># 假设已经通过 sgl.init(...) 初始化了运行时</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 定义一个 LM Program</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@sgl.function</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">simple_gen</span>(s, query):
+</span></span><span style="display:flex;"><span>    s <span style="color:#f92672">+=</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;用户问：</span><span style="color:#e6db74">{</span>query<span style="color:#e6db74">}</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 使用 sgl.gen() 进行文本生成</span>
+</span></span><span style="display:flex;"><span>    s <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34;回答：&#34;</span> <span style="color:#f92672">+</span> sgl<span style="color:#f92672">.</span>gen(<span style="color:#e6db74">&#34;answer&#34;</span>, max_tokens<span style="color:#f92672">=</span><span style="color:#ae81ff">64</span>)	<span style="color:#75715e"># 使用 sgl.gen() 进行文本生成</span>
+</span></span></code></pre></div></li>
+</ol>
+    </div>
+  <a href="/post/sglang/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100  mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        July 19, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/vllm/" class="link black dim">
+        vLLM
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>vLLM 是一个专门用于高效运行大语言模型的 Python 库。</p>
+<ul>
+<li>
+<p><strong>KV Cache</strong></p>
+<p>大模型推理时 huggingface 按照可生成最长序列长度分配显存。但这造成三种类型的浪费：</p>
+<ol>
+<li>﻿﻿预分配最大的 token 数，但不会用到。</li>
+<li>﻿﻿剩下的 token 还尚未用到，但现存已被预分配占用。</li>
+<li>﻿﻿显存之间的间隔碎片，因为 prompt 之间不同，显存不足以预分配给下一个文本生成。</li>
+</ol>
+<p><img src="/images/vllm/1.png" alt="1"></p>
+<p>新 token 只用到前面 token 的 kv 向量，事实上只需保存之前的 kv 向量。</p>
+</li>
+<li>
+<h4 id="page-attention"><strong>Page Attention</strong></h4>
+<p>借鉴 OS 中的虚拟内存和页管理技术，把显存划分为 KVBlock，显存按照 KVBlock 来管理 KVCache，不用提前分配。</p>
+<p><img src="/images/vllm/2.png" alt="2"></p>
+</li>
+</ul>
+    </div>
+  <a href="/post/vllm/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
       
     </section>
   </div>

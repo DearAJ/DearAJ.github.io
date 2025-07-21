@@ -47,7 +47,7 @@
 
   <meta itemprop="name" content="Articles">
   <meta itemprop="description" content="The soul selects her own society, then shuts the door. To her divine majority, present no more.">
-  <meta itemprop="datePublished" content="2025-07-19T11:00:59-04:00">
+  <meta itemprop="datePublished" content="2025-07-21T11:00:59-04:00">
   <meta itemprop="dateModified" content="2026-07-14T11:00:59-04:00">
   <meta itemprop="wordCount" content="2">
   <meta name="twitter:card" content="summary">
@@ -153,105 +153,134 @@
             <div class="mb3 pa4 mid-gray overflow-hidden">
     
       <div class="f6">
+        April 4, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/%E5%B7%A5%E5%85%B7%E9%93%BE-%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" class="link black dim">
+        工具链-强化学习
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <h2 id="1-gym">1. gym</h2>
+<p>官方文档：https://www.gymlibrary.dev</p>
+<ul>
+<li>
+<p>最小例子 <code>CartPole-v0</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python3" data-lang="python3"><span style="display:flex;"><span><span style="color:#f92672">import</span> gymenv <span style="color:#f92672">=</span> gym<span style="color:#f92672">.</span>make(<span style="color:#e6db74">&#39;CartPole-v0&#39;</span>)
+</span></span><span style="display:flex;"><span>env<span style="color:#f92672">.</span>reset()
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> _ <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">1000</span>):
+</span></span><span style="display:flex;"><span>    env<span style="color:#f92672">.</span>render()
+</span></span><span style="display:flex;"><span>    env<span style="color:#f92672">.</span>step(env<span style="color:#f92672">.</span>action_space<span style="color:#f92672">.</span>sample()) <span style="color:#75715e"># take a random action</span>
+</span></span></code></pre></div></li>
+</ul>
+<p> </p>
+<h3 id="观测-observations">观测 (Observations)</h3>
+<p>在 Gym 仿真中，每一次回合开始，需要先执行 <code>reset()</code> 函数，返回<strong>初始观测信息，然后根据标志位 <code>done</code> 的状态，来决定是否进行下一次回合</strong>。代码表示：</p>
+<p> </p>
+<p><code>env.step()</code> 函数对每一步进行仿真，返回 4 个参数：</p>
+<ul>
+<li>
+<p><strong>观测</strong> Observation (Object)：当前 step 执行后，环境的观测(类型为对象)。例如，从相机获取的像素点，机器人各个关节的角度或棋盘游戏当前的状态等；</p>
+</li>
+<li>
+<p><strong>奖励</strong> Reward (Float): 执行上一步动作(action)后，智体(agent)获得的奖励，不同的环境中奖励值变化范围也不相同，但是强化学习的目标就是使得总奖励值最大；</p>
+</li>
+<li>
+<p><strong>完成</strong> Done (Boolen): 表示是否需要将环境重置 <code>env.reset</code>。</p>
+</li>
+</ul>
+    </div>
+  <a href="/post/%E5%B7%A5%E5%85%B7%E9%93%BE-%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        April 3, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/ppo/" class="link black dim">
+        PPO
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <h2 id="1-论文详读">1. 论文详读</h2>
+<p><a href="https://arxiv.org/abs/1707.06347">Proximal Policy Optimization Algorithms</a>（Proximal：近似）</p>
+<h2 id="2-ppo">2. PPO</h2>
+<h4 id="回顾-trpo">回顾 TRPO</h4>
+<ul>
+<li>
+<p>使用 KL 散度约束 policy 的更新幅度；使用重要性采样</p>
+<p><strong>缺点</strong>：近似会带来误差（重要性采样的通病）；解带约束的优化问题困难</p>
+</li>
+<li>
+<h4 id="ppo-的改进">PPO 的改进</h4>
+<ol>
+<li>
+<p>TRPO 采用重要性采样 &mdash;-&gt; PPO 采用 <strong>clip 截断</strong>，限制新旧策略差异，避免更新过大。</p>
+</li>
+<li>
+<p>优势函数 At 选用多步时序差分</p>
+</li>
+<li>
+<p>自适应的 KL 惩罚项</p>
+</li>
+</ol>
+</li>
+</ul>
+<ol>
+<li>
+<p><strong>Critic网络训练</strong>：</p>
+<p>通过最小化<code>critic_loss = MSE(critic(states), td_target)</code>，让critic的价值估计更准确</p>
+</li>
+<li>
+<p><strong>Actor网络更新</strong>：</p>
+<ul>
+<li>TD误差的广义形式(GAE)被用作优势函数，指导策略更新方向</li>
+<li>优势函数越大，表示该动作比平均表现更好，应被加强</li>
+</ul>
+</li>
+</ol>
+<p> </p>
+<h2 id="3-ppo-惩罚">3. PPO-惩罚</h2>
+<p>PPO-惩罚（PPO-Penalty）：用拉格朗日乘数法将 KL 散度的限制放进了目标函数中，使其变成了一个无约束的优化问题，在迭代的过程中不断更新 KL 散度前的系数 beta。</p>
+    </div>
+  <a href="/post/ppo/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
         April 2, 2025
       </div>
     
     <h1 class="f3 near-black">
-      <a href="/post/actor-critic/" class="link black dim">
-        Actor-Critic
+      <a href="/post/trpo/" class="link black dim">
+        TRPO
       </a>
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p>Actor-Critic 算法本质上是基于策略的算法，因为这一系列算法的<strong>目标都是优化一个带参数的策略，只是会额外学习价值函数</strong>，从而帮助策略函数更好地学习。</p>
-<p>Actor-Critic 算法则可以在每一步之后都进行更新，并且不对任务的步数做限制。</p>
+      <p>基于策略的方法的缺点：当策略网络是深度模型时沿着策略梯度更新参数，很有可能由于步长太长，策略突然显著变差，进而影响训练效果。</p>
 <ul>
 <li>
-<p>更一般形式的策略梯度</p>
-<p><img src="/images/ac/1.png" alt="1"></p>
+<p><strong>信任区域策略优化</strong>（TRPO）算法的核心思想：</p>
+<p><strong>信任区域</strong>（trust region）：在这个区域上更新策略时能够得到某种策略性能的安全性保证。</p>
 </li>
 </ul>
 <p> </p>
-<h3 id="1-actor策略网络">1. Actor（策略网络）</h3>
-<p>Actor 要做的是与环境交互，并在 Critic 价值函数的指导下用策略梯度学习一个更好的策略。</p>
-<p>Actor 的更新采用策略梯度的原则。</p>
-<h3 id="2--critic价值网络">2.  Critic（价值网络）</h3>
-<p>Critic 要做的是通过 Actor 与环境交互收集的数据学习一个价值函数，这个价值函数会用于判断在当前状态什么动作是好的，什么动作不是好的，进而帮助 Actor 进行策略更新。</p>
+<h2 id="1-策略目标">1. 策略目标</h2>
+<p><img src="/images/trpo/1.png" alt="1"></p>
+<p><img src="/images/trpo/2.png" alt="2"></p>
     </div>
-  <a href="/post/actor-critic/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        April 1, 2025
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/reinforce/" class="link black dim">
-        REINFORCE
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p>Q-learning、DQN 算法都是<strong>基于价值</strong>（value-based）的方法</p>
-<ul>
-<li>Q-learning 是处理有限状态的算法</li>
-<li>DQN 可以用来解决连续状态的问题</li>
-</ul>
-<p>在强化学习中，除了基于值函数的方法，还有一支非常经典的方法，那就是<strong>基于策略</strong>（policy-based）的方法。</p>
-<p> </p>
-<p>对比 value-based 和 policy-based</p>
-<ul>
-<li>基于值函数：主要是学习<strong>值函数</strong>，然后根据值函数导出一个策略，学习过程中并不存在一个显式的策略；</li>
-<li>基于策略：直接显式地学习一个<strong>目标策略</strong>。策略梯度是基于策略的方法的基础。</li>
-</ul>
-<p> </p>
-<p> </p>
-<h2 id="1-策略梯度">1. 策略梯度</h2>
-<ul>
-<li>
-<p>将策略参数化：寻找一个最优策略并最大化这个策略在环境中的期望回报，即调整策略参数使平均回报最大化。</p>
-</li>
-<li>
-<p>策略学习的目标函数</p>
-<p><img src="/images/REINFORCE/1.png" alt="1"></p>
-<ul>
-<li>J(θ) 是策略的目标函数（想要最大化的量）；</li>
-<li>πθ 是参数为θ的随机性策略，并且处处可微（可以理解为AI的决策规则）；</li>
-<li>Vπθ(s0) 指从初始状态s₀开始<strong>遵循策略π能获得的预期总回报</strong>；</li>
-<li>Es0 是对所有可能的初始状态求期望。</li>
-</ul>
-</li>
-</ul>
-    </div>
-  <a href="/post/reinforce/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        April 1, 2025
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/dqn/" class="link black dim">
-        DQN (deep Q network)
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p>Q-learning 算法用表格存储动作价值的做法只在 环境的状态和动作都是离散的，并且空间都比较小 的情况下适用.</p>
-<p><strong>DQN</strong>：用来解决连续状态下离散动作的问题，是离线策略算法，可以使用ε-贪婪策略来平衡探索与利用。</p>
-<p><strong>Q 网络</strong>：用于拟合函数Q函数的神经网络</p>
-<p><img src="/images/DQN/1.png" alt="1"></p>
-<p><strong>Q 网络的损失函数</strong>（均方误差形式）</p>
-<p><img src="/images/DQN/2.png" alt="2"></p>
-    </div>
-  <a href="/post/dqn/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  <a href="/post/trpo/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
   </div>
 
         </div>
@@ -284,7 +313,7 @@
         <a href="/post/page/15/" aria-label="Next" class="page-link" role="button"><span aria-hidden="true">&raquo;</span></a>
       </li>
       <li class="page-item">
-        <a href="/post/page/25/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/post/page/26/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
       </li>
     </ul>
   </article>

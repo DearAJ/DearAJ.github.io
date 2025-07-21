@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>「源码阅读」KernelBench | HomePage</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="https://github.com/ScalingIntelligence/KernelBench">
+    <meta name="generator" content="Hugo 0.140.2">
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+    
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="http://localhost:1313/post/%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BBkernelbench/">
+    
+
+    <meta property="og:url" content="http://localhost:1313/post/%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BBkernelbench/">
+  <meta property="og:site_name" content="HomePage">
+  <meta property="og:title" content="「源码阅读」KernelBench">
+  <meta property="og:description" content="https://github.com/ScalingIntelligence/KernelBench">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2025-07-21T11:00:59-04:00">
+    <meta property="article:modified_time" content="2025-07-21T11:00:59-04:00">
+    <meta property="article:tag" content="Paper">
+
+  <meta itemprop="name" content="「源码阅读」KernelBench">
+  <meta itemprop="description" content="https://github.com/ScalingIntelligence/KernelBench">
+  <meta itemprop="datePublished" content="2025-07-21T11:00:59-04:00">
+  <meta itemprop="dateModified" content="2025-07-21T11:00:59-04:00">
+  <meta itemprop="wordCount" content="185">
+  <meta itemprop="keywords" content="Paper">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="「源码阅读」KernelBench">
+  <meta name="twitter:description" content="https://github.com/ScalingIntelligence/KernelBench">
+
+	
+  </head><body class="ma0 avenir bg-near-white development">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('http://localhost:1313/images/code-KernelBench/jaz.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        HomePage
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/about/" title="About ME page">
+              About ME
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/post/" title="Articles page">
+              Articles
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/contact/" title="Contact page">
+              Contact
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"><a href="https://www.facebook.com/patrick.kollitsch" target="_blank" rel="noopener"
+        class="ananke-social-link link-transition facebook link dib z-999 pt3 pt0-l mr1"
+        title="follow on Facebook - Opens in a new window"
+        aria-label="follow on Facebook - Opens in a new window">
+      <span class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M512 256C512 114.6 397.4 0 256 0S0 114.6 0 256C0 376 82.7 476.8 194.2 504.5V334.2H141.4V256h52.8V222.3c0-87.1 39.4-127.5 125-127.5c16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1c-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H287V510.1C413.8 494.8 512 386.9 512 256h0z"/></svg>
+            
+          </span></a><a href="https://bsky.app/profile/kollitsch.dev" target="_blank" rel="noopener"
+        class="ananke-social-link link-transition bluesky link dib z-999 pt3 pt0-l mr1"
+        title="follow on Bluesky - Opens in a new window"
+        aria-label="follow on Bluesky - Opens in a new window">
+      <span class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M407.8 294.7c-3.3-.4-6.7-.8-10-1.3c3.4 .4 6.7 .9 10 1.3zM288 227.1C261.9 176.4 190.9 81.9 124.9 35.3C61.6-9.4 37.5-1.7 21.6 5.5C3.3 13.8 0 41.9 0 58.4S9.1 194 15 213.9c19.5 65.7 89.1 87.9 153.2 80.7c3.3-.5 6.6-.9 10-1.4c-3.3 .5-6.6 1-10 1.4C74.3 308.6-9.1 342.8 100.3 464.5C220.6 589.1 265.1 437.8 288 361.1c22.9 76.7 49.2 222.5 185.6 103.4c102.4-103.4 28.1-156-65.8-169.9c-3.3-.4-6.7-.8-10-1.3c3.4 .4 6.7 .9 10 1.3c64.1 7.1 133.6-15.1 153.2-80.7C566.9 194 576 75 576 58.4s-3.3-44.7-21.6-52.9c-15.8-7.1-40-14.9-103.2 29.8C385.1 81.9 314.1 176.4 288 227.1z"/></svg>
+            
+          </span></a><a href="http://linkedin.com/in/patrickkollitsch" target="_blank" rel="noopener"
+        class="ananke-social-link link-transition linkedin link dib z-999 pt3 pt0-l mr1"
+        title="follow on LinkedIn - Opens in a new window"
+        aria-label="follow on LinkedIn - Opens in a new window">
+      <span class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+            
+          </span></a></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">「源码阅读」KernelBench</div>
+          
+            <div class="fw1 f5 f3-l white-80 measure-wide-l center lh-copy mt3 mb4">
+              https://github.com/ScalingIntelligence/KernelBench
+            </div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked ttu">
+          
+        Articles
+      </aside><div id="sharing" class="mt3 ananke-socials"><a href="mailto:?&amp;body=http%3A%2F%2Flocalhost%3A1313%2Fpost%2F%25E6%25BA%2590%25E7%25A0%2581%25E9%2598%2585%25E8%25AF%25BBkernelbench%2F&amp;subject=%E3%80%8C%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E3%80%8DKernelBench"
+        class="ananke-social-link email no-underline"
+        title="Share on Email" aria-label="Share on Email"
+        target="_blank" rel="nofollow noopener noreferrer">
+        <span class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M64 112c-8.8 0-16 7.2-16 16l0 22.1L220.5 291.7c20.7 17 50.4 17 71.1 0L464 150.1l0-22.1c0-8.8-7.2-16-16-16L64 112zM48 212.2L48 384c0 8.8 7.2 16 16 16l384 0c8.8 0 16-7.2 16-16l0-171.8L322 328.8c-38.4 31.5-93.7 31.5-132 0L48 212.2zM0 128C0 92.7 28.7 64 64 64l384 0c35.3 0 64 28.7 64 64l0 256c0 35.3-28.7 64-64 64L64 448c-35.3 0-64-28.7-64-64L0 128z"/></svg>
+                
+              </span></a><a href="https://facebook.com/sharer/sharer.php?&amp;u=http%3A%2F%2Flocalhost%3A1313%2Fpost%2F%25E6%25BA%2590%25E7%25A0%2581%25E9%2598%2585%25E8%25AF%25BBkernelbench%2F"
+        class="ananke-social-link facebook no-underline"
+        title="Share on Facebook" aria-label="Share on Facebook"
+        target="_blank" rel="nofollow noopener noreferrer">
+        <span class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M512 256C512 114.6 397.4 0 256 0S0 114.6 0 256C0 376 82.7 476.8 194.2 504.5V334.2H141.4V256h52.8V222.3c0-87.1 39.4-127.5 125-127.5c16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1c-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H287V510.1C413.8 494.8 512 386.9 512 256h0z"/></svg>
+                
+              </span></a><a href="https://bsky.app/intent/compose?&amp;text=http%3A%2F%2Flocalhost%3A1313%2Fpost%2F%25E6%25BA%2590%25E7%25A0%2581%25E9%2598%2585%25E8%25AF%25BBkernelbench%2F"
+        class="ananke-social-link bluesky no-underline"
+        title="Share on Bluesky" aria-label="Share on Bluesky"
+        target="_blank" rel="nofollow noopener noreferrer">
+        <span class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M407.8 294.7c-3.3-.4-6.7-.8-10-1.3c3.4 .4 6.7 .9 10 1.3zM288 227.1C261.9 176.4 190.9 81.9 124.9 35.3C61.6-9.4 37.5-1.7 21.6 5.5C3.3 13.8 0 41.9 0 58.4S9.1 194 15 213.9c19.5 65.7 89.1 87.9 153.2 80.7c3.3-.5 6.6-.9 10-1.4c-3.3 .5-6.6 1-10 1.4C74.3 308.6-9.1 342.8 100.3 464.5C220.6 589.1 265.1 437.8 288 361.1c22.9 76.7 49.2 222.5 185.6 103.4c102.4-103.4 28.1-156-65.8-169.9c-3.3-.4-6.7-.8-10-1.3c3.4 .4 6.7 .9 10 1.3c64.1 7.1 133.6-15.1 153.2-80.7C566.9 194 576 75 576 58.4s-3.3-44.7-21.6-52.9c-15.8-7.1-40-14.9-103.2 29.8C385.1 81.9 314.1 176.4 288 227.1z"/></svg>
+                
+              </span></a><a href="https://www.linkedin.com/shareArticle?&amp;mini=true&amp;source=http%3A%2F%2Flocalhost%3A1313%2Fpost%2F%25E6%25BA%2590%25E7%25A0%2581%25E9%2598%2585%25E8%25AF%25BBkernelbench%2F&amp;summary=%E4%BB%BB%E5%8A%A1%E6%8F%8F%E8%BF%B0&#43;%E6%9E%84%E5%BB%BA&#43;KernelBench&#43;%E6%9C%89&#43;4&#43;%E4%B8%AA%E7%BA%A7%E5%88%AB%E7%9A%84%E4%BB%BB%E5%8A%A1%EF%BC%9A%0ALevel&#43;1&#43;%F0%9F%A7%B1%3A&#43;%E5%8D%95%E6%A0%B8%E7%AE%97%E5%AD%90%28100&#43;%E4%B8%AA%E9%97%AE%E9%A2%98%29%EF%BC%8C%E5%A6%82%E5%8D%B7%E7%A7%AF%E3%80%81%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%95%E3%80%81%E5%B1%82%E5%BD%92%E4%B8%80%E5%8C%96&#43;Level&#43;2&#43;%F0%9F%94%97%3A&#43;%E7%AE%80%E5%8D%95%E8%9E%8D%E5%90%88%E6%A8%A1%E5%BC%8F%28100&#43;%E4%B8%AA%E9%97%AE%E9%A2%98%29%EF%BC%8C%E5%A6%82&#43;Conv&#43;%2B&#43;Bias&#43;%2B&#43;ReLU%EF%BC%8CMatmul&#43;%2B&#43;Scale&#43;%2B&#43;Sigmoid&#43;Level&#43;3&#43;%E2%9A%9B%EF%B8%8F%3A&#43;%E7%AB%AF%E5%88%B0%E7%AB%AF%E5%85%A8%E6%A8%A1%E5%9E%8B%E6%9E%B6%E6%9E%84%2850%E4%B8%AA%E9%97%AE%E9%A2%98%29%EF%BC%8C%E5%A6%82MobileNet%E3%80%81VGG%E3%80%81MiniGPT%E3%80%81Mamba%EF%BC%89&#43;Level&#43;4&#43;%F0%9F%A4%97%3A&#43;Hugging&#43;Face&#43;%E4%BC%98%E5%8C%96%E8%BF%87%E7%9A%84%E6%95%B4%E4%B8%AA%E6%A8%A1%E5%9E%8B%E6%9E%B6%E6%9E%84&#43;%E8%AF%84%E4%BC%B0%E6%96%B9%E6%B3%95&#43;%E6%AD%A3%E7%A1%AE%E6%80%A7%E6%A3%80%E6%9F%A5%E2%9C%85%EF%BC%9A%E7%A1%AE%E4%BF%9D%E6%A8%A1%E5%9E%8B%E7%94%9F%E6%88%90%E7%9A%84&#43;kernel&#43;%E5%9C%A8%E5%8A%9F%E8%83%BD%E4%B8%8A%E4%B8%8E%E5%8F%82%E8%80%83%E5%AE%9E%E7%8E%B0%EF%BC%88%E5%A6%82&#43;PyTorch&#43;%E7%9A%84%E5%AE%98%E6%96%B9%E7%AE%97%E5%AD%90%EF%BC%89%E5%AE%8C%E5%85%A8%E4%B8%80%E8%87%B4%E3%80%82%E8%BF%9B%E8%A1%8C&#43;n_correctness&#43;%E6%AC%A1%E6%B5%8B%E8%AF%95%E3%80%82%0A%E6%80%A7%E8%83%BD%E8%AF%84%E4%BC%B0%E2%8F%B1%EF%B8%8F%EF%BC%9A%E9%AA%8C%E8%AF%81%E7%94%9F%E6%88%90%E7%9A%84&#43;kernel&#43;%E6%98%AF%E5%90%A6%E6%AF%94%E5%8F%82%E8%80%83%E5%AE%9E%E7%8E%B0%E6%9B%B4%E9%AB%98%E6%95%88%E3%80%82%E9%87%8D%E5%A4%8D&#43;n_trial&#43;%E6%AC%A1%E6%B6%88%E9%99%A4%E5%81%B6%E7%84%B6%E8%AF%AF%E5%B7%AE%E3%80%82%E6%8C%87%E6%A0%87%E6%98%AF%E5%8A%A0%E9%80%9F%E6%AF%94%E3%80%82%0A%E5%AE%9E%E7%8E%B0%E4%BB%A3%E7%A0%81%E4%BD%8D%E4%BA%8E%EF%BC%9A&#43;src%2Feval.py%0A%E8%AF%84%E4%BC%B0%E8%84%9A%E6%9C%AC%EF%BC%9A&#43;scripts%2Frun_and_check.py%0A%E6%80%BB%E5%9F%BA%E5%87%86%E6%8C%87%E6%A0%87&#43;fast_p&#43;%EF%BC%9A%E6%97%A2%E6%AD%A3%E7%A1%AE%E5%8F%88%E5%8A%A0%E9%80%9F%E5%A4%A7%E4%BA%8E%E9%98%88%E5%80%BC%E7%9A%84%E4%BB%BB%E5%8A%A1%E7%9A%84%E5%88%86%E6%95%B0&#43;p&#43;%E3%80%82%E6%8F%90%E9%AB%98%E5%8A%A0%E9%80%9F%E9%98%88%E5%80%BC&#43;p&#43;%E5%8F%AF%E4%BD%BF%E4%BB%BB%E5%8A%A1%E6%9B%B4%E5%85%B7%E6%8C%91%E6%88%98%E6%80%A7%E3%80%82%0A%E5%8A%A0%E9%80%9F%E6%AF%94%EF%BC%9APyTorch&#43;%E5%8F%82%E8%80%83%E5%AE%9E%E7%8E%B0%E8%BF%90%E8%A1%8C%E6%97%B6%E9%97%B4&#43;%E4%B8%8E&#43;%E7%94%9F%E6%88%90%E7%9A%84%E5%86%85%E6%A0%B8%E6%97%B6%E9%97%B4&#43;%E4%B9%8B%E6%AF%94%E3%80%82%0A%E8%AE%A1%E7%AE%97%E6%95%B4%E4%BD%93%E5%9F%BA%E5%87%86%E6%B5%8B%E8%AF%95%E6%80%A7%E8%83%BD%E8%84%9A%E6%9C%AC%EF%BC%9A&#43;scripts%2Fgreedy_analysis.py%0A&amp;title=%E3%80%8C%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E3%80%8DKernelBench&amp;url=http%3A%2F%2Flocalhost%3A1313%2Fpost%2F%25E6%25BA%2590%25E7%25A0%2581%25E9%2598%2585%25E8%25AF%25BBkernelbench%2F"
+        class="ananke-social-link linkedin no-underline"
+        title="Share on LinkedIn" aria-label="Share on LinkedIn"
+        target="_blank" rel="nofollow noopener noreferrer">
+        <span class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+                
+              </span></a></div>
+<h1 class="f1 athelas mt3 mb1">「源码阅读」KernelBench</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2025-07-21T11:00:59-04:00">July 21, 2025</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><h2 id="任务描述">任务描述</h2>
+<p>构建 KernelBench 有 4 个级别的任务：</p>
+<ul>
+<li><strong>Level 1 🧱</strong>: 单核算子(100 个问题)，如卷积、矩阵乘法、层归一化</li>
+<li><strong>Level 2 🔗</strong>: 简单融合模式(100 个问题)，如 Conv + Bias + ReLU，Matmul + Scale + Sigmoid</li>
+<li><strong>Level 3 ⚛️</strong>: 端到端全模型架构(50个问题)，如MobileNet、VGG、MiniGPT、Mamba）</li>
+<li><strong>Level 4 🤗</strong>: Hugging Face 优化过的整个模型架构</li>
+</ul>
+<h2 id="评估方法">评估方法</h2>
+<ul>
+<li>
+<p><strong>正确性检查✅</strong>：确保模型生成的 kernel 在功能上与参考实现（如 PyTorch 的官方算子）完全一致。进行 <code>n_correctness</code> 次测试。</p>
+</li>
+<li>
+<p><strong>性能评估⏱️</strong>：验证生成的 kernel 是否比参考实现更高效。重复 <code>n_trial</code> 次消除偶然误差。指标是加速比。</p>
+</li>
+</ul>
+<p>实现代码位于： <code>src/eval.py</code></p>
+<p><strong>评估脚本： <code>scripts/run_and_check.py</code></strong></p>
+<h3 id="总基准指标">总基准指标</h3>
+<ol>
+<li>
+<p><strong><code>fast_p</code></strong> ：既正确又加速大于阈值的任务的分数 <code>p</code> 。提高加速阈值 <code>p</code> 可使任务更具挑战性。</p>
+</li>
+<li>
+<p><strong>加速比</strong>：PyTorch 参考实现运行时间 与 生成的内核时间 之比。</p>
+</li>
+</ol>
+<p><strong>计算整体基准测试性能脚本： <code>scripts/greedy_analysis.py</code></strong></p>
+<p> </p>
+<h2 id="代码结构">代码结构</h2>
+<pre tabindex="0"><code>KernelBench/
+├── assets/
+├── KernelBench/ # Benchmark dataset files
+├── src/ 				 # KernelBench logic code
+│   ├── unit_tests/  
+│   ├── prompts/
+│   ├── ....
+├── scripts/ 		 # helpful scripts to run the benchmark
+├── results/ 		 # baseline times across hardware 
+├── runs/ 			 # where your runs will be stored
+</code></pre><p> </p>
+<h3 id="src"><code>src/</code></h3>
+<p>项目的核心代码。</p>
+<h4 id="1-srcunit_tests">(1) <code>src/unit_tests/</code></h4>
+<ul>
+<li><strong>作用</strong>：单元测试是理解代码功能的“活文档”。</li>
+<li><strong>重点关注</strong>：
+<ul>
+<li>测试覆盖的模块（如正确性检查、性能测试）。</li>
+<li>测试用例的输入输出（如随机输入生成、与参考算子对比的逻辑）。</li>
+</ul>
+</li>
+<li><strong>示例</strong>：若存在 <code>test_correctness.py</code>，可能包含你提到的“<code>n_correctness</code> 次随机测试”的实现。</li>
+</ul>
+<h4 id="2-srcprompts">(2) <code>src/prompts/</code></h4>
+<ul>
+<li><strong>作用</strong>：如果项目涉及LLM生成kernel（如通过自然语言描述生成代码），这里可能存放提示词模板。</li>
+<li><strong>重点关注</strong>：
+<ul>
+<li>Prompt 的结构（如是否要求模型生成特定类型的 kernel）。</li>
+<li>是否有针对不同算子（如矩阵乘法、卷积）的差异化提示。</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-其他关键模块"><strong>(3) 其他关键模块</strong></h4>
+<ul>
+<li><strong>入口文件</strong>：如 <code>src/main.py</code> 或 <code>src/benchmark.py</code>，了解主流程。</li>
+<li><strong>核心逻辑</strong>：查找以下功能的实现：
+<ul>
+<li>Kernel 生成（如调用LLM或优化算法）。</li>
+<li>正确性验证（对比PyTorch参考算子）。</li>
+<li>性能测试（计时、计算加速比）。</li>
+</ul>
+</li>
+</ul>
+<p> </p>
+<h3 id="kernelbench"><strong><code>KernelBench/</code></strong></h3>
+<ul>
+<li>可能是预定义的 benchmark 数据集（如常见算子的输入输出对）。</li>
+<li>查看文件格式（如JSON/YAML），了解评估标准的数据结构。</li>
+</ul>
+<h3 id="assets"><strong><code>assets/</code></strong></h3>
+<ul>
+<li>可能存放静态资源（如图片、配置文件）。</li>
+<li>检查是否有默认配置（如 <code>config.yaml</code>）或硬件规格说明。</li>
+</ul>
+<p> </p>
+<h3 id="scripts"><code>scripts/</code></h3>
+<p>包含一键运行测试、生成结果或部署的脚本。</p>
+<ul>
+<li>关注
+<ul>
+<li>脚本的输入参数（如 <code>run_benchmark.py --kernel=matmul</code>）。</li>
+<li>是否封装了正确性检查（<code>n_correctness</code>）和性能测试（<code>n_trial</code>）的参数。</li>
+</ul>
+</li>
+</ul>
+<p> </p>
+<h3 id="结果-results">结果 <code>results/</code></h3>
+<ul>
+<li>预计算的基线数据（如PyTorch官方算子在多种硬件上的性能）。</li>
+<li>帮助理解“性能达标”的具体阈值（如加速比&gt;1.2x）。</li>
+</ul>
+<h3 id="基准-runs">基准 <code>runs/</code></h3>
+<ul>
+<li>用户运行生成的日志和结果。</li>
+<li>查看最新运行的目录，观察输出格式（如时间、正确性统计）。</li>
+</ul>
+<p> </p>
+<p> </p>
+<p> </p>
+<h1 id="kernelbook-数据集httpshuggingfacecodatasetsgpumodekernelbook"><a href="https://huggingface.co/datasets/GPUMODE/KernelBook">KernelBook 数据集</a></h1>
+<p><code>dataset_permissive{.json/.parquet}</code> 是一对 PyTorch 程序和等效的 Triton 代码（由 torch Inductor 生成），可用于训练模型将 PyTorch 代码转换为 Triton 代码。</p><ul class="pa0">
+  
+   <li class="list di">
+     <a href="/tags/paper/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">Paper</a>
+   </li>
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+  <div class="bg-light-gray pa3 nested-list-reset nested-copy-line-height nested-links">
+    <p class="f5 b mb3">Related</p>
+    <ul class="pa0 list">
+	   
+	     <li  class="mb2">
+          <a href="/post/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBkernelbench/">「论文阅读」KernelBench</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/graphrag/">GraphRAG</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBalphaevolve/">「论文阅读」AlphaEvolve: A coding agent for scientific and algorithmic discovery</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBkimi-researcher/">「论文阅读」Kimi-Researcher</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBaugmented-knowledge-graph-querying-leveraging-llms/">「论文阅读」Augmented Knowledge Graph Querying leveraging LLMs</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBgenerate-on-graph-treat-llm-as-both-agent-and-kg-for-incomplete-knowledge-graph-question-answering/">「论文阅读」Generate-on-Graph: Treat LLM as both Agent and KG for Incomplete Knowledge Graph Question Answering</a>
+        </li>
+	    
+    </ul>
+</div>
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="http://localhost:1313/" >
+    &copy;  HomePage 2025 
+  </a>
+    <div><div class="ananke-socials"><a href="https://www.facebook.com/patrick.kollitsch" target="_blank" rel="noopener"
+        class="ananke-social-link link-transition facebook link dib z-999 pt3 pt0-l mr1"
+        title="follow on Facebook - Opens in a new window"
+        aria-label="follow on Facebook - Opens in a new window">
+      <span class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M512 256C512 114.6 397.4 0 256 0S0 114.6 0 256C0 376 82.7 476.8 194.2 504.5V334.2H141.4V256h52.8V222.3c0-87.1 39.4-127.5 125-127.5c16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1c-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H287V510.1C413.8 494.8 512 386.9 512 256h0z"/></svg>
+            
+          </span></a><a href="https://bsky.app/profile/kollitsch.dev" target="_blank" rel="noopener"
+        class="ananke-social-link link-transition bluesky link dib z-999 pt3 pt0-l mr1"
+        title="follow on Bluesky - Opens in a new window"
+        aria-label="follow on Bluesky - Opens in a new window">
+      <span class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M407.8 294.7c-3.3-.4-6.7-.8-10-1.3c3.4 .4 6.7 .9 10 1.3zM288 227.1C261.9 176.4 190.9 81.9 124.9 35.3C61.6-9.4 37.5-1.7 21.6 5.5C3.3 13.8 0 41.9 0 58.4S9.1 194 15 213.9c19.5 65.7 89.1 87.9 153.2 80.7c3.3-.5 6.6-.9 10-1.4c-3.3 .5-6.6 1-10 1.4C74.3 308.6-9.1 342.8 100.3 464.5C220.6 589.1 265.1 437.8 288 361.1c22.9 76.7 49.2 222.5 185.6 103.4c102.4-103.4 28.1-156-65.8-169.9c-3.3-.4-6.7-.8-10-1.3c3.4 .4 6.7 .9 10 1.3c64.1 7.1 133.6-15.1 153.2-80.7C566.9 194 576 75 576 58.4s-3.3-44.7-21.6-52.9c-15.8-7.1-40-14.9-103.2 29.8C385.1 81.9 314.1 176.4 288 227.1z"/></svg>
+            
+          </span></a><a href="http://linkedin.com/in/patrickkollitsch" target="_blank" rel="noopener"
+        class="ananke-social-link link-transition linkedin link dib z-999 pt3 pt0-l mr1"
+        title="follow on LinkedIn - Opens in a new window"
+        aria-label="follow on LinkedIn - Opens in a new window">
+      <span class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+            
+          </span></a></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

@@ -47,7 +47,7 @@
 
   <meta itemprop="name" content="Articles">
   <meta itemprop="description" content="The soul selects her own society, then shuts the door. To her divine majority, present no more.">
-  <meta itemprop="datePublished" content="2025-07-19T11:00:59-04:00">
+  <meta itemprop="datePublished" content="2025-07-21T11:00:59-04:00">
   <meta itemprop="dateModified" content="2026-07-14T11:00:59-04:00">
   <meta itemprop="wordCount" content="2">
   <meta name="twitter:card" content="summary">
@@ -153,106 +153,115 @@
             <div class="mb3 pa4 mid-gray overflow-hidden">
     
       <div class="f6">
-        July 10, 2025
+        July 19, 2025
       </div>
     
     <h1 class="f3 near-black">
-      <a href="/post/pytorch%E5%9F%BA%E7%A1%80/" class="link black dim">
-        pytorch 基础
+      <a href="/post/vllm/" class="link black dim">
+        vLLM
       </a>
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <h2 id="数据httpspytorchaccntutorialsbeginnerbasicsdata_tutorialhtml"><a href="https://pytorch.ac.cn/tutorials/beginner/basics/data_tutorial.html">数据</a></h2>
-<p>PyTorch 有两个用于处理数据的基元： <code>torch.utils.data.DataLoader</code> 和 <code>torch.utils.data.Dataset</code></p>
-<p><code>Dataset</code> 存储样本及其相应的标签，<code>DataLoader</code> 则将一个可迭代对象封装在 <code>Dataset</code> 周围</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> torch
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch <span style="color:#f92672">import</span> nn
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch.utils.data <span style="color:#f92672">import</span> DataLoader
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torchvision <span style="color:#f92672">import</span> datasets
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torchvision.transforms <span style="color:#f92672">import</span> ToTensor
-</span></span></code></pre></div><p>PyTorch 提供特定于域的库，例如 TorchText、TorchVision 和 TorchAudio，所有这些库都包含数据集。<em>以 <a href="https://pytorch.ac.cn/vision/stable/datasets.html">TorchVision</a>) 中的 FashionMNIST 数据集为例：</em></p>
-<p>每个 TorchVision <code>Dataset</code> 都包含两个参数：<code>transform</code> 和 <code>target_transform</code>，分别用于修改样本和标签：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Download training data from open datasets.</span>
-</span></span><span style="display:flex;"><span>training_data <span style="color:#f92672">=</span> datasets<span style="color:#f92672">.</span>FashionMNIST(
-</span></span><span style="display:flex;"><span>    root<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;data&#34;</span>,
-</span></span><span style="display:flex;"><span>    train<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
-</span></span><span style="display:flex;"><span>    download<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
-</span></span><span style="display:flex;"><span>    transform<span style="color:#f92672">=</span>ToTensor(),
-</span></span><span style="display:flex;"><span>)
-</span></span></code></pre></div>
-    </div>
-  <a href="/post/pytorch%E5%9F%BA%E7%A1%80/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        July 9, 2025
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/machine-learning/" class="link black dim">
-        machine learning
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p>好久没碰又忘了&hellip;😣 复习复习！！！</p>
-<h2 id="logistic-逻辑回归模型">logistic 逻辑回归模型</h2>
-<h3 id="1-sigmoid-function-logistic-function">1. sigmoid function (logistic function)</h3>
-<p><img src="/images/ml/1.png" alt="1"></p>
-<p>输出$f_{w,b}(x) = P(y=1|x;w,b)$：y 等于 1 的概率</p>
-<blockquote>
-<p>[!NOTE]</p>
-<p>如何理解？</p>
-<p>​	When is $f_{w,b}(x) ≥ 0.5$</p>
-<p>​	g(z) ≥ 0.5</p>
-<p>​	z ≥ 0</p>
-<p>​	w*x + b ≥ 0</p>
-<p><strong>决策边界:</strong> z = w*x+b = 0</p>
-</blockquote>
-    </div>
-  <a href="/post/machine-learning/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        July 7, 2025
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/graphrag/" class="link black dim">
-        GraphRAG
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <ul>
+      <p>vLLM 是一个专门用于高效运行大语言模型的 Python 库。</p>
+<ul>
 <li>
-<h4 id="特点">特点</h4>
+<p><strong>KV Cache</strong></p>
+<p>大模型推理时 huggingface 按照可生成最长序列长度分配显存。但这造成三种类型的浪费：</p>
 <ol>
-<li><strong>基于图的检索</strong>：GraphRAG 引入<strong>知识图谱</strong>来捕捉实体、关系及其他重要元数据。</li>
-<li><strong>层次聚类</strong>：GraphRAG 使用 <strong>Leiden</strong> 技术进行层次聚类，将实体及其关系进行组织。</li>
-<li><strong>多模式查询</strong>：支持多种查询模式。</li>
-<li><strong>全局搜索</strong>：利用<strong>社区总结</strong>来进行全局性推理。</li>
-<li><strong>局部搜索</strong>：通过<strong>扩展相关实体的邻居和关联概念</strong>来进行具体实体的推理。</li>
-<li><strong>DRIFT 搜索</strong>：结合局部搜索和社区信息，提供更准确和相关的答案。</li>
-<li><strong>图机器学习</strong>：集成图机器学习技术，并提供来自结构化和非结构化数据的深度洞察。</li>
-<li><strong>Prompt 调优</strong>：提供调优工具，帮助根据特定数据和需求调整查询提示，提高结果质量。</li>
+<li>﻿﻿预分配最大的 token 数，但不会用到。</li>
+<li>﻿﻿剩下的 token 还尚未用到，但现存已被预分配占用。</li>
+<li>﻿﻿显存之间的间隔碎片，因为 prompt 之间不同，显存不足以预分配给下一个文本生成。</li>
+</ol>
+<p><img src="/images/vllm/1.png" alt="1"></p>
+<p>新 token 只用到前面 token 的 kv 向量，事实上只需保存之前的 kv 向量。</p>
+</li>
+<li>
+<h4 id="page-attention"><strong>Page Attention</strong></h4>
+<p>借鉴 OS 中的虚拟内存和页管理技术，把显存划分为 KVBlock，显存按照 KVBlock 来管理 KVCache，不用提前分配。</p>
+<p><img src="/images/vllm/2.png" alt="2"></p>
+</li>
+</ul>
+    </div>
+  <a href="/post/vllm/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        July 14, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/%E5%88%86%E5%B8%83%E5%BC%8F%E5%B9%B6%E8%A1%8C%E8%AE%AD%E7%BB%83-fsdp/" class="link black dim">
+        分布式并行训练 - FSDP
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <h2 id="fully-sharded-data-parallel">Fully Sharded Data Parallel</h2>
+<h3 id="ddp-回顾">DDP 回顾</h3>
+<ul>
+<li>
+<p>名词解释</p>
+<p><img src="/images/DPT-FSDP/0.0.png" alt="0.0"></p>
+<p><strong>Host</strong>：可以理解为⼀台主机，每个主机有⾃⼰的IP地址，⽤于通信。</p>
+<p><strong>Local Rank</strong>：每个主机上，对不同GPU设备的编。</p>
+<p><strong>Global Rank</strong>：全局的GPU设备编号，Global Rank = Host * num GPUs per host + Local Rank。</p>
+<p><strong>Worldsize</strong>：总的GPU个数。num Hosts * num GPUs per host</p>
+</li>
+</ul>
+<h4 id="ddp-参数更新过程">DDP 参数更新过程</h4>
+<p><img src="/images/DPT-FSDP/0.png" alt="0"></p>
+    </div>
+  <a href="/post/%E5%88%86%E5%B8%83%E5%BC%8F%E5%B9%B6%E8%A1%8C%E8%AE%AD%E7%BB%83-fsdp/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        July 11, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/%E5%88%86%E5%B8%83%E5%BC%8F%E5%B9%B6%E8%A1%8C%E8%AE%AD%E7%BB%83-ddp/" class="link black dim">
+        分布式并行训练 - DDP
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>分布式训练将训练工作负载分散到多个工作节点，因此可以显著提高训练速度和模型准确性。</p>
+<h2 id="distributed-data-parallel">Distributed Data Parallel</h2>
+<ul>
+<li><strong>为什么用 Distributed Training？</strong> 节约时间、增加计算量、模型更快。</li>
+<li><strong>如何实现？</strong>
+<ol>
+<li>在同一机器上使用多个 GPUs</li>
+<li>在集群上使用多个机器</li>
 </ol>
 </li>
 </ul>
-<h2 id="工作流程">工作流程</h2>
-<p><img src="/images/graphRAG/1.png" alt="1"></p>
-<h3 id="1-索引-indexing-过程">1 <strong>索引 (Indexing) 过程</strong></h3>
-<p>将原始文档转化为知识图谱</p>
+<ol>
+<li>
+<h3 id="什么是ddp">什么是DDP？</h3>
+<p>即在训练过程中内部保持同步：每个 GPU 进程仅数据不同。</p>
+<ol>
+<li>
+<p>模型在所有设备上复制。<strong>DistributedSampler</strong> 确保每个设备获得不重叠的输入批次，从而处理 n  倍数据。</p>
+<p><img src="/images/DPT/4.png" alt="4"></p>
+</li>
+<li>
+<p>模型接受不同输入的数据后，在本地运行<strong>前向传播和后向传播</strong>。</p>
+<p><img src="/images/DPT/1.png" alt="1"></p>
+</li>
+</ol>
+</li>
+</ol>
     </div>
-  <a href="/post/graphrag/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  <a href="/post/%E5%88%86%E5%B8%83%E5%BC%8F%E5%B9%B6%E8%A1%8C%E8%AE%AD%E7%BB%83-ddp/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
   </div>
 
         </div>
@@ -285,7 +294,7 @@
         <a href="/post/page/3/" aria-label="Next" class="page-link" role="button"><span aria-hidden="true">&raquo;</span></a>
       </li>
       <li class="page-item">
-        <a href="/post/page/25/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/post/page/26/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
       </li>
     </ul>
   </article>

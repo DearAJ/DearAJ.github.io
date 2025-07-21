@@ -47,7 +47,7 @@
 
   <meta itemprop="name" content="Articles">
   <meta itemprop="description" content="The soul selects her own society, then shuts the door. To her divine majority, present no more.">
-  <meta itemprop="datePublished" content="2025-07-19T11:00:59-04:00">
+  <meta itemprop="datePublished" content="2025-07-21T11:00:59-04:00">
   <meta itemprop="dateModified" content="2026-07-14T11:00:59-04:00">
   <meta itemprop="wordCount" content="2">
   <meta name="twitter:card" content="summary">
@@ -153,102 +153,131 @@
             <div class="mb3 pa4 mid-gray overflow-hidden">
     
       <div class="f6">
-        January 31, 2025
+        February 9, 2025
       </div>
     
     <h1 class="f3 near-black">
-      <a href="/post/object-detection/" class="link black dim">
-        目标检测
+      <a href="/post/mllm/" class="link black dim">
+        MLLM
       </a>
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p><img src="/images/CV/19.png" alt="19"></p>
+      <h1 id="1基础">1基础</h1>
+<h2 id="1-特征提取">1. 特征提取</h2>
+<h3 id="一cv中的特征提取"><strong>一、CV中的特征提取</strong></h3>
+<h4 id="1-传统方法手工设计特征"><strong>1. 传统方法（手工设计特征）</strong></h4>
+<p><strong>(1) 低级视觉特征</strong>：颜色、纹理、 边缘与形状&hellip;</p>
+<p><strong>(2) 中级语义特征</strong>：SIFT（尺度不变特征变换）、SURF（加速鲁棒特征）、LBP（局部二值模式）&hellip;</p>
+<p> </p>
+<h4 id="2-深度学习方法自动学习特征"><strong>2. 深度学习方法（自动学习特征）</strong></h4>
+<h5 id="1-卷积神经网络cnn"><strong>(1) 卷积神经网络（CNN）</strong></h5>
 <ul>
 <li>
-<p>技巧</p>
-<p><strong>Ensembling</strong>：Train several networks independently and average their outputs <strong>Multi-crop at test time</strong>：Run classifier on multiple versions of test images and average results</p>
+<p><strong>核心思想</strong>：通过卷积层提取局部特征，池化层降低维度，全连接层进行分类。</p>
+</li>
+<li>
+<p><strong>经典模型</strong>：LeNet-5、AlexNet、VGGNet、ResNet(使用残差可以训练更深的网络)&hellip;</p>
+<p><img src="/images/MLLM/1.png" alt="1"></p>
 </li>
 </ul>
-<p> </p>
-<h3 id="定位">定位</h3>
-<p><img src="/images/CV/20.png" alt="20"></p>
-<p>Need to output bx, by, bn, bw, class label (1-4)</p>
-<p><img src="/images/CV/21.png" alt="21"></p>
-<p>需人工标注<strong>特征点的坐标</strong></p>
-<p> </p>
-<h3 id="基于滑动窗口的目标检测算法">基于滑动窗口的目标检测算法</h3>
-<ol>
-<li>先训练卷积网络识别物体</li>
-<li>滑动+放大窗口+再次滑动</li>
-</ol>
-<p><strong>问题</strong>：计算效率大，慢</p>
-<p> </p>
-    </div>
-  <a href="/post/object-detection/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        January 17, 2025
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/diffusion-model/" class="link black dim">
-        Diffusion Model
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <h1 id="概述">概述</h1>
-<h2 id="影像生成模型本质上的共同目标">影像生成模型本质上的共同目标</h2>
-<p><img src="/images/DM/19.png" alt="19"></p>
-<p>进一步：输入加入了文字表述</p>
-<p>目标：产生的图片与真实图片越接近越好</p>
-    </div>
-  <a href="/post/diffusion-model/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        January 11, 2025
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/decision-tree/" class="link black dim">
-        Decision Tree
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p><img src="/images/chapter1/1.png" alt="1"></p>
-<h2 id="熵和信息增益">熵和信息增益</h2>
-<p><strong>Measuring purity</strong></p>
-<p><img src="/images/chapter1/2.png" alt="2"></p>
-<p><img src="/images/chapter1/3.png" alt="3"></p>
-<p>选择信息增益更大的分裂特征</p>
-<p><img src="/images/chapter1/4.png" alt="4"></p>
-<h2 id="决策树训练递归">决策树训练(递归)</h2>
-<ol>
-<li>Start with all examples at the root node</li>
-<li>Calculate information gain for all possible features, and pick the one with the highest information gain</li>
-<li>Split dataset according to selected feature, and create left and right branches of the tree</li>
-<li>Keep repeating splitting process until stopping criteria is met:
+<h5 id="2-视觉transformervit"><strong>(2) 视觉Transformer（ViT）</strong></h5>
 <ul>
-<li>When a node is 100% one class</li>
-<li>When splitting a node will result in the tree exceeding a maximum depth</li>
-<li>Information gain from additional splits is less than threshold</li>
-<li>When number of examples in a node is below a threshold</li>
+<li><strong>核心思想</strong>：将图像分割为小块（patches），通过自注意力机制建模全局关系。</li>
+<li><strong>优势</strong>：无需局部卷积先验，直接建模长距离依赖; 在ImageNet等任务上超越传统CNN。</li>
+</ul>
+    </div>
+  <a href="/post/mllm/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        February 8, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/transformer/" class="link black dim">
+        transformer
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <h2 id="一transformer架构">一、Transformer架构</h2>
+<ul>
+<li>
+<p>﻿基于编码器-解码器架构来处理序列对</p>
+</li>
+<li>
+<p>﻿跟使用注意力的seq2seq不同，Transformer是纯基于注意力</p>
+<ul>
+<li>
+<p>seq2seq</p>
+<p><img src="/images/trans/1.png" alt="1"></p>
+</li>
+<li>
+<p>transformer</p>
+<p><img src="/images/trans/2.jpg" alt="1"></p>
+</li>
 </ul>
 </li>
-</ol>
+</ul>
     </div>
-  <a href="/post/decision-tree/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  <a href="/post/transformer/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        February 6, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/%E7%AE%97%E6%B3%95%E6%A8%A1%E7%89%88-%E6%95%B0%E7%BB%84%E9%93%BE%E8%A1%A8/" class="link black dim">
+        数组链表
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <h2 id="1-动态数组">1. 动态数组</h2>
+<p><strong>动态数组底层还是静态数组，只是自动帮我们进行数组空间的扩缩容，并把增删查改操作进行了封装</strong>。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#75715e">// 创建动态数组
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// 不用显式指定数组大小，它会根据实际存储的元素数量自动扩缩容
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>ArrayList<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> arr <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">10</span>; i<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 在末尾追加元素，时间复杂度 O(1)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    arr.add(i);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 在中间插入元素，时间复杂度 O(N)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// 在索引 2 的位置插入元素 666
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>arr.add(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">666</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 在头部插入元素，时间复杂度 O(N)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>arr.add(<span style="color:#ae81ff">0</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 删除末尾元素，时间复杂度 O(1)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>arr.remove(arr.size() <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 删除中间元素，时间复杂度 O(N)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// 删除索引 2 的元素
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>arr.remove(<span style="color:#ae81ff">2</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 根据索引查询元素，时间复杂度 O(1)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> a <span style="color:#f92672">=</span> arr.get(<span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 根据索引修改元素，时间复杂度 O(1)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>arr.set(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">100</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 根据元素值查找索引，时间复杂度 O(N)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> index <span style="color:#f92672">=</span> arr.indexOf(<span style="color:#ae81ff">666</span>);
+</span></span></code></pre></div>
+    </div>
+  <a href="/post/%E7%AE%97%E6%B3%95%E6%A8%A1%E7%89%88-%E6%95%B0%E7%BB%84%E9%93%BE%E8%A1%A8/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
   </div>
 
         </div>
@@ -281,7 +310,7 @@
         <a href="/post/page/24/" aria-label="Next" class="page-link" role="button"><span aria-hidden="true">&raquo;</span></a>
       </li>
       <li class="page-item">
-        <a href="/post/page/25/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/post/page/26/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
       </li>
     </ul>
   </article>

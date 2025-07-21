@@ -47,7 +47,7 @@
 
   <meta itemprop="name" content="Articles">
   <meta itemprop="description" content="The soul selects her own society, then shuts the door. To her divine majority, present no more.">
-  <meta itemprop="datePublished" content="2025-07-19T11:00:59-04:00">
+  <meta itemprop="datePublished" content="2025-07-21T11:00:59-04:00">
   <meta itemprop="dateModified" content="2026-07-14T11:00:59-04:00">
   <meta itemprop="wordCount" content="2">
   <meta name="twitter:card" content="summary">
@@ -153,124 +153,87 @@
             <div class="mb3 pa4 mid-gray overflow-hidden">
     
       <div class="f6">
-        April 20, 2025
+        April 29, 2025
       </div>
     
     <h1 class="f3 near-black">
-      <a href="/post/llm1/" class="link black dim">
-        LLM - 1.基础理论
+      <a href="/post/efficientnet/" class="link black dim">
+        EfficientNet
       </a>
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p><img src="/images/LLM1/0.png" alt="0"></p>
-    </div>
-  <a href="/post/llm1/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        April 17, 2025
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/%E5%B7%A5%E5%85%B7%E9%93%BE-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" class="link black dim">
-        工具链-深度学习
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <h2 id="torch--cuda--nvidia"><strong>Torch + CUDA + NVIDIA</strong>：</h2>
-<ul>
+      <ul>
 <li>
-<p>安装步骤：</p>
+<p><strong>传统的模型缩放</strong>：</p>
+<p>任意增加 CNN 的深度或宽度，或使用更大的输入图像分辨率进行训练和评估。</p>
+<p><strong>缺点</strong>：通常需要长时间的手动调优，并且仍然会经常产生次优的性能。</p>
+</li>
+<li>
+<p><strong><a href="https://arxiv.org/abs/1905.11946">EfficientNet</a></strong>：</p>
 <ol>
-<li>
-<p>去 Nvidia 官网下载 CUDA 并安装（核心：驱动+CUDA开发环境）</p>
-<p><img src="/images/DLtool/1.png" alt="1"></p>
-<p>检查：<code>nvidia-smi</code> 指令</p>
-</li>
-<li>
-<p>下载 Anaconda，用于运行 python 环境</p>
-</li>
-<li>
-<p>下载 GPU 版本的 pytorch</p>
-<p><img src="/images/DLtool/2.png" alt="2"></p>
-</li>
-<li>
-<p>可以开始跑深度学习了！</p>
-</li>
+<li>提出了一种新的模型缩放方法和 AutoML 技术，使用使用简单但高效的<strong>复合系数</strong>，均匀缩放深度/宽度/分辨率的所有维度。</li>
+<li>使用神经架构搜索来设计一个新的基线网络，并将其扩展以获得一系列模型，称为 EfficientNets。</li>
 </ol>
+<p><strong>优点</strong>：更小、更快。</p>
 </li>
 </ul>
-<p><strong>Torch</strong> 是一个深度学习框架，用于构建和训练神经网络，该可以利用<strong>CUDA</strong>在<strong>NVIDIA GPU</strong>上加速计算。通过在PyTorch中指定使用CUDA进行训练，可以在处理大数据集时大大提高计算效率。</p>
-    </div>
-  <a href="/post/%E5%B7%A5%E5%85%B7%E9%93%BE-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        April 16, 2025
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/bert/" class="link black dim">
-        BERT
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p>名字来源：美国的一个动画片芝麻街里的主人公</p>
-<p>论文：https://arxiv.org/abs/1810.04805</p>
-<h3 id="nlp-里的迁移学习">NLP 里的迁移学习</h3>
-<ol>
-<li>
-<p><strong>在 bert 之前：使用预训练好的模型来抽取词、句子的特征</strong></p>
-<ul>
-<li>如用 word2vec 或 语言模型（当作embedding层）</li>
-<li>﻿不更新预训练好的模型</li>
-<li>﻿缺点
-<ul>
-<li>需要构建新的网络来抓取新任务需要的信息</li>
-<li>﻿Word2vec 忽略了时序信息，语言模型只看了一个方向</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p><strong>bert 的动机</strong></p>
-<ul>
-<li>
-<p>基于微调的 NLP 模型</p>
-<p>前面的层不用动，改最后一层的 output layer 即可</p>
-</li>
-<li>
-<p>预训练的模型抽取了足够多的信息，新的任务只需要增加一个简单的输出层</p>
-</li>
-</ul>
-</li>
-</ol>
 <p> </p>
-<h2 id="bert-架构">BERT 架构</h2>
-<p><strong>本质</strong>：一个砍掉解码器、只有编码器的 transformer</p>
-<p>bert 的工作：证明了效果非常好</p>
-<ul>
-<li>
-<p>两个版本：</p>
-<p><strong>Base</strong>: #blocks=12, hidden size=768, #heads=12,  #parameters=110M</p>
-<p>﻿﻿<strong>Large</strong>: #blocks=24, hidden size=1024, #heads=1, #parameter=340M</p>
-</li>
-<li>
-<p>﻿在大规模数据上训练&gt;3B词</p>
-</li>
-</ul>
+<h3 id="复合模型放缩">复合模型放缩</h3>
+<h4 id="1-概述">1. 概述</h4>
+<p><strong>目的</strong>：找到在固定资源约束下，基线网络的不同缩放维度之间的关系。</p>
+<p><img src="/images/efficientNet/1.png" alt="1"></p>
     </div>
-  <a href="/post/bert/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  <a href="/post/efficientnet/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        April 27, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/llm2/" class="link black dim">
+        LLM - 2.预训练阶段
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p><img src="/images/LLM2/0.png" alt="0"></p>
+    </div>
+  <a href="/post/llm2/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        April 24, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/resnet18/" class="link black dim">
+        ResNet18
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <h3 id="1-退化现象">1. 退化现象</h3>
+<p>ResNet 随着网络层不断的加深，模型的准确率</p>
+<ol>
+<li>先是不断的提高，达到最大值（准确率饱和），</li>
+<li>然后随着网络深度的继续增加，模型准确率出现大幅度的降低。</li>
+</ol>
+<p><strong>原因</strong>：随着网络深度的不断增大，所引入的激活函数也越来越多，数据被映射到更加离散的空间，此时已经难以让数据回到原点。也就是说，神经网络将这些数据映射回原点所需要的计算量，已经远远超过我们所能承受的。</p>
+<p> </p>
+<h3 id="2-快捷连接">2. 快捷连接</h3>
+<p>核心思想：通过添加额外的连接来解决深度神经网络训练中的<strong>梯度消失和梯度爆炸</strong>等问题，从而允许构建非常深的神经网络。</p>
+<p><img src="/images/resnet18/1.jpg" alt="1"></p>
+    </div>
+  <a href="/post/resnet18/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
   </div>
 
         </div>
@@ -303,7 +266,7 @@
         <a href="/post/page/12/" aria-label="Next" class="page-link" role="button"><span aria-hidden="true">&raquo;</span></a>
       </li>
       <li class="page-item">
-        <a href="/post/page/25/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/post/page/26/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
       </li>
     </ul>
   </article>

@@ -1,10 +1,12 @@
 ---
 date: 2025-07-19T11:00:59-04:00
-description: "vLLM 是一个专门用于高效运行大语言模型的 Python 库。"
+description: "https://docs.vllm.com.cn/en/latest/"
 featured_image: "/images/vllm/jaz.png"
 tags: ["inference"]
-title: "vllm"
+title: "vLLM"
 ---
+
+vLLM 是一个专门用于高效运行大语言模型的 Python 库。
 
 + **KV Cache**
 

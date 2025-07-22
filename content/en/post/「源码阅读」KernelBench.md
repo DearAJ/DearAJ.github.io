@@ -1,5 +1,5 @@
 ---
-date: 2025-07-21T11:00:59-04:00
+date: 2025-07-20T11:00:59-04:00
 description: "https://github.com/ScalingIntelligence/KernelBench"
 featured_image: "/images/code-KernelBench/jaz.png"
 tags: ["paper"]
@@ -97,9 +97,21 @@ KernelBench/
 
 包含一键运行测试、生成结果或部署的脚本。
 
-- 关注
-  - 脚本的输入参数（如 `run_benchmark.py --kernel=matmul`）。
-  - 是否封装了正确性检查（`n_correctness`）和性能测试（`n_trial`）的参数。
+- 脚本的输入参数（如 `run_benchmark.py --kernel=matmul`）。
+- 是否封装了正确性检查（`n_correctness`）和性能测试（`n_trial`）的参数。
+
+#### generate_and_eval_single_sample.py
+
+**核心功能**：针对指定的 GPU 计算问题（如矩阵乘法），生成优化的内核代码（CUDA 或 Triton），并评估其正确性和性能。
+
+- **流程**：
+  1. **加载问题**：从本地或 Hugging Face 数据集获取问题描述和参考代码。
+  2. **生成代码**：通过 LLM 根据问题描述生成自定义内核代码。
+  3. **评估代码**：对比生成的代码与参考代码，验证功能正确性并测量性能（如加速比）。
+
+
+
+
 
 &nbsp;
 

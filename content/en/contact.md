@@ -10,7 +10,11 @@ menu: main
 
 感谢你访问我的博客！如果你有任何问题或建议，欢迎与我取得联系：
 
-+ **Email**: aijunyang1123@163.com
++ **Email**: 
+
+  aijunyang@sjtu.edu.cn
+
+  yangaijun@pjlab.org.cn
 
 + **WeChat**: DearAJ_23
 

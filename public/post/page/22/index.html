@@ -47,7 +47,7 @@
 
   <meta itemprop="name" content="Articles">
   <meta itemprop="description" content="The soul selects her own society, then shuts the door. To her divine majority, present no more.">
-  <meta itemprop="datePublished" content="2025-07-20T11:00:59-04:00">
+  <meta itemprop="datePublished" content="2025-07-22T11:00:59-04:00">
   <meta itemprop="dateModified" content="2026-07-21T11:00:59-04:00">
   <meta itemprop="wordCount" content="2">
   <meta name="twitter:card" content="summary">
@@ -148,6 +148,62 @@
 
     </section>
     <aside class="flex-ns flex-wrap justify-around mt5">
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        February 13, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/%E7%AE%97%E6%B3%95%E6%A8%A1%E7%89%88-%E5%9F%BA%E7%A1%80/" class="link black dim">
+        「算法模版」基础
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <ul>
+<li><strong>主要思想</strong></li>
+<li><strong>代码模版</strong>
+<ul>
+<li><strong>背过：快速默写，调试通过</strong>
+<ul>
+<li>先看模版思想 —— 模版已为我们考虑好了所有边界情况</li>
+<li>默写一遍（用题目）</li>
+</ul>
+</li>
+<li><strong>提高熟练度</strong>
+<ul>
+<li>一道题目重复3-5次</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p> </p>
+<h1 id="一排序">一、排序</h1>
+<h3 id="1-快速排序">1. 快速排序</h3>
+<ol>
+<li>
+<h5 id="核心思想--分治">核心思想 —— 分治</h5>
+<ol>
+<li>确定分界点x</li>
+<li><strong>调整区间</strong></li>
+<li>递归处理左右两段</li>
+</ol>
+</li>
+<li>
+<p><strong>调整区间的暴力做法</strong>：选定x，开a,b两数组，遍历q，小于x放a，大于x放b。</p>
+</li>
+<li>
+<p><strong>优雅做法</strong>：用两个指针i、j，分别指向第一和最后一个数，两指针向中间移动，使得i左小于x，j右大于x；否则交换i、所指的数。</p>
+</li>
+</ol>
+    </div>
+  <a href="/post/%E7%AE%97%E6%B3%95%E6%A8%A1%E7%89%88-%E5%9F%BA%E7%A1%80/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
       
         <div class="relative w-100 w-30-l mb4 bg-white">
             <div class="mb3 pa4 mid-gray overflow-hidden">
@@ -281,60 +337,6 @@
 </ol>
     </div>
   <a href="/post/%E7%AE%97%E6%B3%95%E9%A2%98/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        February 12, 2025
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/btree/" class="link black dim">
-        二叉树
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <h1 id="二叉树">二叉树</h1>
-<h2 id="二叉树的实现方式">二叉树的实现方式</h2>
-<ol>
-<li>
-<p>最常见的二叉树就是类似链表那样的链式存储结构，每个二叉树节点有指向左右子节点的指针</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TreeNode</span> {
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> val;
-</span></span><span style="display:flex;"><span>    TreeNode<span style="color:#f92672">*</span> left;
-</span></span><span style="display:flex;"><span>    TreeNode<span style="color:#f92672">*</span> right;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 构造函数，参数是int x， :后面的部分是初始化列表，{} 是构造函数的函数体为空，即不需要额外的操作。
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    TreeNode(<span style="color:#66d9ef">int</span> x) <span style="color:#f92672">:</span> val(x), left(<span style="color:#66d9ef">nullptr</span>), right(<span style="color:#66d9ef">nullptr</span>) {}
-</span></span><span style="display:flex;"><span>};
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// 你可以这样构建一棵二叉树：
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>TreeNode<span style="color:#f92672">*</span> root <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> TreeNode(<span style="color:#ae81ff">1</span>);
-</span></span><span style="display:flex;"><span>root<span style="color:#f92672">-&gt;</span>left <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> TreeNode(<span style="color:#ae81ff">2</span>);
-</span></span><span style="display:flex;"><span>root<span style="color:#f92672">-&gt;</span>right <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> TreeNode(<span style="color:#ae81ff">3</span>);
-</span></span><span style="display:flex;"><span>root<span style="color:#f92672">-&gt;</span>left<span style="color:#f92672">-&gt;</span>left <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> TreeNode(<span style="color:#ae81ff">4</span>);
-</span></span><span style="display:flex;"><span>root<span style="color:#f92672">-&gt;</span>right<span style="color:#f92672">-&gt;</span>left <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> TreeNode(<span style="color:#ae81ff">5</span>);
-</span></span><span style="display:flex;"><span>root<span style="color:#f92672">-&gt;</span>right<span style="color:#f92672">-&gt;</span>right <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> TreeNode(<span style="color:#ae81ff">6</span>);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// 构建出来的二叉树是这样的：
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//     1
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//    / \
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//   2   3
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//  /   / \
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// 4   5   6
-</span></span></span></code></pre></div><h5 id="public用法总结"><code>public</code>用法总结：</h5>
-<ol>
-<li><code>public</code> 关键字用于指定类成员的访问权限，允许外部代码直接访问这些成员。</li>
-<li>如果不加 <code>public</code>，这些成员默认是 <code>private</code> 的，外部代码无法直接访问它们。</li>
-</ol>
-<p>在 <code>TreeNode</code> 的构造函数中，初始化列表的作用是：</p>
-    </div>
-  <a href="/post/btree/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
   </div>
 
         </div>

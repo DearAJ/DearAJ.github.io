@@ -4,9 +4,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     
-    <title>Articles | HomePage</title>
+    <title>HomePage</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="description" content="The soul selects her own society, then shuts the door. To her divine majority, present no more.">
+    <meta name="description" content="">
     <meta name="generator" content="Hugo 0.140.2">
     
     
@@ -29,30 +29,26 @@
 
     
     
-      <link href="/post/index.xml" rel="alternate" type="application/rss+xml" title="HomePage" />
-      <link href="/post/index.xml" rel="feed" type="application/rss+xml" title="HomePage" />
+      <link href="/tags/data/index.xml" rel="alternate" type="application/rss+xml" title="HomePage" />
+      <link href="/tags/data/index.xml" rel="feed" type="application/rss+xml" title="HomePage" />
       
     
 
     
-      <link rel="canonical" href="http://localhost:1313/post/">
+      <link rel="canonical" href="http://localhost:1313/tags/data/">
     
 
-    <meta property="og:url" content="http://localhost:1313/post/">
+    <meta property="og:url" content="http://localhost:1313/tags/data/">
   <meta property="og:site_name" content="HomePage">
-  <meta property="og:title" content="Articles">
-  <meta property="og:description" content="The soul selects her own society, then shuts the door. To her divine majority, present no more.">
+  <meta property="og:title" content="Data">
   <meta property="og:locale" content="en_US">
   <meta property="og:type" content="website">
 
-  <meta itemprop="name" content="Articles">
-  <meta itemprop="description" content="The soul selects her own society, then shuts the door. To her divine majority, present no more.">
+  <meta itemprop="name" content="Data">
   <meta itemprop="datePublished" content="2025-07-22T11:00:59-04:00">
-  <meta itemprop="dateModified" content="2026-07-21T11:00:59-04:00">
-  <meta itemprop="wordCount" content="2">
+  <meta itemprop="dateModified" content="2025-07-22T11:00:59-04:00">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Articles">
-  <meta name="twitter:description" content="The soul selects her own society, then shuts the door. To her divine majority, present no more.">
+  <meta name="twitter:title" content="Data">
 
 	
   </head><body class="ma0 avenir bg-near-white development">
@@ -61,7 +57,7 @@
 
   
   
-  <header class="cover bg-top" style="background-image: url('http://localhost:1313/images/artitay.jpg');">
+  <header class="cover bg-top" style="background-image: url('http://localhost:1313/images/taytay.jpg');">
     
     <div class="bg-black-60">
       <nav class="pv3 ph3 ph4-ns" role="navigation">
@@ -126,12 +122,8 @@
 
       <div class="tc-l pv4 pv6-l ph3 ph4-ns">
         <h1 class="f2 f-subheadline-l fw2 white-90 mb0 lh-title">
-          Articles
+          Data
         </h1>
-        
-          <h2 class="fw1 f5 f3-l white-80 measure-wide-l center mt3">
-            The soul selects her own society, then shuts the door. To her divine majority, present no more.
-          </h2>
         
       </div>
     </div>
@@ -140,196 +132,85 @@
 
     <main class="pb7" role="main">
       
-
-  <article class="pa3 pa4-ns nested-copy-line-height">
-    <section class="cf ph3 ph5-l pv3 pv4-l f4 tc-l center measure-wide lh-copy mid-gray">
-      <p>欢迎来到我的文章页面。</p>
-<p>「很高兴与你分享我最近在做的事情」</p>
-
-    </section>
-    <aside class="flex-ns flex-wrap justify-around mt5">
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        April 16, 2025
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/bert/" class="link black dim">
-        BERT
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p>名字来源：美国的一个动画片芝麻街里的主人公</p>
-<p>论文：https://arxiv.org/abs/1810.04805</p>
-<h3 id="nlp-里的迁移学习">NLP 里的迁移学习</h3>
-<ol>
-<li>
-<p><strong>在 bert 之前：使用预训练好的模型来抽取词、句子的特征</strong></p>
-<ul>
-<li>如用 word2vec 或 语言模型（当作embedding层）</li>
-<li>﻿不更新预训练好的模型</li>
-<li>﻿缺点
-<ul>
-<li>需要构建新的网络来抓取新任务需要的信息</li>
-<li>﻿Word2vec 忽略了时序信息，语言模型只看了一个方向</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p><strong>bert 的动机</strong></p>
-<ul>
-<li>
-<p>基于微调的 NLP 模型</p>
-<p>前面的层不用动，改最后一层的 output layer 即可</p>
-</li>
-<li>
-<p>预训练的模型抽取了足够多的信息，新的任务只需要增加一个简单的输出层</p>
-</li>
-</ul>
-</li>
-</ol>
-<p> </p>
-<h2 id="bert-架构">BERT 架构</h2>
-<p><strong>本质</strong>：一个砍掉解码器、只有编码器的 transformer</p>
-<p>bert 的工作：证明了效果非常好</p>
-<ul>
-<li>
-<p>两个版本：</p>
-<p><strong>Base</strong>: #blocks=12, hidden size=768, #heads=12,  #parameters=110M</p>
-<p>﻿﻿<strong>Large</strong>: #blocks=24, hidden size=1024, #heads=1, #parameter=340M</p>
-</li>
-<li>
-<p>﻿在大规模数据上训练&gt;3B词</p>
-</li>
-</ul>
+  <article class="cf pa3 pa4-m pa4-l">
+    <div class="measure-wide-l center f4 lh-copy nested-copy-line-height nested-links mid-gray">
+      <p>Below you will find pages that utilize the taxonomy term “Data”</p>
     </div>
-  <a href="/post/bert/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        April 14, 2025
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/lss%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/" class="link black dim">
-        LSS代码
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p>文章搬运，自用。</p>
-<p>论文：<a href="https://arxiv.org/abs/2008.05711">Lift, Splat, Shoot: Encoding Images From Arbitrary Camera Rigs by Implicitly Unprojecting to 3D</a></p>
-<p>官方源码：<a href="https://github.com/nv-tlabs/lift-splat-shoot">lift-splat-shoot</a></p>
-<p> </p>
-<h4 id="lift-splat-shoot图像bev安装与模型代码详解httpsblogcsdnnetqq_41366026articledetails133840315"><a href="https://blog.csdn.net/qq_41366026/article/details/133840315">Lift, Splat, Shoot图像BEV安装与模型代码详解</a></h4>
-<p>对于任意数量不同相机帧的图像直接提取场景的BEV表达；主要由三部分实现：</p>
-<ol>
-<li><strong>Lift</strong>：将每一个相机的图像帧根据相机的内参转换提升到 frustum（锥形）形状的点云空间中。</li>
-<li><strong>splate</strong>：将所有相机转换到锥形点云空间中的特征根据相机的内参 K 与相机相对于 ego 的外参T映射到栅格化的 3D 空间（BEV）中来融合多帧信息。</li>
-<li><strong>shoot</strong>：根据上述 BEV 的检测或分割结果来生成规划的路径 proposal；从而实现可解释的端到端的路径规划任务。</li>
-</ol>
-<p>注：LSS在训练的过程中并不需要激光雷达的点云来进行监督。</p>
-    </div>
-  <a href="/post/lss%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        April 11, 2025
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/%E6%95%B0%E6%8D%AE%E9%9B%86-nusences/" class="link black dim">
-        数据集-NuSences
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <ol>
-<li>
-<h4 id="内容">内容</h4>
-<p>nuScenes 包含 1000 个场景，大约 1.4M 的相机图像、390k LIDAR 扫描、1.4M 雷达扫描和 40k 关键帧中的 1.4M 对象边界框。</p>
-<p>nuScenes-lidarseg 包含 40000 个点云和 1000 个场景（850 个用于训练和验证的场景，以及 150 个用于测试的场景）中的 14 亿个注释点。</p>
-<p> </p>
-</li>
-<li>
-<h4 id="数据采集">数据采集</h4>
-<ol>
-<li>
-<p><strong>车辆设置</strong></p>
-<p><img src="/images/nuSences/1.png" alt="1"></p>
-<ol>
-<li>1 个旋转激光雷达 （Velodyne HDL32E）</li>
-<li>5 个远程雷达传感器 （Continental ARS 408-21）</li>
-<li>6 个相机 （Basler acA1600-60gc）</li>
-<li>1个 IMU &amp; GPS （高级导航空间版）</li>
-</ol>
-</li>
-<li>
-<p><strong>Sensor(传感器)校准 - 内外参</strong></p>
-<ol>
-<li>LIDAR extrinsics</li>
-<li>相机 extrinsics</li>
-<li>RADAR extrinsics</li>
-<li>相机 intrinsic 校准</li>
-</ol>
-</li>
-<li>
-<p><strong>Sensor(传感器)同步</strong></p>
-<p>实现跨模态数据对齐：当顶部 LIDAR 扫描相机 FOV 的中心时，会触发相机的曝光</p>
-</li>
-</ol>
-</li>
-</ol>
-    </div>
-  <a href="/post/%E6%95%B0%E6%8D%AE%E9%9B%86-nusences/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        </div>
-      
-    </aside>
-    
-    <ul class="pagination pagination-default">
-      <li class="page-item">
-        <a href="/post/" aria-label="First" class="page-link" role="button"><span aria-hidden="true">&laquo;&laquo;</span></a>
-      </li>
-      <li class="page-item">
-        <a href="/post/page/12/" aria-label="Previous" class="page-link" role="button"><span aria-hidden="true">&laquo;</span></a>
-      </li>
-      <li class="page-item">
-        <a href="/post/page/11/" aria-label="Page 11" class="page-link" role="button">11</a>
-      </li>
-      <li class="page-item">
-        <a href="/post/page/12/" aria-label="Page 12" class="page-link" role="button">12</a>
-      </li>
-      <li class="page-item active">
-        <a aria-current="page" aria-label="Page 13" class="page-link" role="button">13</a>
-      </li>
-      <li class="page-item">
-        <a href="/post/page/14/" aria-label="Page 14" class="page-link" role="button">14</a>
-      </li>
-      <li class="page-item">
-        <a href="/post/page/15/" aria-label="Page 15" class="page-link" role="button">15</a>
-      </li>
-      <li class="page-item">
-        <a href="/post/page/14/" aria-label="Next" class="page-link" role="button"><span aria-hidden="true">&raquo;</span></a>
-      </li>
-      <li class="page-item">
-        <a href="/post/page/26/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
-      </li>
-    </ul>
   </article>
+  <div class="mw8 center">
+    <section class="flex-ns flex-wrap justify-around mt5">
+      
+        <div class="relative w-100  mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        July 22, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/json/" class="link black dim">
+        JSON
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <h2 id="json-types">JSON Types</h2>
+<ul>
+<li>
+<p><strong>Strings</strong>：&ldquo;Hello World&rdquo; &ldquo;Kyle&rdquo;</p>
+</li>
+<li>
+<p><strong>Numbers</strong>：10 1.5 -30 1.2e10</p>
+</li>
+<li>
+<p><strong>Booleans</strong>：true false</p>
+</li>
+<li>
+<p><strong>null</strong>：null</p>
+</li>
+<li>
+<p><strong>Arrays</strong>：[1, 2, 3] [&ldquo;Hello&rdquo;, &ldquo;World&rdquo;]</p>
+</li>
+<li>
+<p><strong>Objects</strong>：{ &ldquo;key&rdquo;: &ldquo;value&rdquo; }: {&ldquo;age&rdquo;: 30}</p>
+</li>
+</ul>
+<h2 id="可嵌套">可嵌套</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Kyle&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;favoriteNumber&#34;</span>: <span style="color:#ae81ff">3</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">&#34;isProgrammer&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">&#34;hobbies&#34;</span>: [<span style="color:#e6db74">&#34;Weight Lifting&#34;</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;Bowling&#34;</span>],
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">&#34;friends&#34;</span>: [{
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Joey&#34;</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">&#34;favoriteNumber&#34;</span>: <span style="color:#ae81ff">100</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">&#34;isProgrammer&#34;</span>: <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">&#34;friends&#34;</span>: [<span style="color:#960050;background-color:#1e0010">...</span>]
+</span></span><span style="display:flex;"><span>	}]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="实例-companiesjson">实例 (companies.json)</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>[
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Big Corporation&#34;</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">&#34;numberOfEmployees&#34;</span>: <span style="color:#ae81ff">10000</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">&#34;ceo&#34;</span>: <span style="color:#e6db74">&#34;Mary&#34;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#e6db74">&#34;rating&#34;</span>: <span style="color:#ae81ff">3.6</span>
+</span></span><span style="display:flex;"><span>	},
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Small Startup&#34;</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">&#34;numberOfEmployees&#34;</span>: <span style="color:#ae81ff">3</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">&#34;ceo&#34;</span>: <span style="color:#66d9ef">null</span>
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>]
+</span></span></code></pre></div>
+    </div>
+  <a href="/post/json/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+    </section>
+  </div>
 
     </main>
     <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">

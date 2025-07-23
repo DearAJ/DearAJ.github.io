@@ -47,7 +47,7 @@
 
   <meta itemprop="name" content="Articles">
   <meta itemprop="description" content="The soul selects her own society, then shuts the door. To her divine majority, present no more.">
-  <meta itemprop="datePublished" content="2025-07-20T11:00:59-04:00">
+  <meta itemprop="datePublished" content="2025-07-22T11:00:59-04:00">
   <meta itemprop="dateModified" content="2026-07-21T11:00:59-04:00">
   <meta itemprop="wordCount" content="2">
   <meta name="twitter:card" content="summary">
@@ -153,6 +153,56 @@
             <div class="mb3 pa4 mid-gray overflow-hidden">
     
       <div class="f6">
+        February 21, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/%E5%AE%A1%E7%A8%BF/" class="link black dim">
+        审稿
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <h3 id="什么是好的研究工作">什么是好的研究工作？</h3>
+<ul>
+<li>
+<h4 id="核心用有新意的方法有效的解决一个研究问题"><strong>核心</strong>：用有<strong>新意</strong>的方法<strong>有效</strong>的解决一个<strong>研究</strong>问题</h4>
+<ul>
+<li><strong>研究问题：一个困难的问题，在试之前不知道是否可行</strong>
+<ul>
+<li>1: 把之前的一个工作在某个点上做得不好的地方进行改进</li>
+<li>10: 如 cv 里某一个视觉的子任务</li>
+<li>100: 如提升机器对图片的理解/机器对文字的理解/解决通用人工问题</li>
+</ul>
+</li>
+<li><strong>有效：相对于之前的工作，我解决该问题的有效性有所提升 —— 效果好(精度)、规模大成本低、安全</strong>
+<ul>
+<li>1: 如关心一个模型的精度，比之前的好一点点</li>
+<li>10: 如在一年之内，和领域研究者一起，把整个数据集的精度提升10个点；自己的工作可以提升1个点</li>
+<li>100: 一个工作就推了5+个点</li>
+</ul>
+</li>
+<li><strong>新意：相对于同专业的研究者，用到了他们之前没有想到过的的方法</strong>
+<ul>
+<li>1: 大家一点都不意外，用了之后大家都大概知道结果是什么样的</li>
+<li>10: 在某一个方面，非常聪明地用某个技术解决了还不错的问题</li>
+<li>100: 我用的技术大家不熟，我用了之后打开了新世界的大门</li>
+</ul>
+</li>
+</ul>
+<p><strong>新意度 x 有效性 x 问题大小 = 价值</strong></p>
+<p>在某个维度掉为1，就不太可能成为顶会论文</p>
+</li>
+</ul>
+    </div>
+  <a href="/post/%E5%AE%A1%E7%A8%BF/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
         February 19, 2025
       </div>
     
@@ -239,62 +289,6 @@
 <p><strong>基于Transformer的方法</strong>：</p>
     </div>
   <a href="/post/bev%E8%AE%BA%E6%96%87%E5%AD%A6%E4%B9%A0/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        February 13, 2025
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/%E7%AE%97%E6%B3%95%E6%A8%A1%E7%89%88-%E5%9F%BA%E7%A1%80/" class="link black dim">
-        「算法模版」基础
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <ul>
-<li><strong>主要思想</strong></li>
-<li><strong>代码模版</strong>
-<ul>
-<li><strong>背过：快速默写，调试通过</strong>
-<ul>
-<li>先看模版思想 —— 模版已为我们考虑好了所有边界情况</li>
-<li>默写一遍（用题目）</li>
-</ul>
-</li>
-<li><strong>提高熟练度</strong>
-<ul>
-<li>一道题目重复3-5次</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p> </p>
-<h1 id="一排序">一、排序</h1>
-<h3 id="1-快速排序">1. 快速排序</h3>
-<ol>
-<li>
-<h5 id="核心思想--分治">核心思想 —— 分治</h5>
-<ol>
-<li>确定分界点x</li>
-<li><strong>调整区间</strong></li>
-<li>递归处理左右两段</li>
-</ol>
-</li>
-<li>
-<p><strong>调整区间的暴力做法</strong>：选定x，开a,b两数组，遍历q，小于x放a，大于x放b。</p>
-</li>
-<li>
-<p><strong>优雅做法</strong>：用两个指针i、j，分别指向第一和最后一个数，两指针向中间移动，使得i左小于x，j右大于x；否则交换i、所指的数。</p>
-</li>
-</ol>
-    </div>
-  <a href="/post/%E7%AE%97%E6%B3%95%E6%A8%A1%E7%89%88-%E5%9F%BA%E7%A1%80/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
   </div>
 
         </div>

@@ -47,7 +47,7 @@
 
   <meta itemprop="name" content="Articles">
   <meta itemprop="description" content="The soul selects her own society, then shuts the door. To her divine majority, present no more.">
-  <meta itemprop="datePublished" content="2025-07-20T11:00:59-04:00">
+  <meta itemprop="datePublished" content="2025-07-22T11:00:59-04:00">
   <meta itemprop="dateModified" content="2026-07-21T11:00:59-04:00">
   <meta itemprop="wordCount" content="2">
   <meta name="twitter:card" content="summary">
@@ -153,6 +153,52 @@
             <div class="mb3 pa4 mid-gray overflow-hidden">
     
       <div class="f6">
+        July 11, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/%E5%88%86%E5%B8%83%E5%BC%8F%E5%B9%B6%E8%A1%8C%E8%AE%AD%E7%BB%83-ddp/" class="link black dim">
+        分布式并行训练 - DDP
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>分布式训练将训练工作负载分散到多个工作节点，因此可以显著提高训练速度和模型准确性。</p>
+<h2 id="distributed-data-parallel">Distributed Data Parallel</h2>
+<ul>
+<li><strong>为什么用 Distributed Training？</strong> 节约时间、增加计算量、模型更快。</li>
+<li><strong>如何实现？</strong>
+<ol>
+<li>在同一机器上使用多个 GPUs</li>
+<li>在集群上使用多个机器</li>
+</ol>
+</li>
+</ul>
+<ol>
+<li>
+<h3 id="什么是ddp">什么是DDP？</h3>
+<p>即在训练过程中内部保持同步：每个 GPU 进程仅数据不同。</p>
+<ol>
+<li>
+<p>模型在所有设备上复制。<strong>DistributedSampler</strong> 确保每个设备获得不重叠的输入批次，从而处理 n  倍数据。</p>
+<p><img src="/images/DPT/4.png" alt="4"></p>
+</li>
+<li>
+<p>模型接受不同输入的数据后，在本地运行<strong>前向传播和后向传播</strong>。</p>
+<p><img src="/images/DPT/1.png" alt="1"></p>
+</li>
+</ol>
+</li>
+</ol>
+    </div>
+  <a href="/post/%E5%88%86%E5%B8%83%E5%BC%8F%E5%B9%B6%E8%A1%8C%E8%AE%AD%E7%BB%83-ddp/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
         July 10, 2025
       </div>
     
@@ -215,44 +261,6 @@
 </blockquote>
     </div>
   <a href="/post/machine-learning/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        July 7, 2025
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/graphrag/" class="link black dim">
-        GraphRAG
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <ul>
-<li>
-<h4 id="特点">特点</h4>
-<ol>
-<li><strong>基于图的检索</strong>：GraphRAG 引入<strong>知识图谱</strong>来捕捉实体、关系及其他重要元数据。</li>
-<li><strong>层次聚类</strong>：GraphRAG 使用 <strong>Leiden</strong> 技术进行层次聚类，将实体及其关系进行组织。</li>
-<li><strong>多模式查询</strong>：支持多种查询模式。</li>
-<li><strong>全局搜索</strong>：利用<strong>社区总结</strong>来进行全局性推理。</li>
-<li><strong>局部搜索</strong>：通过<strong>扩展相关实体的邻居和关联概念</strong>来进行具体实体的推理。</li>
-<li><strong>DRIFT 搜索</strong>：结合局部搜索和社区信息，提供更准确和相关的答案。</li>
-<li><strong>图机器学习</strong>：集成图机器学习技术，并提供来自结构化和非结构化数据的深度洞察。</li>
-<li><strong>Prompt 调优</strong>：提供调优工具，帮助根据特定数据和需求调整查询提示，提高结果质量。</li>
-</ol>
-</li>
-</ul>
-<h2 id="工作流程">工作流程</h2>
-<p><img src="/images/graphRAG/1.png" alt="1"></p>
-<h3 id="1-索引-indexing-过程">1 <strong>索引 (Indexing) 过程</strong></h3>
-<p>将原始文档转化为知识图谱</p>
-    </div>
-  <a href="/post/graphrag/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
   </div>
 
         </div>

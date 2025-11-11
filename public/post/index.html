@@ -47,8 +47,8 @@
 
   <meta itemprop="name" content="Articles">
   <meta itemprop="description" content="The soul selects her own society, then shuts the door. To her divine majority, present no more.">
-  <meta itemprop="datePublished" content="2025-07-22T11:00:59-04:00">
-  <meta itemprop="dateModified" content="2026-07-21T11:00:59-04:00">
+  <meta itemprop="datePublished" content="2025-07-27T11:00:59-04:00">
+  <meta itemprop="dateModified" content="2026-07-23T11:00:59-04:00">
   <meta itemprop="wordCount" content="2">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Articles">
@@ -153,6 +153,47 @@
             <div class="mb3 pa4 mid-gray overflow-hidden">
     
       <div class="f6">
+        July 27, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/paper-ragchecker/" class="link black dim">
+        「论文阅读」RAG 文献调研
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <h1 id="评估">评估</h1>
+<h2 id="ragchecker-a-fine-grained-framework-for-diagnosing-retrieval-augmented-generation">RagChecker: A Fine-grained Framework for Diagnosing Retrieval-Augmented Generation</h2>
+<h3 id="introduction">Introduction</h3>
+<h4 id="评估-rag-系统的难点">评估 RAG 系统的难点</h4>
+<ol>
+<li><strong>模块化复杂</strong></li>
+<li><strong>指标限制</strong>
+<ul>
+<li><strong>检索器</strong>：传统指标（如 recall@k 和 MRR）依于 带注释的分块 和 严格的分块方式，忽视了知识库的完整语义范围</li>
+<li><strong>生成器</strong>：典型度量（如，基于 n-gram 的方法（如BLEU 和 ROUGE）、基于嵌入的方法（例如，BERTScore）和基于 LLM 的方法等）等可处理简单回答，但无法在较长的响应中检测到更精细的区别。</li>
+</ul>
+</li>
+<li><strong>指标可靠性</strong></li>
+</ol>
+<p>对比其他（RAGAS、TruLens、ARES、RGB、RECALL、NoMIRAC)，RagChecker 能 从人类角度评估 RAG 系统质量和可靠性方面的有效性，对错误来源做分析。</p>
+<h3 id="related-work">Related Work</h3>
+<p>现有评估可分为两种方法：仅评估 <strong>generators</strong> 的基本功能 和 评估 <strong>RAG 系统</strong>的端到端性能。</p>
+<ol>
+<li><strong>generators</strong>：RGB、RECALL、NoMIRACL、<a href="https://arxiv.org/abs/2404.10198v1">Wu</a>、FaaF&hellip;</li>
+<li><strong>RAG 系统</strong>：TruLens、RAGAS、ARES、CRUD-RAG&hellip;</li>
+<li><strong>数据集</strong>：<a href="https://arxiv.org/abs/2304.09848">Liu</a>、MEDRAG（医疗RAG基准）、MultiHop-RAG、CDQA&hellip;</li>
+</ol>
+    </div>
+  <a href="/post/paper-ragchecker/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
         July 22, 2025
       </div>
     
@@ -248,46 +289,6 @@
 <p><strong>计算整体基准测试性能脚本： <code>scripts/greedy_analysis.py</code></strong></p>
     </div>
   <a href="/post/%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BBkernelbench/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        July 20, 2025
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBkernelbench/" class="link black dim">
-        「论文阅读」KernelBench
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p>KernelBench 是一个评估 LLMs 在生成高性能 GPU 内核代码上能力的基准测试框架。论文引入了<strong>新评估指标 fast_p</strong>：衡量生成的 正确、且速度提升超过阈值p 的内核的比例。</p>
-<h2 id="introduction">Introduction</h2>
-<p>背景：每个硬件都有不同的规格和指令集，跨平台移植算法是痛点。</p>
-<p>论文核心探讨：LM 可以帮助编写正确和优化的内核吗？</p>
-<p>KernelBench 的任务：让 LMs 基于给定的 PyTorch 目标模型架构，生成优化的 CUDA 内核；并进行自动评估。</p>
-<ul>
-<li>
-<h4 id="环境要求">环境要求</h4>
-<p><strong>自动化</strong> AI 工程师的工作流程。</p>
-<p>支持<strong>多种</strong> AI 算法、编程语言和硬件平台。</p>
-<p><strong>轻松</strong>评估 LM 代的性能和功能正确性，并从生成的内核中分析信息。</p>
-</li>
-<li>
-<h4 id="测试级别">测试级别</h4>
-<p>Individual operations:：如 AI 运算符、包括矩阵乘法、卷积和损失。</p>
-<p>Sequence of operations：评估模型融合多个算子的能力。</p>
-<p>端到端架构：Github 上流行 AI 存储库中的架构。</p>
-</li>
-</ul>
-<h3 id="工作流程">工作流程</h3>
-<p><img src="/images/paper-KernelBench/1.png" alt="1"></p>
-    </div>
-  <a href="/post/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBkernelbench/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
   </div>
 
         </div>

@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>「论文阅读」RAG 文献调研 | HomePage</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="https://arxiv.org/abs/2408.08067">
+    <meta name="generator" content="Hugo 0.140.2">
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+    
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="http://localhost:1313/post/paper-ragchecker/">
+    
+
+    <meta property="og:url" content="http://localhost:1313/post/paper-ragchecker/">
+  <meta property="og:site_name" content="HomePage">
+  <meta property="og:title" content="「论文阅读」RAG 文献调研">
+  <meta property="og:description" content="https://arxiv.org/abs/2408.08067">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2025-07-27T11:00:59-04:00">
+    <meta property="article:modified_time" content="2025-07-27T11:00:59-04:00">
+    <meta property="article:tag" content="Paper">
+
+  <meta itemprop="name" content="「论文阅读」RAG 文献调研">
+  <meta itemprop="description" content="https://arxiv.org/abs/2408.08067">
+  <meta itemprop="datePublished" content="2025-07-27T11:00:59-04:00">
+  <meta itemprop="dateModified" content="2025-07-27T11:00:59-04:00">
+  <meta itemprop="wordCount" content="182">
+  <meta itemprop="keywords" content="Paper">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="「论文阅读」RAG 文献调研">
+  <meta name="twitter:description" content="https://arxiv.org/abs/2408.08067">
+
+	
+  </head><body class="ma0 avenir bg-near-white development">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('http://localhost:1313/images/paper-rag/jaz.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        HomePage
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/about/" title="About ME page">
+              About ME
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/post/" title="Articles page">
+              Articles
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/contact/" title="Contact page">
+              Contact
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"><a href="https://www.facebook.com/patrick.kollitsch" target="_blank" rel="noopener"
+        class="ananke-social-link link-transition facebook link dib z-999 pt3 pt0-l mr1"
+        title="follow on Facebook - Opens in a new window"
+        aria-label="follow on Facebook - Opens in a new window">
+      <span class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M512 256C512 114.6 397.4 0 256 0S0 114.6 0 256C0 376 82.7 476.8 194.2 504.5V334.2H141.4V256h52.8V222.3c0-87.1 39.4-127.5 125-127.5c16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1c-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H287V510.1C413.8 494.8 512 386.9 512 256h0z"/></svg>
+            
+          </span></a><a href="https://bsky.app/profile/kollitsch.dev" target="_blank" rel="noopener"
+        class="ananke-social-link link-transition bluesky link dib z-999 pt3 pt0-l mr1"
+        title="follow on Bluesky - Opens in a new window"
+        aria-label="follow on Bluesky - Opens in a new window">
+      <span class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M407.8 294.7c-3.3-.4-6.7-.8-10-1.3c3.4 .4 6.7 .9 10 1.3zM288 227.1C261.9 176.4 190.9 81.9 124.9 35.3C61.6-9.4 37.5-1.7 21.6 5.5C3.3 13.8 0 41.9 0 58.4S9.1 194 15 213.9c19.5 65.7 89.1 87.9 153.2 80.7c3.3-.5 6.6-.9 10-1.4c-3.3 .5-6.6 1-10 1.4C74.3 308.6-9.1 342.8 100.3 464.5C220.6 589.1 265.1 437.8 288 361.1c22.9 76.7 49.2 222.5 185.6 103.4c102.4-103.4 28.1-156-65.8-169.9c-3.3-.4-6.7-.8-10-1.3c3.4 .4 6.7 .9 10 1.3c64.1 7.1 133.6-15.1 153.2-80.7C566.9 194 576 75 576 58.4s-3.3-44.7-21.6-52.9c-15.8-7.1-40-14.9-103.2 29.8C385.1 81.9 314.1 176.4 288 227.1z"/></svg>
+            
+          </span></a><a href="http://linkedin.com/in/patrickkollitsch" target="_blank" rel="noopener"
+        class="ananke-social-link link-transition linkedin link dib z-999 pt3 pt0-l mr1"
+        title="follow on LinkedIn - Opens in a new window"
+        aria-label="follow on LinkedIn - Opens in a new window">
+      <span class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+            
+          </span></a></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">「论文阅读」RAG 文献调研</div>
+          
+            <div class="fw1 f5 f3-l white-80 measure-wide-l center lh-copy mt3 mb4">
+              https://arxiv.org/abs/2408.08067
+            </div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked ttu">
+          
+        Articles
+      </aside><div id="sharing" class="mt3 ananke-socials"><a href="mailto:?&amp;body=http%3A%2F%2Flocalhost%3A1313%2Fpost%2Fpaper-ragchecker%2F&amp;subject=%E3%80%8C%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E3%80%8DRAG&#43;%E6%96%87%E7%8C%AE%E8%B0%83%E7%A0%94"
+        class="ananke-social-link email no-underline"
+        title="Share on Email" aria-label="Share on Email"
+        target="_blank" rel="nofollow noopener noreferrer">
+        <span class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M64 112c-8.8 0-16 7.2-16 16l0 22.1L220.5 291.7c20.7 17 50.4 17 71.1 0L464 150.1l0-22.1c0-8.8-7.2-16-16-16L64 112zM48 212.2L48 384c0 8.8 7.2 16 16 16l384 0c8.8 0 16-7.2 16-16l0-171.8L322 328.8c-38.4 31.5-93.7 31.5-132 0L48 212.2zM0 128C0 92.7 28.7 64 64 64l384 0c35.3 0 64 28.7 64 64l0 256c0 35.3-28.7 64-64 64L64 448c-35.3 0-64-28.7-64-64L0 128z"/></svg>
+                
+              </span></a><a href="https://facebook.com/sharer/sharer.php?&amp;u=http%3A%2F%2Flocalhost%3A1313%2Fpost%2Fpaper-ragchecker%2F"
+        class="ananke-social-link facebook no-underline"
+        title="Share on Facebook" aria-label="Share on Facebook"
+        target="_blank" rel="nofollow noopener noreferrer">
+        <span class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M512 256C512 114.6 397.4 0 256 0S0 114.6 0 256C0 376 82.7 476.8 194.2 504.5V334.2H141.4V256h52.8V222.3c0-87.1 39.4-127.5 125-127.5c16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1c-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H287V510.1C413.8 494.8 512 386.9 512 256h0z"/></svg>
+                
+              </span></a><a href="https://bsky.app/intent/compose?&amp;text=http%3A%2F%2Flocalhost%3A1313%2Fpost%2Fpaper-ragchecker%2F"
+        class="ananke-social-link bluesky no-underline"
+        title="Share on Bluesky" aria-label="Share on Bluesky"
+        target="_blank" rel="nofollow noopener noreferrer">
+        <span class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M407.8 294.7c-3.3-.4-6.7-.8-10-1.3c3.4 .4 6.7 .9 10 1.3zM288 227.1C261.9 176.4 190.9 81.9 124.9 35.3C61.6-9.4 37.5-1.7 21.6 5.5C3.3 13.8 0 41.9 0 58.4S9.1 194 15 213.9c19.5 65.7 89.1 87.9 153.2 80.7c3.3-.5 6.6-.9 10-1.4c-3.3 .5-6.6 1-10 1.4C74.3 308.6-9.1 342.8 100.3 464.5C220.6 589.1 265.1 437.8 288 361.1c22.9 76.7 49.2 222.5 185.6 103.4c102.4-103.4 28.1-156-65.8-169.9c-3.3-.4-6.7-.8-10-1.3c3.4 .4 6.7 .9 10 1.3c64.1 7.1 133.6-15.1 153.2-80.7C566.9 194 576 75 576 58.4s-3.3-44.7-21.6-52.9c-15.8-7.1-40-14.9-103.2 29.8C385.1 81.9 314.1 176.4 288 227.1z"/></svg>
+                
+              </span></a><a href="https://www.linkedin.com/shareArticle?&amp;mini=true&amp;source=http%3A%2F%2Flocalhost%3A1313%2Fpost%2Fpaper-ragchecker%2F&amp;summary=%E8%AF%84%E4%BC%B0&#43;RagChecker%3A&#43;A&#43;Fine-grained&#43;Framework&#43;for&#43;Diagnosing&#43;Retrieval-Augmented&#43;Generation&#43;Introduction&#43;%E8%AF%84%E4%BC%B0&#43;RAG&#43;%E7%B3%BB%E7%BB%9F%E7%9A%84%E9%9A%BE%E7%82%B9&#43;%E6%A8%A1%E5%9D%97%E5%8C%96%E5%A4%8D%E6%9D%82&#43;%E6%8C%87%E6%A0%87%E9%99%90%E5%88%B6&#43;%E6%A3%80%E7%B4%A2%E5%99%A8%EF%BC%9A%E4%BC%A0%E7%BB%9F%E6%8C%87%E6%A0%87%EF%BC%88%E5%A6%82&#43;recall%40k&#43;%E5%92%8C&#43;MRR%EF%BC%89%E4%BE%9D%E4%BA%8E&#43;%E5%B8%A6%E6%B3%A8%E9%87%8A%E7%9A%84%E5%88%86%E5%9D%97&#43;%E5%92%8C&#43;%E4%B8%A5%E6%A0%BC%E7%9A%84%E5%88%86%E5%9D%97%E6%96%B9%E5%BC%8F%EF%BC%8C%E5%BF%BD%E8%A7%86%E4%BA%86%E7%9F%A5%E8%AF%86%E5%BA%93%E7%9A%84%E5%AE%8C%E6%95%B4%E8%AF%AD%E4%B9%89%E8%8C%83%E5%9B%B4&#43;%E7%94%9F%E6%88%90%E5%99%A8%EF%BC%9A%E5%85%B8%E5%9E%8B%E5%BA%A6%E9%87%8F%EF%BC%88%E5%A6%82%EF%BC%8C%E5%9F%BA%E4%BA%8E&#43;n-gram&#43;%E7%9A%84%E6%96%B9%E6%B3%95%EF%BC%88%E5%A6%82BLEU&#43;%E5%92%8C&#43;ROUGE%EF%BC%89%E3%80%81%E5%9F%BA%E4%BA%8E%E5%B5%8C%E5%85%A5%E7%9A%84%E6%96%B9%E6%B3%95%EF%BC%88%E4%BE%8B%E5%A6%82%EF%BC%8CBERTScore%EF%BC%89%E5%92%8C%E5%9F%BA%E4%BA%8E&#43;LLM&#43;%E7%9A%84%E6%96%B9%E6%B3%95%E7%AD%89%EF%BC%89%E7%AD%89%E5%8F%AF%E5%A4%84%E7%90%86%E7%AE%80%E5%8D%95%E5%9B%9E%E7%AD%94%EF%BC%8C%E4%BD%86%E6%97%A0%E6%B3%95%E5%9C%A8%E8%BE%83%E9%95%BF%E7%9A%84%E5%93%8D%E5%BA%94%E4%B8%AD%E6%A3%80%E6%B5%8B%E5%88%B0%E6%9B%B4%E7%B2%BE%E7%BB%86%E7%9A%84%E5%8C%BA%E5%88%AB%E3%80%82&#43;%E6%8C%87%E6%A0%87%E5%8F%AF%E9%9D%A0%E6%80%A7&#43;%E5%AF%B9%E6%AF%94%E5%85%B6%E4%BB%96%EF%BC%88RAGAS%E3%80%81TruLens%E3%80%81ARES%E3%80%81RGB%E3%80%81RECALL%E3%80%81NoMIRAC%29%EF%BC%8CRagChecker&#43;%E8%83%BD&#43;%E4%BB%8E%E4%BA%BA%E7%B1%BB%E8%A7%92%E5%BA%A6%E8%AF%84%E4%BC%B0&#43;RAG&#43;%E7%B3%BB%E7%BB%9F%E8%B4%A8%E9%87%8F%E5%92%8C%E5%8F%AF%E9%9D%A0%E6%80%A7%E6%96%B9%E9%9D%A2%E7%9A%84%E6%9C%89%E6%95%88%E6%80%A7%EF%BC%8C%E5%AF%B9%E9%94%99%E8%AF%AF%E6%9D%A5%E6%BA%90%E5%81%9A%E5%88%86%E6%9E%90%E3%80%82%0ARelated&#43;Work&#43;%E7%8E%B0%E6%9C%89%E8%AF%84%E4%BC%B0%E5%8F%AF%E5%88%86%E4%B8%BA%E4%B8%A4%E7%A7%8D%E6%96%B9%E6%B3%95%EF%BC%9A%E4%BB%85%E8%AF%84%E4%BC%B0&#43;generators&#43;%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD&#43;%E5%92%8C&#43;%E8%AF%84%E4%BC%B0&#43;RAG&#43;%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%AB%AF%E5%88%B0%E7%AB%AF%E6%80%A7%E8%83%BD%E3%80%82%0Agenerators%EF%BC%9ARGB%E3%80%81RECALL%E3%80%81NoMIRACL%E3%80%81Wu%E3%80%81FaaF%26amp%3Bhellip%3B&#43;RAG&#43;%E7%B3%BB%E7%BB%9F%EF%BC%9ATruLens%E3%80%81RAGAS%E3%80%81ARES%E3%80%81CRUD-RAG%26amp%3Bhellip%3B&#43;%E6%95%B0%E6%8D%AE%E9%9B%86%EF%BC%9ALiu%E3%80%81MEDRAG%EF%BC%88%E5%8C%BB%E7%96%97RAG%E5%9F%BA%E5%87%86%EF%BC%89%E3%80%81MultiHop-RAG%E3%80%81CDQA%26amp%3Bhellip%3B&#43;&amp;title=%E3%80%8C%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E3%80%8DRAG&#43;%E6%96%87%E7%8C%AE%E8%B0%83%E7%A0%94&amp;url=http%3A%2F%2Flocalhost%3A1313%2Fpost%2Fpaper-ragchecker%2F"
+        class="ananke-social-link linkedin no-underline"
+        title="Share on LinkedIn" aria-label="Share on LinkedIn"
+        target="_blank" rel="nofollow noopener noreferrer">
+        <span class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+                
+              </span></a></div>
+<h1 class="f1 athelas mt3 mb1">「论文阅读」RAG 文献调研</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2025-07-27T11:00:59-04:00">July 27, 2025</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><h1 id="评估">评估</h1>
+<h2 id="ragchecker-a-fine-grained-framework-for-diagnosing-retrieval-augmented-generation">RagChecker: A Fine-grained Framework for Diagnosing Retrieval-Augmented Generation</h2>
+<h3 id="introduction">Introduction</h3>
+<h4 id="评估-rag-系统的难点">评估 RAG 系统的难点</h4>
+<ol>
+<li><strong>模块化复杂</strong></li>
+<li><strong>指标限制</strong>
+<ul>
+<li><strong>检索器</strong>：传统指标（如 recall@k 和 MRR）依于 带注释的分块 和 严格的分块方式，忽视了知识库的完整语义范围</li>
+<li><strong>生成器</strong>：典型度量（如，基于 n-gram 的方法（如BLEU 和 ROUGE）、基于嵌入的方法（例如，BERTScore）和基于 LLM 的方法等）等可处理简单回答，但无法在较长的响应中检测到更精细的区别。</li>
+</ul>
+</li>
+<li><strong>指标可靠性</strong></li>
+</ol>
+<p>对比其他（RAGAS、TruLens、ARES、RGB、RECALL、NoMIRAC)，RagChecker 能 从人类角度评估 RAG 系统质量和可靠性方面的有效性，对错误来源做分析。</p>
+<h3 id="related-work">Related Work</h3>
+<p>现有评估可分为两种方法：仅评估 <strong>generators</strong> 的基本功能 和 评估 <strong>RAG 系统</strong>的端到端性能。</p>
+<ol>
+<li><strong>generators</strong>：RGB、RECALL、NoMIRACL、<a href="https://arxiv.org/abs/2404.10198v1">Wu</a>、FaaF&hellip;</li>
+<li><strong>RAG 系统</strong>：TruLens、RAGAS、ARES、CRUD-RAG&hellip;</li>
+<li><strong>数据集</strong>：<a href="https://arxiv.org/abs/2304.09848">Liu</a>、MEDRAG（医疗RAG基准）、MultiHop-RAG、CDQA&hellip;</li>
+</ol>
+<p> </p>
+<h3 id="ragchecker-框架">RagChecker 框架</h3>
+<h4 id="1-输入元组-qdgt">1 输入：元组 &lt;q,D,g⁢t&gt;</h4>
+<ul>
+<li><strong>q</strong>：查询， 即 RAG 系统的输入问题。</li>
+<li><strong>D</strong>：文档，提供可能的上下文，并被处理成同样数量 tokens 的块</li>
+<li><strong>gt</strong>： ground-truth answer，输入问题的完整正确答案。</li>
+</ul>
+<p> </p>
+<h4 id="2-具有参考信息的细粒度评估">2 具有参考信息的细粒度评估</h4>
+<p>RAG 系统生成的响应可能是正确 和错误声明的混合，同时也缺少一些claims</p>
+<blockquote>
+<p>[!NOTE]</p>
+<p>RAG系统通过检索外部知识生成回答，其输出可能包含：</p>
+<p>✅ <strong>正确主张</strong>（与in-ground-truth一致）；</p>
+<p>❌ <strong>错误主张</strong>（与事实矛盾）；</p>
+<p>❓ <strong>缺失主张</strong>（漏掉了本应包含的in-ground-truth信息）。</p>
+<p>例如，若问题涉及“COVID-19的传播途径”，而标准答案（in-ground-truth）包含“飞沫传播”和“接触传播”，但RAG仅生成“飞沫传播”，则缺失了“接触传播”这一in-ground-truth claim。</p>
+</blockquote>
+<p><img src="/images/paper-rag/1.png" alt="1"></p>
+<ul>
+<li>引入两个组件：
+<ol>
+<li>将给定文本 T 分解为一组声明的提取器 {ci}</li>
+<li>一个检查器，用于确定给定的声明 c 是否包含在参考文本 R⁢e⁢f 中</li>
+</ol>
+</li>
+</ul>
+<p> </p>
+<h4 id="3-指标">3 指标</h4>
+<p><img src="/images/paper-rag/2.png" alt="2"></p>
+<ul>
+<li><strong>整体指标</strong>
+<ul>
+<li><strong>Precision</strong>：响应中正确claim的比例。</li>
+<li><strong>Recall</strong>：覆盖ground-truth中正确claim的比例。</li>
+<li><strong>F1 Score</strong>：综合精度与召回率的调和平均。</li>
+</ul>
+</li>
+<li><strong>检索器诊断指标</strong>
+<ul>
+<li><strong>Claim Recall (CR)</strong>：检索结果覆盖ground-truth claim的比例。</li>
+<li><strong>Context Precision (CP)</strong>：检索chunk中包含相关claim的比例（按chunk级计算）。</li>
+</ul>
+</li>
+<li><strong>生成器诊断指标</strong>
+<ul>
+<li><strong>Context Utilization (CU)</strong>：生成内容中来自检索上下文的ground-truth claim比例。</li>
+<li><strong>Relevant Noise Sensitivity</strong>：生成器对相关噪声（检索结果中的错误claim）的敏感度。</li>
+<li><strong>Irrelevant Noise Sensitivity</strong>：生成器对无关噪声（非检索结果中的错误claim）的敏感度。</li>
+<li><strong>Hallucination</strong>：生成内容中完全未出现在检索结果中的错误claim比例。</li>
+<li><strong>Self-knowledge</strong>：生成器依赖自身知识而非检索结果的claim比例。</li>
+<li><strong>Faithfulness</strong>：生成内容忠实于检索上下文的比例。</li>
+</ul>
+</li>
+</ul>
+<p> </p>
+<h3 id="实验设计与结果">实验设计与结果</h3>
+<h4 id="1-基准数据集">1 基准数据集</h4>
+<ul>
+<li><strong>来源</strong>：整合公开数据集（RobustQA、ClapNQ、NovelQA等），覆盖10个领域（医学、金融、小说等）。</li>
+<li><strong>处理</strong>：将短答案扩展为长文本，通过GPT-4生成并过滤幻觉内容。</li>
+</ul>
+<h4 id="2-评估的rag系统">2 评估的RAG系统</h4>
+<ul>
+<li><strong>组合方式</strong>：2 种检索器（BM25、E5-Mistral） × 4 种生成器（GPT-4、Mixtral-8x7B、Llama3-8B/70B）</li>
+<li><strong>配置</strong>：检索 top-20 chunks，生成温度设为 0，最大长度 2048 tokens。</li>
+</ul>
+<h4 id="3-元评估meta-evaluation">3 <strong>元评估（Meta-Evaluation）</strong></h4>
+<ul>
+<li><strong>方法</strong>：人工标注 280 组响应对，比较不同指标与人类偏好的相关性。</li>
+<li>结果：
+<ul>
+<li>RAGCHECKER 的<strong>Overall F1</strong>与人类判断的相关性最高（Pearson 0.619，Spearman 0.609）</li>
+<li>显著优于传统指标（如BLEU的0.351）和现有框架（如RAGAS的0.483）</li>
+</ul>
+</li>
+</ul>
+<h4 id="4-结论">4 <strong>结论</strong></h4>
+<ol>
+<li><strong>检索器的重要性</strong>
+<ul>
+<li>更强的检索（E5-Mistral）显著提升整体性能（F1从46.3→52.7）。</li>
+<li>Claim Recall 每提升1%，F1 平均提高0.3%。</li>
+</ul>
+</li>
+<li><strong>生成器规模效应</strong>
+<ul>
+<li>Llama3-70B 在所有指标上优于小模型（如Context Utilization从54.9→63.7）。</li>
+<li>开源模型（如Llama3）易盲目信任上下文，导致噪声敏感性较高。</li>
+</ul>
+</li>
+<li><strong>关键权衡</strong>
+<ul>
+<li><strong>检索质量 vs. 噪声引入</strong>：Claim Recall 提升可能导致生成器对噪声更敏感。</li>
+<li><strong>上下文利用率 vs. 幻觉控制</strong>：利用更多检索内容会降低幻觉，但增加噪声干扰。</li>
+</ul>
+</li>
+</ol>
+<p> </p>
+<h3 id="优化建议与启示">优化建议与启示</h3>
+<ol>
+<li><strong>检索优化策略</strong>
+<ul>
+<li><strong>块大小与数量</strong>：增大块尺寸可提升Claim Recall，但需平衡噪声。</li>
+<li><strong>重叠率</strong>：块重叠对性能影响有限，建议默认值0.2。</li>
+</ul>
+</li>
+<li><strong>生成器调优方向</strong>
+<ul>
+<li><strong>Prompt设计</strong>：明确要求忠实性（如“仅使用上下文信息”）可减少幻觉（下降2.3%）。</li>
+<li><strong>三重困境</strong>：需在上下文利用率、噪声敏感性与幻觉间权衡，优先满足业务需求。</li>
+</ul>
+</li>
+<li><strong>未来方向</strong>
+<ul>
+<li>扩展基准至多模态和跨语言场景</li>
+<li>细化错误分类（如区分“矛盾”与“中性”蕴含结果）</li>
+</ul>
+</li>
+</ol>
+<p> </p>
+<p> </p>
+<p> </p>
+<h1 id="数据集">数据集</h1>
+<p>MEDRAG</p><ul class="pa0">
+  
+   <li class="list di">
+     <a href="/tags/paper/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">Paper</a>
+   </li>
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+  <div class="bg-light-gray pa3 nested-list-reset nested-copy-line-height nested-links">
+    <p class="f5 b mb3">Related</p>
+    <ul class="pa0 list">
+	   
+	     <li  class="mb2">
+          <a href="/post/%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BBkernelbench/">「源码阅读」KernelBench</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/paper-kernelbench/">「论文阅读」KernelBench</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/graphrag/">GraphRAG</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/paper-alphaevolve/">「论文阅读」AlphaEvolve: A coding agent for scientific and algorithmic discovery</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/paper-kimi-researcher/">「论文阅读」Kimi-Researcher</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/paper-augmented-knowledge-graph-querying-leveraging-llms/">「论文阅读」Augmented Knowledge Graph Querying leveraging LLMs</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/paper-generate-on-graph-treat-llm-as-both-agent-and-kg-for-incomplete-knowledge-graph-question-answering/">「论文阅读」Generate-on-Graph: Treat LLM as both Agent and KG for Incomplete Knowledge Graph Question Answering</a>
+        </li>
+	    
+    </ul>
+</div>
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="http://localhost:1313/" >
+    &copy;  HomePage 2025 
+  </a>
+    <div><div class="ananke-socials"><a href="https://www.facebook.com/patrick.kollitsch" target="_blank" rel="noopener"
+        class="ananke-social-link link-transition facebook link dib z-999 pt3 pt0-l mr1"
+        title="follow on Facebook - Opens in a new window"
+        aria-label="follow on Facebook - Opens in a new window">
+      <span class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M512 256C512 114.6 397.4 0 256 0S0 114.6 0 256C0 376 82.7 476.8 194.2 504.5V334.2H141.4V256h52.8V222.3c0-87.1 39.4-127.5 125-127.5c16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1c-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H287V510.1C413.8 494.8 512 386.9 512 256h0z"/></svg>
+            
+          </span></a><a href="https://bsky.app/profile/kollitsch.dev" target="_blank" rel="noopener"
+        class="ananke-social-link link-transition bluesky link dib z-999 pt3 pt0-l mr1"
+        title="follow on Bluesky - Opens in a new window"
+        aria-label="follow on Bluesky - Opens in a new window">
+      <span class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M407.8 294.7c-3.3-.4-6.7-.8-10-1.3c3.4 .4 6.7 .9 10 1.3zM288 227.1C261.9 176.4 190.9 81.9 124.9 35.3C61.6-9.4 37.5-1.7 21.6 5.5C3.3 13.8 0 41.9 0 58.4S9.1 194 15 213.9c19.5 65.7 89.1 87.9 153.2 80.7c3.3-.5 6.6-.9 10-1.4c-3.3 .5-6.6 1-10 1.4C74.3 308.6-9.1 342.8 100.3 464.5C220.6 589.1 265.1 437.8 288 361.1c22.9 76.7 49.2 222.5 185.6 103.4c102.4-103.4 28.1-156-65.8-169.9c-3.3-.4-6.7-.8-10-1.3c3.4 .4 6.7 .9 10 1.3c64.1 7.1 133.6-15.1 153.2-80.7C566.9 194 576 75 576 58.4s-3.3-44.7-21.6-52.9c-15.8-7.1-40-14.9-103.2 29.8C385.1 81.9 314.1 176.4 288 227.1z"/></svg>
+            
+          </span></a><a href="http://linkedin.com/in/patrickkollitsch" target="_blank" rel="noopener"
+        class="ananke-social-link link-transition linkedin link dib z-999 pt3 pt0-l mr1"
+        title="follow on LinkedIn - Opens in a new window"
+        aria-label="follow on LinkedIn - Opens in a new window">
+      <span class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+            
+          </span></a></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

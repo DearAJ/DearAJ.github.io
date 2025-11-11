@@ -1,22 +1,26 @@
 ---
 date: 2025-07-02T11:00:59-04:00
 description: " AlphaEvolve 是一种进化编码代理，可显着增强 LLM 在挑战性任务上的能力（如解决开放的科学问题、优化计算基础设施）"
-featured_image: "/images/paper-AlphaEvolve/jaz.png"
+featured_image: "/images/TritonLLM/jaz.png"
 tags: ["paper"]
-title: "「论文阅读」AlphaEvolve: A coding agent for scientific and algorithmic discovery"
+title: "「论文阅读」Triton LLM"
 ---
 
-[*AlphaEvolve*](http://arxiv.org/abs/2506.13131) 使用进化方法，不断接收来自一个或多个评估者的反馈，迭代改进算法，从而有可能带来新的科学和实践发现。
+# [AlphaEvolve: A coding agent for scientific and algorithmic discovery](https://arxiv.org/abs/2506.13131)
+
+*AlphaEvolve* 使用进化方法，不断接收来自一个或多个评估者的反馈，迭代改进算法，从而有可能带来新的科学和实践发现。
 
 ## Introduction
 
+
+
 AlphaEvolve represents the candidates (for example, new mathematical objects or practical heuristics) as algorithms and **uses a set of LLMs to generate, critique, and evolve** a pool of such algorithms.
 
-![1](/images/paper-AlphaEvolve/1.png)
+![1](/images/TritonLLM/1.png)
 
 ## AlphaEvolve
 
-![2](/images/paper-AlphaEvolve/2.png)
+![2](/images/TritonLLM/2.png)
 
 <!--more-->
 
@@ -27,7 +31,7 @@ AlphaEvolve represents the candidates (for example, new mathematical objects or 
    + ***Evaluators*** 对这些项目进行评分
    + 并将好的解决方案重新注册回 ***Program database*** 中，推动迭代发现越来越好的程序
 
-![3](/images/paper-AlphaEvolve/3.png)
+![3](/images/TritonLLM/3.png)
 
 &nbsp;
 

@@ -47,8 +47,8 @@
 
   <meta itemprop="name" content="Articles">
   <meta itemprop="description" content="The soul selects her own society, then shuts the door. To her divine majority, present no more.">
-  <meta itemprop="datePublished" content="2025-07-22T11:00:59-04:00">
-  <meta itemprop="dateModified" content="2026-07-21T11:00:59-04:00">
+  <meta itemprop="datePublished" content="2025-07-27T11:00:59-04:00">
+  <meta itemprop="dateModified" content="2026-07-23T11:00:59-04:00">
   <meta itemprop="wordCount" content="2">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Articles">
@@ -153,6 +153,46 @@
             <div class="mb3 pa4 mid-gray overflow-hidden">
     
       <div class="f6">
+        July 20, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/paper-kernelbench/" class="link black dim">
+        「论文阅读」KernelBench
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>KernelBench 是一个评估 LLMs 在生成高性能 GPU 内核代码上能力的基准测试框架。论文引入了<strong>新评估指标 fast_p</strong>：衡量生成的 正确、且速度提升超过阈值p 的内核的比例。</p>
+<h2 id="introduction">Introduction</h2>
+<p>背景：每个硬件都有不同的规格和指令集，跨平台移植算法是痛点。</p>
+<p>论文核心探讨：LM 可以帮助编写正确和优化的内核吗？</p>
+<p>KernelBench 的任务：让 LMs 基于给定的 PyTorch 目标模型架构，生成优化的 CUDA 内核；并进行自动评估。</p>
+<ul>
+<li>
+<h4 id="环境要求">环境要求</h4>
+<p><strong>自动化</strong> AI 工程师的工作流程。</p>
+<p>支持<strong>多种</strong> AI 算法、编程语言和硬件平台。</p>
+<p><strong>轻松</strong>评估 LM 代的性能和功能正确性，并从生成的内核中分析信息。</p>
+</li>
+<li>
+<h4 id="测试级别">测试级别</h4>
+<p>Individual operations:：如 AI 运算符、包括矩阵乘法、卷积和损失。</p>
+<p>Sequence of operations：评估模型融合多个算子的能力。</p>
+<p>端到端架构：Github 上流行 AI 存储库中的架构。</p>
+</li>
+</ul>
+<h3 id="工作流程">工作流程</h3>
+<p><img src="/images/paper-KernelBench/1.png" alt="1"></p>
+    </div>
+  <a href="/post/paper-kernelbench/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
         July 19, 2025
       </div>
     
@@ -231,39 +271,6 @@
 </ul>
     </div>
   <a href="/post/vllm/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        July 14, 2025
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/%E5%88%86%E5%B8%83%E5%BC%8F%E5%B9%B6%E8%A1%8C%E8%AE%AD%E7%BB%83-fsdp/" class="link black dim">
-        分布式并行训练 - FSDP
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <h2 id="fully-sharded-data-parallel">Fully Sharded Data Parallel</h2>
-<h3 id="ddp-回顾">DDP 回顾</h3>
-<ul>
-<li>
-<p>名词解释</p>
-<p><img src="/images/DPT-FSDP/0.0.png" alt="0.0"></p>
-<p><strong>Host</strong>：可以理解为⼀台主机，每个主机有⾃⼰的IP地址，⽤于通信。</p>
-<p><strong>Local Rank</strong>：每个主机上，对不同GPU设备的编。</p>
-<p><strong>Global Rank</strong>：全局的GPU设备编号，Global Rank = Host * num GPUs per host + Local Rank。</p>
-<p><strong>Worldsize</strong>：总的GPU个数。num Hosts * num GPUs per host</p>
-</li>
-</ul>
-<h4 id="ddp-参数更新过程">DDP 参数更新过程</h4>
-<p><img src="/images/DPT-FSDP/0.png" alt="0"></p>
-    </div>
-  <a href="/post/%E5%88%86%E5%B8%83%E5%BC%8F%E5%B9%B6%E8%A1%8C%E8%AE%AD%E7%BB%83-fsdp/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
   </div>
 
         </div>

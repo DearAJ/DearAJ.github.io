@@ -47,8 +47,8 @@
 
   <meta itemprop="name" content="Articles">
   <meta itemprop="description" content="The soul selects her own society, then shuts the door. To her divine majority, present no more.">
-  <meta itemprop="datePublished" content="2025-07-22T11:00:59-04:00">
-  <meta itemprop="dateModified" content="2026-07-21T11:00:59-04:00">
+  <meta itemprop="datePublished" content="2025-07-27T11:00:59-04:00">
+  <meta itemprop="dateModified" content="2026-07-23T11:00:59-04:00">
   <meta itemprop="wordCount" content="2">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Articles">
@@ -153,6 +153,65 @@
             <div class="mb3 pa4 mid-gray overflow-hidden">
     
       <div class="f6">
+        April 3, 2025
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/ppo/" class="link black dim">
+        PPO
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <h2 id="1-论文详读">1. 论文详读</h2>
+<p><a href="https://arxiv.org/abs/1707.06347">Proximal Policy Optimization Algorithms</a>（Proximal：近似）</p>
+<h2 id="2-ppo">2. PPO</h2>
+<h4 id="回顾-trpo">回顾 TRPO</h4>
+<ul>
+<li>
+<p>使用 KL 散度约束 policy 的更新幅度；使用重要性采样</p>
+<p><strong>缺点</strong>：近似会带来误差（重要性采样的通病）；解带约束的优化问题困难</p>
+</li>
+<li>
+<h4 id="ppo-的改进">PPO 的改进</h4>
+<ol>
+<li>
+<p>TRPO 采用重要性采样 &mdash;-&gt; PPO 采用 <strong>clip 截断</strong>，限制新旧策略差异，避免更新过大。</p>
+</li>
+<li>
+<p>优势函数 At 选用多步时序差分</p>
+</li>
+<li>
+<p>自适应的 KL 惩罚项</p>
+</li>
+</ol>
+</li>
+</ul>
+<ol>
+<li>
+<p><strong>Critic网络训练</strong>：</p>
+<p>通过最小化<code>critic_loss = MSE(critic(states), td_target)</code>，让critic的价值估计更准确</p>
+</li>
+<li>
+<p><strong>Actor网络更新</strong>：</p>
+<ul>
+<li>TD误差的广义形式(GAE)被用作优势函数，指导策略更新方向</li>
+<li>优势函数越大，表示该动作比平均表现更好，应被加强</li>
+</ul>
+</li>
+</ol>
+<p> </p>
+<h2 id="3-ppo-惩罚">3. PPO-惩罚</h2>
+<p>PPO-惩罚（PPO-Penalty）：用拉格朗日乘数法将 KL 散度的限制放进了目标函数中，使其变成了一个无约束的优化问题，在迭代的过程中不断更新 KL 散度前的系数 beta。</p>
+    </div>
+  <a href="/post/ppo/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
         April 2, 2025
       </div>
     
@@ -208,55 +267,6 @@
 <p>Critic 要做的是通过 Actor 与环境交互收集的数据学习一个价值函数，这个价值函数会用于判断在当前状态什么动作是好的，什么动作不是好的，进而帮助 Actor 进行策略更新。</p>
     </div>
   <a href="/post/actor-critic/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        April 1, 2025
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/reinforce/" class="link black dim">
-        REINFORCE
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p>Q-learning、DQN 算法都是<strong>基于价值</strong>（value-based）的方法</p>
-<ul>
-<li>Q-learning 是处理有限状态的算法</li>
-<li>DQN 可以用来解决连续状态的问题</li>
-</ul>
-<p>在强化学习中，除了基于值函数的方法，还有一支非常经典的方法，那就是<strong>基于策略</strong>（policy-based）的方法。</p>
-<p> </p>
-<p>对比 value-based 和 policy-based</p>
-<ul>
-<li>基于值函数：主要是学习<strong>值函数</strong>，然后根据值函数导出一个策略，学习过程中并不存在一个显式的策略；</li>
-<li>基于策略：直接显式地学习一个<strong>目标策略</strong>。策略梯度是基于策略的方法的基础。</li>
-</ul>
-<p> </p>
-<p> </p>
-<h2 id="1-策略梯度">1. 策略梯度</h2>
-<ul>
-<li>
-<p>将策略参数化：寻找一个最优策略并最大化这个策略在环境中的期望回报，即调整策略参数使平均回报最大化。</p>
-</li>
-<li>
-<p>策略学习的目标函数</p>
-<p><img src="/images/REINFORCE/1.png" alt="1"></p>
-<ul>
-<li>J(θ) 是策略的目标函数（想要最大化的量）；</li>
-<li>πθ 是参数为θ的随机性策略，并且处处可微（可以理解为AI的决策规则）；</li>
-<li>Vπθ(s0) 指从初始状态s₀开始<strong>遵循策略π能获得的预期总回报</strong>；</li>
-<li>Es0 是对所有可能的初始状态求期望。</li>
-</ul>
-</li>
-</ul>
-    </div>
-  <a href="/post/reinforce/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
   </div>
 
         </div>

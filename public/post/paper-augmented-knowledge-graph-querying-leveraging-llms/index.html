@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>「论文阅读」Augmented Knowledge Graph Querying leveraging LLMs | HomePage</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="该论文提出了SparqLLM框架，通过结合RAG与LLM，实现了从自然语言到SPARQL查询的自动生成，以简化知识图谱的查询过程。SparqLLM利用模板检索提高查询准确性，并通过动态可视化仪表板呈现结果，提升用户体验。">
+    <meta name="generator" content="Hugo 0.140.2">
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+    
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="http://localhost:1313/post/paper-augmented-knowledge-graph-querying-leveraging-llms/">
+    
+
+    <meta property="og:url" content="http://localhost:1313/post/paper-augmented-knowledge-graph-querying-leveraging-llms/">
+  <meta property="og:site_name" content="HomePage">
+  <meta property="og:title" content="「论文阅读」Augmented Knowledge Graph Querying leveraging LLMs">
+  <meta property="og:description" content="该论文提出了SparqLLM框架，通过结合RAG与LLM，实现了从自然语言到SPARQL查询的自动生成，以简化知识图谱的查询过程。SparqLLM利用模板检索提高查询准确性，并通过动态可视化仪表板呈现结果，提升用户体验。">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2025-05-14T11:00:59-04:00">
+    <meta property="article:modified_time" content="2025-05-14T11:00:59-04:00">
+    <meta property="article:tag" content="Paper">
+
+  <meta itemprop="name" content="「论文阅读」Augmented Knowledge Graph Querying leveraging LLMs">
+  <meta itemprop="description" content="该论文提出了SparqLLM框架，通过结合RAG与LLM，实现了从自然语言到SPARQL查询的自动生成，以简化知识图谱的查询过程。SparqLLM利用模板检索提高查询准确性，并通过动态可视化仪表板呈现结果，提升用户体验。">
+  <meta itemprop="datePublished" content="2025-05-14T11:00:59-04:00">
+  <meta itemprop="dateModified" content="2025-05-14T11:00:59-04:00">
+  <meta itemprop="wordCount" content="159">
+  <meta itemprop="keywords" content="Paper">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="「论文阅读」Augmented Knowledge Graph Querying leveraging LLMs">
+  <meta name="twitter:description" content="该论文提出了SparqLLM框架，通过结合RAG与LLM，实现了从自然语言到SPARQL查询的自动生成，以简化知识图谱的查询过程。SparqLLM利用模板检索提高查询准确性，并通过动态可视化仪表板呈现结果，提升用户体验。">
+
+	
+  </head><body class="ma0 avenir bg-near-white development">
+
+    
+   
+  
+
+  
+  
+  
+  <header class="cover bg-center" style="background-image: url('http://localhost:1313/images/paper-SparqLLM/tomo.jpg');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        HomePage
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/about/" title="About ME page">
+              About ME
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/post/" title="Articles page">
+              Articles
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/contact/" title="Contact page">
+              Contact
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"><a href="https://www.facebook.com/patrick.kollitsch" target="_blank" rel="noopener"
+        class="ananke-social-link link-transition facebook link dib z-999 pt3 pt0-l mr1"
+        title="follow on Facebook - Opens in a new window"
+        aria-label="follow on Facebook - Opens in a new window">
+      <span class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M512 256C512 114.6 397.4 0 256 0S0 114.6 0 256C0 376 82.7 476.8 194.2 504.5V334.2H141.4V256h52.8V222.3c0-87.1 39.4-127.5 125-127.5c16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1c-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H287V510.1C413.8 494.8 512 386.9 512 256h0z"/></svg>
+            
+          </span></a><a href="https://bsky.app/profile/kollitsch.dev" target="_blank" rel="noopener"
+        class="ananke-social-link link-transition bluesky link dib z-999 pt3 pt0-l mr1"
+        title="follow on Bluesky - Opens in a new window"
+        aria-label="follow on Bluesky - Opens in a new window">
+      <span class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M407.8 294.7c-3.3-.4-6.7-.8-10-1.3c3.4 .4 6.7 .9 10 1.3zM288 227.1C261.9 176.4 190.9 81.9 124.9 35.3C61.6-9.4 37.5-1.7 21.6 5.5C3.3 13.8 0 41.9 0 58.4S9.1 194 15 213.9c19.5 65.7 89.1 87.9 153.2 80.7c3.3-.5 6.6-.9 10-1.4c-3.3 .5-6.6 1-10 1.4C74.3 308.6-9.1 342.8 100.3 464.5C220.6 589.1 265.1 437.8 288 361.1c22.9 76.7 49.2 222.5 185.6 103.4c102.4-103.4 28.1-156-65.8-169.9c-3.3-.4-6.7-.8-10-1.3c3.4 .4 6.7 .9 10 1.3c64.1 7.1 133.6-15.1 153.2-80.7C566.9 194 576 75 576 58.4s-3.3-44.7-21.6-52.9c-15.8-7.1-40-14.9-103.2 29.8C385.1 81.9 314.1 176.4 288 227.1z"/></svg>
+            
+          </span></a><a href="http://linkedin.com/in/patrickkollitsch" target="_blank" rel="noopener"
+        class="ananke-social-link link-transition linkedin link dib z-999 pt3 pt0-l mr1"
+        title="follow on LinkedIn - Opens in a new window"
+        aria-label="follow on LinkedIn - Opens in a new window">
+      <span class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+            
+          </span></a></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">「论文阅读」Augmented Knowledge Graph Querying leveraging LLMs</div>
+          
+            <div class="fw1 f5 f3-l white-80 measure-wide-l center lh-copy mt3 mb4">
+              该论文提出了SparqLLM框架，通过结合RAG与LLM，实现了从自然语言到SPARQL查询的自动生成，以简化知识图谱的查询过程。SparqLLM利用模板检索提高查询准确性，并通过动态可视化仪表板呈现结果，提升用户体验。
+            </div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked ttu">
+          
+        Articles
+      </aside><div id="sharing" class="mt3 ananke-socials"><a href="mailto:?&amp;body=http%3A%2F%2Flocalhost%3A1313%2Fpost%2Fpaper-augmented-knowledge-graph-querying-leveraging-llms%2F&amp;subject=%E3%80%8C%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E3%80%8DAugmented&#43;Knowledge&#43;Graph&#43;Querying&#43;leveraging&#43;LLMs"
+        class="ananke-social-link email no-underline"
+        title="Share on Email" aria-label="Share on Email"
+        target="_blank" rel="nofollow noopener noreferrer">
+        <span class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M64 112c-8.8 0-16 7.2-16 16l0 22.1L220.5 291.7c20.7 17 50.4 17 71.1 0L464 150.1l0-22.1c0-8.8-7.2-16-16-16L64 112zM48 212.2L48 384c0 8.8 7.2 16 16 16l384 0c8.8 0 16-7.2 16-16l0-171.8L322 328.8c-38.4 31.5-93.7 31.5-132 0L48 212.2zM0 128C0 92.7 28.7 64 64 64l384 0c35.3 0 64 28.7 64 64l0 256c0 35.3-28.7 64-64 64L64 448c-35.3 0-64-28.7-64-64L0 128z"/></svg>
+                
+              </span></a><a href="https://facebook.com/sharer/sharer.php?&amp;u=http%3A%2F%2Flocalhost%3A1313%2Fpost%2Fpaper-augmented-knowledge-graph-querying-leveraging-llms%2F"
+        class="ananke-social-link facebook no-underline"
+        title="Share on Facebook" aria-label="Share on Facebook"
+        target="_blank" rel="nofollow noopener noreferrer">
+        <span class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M512 256C512 114.6 397.4 0 256 0S0 114.6 0 256C0 376 82.7 476.8 194.2 504.5V334.2H141.4V256h52.8V222.3c0-87.1 39.4-127.5 125-127.5c16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1c-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H287V510.1C413.8 494.8 512 386.9 512 256h0z"/></svg>
+                
+              </span></a><a href="https://bsky.app/intent/compose?&amp;text=http%3A%2F%2Flocalhost%3A1313%2Fpost%2Fpaper-augmented-knowledge-graph-querying-leveraging-llms%2F"
+        class="ananke-social-link bluesky no-underline"
+        title="Share on Bluesky" aria-label="Share on Bluesky"
+        target="_blank" rel="nofollow noopener noreferrer">
+        <span class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M407.8 294.7c-3.3-.4-6.7-.8-10-1.3c3.4 .4 6.7 .9 10 1.3zM288 227.1C261.9 176.4 190.9 81.9 124.9 35.3C61.6-9.4 37.5-1.7 21.6 5.5C3.3 13.8 0 41.9 0 58.4S9.1 194 15 213.9c19.5 65.7 89.1 87.9 153.2 80.7c3.3-.5 6.6-.9 10-1.4c-3.3 .5-6.6 1-10 1.4C74.3 308.6-9.1 342.8 100.3 464.5C220.6 589.1 265.1 437.8 288 361.1c22.9 76.7 49.2 222.5 185.6 103.4c102.4-103.4 28.1-156-65.8-169.9c-3.3-.4-6.7-.8-10-1.3c3.4 .4 6.7 .9 10 1.3c64.1 7.1 133.6-15.1 153.2-80.7C566.9 194 576 75 576 58.4s-3.3-44.7-21.6-52.9c-15.8-7.1-40-14.9-103.2 29.8C385.1 81.9 314.1 176.4 288 227.1z"/></svg>
+                
+              </span></a><a href="https://www.linkedin.com/shareArticle?&amp;mini=true&amp;source=http%3A%2F%2Flocalhost%3A1313%2Fpost%2Fpaper-augmented-knowledge-graph-querying-leveraging-llms%2F&amp;summary=%E8%BF%99%E7%AF%87%E8%AE%BA%E6%96%87%E5%BC%95%E5%85%A5%E4%BA%86%E4%B8%80%E4%B8%AA%E5%90%8D%E4%B8%BA&#43;SparqLLM&#43;%E7%9A%84%E6%A1%86%E6%9E%B6%EF%BC%8C%E9%80%9A%E8%BF%87%E7%BB%93%E5%90%88&#43;RAG&#43;%E4%B8%8E&#43;LLM%EF%BC%8C%E5%AE%9E%E7%8E%B0%E4%BA%86%E4%BB%8E%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%88%B0&#43;SPARQL&#43;%E6%9F%A5%E8%AF%A2%E7%9A%84%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%EF%BC%8C%E4%BB%A5%E7%AE%80%E5%8C%96%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E7%9A%84%E6%9F%A5%E8%AF%A2%E8%BF%87%E7%A8%8B%E3%80%82%0A1&#43;Introduction&#43;%E8%83%8C%E6%99%AF%EF%BC%9A%E9%9D%9E%E6%8A%80%E6%9C%AF%E5%91%98%E5%B7%A5%E4%B8%8D%E6%87%82&#43;SPARQL%EF%BC%9BKG&#43;%2B&#43;LLMs&#43;%E6%97%A0%E6%B3%95%E7%94%9F%E6%88%90%E7%B2%BE%E7%A1%AE%E9%AB%98%E6%95%88%E7%9A%84&#43;SPARQL&#43;%E6%9F%A5%E8%AF%A2%EF%BC%8C%E4%B8%94%E5%AD%98%E5%9C%A8%E5%B9%BB%E8%A7%89%E9%97%AE%E9%A2%98%E3%80%82%0ASparqLLM%EF%BC%9A%E8%A2%AB%E8%AE%BE%E8%AE%A1%E4%B8%BA&#43;RAG&#43;%E6%A1%86%E6%9E%B6%EF%BC%8C%E5%8F%AF%E8%87%AA%E5%8A%A8%E4%BB%8E%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E9%97%AE%E9%A2%98%E7%94%9F%E6%88%90&#43;SPARQL&#43;%E6%9F%A5%E8%AF%A2%EF%BC%8C%E5%90%8C%E6%97%B6%E7%94%9F%E6%88%90%E6%9C%80%E9%80%82%E5%BD%93%E7%9A%84%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E4%BB%A5%E8%BF%94%E5%9B%9E%E8%8E%B7%E5%BE%97%E7%9A%84%E7%BB%93%E6%9E%9C%E3%80%82%0A%E7%9B%AE%E6%A0%87%EF%BC%9A%E6%8F%90%E9%AB%98&#43;KG&#43;%E7%9A%84%E5%87%86%E7%A1%AE%E6%80%A7%E3%80%81%E5%8F%AF%E7%94%A8%E6%80%A7%E5%92%8C%E5%8F%AF%E9%9D%A0%E6%80%A7%EF%BC%8C%E5%AE%9E%E7%8E%B0%E4%B8%8E%E8%AF%AD%E4%B9%89%E6%95%B0%E6%8D%AE%E7%9A%84%E6%9B%B4%E7%9B%B4%E8%A7%82%E5%92%8C%E6%9C%89%E6%95%88%E7%9A%84%E4%BA%A4%E4%BA%92%E3%80%82%0A2&#43;Related&#43;Work&#43;%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E6%8E%A5%E5%8F%A3&#43;%28NLI%29%EF%BC%9A%E5%B0%86%E9%9D%9E%E7%BB%93%E6%9E%84%E5%8C%96%E8%BE%93%E5%85%A5%E8%BD%AC%E6%8D%A2%E4%B8%BA&#43;SPARQL&#43;%E7%AD%89%E6%AD%A3%E5%BC%8F%E6%9F%A5%E8%AF%A2%E8%AF%AD%E8%A8%80%EF%BC%8C%E4%BD%BF%E9%9D%9E%E6%8A%80%E6%9C%AF%E7%94%A8%E6%88%B7%E6%9B%B4%E5%AE%B9%E6%98%93%E8%AE%BF%E9%97%AE%E5%9F%BA%E4%BA%8E&#43;RDF&#43;%E7%9A%84%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E3%80%82%0ALLMs%EF%BC%9A%E5%88%A9%E7%94%A8%E5%AE%83%E4%BB%AC%E5%A4%84%E7%90%86%E5%92%8C%E7%94%9F%E6%88%90%E5%A4%8D%E6%9D%82%E6%96%87%E6%9C%AC%E7%9A%84%E8%83%BD%E5%8A%9B%EF%BC%8C%E4%B8%BA%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E6%9F%A5%E8%AF%A2%E6%8F%90%E4%BE%9B%E4%BA%86%E4%B8%80%E4%B8%AA%E5%BC%BA%E5%A4%A7%E7%9A%84%E6%A1%86%E6%9E%B6%EF%BC%8C%E5%87%8F%E5%B0%91%E4%BA%86%E4%BA%BA%E5%B7%A5%E5%B9%B2%E9%A2%84%E7%9A%84%E9%9C%80%E8%A6%81%EF%BC%8C%E4%BD%BF%E9%9D%9E%E4%B8%93%E5%AE%B6%E7%94%A8%E6%88%B7%E4%B9%9F%E8%83%BD%E8%AE%BF%E9%97%AE%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E3%80%82%0A%E5%9F%BA%E4%BA%8E%E6%A8%A1%E6%9D%BF%E7%9A%84%E6%96%B9%E6%B3%95%EF%BC%9A%E9%80%9A%E8%BF%87%E4%B8%BA%E6%9F%A5%E8%AF%A2%E7%94%9F%E6%88%90%E6%8F%90%E4%BE%9B%E7%A1%AE%E5%AE%9A%E6%80%A7%E6%A1%86%E6%9E%B6%E6%9D%A5%E8%A1%A5%E5%85%85%E4%B8%8A%E8%BF%B0%E6%96%B9%E6%B3%95%E3%80%82%0A&amp;title=%E3%80%8C%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E3%80%8DAugmented&#43;Knowledge&#43;Graph&#43;Querying&#43;leveraging&#43;LLMs&amp;url=http%3A%2F%2Flocalhost%3A1313%2Fpost%2Fpaper-augmented-knowledge-graph-querying-leveraging-llms%2F"
+        class="ananke-social-link linkedin no-underline"
+        title="Share on LinkedIn" aria-label="Share on LinkedIn"
+        target="_blank" rel="nofollow noopener noreferrer">
+        <span class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+                
+              </span></a></div>
+<h1 class="f1 athelas mt3 mb1">「论文阅读」Augmented Knowledge Graph Querying leveraging LLMs</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2025-05-14T11:00:59-04:00">May 14, 2025</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><p><a href="https://arxiv.org/abs/2502.01298">这篇论文</a>引入了一个名为 SparqLLM 的框架，通过结合 RAG 与 LLM，实现了从自然语言到 SPARQL 查询的自动生成，以简化知识图谱的查询过程。</p>
+<h3 id="1-introduction">1 Introduction</h3>
+<p><strong>背景</strong>：非技术员工不懂 SPARQL；KG + LLMs 无法生成精确高效的 SPARQL 查询，且存在幻觉问题。</p>
+<p><strong>SparqLLM</strong>：被设计为 RAG 框架，可自动从自然语言问题生成 SPARQL 查询，同时生成最适当的数据可视化以返回获得的结果。</p>
+<p><img src="/images/paper-SparqLLM/1.png" alt="1"></p>
+<p><strong>目标</strong>：提高 KG 的准确性、可用性和可靠性，实现与语义数据的更直观和有效的交互。</p>
+<p> </p>
+<h3 id="2-related-work">2 Related Work</h3>
+<ul>
+<li>
+<p><strong>自然语言接口 (NLI)</strong>：将非结构化输入转换为 SPARQL 等正式查询语言，使非技术用户更容易访问基于 RDF 的知识图谱。</p>
+</li>
+<li>
+<p><strong>LLMs</strong>：利用它们处理和生成复杂文本的能力，为自动生成查询提供了一个强大的框架，减少了人工干预的需要，使非专家用户也能访问知识图谱。</p>
+</li>
+<li>
+<p><strong>基于模板的方法</strong>：通过为查询生成提供确定性框架来补充上述方法。</p>
+</li>
+</ul>
+<p>e.g CatSQL 和基于 BERT 的方法等系统 通过将<strong>预定义模板</strong>与<strong>语义校正</strong>和<strong>上下文嵌入相结合</strong>来增强 SQL 生成。</p>
+<p><strong>缺陷</strong>：对预定义模式的依赖限制了处理复杂或模糊查询的灵活性；在针对不同领域扩展这些系统并确保与 KG 的无缝交互方面仍然存在挑战。</p>
+<p> </p>
+<h3 id="3-sparqllm">3 SparqLLM</h3>
+<p>SparqLLM 的 RAG 组件的设计将自然语言查询转换为 SPARQL 查询，从而促进与 KG 的交互。</p>
+<p><strong>模板检索(Template Retrieval)</strong>：系统根据与用户问题的语义相似性识别最相关的 SPARQL 查询模板。</p>
+<p><strong>查询生成(Query Generation)</strong>：检索到的模板 与 用户的查询 和 KG 本体相结合，由 LLM 进行处理，以生成结构化的 SPARQL 查询。</p>
+<p>在此步骤中，生成的查询将在 KG 上执行。</p>
+<p><strong>数据可视化(Data Visualization)</strong>：将查询结果转换为可视化表示形式。</p>
+<ol>
+<li>
+<h4 id="模板检索">模板检索</h4>
+<p>系统不是从头开始生成 SPARQL 查询，而是检索并调整适当的模板。每个模板都表示一种特定类型的查询，如：</p>
+<ul>
+<li><strong>SELECT</strong>：检索实体的特定属性而不执行聚合的查询。</li>
+<li><strong>GROUP BY</strong>：涉及聚合的查询，例如平均值或计数。</li>
+<li><strong>FILTER</strong>：请求按特定属性 （例如日期范围或实体属性） 筛选的信息的查询。</li>
+</ul>
+<p>SparqLLM 为 KG 中的每个查询类型和实体创建了一组 15 个模板，总共有 360 个模板。在此之后，模板被集成到向量数据库中。</p>
+<p><strong>优化</strong>：使用 IVF_FLAT 索引方法，将向量组织成聚类，并允许在最相关的聚类中更快地进行搜索。</p>
+</li>
+<li>
+<h4 id="查询生成">查询生成</h4>
+<p>利用 RAG 框架的 LLMs，使用之前检索到的模板，从自然语言输入生成 SPARQL 查询。</p>
+<p><img src="/images/paper-SparqLLM/2.png" alt="2"></p>
+<ol>
+<li>
+<p>根据用户的问题检索相关的查询模板。此模板连同用户的输入和 KG 本体一起提供给 LLM。</p>
+<p>本体(ontology)提供了特定于域的实体、关系和架构规则的完整视图，确保生成的查询在语义和结构上是正确的。</p>
+</li>
+<li>
+<p>自定义设计的提示将指导模型确定模板和本体特定术语的优先级，从而减少歧义，帮助模型生成简洁、有效的查询。</p>
+</li>
+<li>
+<p>生成查询后，将在 KG 上执行该查询。</p>
+<p>如果查询失败，系统将进入反馈循环，在该循环中，模型会分析错误、优化查询并重试。这种迭代方法会一直持续，直到生成有效的查询。</p>
+</li>
+</ol>
+<p>该过程结合了预定义模板、本体指导和 LLM 适应性的优势。</p>
+</li>
+<li>
+<h4 id="数据可视化">数据可视化</h4>
+<p>SPARQL 查询通常会生成大量的数据集，难以向用户有效地解释结果。故需要将原始查询输出转换为交互式可视化的表示形式。</p>
+<ol>
+<li>评估查询结果是以 图形方式 还是以 表格格式 最好地表示</li>
+<li>执行生成的代码，如果出现错误，系统会向 LLM 提供反馈，提示其优化代码。此循环将一直持续，直到成功创建可视化。</li>
+</ol>
+<p>控制面板将 SPARQL 查询结果集成到一个可访问的界面中，使用Plotly库生成交互式图表，支持柱状图、折线图、散点图等多种可视化类型。</p>
+</li>
+</ol>
+<p> </p>
+<h4 id="主要贡献">主要贡献</h4>
+<ol>
+<li>提出了一个基于 KG 的问答综合系统，解决了查询生成和数据可视化方面的挑战。该</li>
+<li>解决方案从构建 KG 开始，使用灵活的 ETL 流水线，确保与 SemIoE 本体的兼容性；基于RAG 框架的混合 SPARQL 查询生成方法将模板匹配与 LLMs 集成在一起。</li>
+<li>检索到的模板为 LLM提供了上下文，从而能够将自然语言查询转换为准确且可解释的 SPARQL 查询。</li>
+<li>动态仪表板的实施有助于查询结果的直观和交互式可视化。</li>
+<li>引入了特定于解决方案的评估指标来全面验证系统的性能，从而展示了模板检索、查询生成和控制面板可视化的稳健性。</li>
+</ol>
+<p>未来的工作可以进一步改进可视化选择过程，支持更多类型的可视化，并实现实时查询执行和可视化功能。</p>
+<p> </p>
+<p> </p>
+<p> </p>
+<h5 id="ontology-是知识图谱的语义骨架通过定义类属性和关系赋予数据明确的含义使其能被机器理解和推理没有-ontology-的知识图谱只是一堆松散关联的数据缺乏逻辑一致性">Ontology 是知识图谱的“语义骨架”，通过定义类、属性和关系，赋予数据明确的含义，使其能被机器理解和推理。没有 Ontology 的知识图谱只是一堆松散关联的数据，缺乏逻辑一致性。</h5><ul class="pa0">
+  
+   <li class="list di">
+     <a href="/tags/paper/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">Paper</a>
+   </li>
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+  <div class="bg-light-gray pa3 nested-list-reset nested-copy-line-height nested-links">
+    <p class="f5 b mb3">Related</p>
+    <ul class="pa0 list">
+	   
+	     <li  class="mb2">
+          <a href="/post/paper-generate-on-graph-treat-llm-as-both-agent-and-kg-for-incomplete-knowledge-graph-question-answering/">「论文阅读」Generate-on-Graph: Treat LLM as both Agent and KG for Incomplete Knowledge Graph Question Answering</a>
+        </li>
+	    
+    </ul>
+</div>
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="http://localhost:1313/" >
+    &copy;  HomePage 2025 
+  </a>
+    <div><div class="ananke-socials"><a href="https://www.facebook.com/patrick.kollitsch" target="_blank" rel="noopener"
+        class="ananke-social-link link-transition facebook link dib z-999 pt3 pt0-l mr1"
+        title="follow on Facebook - Opens in a new window"
+        aria-label="follow on Facebook - Opens in a new window">
+      <span class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M512 256C512 114.6 397.4 0 256 0S0 114.6 0 256C0 376 82.7 476.8 194.2 504.5V334.2H141.4V256h52.8V222.3c0-87.1 39.4-127.5 125-127.5c16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1c-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H287V510.1C413.8 494.8 512 386.9 512 256h0z"/></svg>
+            
+          </span></a><a href="https://bsky.app/profile/kollitsch.dev" target="_blank" rel="noopener"
+        class="ananke-social-link link-transition bluesky link dib z-999 pt3 pt0-l mr1"
+        title="follow on Bluesky - Opens in a new window"
+        aria-label="follow on Bluesky - Opens in a new window">
+      <span class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M407.8 294.7c-3.3-.4-6.7-.8-10-1.3c3.4 .4 6.7 .9 10 1.3zM288 227.1C261.9 176.4 190.9 81.9 124.9 35.3C61.6-9.4 37.5-1.7 21.6 5.5C3.3 13.8 0 41.9 0 58.4S9.1 194 15 213.9c19.5 65.7 89.1 87.9 153.2 80.7c3.3-.5 6.6-.9 10-1.4c-3.3 .5-6.6 1-10 1.4C74.3 308.6-9.1 342.8 100.3 464.5C220.6 589.1 265.1 437.8 288 361.1c22.9 76.7 49.2 222.5 185.6 103.4c102.4-103.4 28.1-156-65.8-169.9c-3.3-.4-6.7-.8-10-1.3c3.4 .4 6.7 .9 10 1.3c64.1 7.1 133.6-15.1 153.2-80.7C566.9 194 576 75 576 58.4s-3.3-44.7-21.6-52.9c-15.8-7.1-40-14.9-103.2 29.8C385.1 81.9 314.1 176.4 288 227.1z"/></svg>
+            
+          </span></a><a href="http://linkedin.com/in/patrickkollitsch" target="_blank" rel="noopener"
+        class="ananke-social-link link-transition linkedin link dib z-999 pt3 pt0-l mr1"
+        title="follow on LinkedIn - Opens in a new window"
+        aria-label="follow on LinkedIn - Opens in a new window">
+      <span class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+            
+          </span></a></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

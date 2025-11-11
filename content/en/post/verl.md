@@ -15,6 +15,6 @@ title: "verl"
 
 #### 后端选择：
 
-1. **Training**：建议使用 FSDP。
-2. **Inference**：建议打开 env var VLLM_USE_V1=1 以获得最佳性能。可使用 [SGLang 后端](https://verl.readthedocs.io/en/latest/workers/sglang_worker.html)。
-3. 
+1. **Training**：[FSDP](https://verl.readthedocs.io/en/latest/workers/fsdp_workers.html) 或 [Megatron-LM](https://verl.readthedocs.io/en/latest/workers/megatron_workers.html)。
+
+2. **Inference**：建议打开` env var VLLM_USE_V1=1` 以获得最佳性能。可使用 [SGLang 后端](https://verl.readthedocs.io/en/latest/workers/sglang_worker.html)。

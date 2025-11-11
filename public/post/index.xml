@@ -6,8 +6,15 @@
     <description>Recent content in Articles on HomePage</description>
     <generator>Hugo</generator>
     <language>en-US</language>
-    <lastBuildDate>Tue, 22 Jul 2025 11:00:59 -0400</lastBuildDate>
+    <lastBuildDate>Sun, 27 Jul 2025 11:00:59 -0400</lastBuildDate>
     <atom:link href="http://localhost:1313/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>「论文阅读」RAG 文献调研</title>
+      <link>http://localhost:1313/post/paper-ragchecker/</link>
+      <pubDate>Sun, 27 Jul 2025 11:00:59 -0400</pubDate>
+      <guid>http://localhost:1313/post/paper-ragchecker/</guid>
+      <description>&lt;h1 id=&#34;评估&#34;&gt;评估&lt;/h1&gt;&#xA;&lt;h2 id=&#34;ragchecker-a-fine-grained-framework-for-diagnosing-retrieval-augmented-generation&#34;&gt;RagChecker: A Fine-grained Framework for Diagnosing Retrieval-Augmented Generation&lt;/h2&gt;&#xA;&lt;h3 id=&#34;introduction&#34;&gt;Introduction&lt;/h3&gt;&#xA;&lt;h4 id=&#34;评估-rag-系统的难点&#34;&gt;评估 RAG 系统的难点&lt;/h4&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&lt;strong&gt;模块化复杂&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;指标限制&lt;/strong&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;检索器&lt;/strong&gt;：传统指标（如 recall@k 和 MRR）依于 带注释的分块 和 严格的分块方式，忽视了知识库的完整语义范围&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;生成器&lt;/strong&gt;：典型度量（如，基于 n-gram 的方法（如BLEU 和 ROUGE）、基于嵌入的方法（例如，BERTScore）和基于 LLM 的方法等）等可处理简单回答，但无法在较长的响应中检测到更精细的区别。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;指标可靠性&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;对比其他（RAGAS、TruLens、ARES、RGB、RECALL、NoMIRAC)，RagChecker 能 从人类角度评估 RAG 系统质量和可靠性方面的有效性，对错误来源做分析。&lt;/p&gt;&#xA;&lt;h3 id=&#34;related-work&#34;&gt;Related Work&lt;/h3&gt;&#xA;&lt;p&gt;现有评估可分为两种方法：仅评估 &lt;strong&gt;generators&lt;/strong&gt; 的基本功能 和 评估 &lt;strong&gt;RAG 系统&lt;/strong&gt;的端到端性能。&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&lt;strong&gt;generators&lt;/strong&gt;：RGB、RECALL、NoMIRACL、&lt;a href=&#34;https://arxiv.org/abs/2404.10198v1&#34;&gt;Wu&lt;/a&gt;、FaaF&amp;hellip;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;RAG 系统&lt;/strong&gt;：TruLens、RAGAS、ARES、CRUD-RAG&amp;hellip;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;数据集&lt;/strong&gt;：&lt;a href=&#34;https://arxiv.org/abs/2304.09848&#34;&gt;Liu&lt;/a&gt;、MEDRAG（医疗RAG基准）、MultiHop-RAG、CDQA&amp;hellip;&lt;/li&gt;&#xA;&lt;/ol&gt;</description>
+    </item>
     <item>
       <title>JSON</title>
       <link>http://localhost:1313/post/json/</link>
@@ -24,9 +31,9 @@
     </item>
     <item>
       <title>「论文阅读」KernelBench</title>
-      <link>http://localhost:1313/post/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBkernelbench/</link>
+      <link>http://localhost:1313/post/paper-kernelbench/</link>
       <pubDate>Sun, 20 Jul 2025 11:00:59 -0400</pubDate>
-      <guid>http://localhost:1313/post/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBkernelbench/</guid>
+      <guid>http://localhost:1313/post/paper-kernelbench/</guid>
       <description>&lt;p&gt;KernelBench 是一个评估 LLMs 在生成高性能 GPU 内核代码上能力的基准测试框架。论文引入了&lt;strong&gt;新评估指标 fast_p&lt;/strong&gt;：衡量生成的 正确、且速度提升超过阈值p 的内核的比例。&lt;/p&gt;&#xA;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;&#xA;&lt;p&gt;背景：每个硬件都有不同的规格和指令集，跨平台移植算法是痛点。&lt;/p&gt;&#xA;&lt;p&gt;论文核心探讨：LM 可以帮助编写正确和优化的内核吗？&lt;/p&gt;&#xA;&lt;p&gt;KernelBench 的任务：让 LMs 基于给定的 PyTorch 目标模型架构，生成优化的 CUDA 内核；并进行自动评估。&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;h4 id=&#34;环境要求&#34;&gt;环境要求&lt;/h4&gt;&#xA;&lt;p&gt;&lt;strong&gt;自动化&lt;/strong&gt; AI 工程师的工作流程。&lt;/p&gt;&#xA;&lt;p&gt;支持&lt;strong&gt;多种&lt;/strong&gt; AI 算法、编程语言和硬件平台。&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;轻松&lt;/strong&gt;评估 LM 代的性能和功能正确性，并从生成的内核中分析信息。&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;h4 id=&#34;测试级别&#34;&gt;测试级别&lt;/h4&gt;&#xA;&lt;p&gt;Individual operations:：如 AI 运算符、包括矩阵乘法、卷积和损失。&lt;/p&gt;&#xA;&lt;p&gt;Sequence of operations：评估模型融合多个算子的能力。&lt;/p&gt;&#xA;&lt;p&gt;端到端架构：Github 上流行 AI 存储库中的架构。&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;工作流程&#34;&gt;工作流程&lt;/h3&gt;&#xA;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/paper-KernelBench/1.png&#34; alt=&#34;1&#34;&gt;&lt;/p&gt;</description>
     </item>
     <item>
@@ -80,16 +87,16 @@
     </item>
     <item>
       <title>「论文阅读」AlphaEvolve: A coding agent for scientific and algorithmic discovery</title>
-      <link>http://localhost:1313/post/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBalphaevolve/</link>
+      <link>http://localhost:1313/post/paper-alphaevolve/</link>
       <pubDate>Wed, 02 Jul 2025 11:00:59 -0400</pubDate>
-      <guid>http://localhost:1313/post/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBalphaevolve/</guid>
+      <guid>http://localhost:1313/post/paper-alphaevolve/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;http://arxiv.org/abs/2506.13131&#34;&gt;&lt;em&gt;AlphaEvolve&lt;/em&gt;&lt;/a&gt; 使用进化方法，不断接收来自一个或多个评估者的反馈，迭代改进算法，从而有可能带来新的科学和实践发现。&lt;/p&gt;&#xA;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;&#xA;&lt;p&gt;AlphaEvolve represents the candidates (for example, new mathematical objects or practical heuristics) as algorithms and &lt;strong&gt;uses a set of LLMs to generate, critique, and evolve&lt;/strong&gt; a pool of such algorithms.&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/paper-AlphaEvolve/1.png&#34; alt=&#34;1&#34;&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;alphaevolve&#34;&gt;AlphaEvolve&lt;/h2&gt;&#xA;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/paper-AlphaEvolve/2.png&#34; alt=&#34;2&#34;&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>「论文阅读」Kimi-Researcher</title>
-      <link>http://localhost:1313/post/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBkimi-researcher/</link>
+      <link>http://localhost:1313/post/paper-kimi-researcher/</link>
       <pubDate>Wed, 25 Jun 2025 11:00:59 -0400</pubDate>
-      <guid>http://localhost:1313/post/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBkimi-researcher/</guid>
+      <guid>http://localhost:1313/post/paper-kimi-researcher/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://moonshotai.github.io/Kimi-Researcher/&#34;&gt;这篇技术报告&lt;/a&gt;提出了完全通过端到端 agentic reinforcement learning 进行训练的自主智能体 Kimi-Researcher，旨在通过多步骤规划、推理和工具使用来解决复杂问题。&lt;/p&gt;&#xA;&lt;p&gt;—— &lt;strong&gt;End-to-end agentic RL is promising but challenging&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt; &lt;/p&gt;&#xA;&lt;h3 id=&#34;传统-agent&#34;&gt;传统 agent&lt;/h3&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;https://www.anthropic.com/engineering/built-multi-agent-research-system&#34;&gt;基于工作流&lt;/a&gt;&lt;/strong&gt;：需要随着模型或环境的变化而频繁手动更新，缺乏可扩展性和灵活性。&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;使用监督微调 (SFT)进行模仿学习&lt;/strong&gt;：在数据标记方面存在困难；特定的工具版本紧密耦合。&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;&lt;strong&gt;Kimi-Researcher&lt;/strong&gt;：给定一个查询，agent 探索大量可能的策略，获得正确解决方案的奖励 —— 所有技能（规划、感知和工具使用）都是一起学习的，无需手工制作的rule/workflow。&lt;/p&gt;&#xA;&lt;p&gt; &lt;/p&gt;&#xA;&lt;h3 id=&#34;建模&#34;&gt;建模&lt;/h3&gt;&#xA;&lt;p&gt;给定状态观察(如系统提示符、工具声明和用户查询)，Kimi-Researcher 会生成 think和action (action 可以是工具调用，也可以是终止轨迹的指示)。&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/paper-KimiResearcher/1.png&#34; alt=&#34;1&#34;&gt;&lt;/p&gt;&#xA;&lt;h3 id=&#34;approach&#34;&gt;Approach&lt;/h3&gt;&#xA;&lt;p&gt;主要利用三个工具：a)并行、实时、内部的 &lt;strong&gt;search tool;&lt;/strong&gt; b) 用于交互式 Web 任务的基于文本的 &lt;strong&gt;browser tool&lt;/strong&gt;; c)用于自动执行代码的 &lt;strong&gt;coding tool&lt;/strong&gt;.&lt;/p&gt;</description>
     </item>
     <item>
@@ -164,16 +171,16 @@
     </item>
     <item>
       <title>「论文阅读」Augmented Knowledge Graph Querying leveraging LLMs</title>
-      <link>http://localhost:1313/post/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBaugmented-knowledge-graph-querying-leveraging-llms/</link>
+      <link>http://localhost:1313/post/paper-augmented-knowledge-graph-querying-leveraging-llms/</link>
       <pubDate>Wed, 14 May 2025 11:00:59 -0400</pubDate>
-      <guid>http://localhost:1313/post/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBaugmented-knowledge-graph-querying-leveraging-llms/</guid>
+      <guid>http://localhost:1313/post/paper-augmented-knowledge-graph-querying-leveraging-llms/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://arxiv.org/abs/2502.01298&#34;&gt;这篇论文&lt;/a&gt;引入了一个名为 SparqLLM 的框架，通过结合 RAG 与 LLM，实现了从自然语言到 SPARQL 查询的自动生成，以简化知识图谱的查询过程。&lt;/p&gt;&#xA;&lt;h3 id=&#34;1-introduction&#34;&gt;1 Introduction&lt;/h3&gt;&#xA;&lt;p&gt;&lt;strong&gt;背景&lt;/strong&gt;：非技术员工不懂 SPARQL；KG + LLMs 无法生成精确高效的 SPARQL 查询，且存在幻觉问题。&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;SparqLLM&lt;/strong&gt;：被设计为 RAG 框架，可自动从自然语言问题生成 SPARQL 查询，同时生成最适当的数据可视化以返回获得的结果。&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/paper-SparqLLM/1.png&#34; alt=&#34;1&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;目标&lt;/strong&gt;：提高 KG 的准确性、可用性和可靠性，实现与语义数据的更直观和有效的交互。&lt;/p&gt;&#xA;&lt;p&gt; &lt;/p&gt;&#xA;&lt;h3 id=&#34;2-related-work&#34;&gt;2 Related Work&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;自然语言接口 (NLI)&lt;/strong&gt;：将非结构化输入转换为 SPARQL 等正式查询语言，使非技术用户更容易访问基于 RDF 的知识图谱。&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;LLMs&lt;/strong&gt;：利用它们处理和生成复杂文本的能力，为自动生成查询提供了一个强大的框架，减少了人工干预的需要，使非专家用户也能访问知识图谱。&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;基于模板的方法&lt;/strong&gt;：通过为查询生成提供确定性框架来补充上述方法。&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
     </item>
     <item>
       <title>「论文阅读」Generate-on-Graph: Treat LLM as both Agent and KG for Incomplete Knowledge Graph Question Answering</title>
-      <link>http://localhost:1313/post/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBgenerate-on-graph-treat-llm-as-both-agent-and-kg-for-incomplete-knowledge-graph-question-answering/</link>
+      <link>http://localhost:1313/post/paper-generate-on-graph-treat-llm-as-both-agent-and-kg-for-incomplete-knowledge-graph-question-answering/</link>
       <pubDate>Wed, 14 May 2025 11:00:59 -0400</pubDate>
-      <guid>http://localhost:1313/post/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BBgenerate-on-graph-treat-llm-as-both-agent-and-kg-for-incomplete-knowledge-graph-question-answering/</guid>
+      <guid>http://localhost:1313/post/paper-generate-on-graph-treat-llm-as-both-agent-and-kg-for-incomplete-knowledge-graph-question-answering/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://arxiv.org/abs/2404.14741&#34;&gt;这篇论文&lt;/a&gt;提出了一种称为 Generate-on-Graph(GoG) 的免训练方法，它可以在探索 KG 时，生成新的事实三元组。&lt;/p&gt;&#xA;&lt;p&gt;具体来说，在不完全知识图谱(IKGQA) 中，GoG 通过 Thinking-Searching-Generating 框架进行推理，它将 LLM 同时视为 Agent 和 KG。&lt;/p&gt;&#xA;&lt;h3 id=&#34;1-introduction&#34;&gt;1 Introduction&lt;/h3&gt;&#xA;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/paper-GoG/1.png&#34; alt=&#34;1&#34;&gt;&lt;/p&gt;</description>
     </item>
     <item>
